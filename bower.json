@@ -1,0 +1,21 @@
+{
+  "name": "Tedd Arcuri",
+  "version": "0.0.0",
+  "authors": [
+    "Tedd Arcuri <tedd.arcuri@www.colorado.gov>"
+  ],
+  "description": "Tedd Arcuri. Designer + Developer. Personal Site",
+  "main": "index.html",
+  "moduleType": [
+    "es6",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
