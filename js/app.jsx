@@ -1,19 +1,18 @@
-const { Router,
-        Route,
-        IndexRoute,
-        AboutRoute,
-        Redirect,
-        Link,
-        IndexLink
-      } = ReactRouter
+import React from 'react';
+import Router from 'react-router';
+import Index from './index';
+import About from './about';
+import Work from './work';
+import Contact from './contact';
 
-const App = React.createClass({
-  componentDidMount: function() {
+class App extends React.Component {
+  componentDidMount() {
     $("#app").flowtype({
       minimum : 700,
       maximum : 1200
     });
-  },
+  }
+  
   render() {
     return (
       <div>
@@ -77,221 +76,7 @@ const App = React.createClass({
       </div>
     )
   }
-})
-
-const Index = React.createClass({
-  componentDidMount: function() {
-    var camera, scene, renderer,
-    geometry, material, mesh, 
-    renderW, renderH,
-    textGeo, textTexture, textMaterial, text,
-    smokeParticles,
-    clock, cubeSineDriver, delta;
- 
-    init();
-    animate();
-
-    function init() {
-        clock = new THREE.Clock();
-
-        renderW = document.getElementById("scene").offsetWidth;
-        renderH = document.getElementById("scene").offsetHeight;
-        renderer = new THREE.WebGLRenderer();
-        renderer.setSize( renderW, renderH );
-        renderer.setClearColor(0xE9E4DC, 1)
-        scene = new THREE.Scene();
-
-        camera = new THREE.PerspectiveCamera( 75, renderW / renderH , 1, 10000 );
-        camera.position.z = 1250;
-        scene.add( camera );
-
-        geometry = new THREE.CubeGeometry( 200, 200, 200 );
-        material = new THREE.MeshLambertMaterial( { color: 0xaa6666, wireframe: false } );
-        mesh = new THREE.Mesh( geometry, material );
-        cubeSineDriver = 0;
-
-        textGeo = new THREE.PlaneGeometry(300,300);
-        THREE.ImageUtils.crossOrigin = ''; //Need this to pull in crossdomain images from AWS
-        textTexture = THREE.ImageUtils.loadTexture('https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/t.svg');
-        textMaterial = new THREE.MeshLambertMaterial({color: 0x222222, opacity: 0.8, map: textTexture, transparent: true, blending: THREE.AdditiveAlphaBlending})
-        text = new THREE.Mesh(textGeo,textMaterial);
-        text.position.z = 1100;
-        text.scale.x = 0.33;
-        text.scale.y = 0.33;
-        scene.add(text);
-
-        var light = new THREE.DirectionalLight(0xffffff, 1);
-        light.position.set(-1,0,1);
-        scene.add(light);
-
-        var colors = [0x6ecbea/*, 0xf99d9d*/];
-        var color = colors[Math.floor(Math.random() * colors.length)];
-        var smokeTexture = THREE.ImageUtils.loadTexture('https://s3-us-west-2.amazonaws.com/s.cdpn.io/95637/Smoke-Element.png');
-        var smokeMaterial = new THREE.MeshLambertMaterial({color: color, opacity: 1, map: smokeTexture, transparent: true});
-        var smokeGeo = new THREE.PlaneGeometry(300,300);
-        smokeParticles = [];
-     
-        var p;
-        for (p = 0; p < 20; p++) {
-            var particle = new THREE.Mesh(smokeGeo,smokeMaterial);
-            particle.position.set(Math.random()*200-100,Math.random()*200-100,Math.random()*1000-100);
-            particle.rotation.z = Math.random() * 360;
-            scene.add(particle);
-            smokeParticles.push(particle);
-        }
-
-        document.getElementById("scene").appendChild( renderer.domElement );
-   }
-
-    function animate() {
-
-        // note: three.js includes requestAnimationFrame shim
-        delta = clock.getDelta();
-        requestAnimationFrame( animate );
-        evolveSmoke();
-        render();
-        if (textMaterial.opacity < 0.5) {
-           //textMaterial.opacity =  textMaterial.opacity + 0.0015;
-        } 
-    }
-
-    function evolveSmoke() {
-        var sp = smokeParticles.length;
-        while(sp--) {
-            smokeParticles[sp].rotation.z += (delta * 0.2);
-        }
-    }
-
-    function render() {
-        mesh.rotation.x += 0.005;
-        mesh.rotation.y += 0.01;
-        cubeSineDriver += .01;
-        mesh.position.z = 100 + (Math.sin(cubeSineDriver) * 500);
-        renderer.render( scene, camera );
-    }
-
-    window.onresize = function() {
-      renderW = document.getElementById("scene").offsetWidth;
-      renderH = document.getElementById("scene").offsetHeight;
-      renderer.setSize( renderW, renderH );
-      camera.aspect = renderW / renderH ;
-      camera.updateProjectionMatrix();
-    }
-    
-    setTimeout(function(){
-       this.context.router.transitionTo("about");
-    }.bind(this), 2000);
-  },
-  render() {
-    return (
-      <div id="scene">
-      </div>
-    )
-  }
-})
-
-const About = React.createClass({
-  
-  componentDidMount: function() {
-    $(".typed").typed({
-        strings: ["a Designer", "a Developer", "a creative thinker", "a human being.", "a Front end engineer", "a geek", "a Problem Solver", "passionate about my craft."],
-        // typing speed
-        typeSpeed: 150,
-        // time before typing starts
-        startDelay: 0,
-        // backspacing speed
-        backSpeed: 20,
-        // time before backspacing
-        backDelay: 2000,
-        // loop
-        loop: true
-      });
-  },
-  render() {
-    return (
-      <div>
-        <h3>
-          Hello, My Name is <span className="highlight light">Tedd Arcuri</span>. <br />
-          I am <span className="highlight typed light"></span><br />
-          Currently living in Denver, CO.<br />
-          Checkout some of<span className="highlight ">  <Link to="work">My Work</Link></span>.<br />
-          Like what you see?<span className="highlight"> <Link to="contact">Hire Me</Link></span>.
-        </h3>
-        <div className="btns">
-          <a className="btn">About Me</a>
-          <a className="btn">See My Work</a>
-          <a className="btn">Get In Touch</a>
-        </div>
-        <img id="about-image"src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/someguy.png" />
-      </div>
-    )
-  }
-})
-
-const Work = React.createClass({
-  getInitialState: function() {
-    return {
-      projects: [
-        {
-          name: "Stratus",
-          size: "small",
-          coverImage: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/stratus_cover.jpg"
-        },
-        {
-          name: "Colorado.gov",
-          size: "small",
-          coverImage: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/colorado_gov_cover.jpg"
-        },
-        {
-          name: "Colorado Governor Hickenlooper",
-          size: "small",
-          coverImage: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/colorado_gov_cover.jpg"
-        },
-        {
-          name: "Olive Real Estate",
-          size: "small",
-          coverImage: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/colorado_gov_cover.jpg"
-        }
-      ]
-    }
-  },
-  componentDidMount: function() {
-    $('.projects-grid').masonry({
-      itemSelector: '.project',
-      gutter: 0,
-      columnWidth: 100
-    });
-  },
-  render() {
-    var projects = this.state.projects;
-    return (
-      <div>
-        <h1>My Work</h1>
-        <div className="projects-grid">
-          {projects.map(function(project) {
-            var classes = "project " + project.size;
-            return ( 
-              <div className={classes}>
-                <img src={project.coverImage} />
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
-  }
-})
-
-const Contact = React.createClass({
-  render() {
-    return (
-      <div>
-        <h5>tedd.arcuri@gmail.com</h5>
-        <h5>C: 719-440-4732</h5>
-      </div>
-    )
-  }
-})
+}
 
 React.render((
   <Router>
