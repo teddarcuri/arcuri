@@ -1,36 +1,30 @@
 var gulp = require('gulp');
-var babel = require('gulp-babel');
 var sass = require('gulp-sass');
+var babel = require('gulp-babel');
+var concat = require('gulp-concat');
 var webpack = require('gulp-webpack');
 
-// Styles
 gulp.task('sass', function () {
   gulp.src('./src/sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./build/css'));
 });
 
-// JSX
-gulp.task('jsx', function () {
+gulp.task('build', function () {
   return gulp.src('./src/js/**/*.jsx')
 		.pipe(babel({
 			presets: ['es2015', 'react']
 		}))
-		.pipe(gulp.dest('build/'));
-});
-
-// Module bundles
-gulp.task('webpack', function() {
-	gulp.src('./build/js/*.js')
-	.pipe(webpack( {
+		.pipe(concat('bundle.js'))
+		.pipe(webpack({
 			output: {
-				filename: 'bundle.js'
-			}
-	}))
-	.pipe(gulp.dest('build/'));
-})
+       		filename: 'bundlePack.js',
+      		},
+    	}))
+		.pipe(gulp.dest('./build/js'));
+});
  
 gulp.task('default', function () {
-	gulp.watch('./css/sass/**/*.scss', ['sass']);
-	gulp.watch('./js/**/*.jsx', ['jsx', 'webpack']);
+	gulp.watch('./src/sass/**/*.scss', ['sass']);
+	gulp.watch('./src/js/**/*.jsx', ['build']);
 });
