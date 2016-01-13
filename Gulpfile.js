@@ -5,14 +5,14 @@ var webpack = require('gulp-webpack');
 
 // Styles
 gulp.task('sass', function () {
-  gulp.src('./css/sass/**/*.scss')
+  gulp.src('./src/sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./css'));
+    .pipe(gulp.dest('./build/css'));
 });
 
 // JSX
 gulp.task('jsx', function () {
-  return gulp.src('./js/**/*.jsx')
+  return gulp.src('./src/js/**/*.jsx')
 		.pipe(babel({
 			presets: ['es2015', 'react']
 		}))
@@ -21,7 +21,7 @@ gulp.task('jsx', function () {
 
 // Module bundles
 gulp.task('webpack', function() {
-	gulp.src('./build/*.js')
+	gulp.src('./build/js/*.js')
 	.pipe(webpack( {
 			output: {
 				filename: 'bundle.js'
