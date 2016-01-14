@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import {Router, Route} from 'react-router';
 
 class App extends React.Component {
   render() {
@@ -6,7 +8,7 @@ class App extends React.Component {
   }
 }
 
-React.render((
+ReactDOM.render((
   <Router>
     <Route path="/" component={App}>
     </Route>

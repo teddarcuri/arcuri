@@ -6,11 +6,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = require('react-dom');
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
 var _reactRouter = require('react-router');
+
+var _reactRouter2 = _interopRequireDefault(_reactRouter);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20,31 +18,27 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var App = function (_React$Component) {
-  _inherits(App, _React$Component);
+var Index = function (_React$Component) {
+  _inherits(Index, _React$Component);
 
-  function App() {
-    _classCallCheck(this, App);
+  function Index() {
+    _classCallCheck(this, Index);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Index).apply(this, arguments));
   }
 
-  _createClass(App, [{
+  _createClass(Index, [{
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'h1',
         null,
-        'App'
+        'Index'
       );
     }
   }]);
 
-  return App;
+  return Index;
 }(_react2.default.Component);
 
-_reactDom2.default.render(_react2.default.createElement(
-  _reactRouter.Router,
-  null,
-  _react2.default.createElement(_reactRouter.Route, { path: '/', component: App })
-), document.getElementById('app'));
+_react2.default.render(_react2.default.createElement(Index, null), document.getElementById('app'));
