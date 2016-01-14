@@ -23,7 +23,6 @@ gulp.task('build', function () {
        		filename: 'bundle.js'
       		}
     	}))
-		.pipe(uglify())
 		.pipe(gulp.dest('./build/js'));
 });
 

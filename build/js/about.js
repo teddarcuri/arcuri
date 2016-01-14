@@ -18,27 +18,27 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Index = function (_React$Component) {
-  _inherits(Index, _React$Component);
+var About = function (_React$Component) {
+  _inherits(About, _React$Component);
 
-  function Index() {
-    _classCallCheck(this, Index);
+  function About() {
+    _classCallCheck(this, About);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Index).apply(this, arguments));
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(About).apply(this, arguments));
   }
 
-  _createClass(Index, [{
+  _createClass(About, [{
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'h1',
         null,
-        'Index'
+        'About'
       );
     }
   }]);
 
-  return Index;
+  return About;
 }(_react2.default.Component);
 
-exports.default = Index;
+exports.default = About;

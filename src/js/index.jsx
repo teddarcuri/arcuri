@@ -1,5 +1,4 @@
 import React from 'react';
-import Router from 'react-router';
 
 class Index extends React.Component {
   render() {
@@ -7,6 +6,4 @@ class Index extends React.Component {
   }
 }
 
-React.render((
-  <Index />
-), document.getElementById('app'))
+export default Index;	
