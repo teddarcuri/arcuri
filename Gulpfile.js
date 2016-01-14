@@ -20,9 +20,10 @@ gulp.task('build', function () {
 		.pipe(webpack({
 			entry: './build/js/app.js',
 			output: {
-       		filename: 'bundlePack.js'
+       		filename: 'bundle.js'
       		}
     	}))
+		.pipe(uglify())
 		.pipe(gulp.dest('./build/js'));
 });
 
