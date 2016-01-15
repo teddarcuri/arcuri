@@ -12,7 +12,7 @@ import Project from './project';
 class App extends React.Component {
   render() {
     return (
-    <div>
+    <div className="app-window">
         <header id="main">
            <Link to="/">
               <div id="logo">   

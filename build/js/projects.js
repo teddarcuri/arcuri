@@ -30,6 +30,14 @@ var projects = [{
 	background: "src/img/backgrounds/colorado.jpg"
 }, {
 	id: 2,
+	name: "Colorado Interactive",
+	types: ["Brand"],
+	roles: ["Designer"],
+	images: ["images/stuff.jpg"],
+	logo: "src/img/logos/ci-logo.png",
+	background: "src/img/backgrounds/coloradointeractive.jpg"
+}, {
+	id: 3,
 	name: "Colorado Governor",
 	types: ["Web"],
 	roles: ["Front End Development"],
@@ -62,11 +70,6 @@ var Projects = function (_React$Component) {
 			return _react2.default.createElement(
 				'div',
 				null,
-				_react2.default.createElement(
-					'h1',
-					null,
-					'My Work'
-				),
 				projects.map(function (p) {
 					var path = "work/" + p.name,
 					    logoPath = p.logo,

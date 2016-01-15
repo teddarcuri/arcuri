@@ -24,16 +24,24 @@ var projects = [{
 	types: ["Web"],
 	roles: ["Front End Development"],
 	images: ["images/stuff.jpg"],
-	logo: "images/stuff.jpg",
-	background: "images/stuff.jpg"
+	logo: "src/img/logos/co-logo.png",
+	background: "src/img/backgrounds/colorado.jpg"
 }, {
 	id: 2,
+	name: "Colorado Interactive",
+	types: ["Brand"],
+	roles: ["Designer"],
+	images: ["images/stuff.jpg"],
+	logo: "src/img/logos/ci-logo.png",
+	background: "src/img/backgrounds/coloradointeractive.jpg"
+}, {
+	id: 3,
 	name: "Colorado Governor",
 	types: ["Web"],
 	roles: ["Front End Development"],
 	images: ["images/stuff.jpg"],
-	logo: "images/stuff.jpg",
-	background: "images/stuff.jpg"
+	logo: "src/img/logos/co-state-seal.png",
+	background: "src/img/backgrounds/hickenlooper.jpg"
 }];
 
 var Project = function (_React$Component) {
@@ -70,9 +78,92 @@ var Project = function (_React$Component) {
 		key: "render",
 		value: function render() {
 			return _react2.default.createElement(
-				"h1",
-				null,
-				this.state.project.name
+				"div",
+				{ className: "project-page" },
+				_react2.default.createElement(
+					"div",
+					{ className: "project-sidebar" },
+					_react2.default.createElement(
+						"header",
+						null,
+						_react2.default.createElement(
+							"h1",
+							null,
+							this.state.project.name
+						),
+						_react2.default.createElement("img", { src: this.state.project.background, className: "bg" })
+					),
+					_react2.default.createElement(
+						"ul",
+						null,
+						_react2.default.createElement(
+							"li",
+							null,
+							_react2.default.createElement(
+								"span",
+								null,
+								"Gallery"
+							)
+						),
+						_react2.default.createElement(
+							"li",
+							null,
+							_react2.default.createElement(
+								"span",
+								null,
+								"Overview"
+							)
+						),
+						_react2.default.createElement(
+							"li",
+							null,
+							_react2.default.createElement(
+								"span",
+								null,
+								"Details"
+							)
+						)
+					)
+				),
+				_react2.default.createElement(
+					"section",
+					{ className: "project-content" },
+					_react2.default.createElement(
+						"div",
+						{ className: "container" },
+						_react2.default.createElement(
+							"p",
+							null,
+							"Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
+						),
+						_react2.default.createElement(
+							"p",
+							null,
+							"Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
+						),
+						_react2.default.createElement(
+							"p",
+							null,
+							"Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
+						),
+						_react2.default.createElement(
+							"p",
+							null,
+							"Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
+						),
+						_react2.default.createElement(
+							"p",
+							null,
+							"Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
+						),
+						_react2.default.createElement(
+							"p",
+							null,
+							"Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
+						)
+					)
+				),
+				_react2.default.createElement("img", { src: this.state.project.background, className: "bg" })
 			);
 		}
 	}]);

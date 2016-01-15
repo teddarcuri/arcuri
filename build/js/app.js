@@ -52,7 +52,7 @@ var App = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                null,
+                { className: 'app-window' },
                 _react2.default.createElement(
                     'header',
                     { id: 'main' },

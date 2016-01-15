@@ -13,6 +13,15 @@ let projects = [
 		},
 		{
 			id: 2,
+			name: "Colorado Interactive",
+			types: ["Brand"],
+			roles: ["Designer"],
+			images: ["images/stuff.jpg"],
+			logo: "src/img/logos/ci-logo.png",
+			background: "src/img/backgrounds/coloradointeractive.jpg"
+		},
+		{
+			id: 3,
 			name: "Colorado Governor",
 			types: ["Web"],
 			roles: ["Front End Development"],
@@ -39,7 +48,6 @@ class Projects extends React.Component {
 		var projects = this.state.projects;
 		return (
 		<div>
-	  		<h1>My Work</h1>
 	  		{
 	  			projects.map(function(p) {
 	  				let path = "work/" + p.name,
