@@ -12,13 +12,13 @@ gulp.task('sass', function () {
 });
 
 gulp.task('build', function () {
-  return gulp.src('./src/js/**/*.jsx')
+  return gulp.src(['./src/js/**/*.jsx', './src/js/**/*.js'])
 		.pipe(babel({
 			presets: ['es2015', 'react']
 		}))
 		.pipe(gulp.dest('./build/js'))
 		.pipe(webpack({
-			entry: './build/js/app.js',
+			entry: './build/js/App.js',
 			output: {
        		filename: 'bundle.js'
       		}

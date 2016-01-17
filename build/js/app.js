@@ -12,6 +12,14 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reactRouter = require('react-router');
 
+var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
+
+var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+var _reactAddonsTransitionGroup = require('react-addons-transition-group');
+
+var _reactAddonsTransitionGroup2 = _interopRequireDefault(_reactAddonsTransitionGroup);
+
 var _index = require('./index');
 
 var _index2 = _interopRequireDefault(_index);
@@ -23,6 +31,10 @@ var _about2 = _interopRequireDefault(_about);
 var _projects = require('./projects');
 
 var _projects2 = _interopRequireDefault(_projects);
+
+var _ProjectIndex = require('./ProjectIndex');
+
+var _ProjectIndex2 = _interopRequireDefault(_ProjectIndex);
 
 var _project = require('./project');
 
@@ -38,160 +50,197 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // Routes
 
+String.prototype.contains = function (s) {
+  return this.indexOf(s) !== -1;
+};
+
 var App = function (_React$Component) {
-    _inherits(App, _React$Component);
+  _inherits(App, _React$Component);
 
-    function App() {
-        _classCallCheck(this, App);
+  function App(props) {
+    _classCallCheck(this, App);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
+
+    _this.state = {
+      isProjectPage: false
+    };
+    return _this;
+  }
+
+  _createClass(App, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // Keep track if we are on a work page to make the logo light
+      this.checkForProjectPage();
     }
-
-    _createClass(App, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                { className: 'app-window' },
+  }, {
+    key: 'checkForProjectPage',
+    value: function checkForProjectPage() {
+      if (this.props.location.pathname.includes('work\/')) {
+        this.setState({ isProjectPage: true });
+      } else {
+        this.setState({ isProjectPage: false });
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var logoClasses = this.state.isProjectPage ? "light" : "dark";
+      return _react2.default.createElement(
+        'div',
+        { className: 'app-window' },
+        _react2.default.createElement(
+          'header',
+          { id: 'main', className: logoClasses },
+          _react2.default.createElement(
+            _reactRouter.Link,
+            { to: '/' },
+            _react2.default.createElement(
+              'div',
+              { id: 'logo' },
+              _react2.default.createElement(
+                'svg',
+                { width: '614px', height: '619px', viewBox: '0 0 614 619', version: '1.1' },
                 _react2.default.createElement(
-                    'header',
-                    { id: 'main' },
-                    _react2.default.createElement(
-                        _reactRouter.Link,
-                        { to: '/' },
-                        _react2.default.createElement(
-                            'div',
-                            { id: 'logo' },
-                            _react2.default.createElement(
-                                'svg',
-                                { width: '614px', height: '619px', viewBox: '0 0 614 619', version: '1.1' },
-                                _react2.default.createElement(
-                                    'title',
-                                    null,
-                                    'Fill 1 + Fill 2'
-                                ),
-                                _react2.default.createElement(
-                                    'desc',
-                                    null,
-                                    'Created with Sketch.'
-                                ),
-                                _react2.default.createElement('defs', null),
-                                _react2.default.createElement(
-                                    'g',
-                                    { id: 'Page-1', stroke: 'none', strokeWidth: '1', fill: 'none', 'fill-rule': 'evenodd' },
-                                    _react2.default.createElement(
-                                        'g',
-                                        { id: 'Page-1-Copy', fill: '#333333' },
-                                        _react2.default.createElement(
-                                            'g',
-                                            { id: 'Fill-1-+-Fill-2' },
-                                            _react2.default.createElement('path', { d: 'M0,191.454578 L613.484079,191.454578 L613.484079,0.4253125 L0,0.4253125 L0,191.454578 Z', id: 'Fill-1' }),
-                                            _react2.default.createElement('path', { d: 'M211.249048,619 L402.225238,619 L402.225238,0.4253125 L211.249048,0.4253125 L211.249048,619 Z', id: 'Fill-2' })
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { id: 'menu' },
-                        _react2.default.createElement(
-                            'span',
-                            null,
-                            _react2.default.createElement(
-                                'svg',
-                                { id: 'menu-icon', width: '60px', height: '60px', viewBox: '40 0 70 80', version: '1.1' },
-                                _react2.default.createElement('defs', null),
-                                _react2.default.createElement(
-                                    'g',
-                                    { stroke: 'none', strokeWidth: '1', fill: 'none', 'fill-rule': 'evenodd' },
-                                    _react2.default.createElement(
-                                        'g',
-                                        { fill: '#333333' },
-                                        _react2.default.createElement('rect', { id: 'Rectangle-1', x: '30', y: '0', width: '90', height: '17' }),
-                                        _react2.default.createElement('rect', { id: 'Rectangle-2', x: '30', y: '33', width: '90', height: '17' }),
-                                        _react2.default.createElement('rect', { id: 'Rectangle-3', x: '30', y: '66', width: '90', height: '17' })
-                                    )
-                                )
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'ul',
-                            null,
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                _react2.default.createElement(
-                                    _reactRouter.Link,
-                                    { to: '/about' },
-                                    'About'
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                _react2.default.createElement(
-                                    _reactRouter.Link,
-                                    { to: '/work' },
-                                    'My Work'
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                _react2.default.createElement(
-                                    _reactRouter.Link,
-                                    { to: '/contact' },
-                                    'Contact'
-                                )
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'svg',
-                        { version: '1.1', id: 'D-1', x: '0px', y: '0px',
-                            viewBox: '-355.2 -98 94.4 102', 'enable-background': 'new -355.2 -98 94.4 102' },
-                        _react2.default.createElement(
-                            'g',
-                            null,
-                            _react2.default.createElement('path', { fill: 'none', d: 'M-288.4-46.9c0-14.2-8.6-25.1-25.1-25.1H-328v50h14.5C-297.6-22-288.4-33.4-288.4-46.9z' }),
-                            _react2.default.createElement('path', { fill: '#333333', d: 'M-315-98h-40.2V4h40.2c32,0,54.1-20.2,54.1-50.9C-260.8-77.7-283-98-315-98z M-328-72h14.5 c16.4,0,25.1,10.9,25.1,25.1c0,13.6-9.2,24.9-25.1,24.9H-328V-72z' })
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'svg',
-                        { version: '1.1', id: 'D-2', x: '0px', y: '0px',
-                            viewBox: '-355.2 -98 94.4 102', 'enable-background': 'new -355.2 -98 94.4 102' },
-                        _react2.default.createElement(
-                            'g',
-                            null,
-                            _react2.default.createElement('path', { fill: 'none', d: 'M-288.4-46.9c0-14.2-8.6-25.1-25.1-25.1H-328v50h14.5C-297.6-22-288.4-33.4-288.4-46.9z' }),
-                            _react2.default.createElement('path', { fill: '#333333', d: 'M-315-98h-40.2V4h40.2c32,0,54.1-20.2,54.1-50.9C-260.8-77.7-283-98-315-98z M-328-72h14.5 c16.4,0,25.1,10.9,25.1,25.1c0,13.6-9.2,24.9-25.1,24.9H-328V-72z' })
-                        )
-                    )
+                  'title',
+                  null,
+                  'Fill 1 + Fill 2'
                 ),
                 _react2.default.createElement(
-                    'div',
-                    { id: 'app-window', className: 'center' },
-                    this.props.children
+                  'desc',
+                  null,
+                  'Created with Sketch.'
+                ),
+                _react2.default.createElement('defs', null),
+                _react2.default.createElement(
+                  'g',
+                  { id: 'Page-1', stroke: 'none', strokeWidth: '1', fill: 'none', 'fill-rule': 'evenodd' },
+                  _react2.default.createElement(
+                    'g',
+                    { id: 'Page-1-Copy' },
+                    _react2.default.createElement(
+                      'g',
+                      { id: 'Fill-1-+-Fill-2' },
+                      _react2.default.createElement('path', { className: 'svg-fill', d: 'M0,191.454578 L613.484079,191.454578 L613.484079,0.4253125 L0,0.4253125 L0,191.454578 Z', id: 'Fill-1' }),
+                      _react2.default.createElement('path', { className: 'svg-fill', d: 'M211.249048,619 L402.225238,619 L402.225238,0.4253125 L211.249048,0.4253125 L211.249048,619 Z', id: 'Fill-2' })
+                    )
+                  )
                 )
-            );
-        }
-    }]);
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { id: 'menu' },
+            _react2.default.createElement(
+              'span',
+              null,
+              _react2.default.createElement(
+                'svg',
+                { id: 'menu-icon', width: '60px', height: '60px', viewBox: '40 0 70 80', version: '1.1' },
+                _react2.default.createElement('defs', null),
+                _react2.default.createElement(
+                  'g',
+                  { stroke: 'none', strokeWidth: '1', fill: 'none', 'fill-rule': 'evenodd' },
+                  _react2.default.createElement(
+                    'g',
+                    { className: 'svg-fill' },
+                    _react2.default.createElement('rect', { className: 'svg-fill', id: 'Rectangle-1', x: '30', y: '0', width: '90', height: '17' }),
+                    _react2.default.createElement('rect', { className: 'svg-fill', id: 'Rectangle-2', x: '30', y: '33', width: '90', height: '17' }),
+                    _react2.default.createElement('rect', { className: 'svg-fill', id: 'Rectangle-3', x: '30', y: '66', width: '90', height: '17' })
+                  )
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'ul',
+              null,
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  _reactRouter.Link,
+                  { to: '/about' },
+                  'About'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  _reactRouter.Link,
+                  { to: '/work' },
+                  'My Work'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  _reactRouter.Link,
+                  { to: '/contact' },
+                  'Contact'
+                )
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'svg',
+            { version: '1.1', id: 'D-1', x: '0px', y: '0px',
+              viewBox: '-355.2 -98 94.4 102', 'enable-background': 'new -355.2 -98 94.4 102' },
+            _react2.default.createElement(
+              'g',
+              { className: 'svg-fill' },
+              _react2.default.createElement('path', { fill: 'none', d: 'M-288.4-46.9c0-14.2-8.6-25.1-25.1-25.1H-328v50h14.5C-297.6-22-288.4-33.4-288.4-46.9z' }),
+              _react2.default.createElement('path', { className: 'svg-fill', d: 'M-315-98h-40.2V4h40.2c32,0,54.1-20.2,54.1-50.9C-260.8-77.7-283-98-315-98z M-328-72h14.5 c16.4,0,25.1,10.9,25.1,25.1c0,13.6-9.2,24.9-25.1,24.9H-328V-72z' })
+            )
+          ),
+          _react2.default.createElement(
+            'svg',
+            { version: '1.1', id: 'D-2', x: '0px', y: '0px',
+              viewBox: '-355.2 -98 94.4 102', 'enable-background': 'new -355.2 -98 94.4 102' },
+            _react2.default.createElement(
+              'g',
+              { className: 'svg-fill' },
+              _react2.default.createElement('path', { fill: 'none', d: 'M-288.4-46.9c0-14.2-8.6-25.1-25.1-25.1H-328v50h14.5C-297.6-22-288.4-33.4-288.4-46.9z' }),
+              _react2.default.createElement('path', { className: 'svg-fill', d: 'M-315-98h-40.2V4h40.2c32,0,54.1-20.2,54.1-50.9C-260.8-77.7-283-98-315-98z M-328-72h14.5 c16.4,0,25.1,10.9,25.1,25.1c0,13.6-9.2,24.9-25.1,24.9H-328V-72z' })
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { id: 'app-window', className: 'center' },
+          _react2.default.createElement(
+            _reactAddonsTransitionGroup2.default,
+            { component: 'div',
+              className: 'transition-group' },
+            _react2.default.cloneElement(this.props.children, {
+              key: this.props.location.pathname,
+              isProjectPage: this.state.isProjectPage
+            })
+          )
+        )
+      );
+    }
+  }]);
 
-    return App;
+  return App;
 }(_react2.default.Component);
 
 _reactDom2.default.render(_react2.default.createElement(
-    _reactRouter.Router,
-    null,
+  _reactRouter.Router,
+  null,
+  _react2.default.createElement(
+    _reactRouter.Route,
+    { path: '/', component: App },
+    _react2.default.createElement(_reactRouter.IndexRoute, { component: _index2.default }),
+    _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _about2.default }),
     _react2.default.createElement(
-        _reactRouter.Route,
-        { path: '/', component: App },
-        _react2.default.createElement(_reactRouter.IndexRoute, { component: _index2.default }),
-        _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _about2.default }),
-        _react2.default.createElement(_reactRouter.Route, { path: 'work', component: _projects2.default }),
-        _react2.default.createElement(_reactRouter.Route, { path: 'work/:name', component: _project2.default })
+      _reactRouter.Route,
+      { path: 'work', component: _projects2.default },
+      _react2.default.createElement(_reactRouter.IndexRoute, { component: _ProjectIndex2.default }),
+      _react2.default.createElement(_reactRouter.Route, { path: ':name', component: _project2.default })
     )
+  )
 ), document.getElementById('app'));

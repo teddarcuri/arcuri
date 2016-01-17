@@ -1,70 +1,41 @@
 import React from 'react';
-import {Router, Route, IndexRoute, Link} from 'react-router';
+import {browserHistory, Router, Route, IndexRoute, Link} from 'react-router';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import ReactTransitionGroup from 'react-addons-transition-group';
+import projectList from './project-list';
 
-let projects = [
-		{
-			id: 1,
-			name: "Colorado.gov",
-			types: ["Web"],
-			roles: ["Front End Development"],
-			images: ["images/stuff.jpg"],
-			logo: "src/img/logos/co-logo.png",
-			background: "src/img/backgrounds/colorado.jpg"
-		},
-		{
-			id: 2,
-			name: "Colorado Interactive",
-			types: ["Brand"],
-			roles: ["Designer"],
-			images: ["images/stuff.jpg"],
-			logo: "src/img/logos/ci-logo.png",
-			background: "src/img/backgrounds/coloradointeractive.jpg"
-		},
-		{
-			id: 3,
-			name: "Colorado Governor",
-			types: ["Web"],
-			roles: ["Front End Development"],
-			images: ["images/stuff.jpg"],
-			logo: "src/img/logos/co-state-seal.png",
-			background: "src/img/backgrounds/hickenlooper.jpg"
-		}
-]
 
 class Projects extends React.Component {
-
 	constructor(props) {
 		super(props);
-		this.state = {
-			projects: projects
-		}
 	}
 
-	componentDidMount() {
-	      
+	componentWillAppear(callback) {
+		setTimeout(callback, 2500)
+		this.refs.childRoute.animateIn();
+	}
+
+	componentWillEnter(callback) {
+		setTimeout(callback, 2500)
+		this.refs.childRoute.animateIn();
+	}
+
+	componentWillLeave(callback) {
+		setTimeout(callback, 2500)
+		this.refs.childRoute.animateOut();
 	}
 
 	render() {
-		var projects = this.state.projects;
+		var key = this.props.location.pathname;
 		return (
 		<div>
-	  		{
-	  			projects.map(function(p) {
-	  				let path = "work/" + p.name,
-	  					 logoPath = p.logo,
-	  					 bgImgPath = p.background;
-	  				return (
-	  					<Link to={path} className="project-bubble">
-							<img className="logo" src={logoPath} />
-							<img className="bg" src={bgImgPath} />
-	  					</Link>
-	  				)
-	  			})
-	  		}
-	  	</div>
-	   )
+ 			{React.cloneElement(this.props.children, {
+          		key: key,
+          		ref: "childRoute"
+        	})}
+ 		</div>
+	   )	
 	}
 }
-
 
 export default Projects

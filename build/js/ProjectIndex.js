@@ -32,49 +32,61 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Projects = function (_React$Component) {
-	_inherits(Projects, _React$Component);
+var ProjectIndex = function (_React$Component) {
+	_inherits(ProjectIndex, _React$Component);
 
-	function Projects(props) {
-		_classCallCheck(this, Projects);
+	function ProjectIndex(props) {
+		_classCallCheck(this, ProjectIndex);
 
-		return _possibleConstructorReturn(this, Object.getPrototypeOf(Projects).call(this, props));
+		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectIndex).call(this, props));
+
+		_this.state = {
+			projects: _projectList2.default
+		};
+		return _this;
 	}
 
-	_createClass(Projects, [{
-		key: 'componentWillAppear',
-		value: function componentWillAppear(callback) {
-			setTimeout(callback, 2500);
-			this.refs.childRoute.animateIn();
+	_createClass(ProjectIndex, [{
+		key: 'animateIn',
+		value: function animateIn() {
+			var _this2 = this;
+
+			setTimeout(function () {
+				_this2.refs.projectBubbles.style.opacity = "1";
+			}, 50);
 		}
 	}, {
-		key: 'componentWillEnter',
-		value: function componentWillEnter(callback) {
-			setTimeout(callback, 2500);
-			this.refs.childRoute.animateIn();
-		}
-	}, {
-		key: 'componentWillLeave',
-		value: function componentWillLeave(callback) {
-			setTimeout(callback, 2500);
-			this.refs.childRoute.animateOut();
+		key: 'animateOut',
+		value: function animateOut() {
+			var _this3 = this;
+
+			setTimeout(function () {
+				_this3.refs.projectBubbles.style.opacity = "0";
+			}, 50);
 		}
 	}, {
 		key: 'render',
 		value: function render() {
-			var key = this.props.location.pathname;
+			var projects = this.state.projects;
 			return _react2.default.createElement(
 				'div',
-				null,
-				_react2.default.cloneElement(this.props.children, {
-					key: key,
-					ref: "childRoute"
+				{ className: 'project-bubbles', ref: 'projectBubbles' },
+				projects.map(function (p) {
+					var path = "work/" + p.name,
+					    logoPath = p.logo,
+					    bgImgPath = p.background;
+					return _react2.default.createElement(
+						_reactRouter.Link,
+						{ key: p.id, to: path, className: 'project-bubble' },
+						_react2.default.createElement('img', { className: 'logo', src: logoPath }),
+						_react2.default.createElement('img', { className: 'bg', src: bgImgPath })
+					);
 				})
 			);
 		}
 	}]);
 
-	return Projects;
+	return ProjectIndex;
 }(_react2.default.Component);
 
-exports.default = Projects;
+exports.default = ProjectIndex;
