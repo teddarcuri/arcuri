@@ -10,8 +10,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = require('react-router');
-
 var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
@@ -19,10 +17,6 @@ var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTran
 var _reactAddonsTransitionGroup = require('react-addons-transition-group');
 
 var _reactAddonsTransitionGroup2 = _interopRequireDefault(_reactAddonsTransitionGroup);
-
-var _projectList = require('./project-list');
-
-var _projectList2 = _interopRequireDefault(_projectList);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -48,10 +42,14 @@ var Projects = function (_React$Component) {
 			return _react2.default.createElement(
 				'div',
 				null,
-				_react2.default.cloneElement(this.props.children, {
-					key: key,
-					ref: "childRoute"
-				})
+				_react2.default.createElement(
+					_reactAddonsTransitionGroup2.default,
+					null,
+					_react2.default.cloneElement(this.props.children, {
+						key: key,
+						ref: "childRoute"
+					})
+				)
 			);
 		}
 	}]);

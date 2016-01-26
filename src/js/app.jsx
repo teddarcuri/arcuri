@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import {Router, Route, IndexRoute, Link} from 'react-router';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ReactTransitionGroup from 'react-addons-transition-group';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 
 // Routes
@@ -20,10 +21,10 @@ String.prototype.contains = function(s) {
   return this.indexOf(s) !== -1;
 }
 
-    h.saySup("Hola AMIGOS!");
+/*
+  Application
+*/
 
-
-// Application
 class App extends React.Component {
 
   constructor(props) {
@@ -32,8 +33,6 @@ class App extends React.Component {
     this.state = {
       isProjectPage: false
     }
-
-    h.saySup("Hola AMIGOS!");
   }
 
   render() {
@@ -94,22 +93,28 @@ class App extends React.Component {
                 </g>
               </svg>
         </header>
+
         <div id="app-window" className="center">
-        <ReactTransitionGroup component='div'
-                      className='transition-group'>
-	       {React.cloneElement(this.props.children, {
-            key: this.props.location.pathname,
-            isProjectPage: this.state.isProjectPage
-          })}
-         </ReactTransitionGroup>
+          <ReactTransitionGroup 
+                        component='div'
+                        className='transition-group'>
+    	       {React.cloneElement(this.props.children, {
+                key: this.props.location.pathname,
+                isProjectPage: this.state.isProjectPage
+              })}
+           </ReactTransitionGroup>
 	     </div>
       </div>       
     )
   }
 }
 
+/*
+  Routes
+*/
+
 ReactDOM.render((
-  <Router>
+  <Router history={createBrowserHistory()}>
     <Route path="/" component={App}>
     	<IndexRoute component={Index}/>
       <Route path="about" component={About}/>
