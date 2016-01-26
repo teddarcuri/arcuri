@@ -245,7 +245,7 @@ header#main {
 }
 
 .project-bubbles {
-  opacity: 0;
+  opacity: 1;
   @include transition(all ease 1.5s);
 }
 

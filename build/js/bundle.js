@@ -86,6 +86,10 @@
 
 	var _project2 = _interopRequireDefault(_project);
 
+	var _helpers = __webpack_require__(220);
+
+	var _helpers2 = _interopRequireDefault(_helpers);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -95,6 +99,8 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // React
 
 	// Routes
+
+	// Utility
 
 	String.prototype.contains = function (s) {
 	    return this.indexOf(s) !== -1;
@@ -111,8 +117,10 @@
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
 
 	        _this.state = {
-	            isProjectPage: true
+	            isProjectPage: false
 	        };
+
+	        _helpers2.default.saySup("Hola AMIGOS!");
 	        return _this;
 	    }
 
@@ -25161,45 +25169,16 @@
 		}
 
 		_createClass(Projects, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {
-				console.log(this.refs);
-				this.refs.derp.style.background = "red";
-			}
-
-			// componentWillAppear(callback) {
-			// 	setTimeout(callback, 2000);
-			// 	console.log(this.refs.childRoute);
-			// 	this.refs.childRoute.animateIn();
-			// }
-
-			// componentWillEnter(callback) {
-			// 	console.log(this.refs.childRoute + " is entering");
-			// 	setTimeout(callback, 2000)
-			// 	this.refs.childRoute.animateIn();
-			// }
-
-			// componentWillLeave(callback) {
-			// 	console.log(this.refs.childRoute + " is leaving");
-			// 	setTimeout(callback, 2000)
-			// 	this.refs.childRoute.animateOut();
-			// }
-
-		}, {
 			key: 'render',
 			value: function render() {
 				var key = this.props.location.pathname;
 				return _react2.default.createElement(
 					'div',
 					null,
-					_react2.default.createElement(
-						_reactAddonsTransitionGroup2.default,
-						{ ref: 'derp' },
-						_react2.default.cloneElement(this.props.children, {
-							key: key,
-							ref: "childRoute"
-						})
-					)
+					_react2.default.cloneElement(this.props.children, {
+						key: key,
+						ref: "childRoute"
+					})
 				);
 			}
 		}]);
@@ -25414,27 +25393,31 @@
 	    return _this;
 	  }
 
-	  //  componentWillAppear(callback) {
-	  //  	console.log("Project Will Appear");
-	  //  this.animateIn();
-	  //  }
-
-	  //  componentWillEnter(callback) {
-	  //  	console.log("Project Entering");
-	  //  this.animateIn();
-	  //  }
-
-	  //  componentWillUnmount() {
-	  //  	console.log("Project UnMounting");
-	  //  	this.animateOut();
-	  //  }
-
-	  // componentDidLeave(callback) {
-	  // 	console.log("Project Leaving");
-	  // 	this.animateOut();
-	  // }
-
 	  _createClass(Project, [{
+	    key: 'componentWillAppear',
+	    value: function componentWillAppear(callback) {
+	      console.log("Project Will Appear");
+	      this.animateIn();
+	    }
+	  }, {
+	    key: 'componentWillEnter',
+	    value: function componentWillEnter(callback) {
+	      console.log("Project Entering");
+	      this.animateIn();
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      console.log("Project UnMounting");
+	      this.animateOut();
+	    }
+	  }, {
+	    key: 'componentDidLeave',
+	    value: function componentDidLeave(callback) {
+	      console.log("Project Leaving");
+	      this.animateOut();
+	    }
+	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var id = this.props.params.name;
@@ -25559,6 +25542,23 @@
 	}(_react2.default.Component);
 
 	exports.default = Project;
+
+/***/ },
+/* 220 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	var helpers = {
+		saySup: function saySup(message) {
+			alert(message);
+		}
+	};
+
+	exports.default = helpers;
 
 /***/ }
 /******/ ]);

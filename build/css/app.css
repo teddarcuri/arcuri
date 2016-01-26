@@ -257,7 +257,7 @@ header#main {
           text-decoration: none; }
 
 .project-bubbles {
-  opacity: 0;
+  opacity: 1;
   -webkit-transition: all ease 1.5s;
   -moz-transition: all ease 1.5s;
   transition: all ease 1.5s; }

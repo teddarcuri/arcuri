@@ -45,27 +45,31 @@ var Project = function (_React$Component) {
     return _this;
   }
 
-  //  componentWillAppear(callback) {
-  //  	console.log("Project Will Appear");
-  //  this.animateIn();
-  //  }
-
-  //  componentWillEnter(callback) {
-  //  	console.log("Project Entering");
-  //  this.animateIn();
-  //  }
-
-  //  componentWillUnmount() {
-  //  	console.log("Project UnMounting");
-  //  	this.animateOut();
-  //  }
-
-  // componentDidLeave(callback) {
-  // 	console.log("Project Leaving");
-  // 	this.animateOut();
-  // }
-
   _createClass(Project, [{
+    key: 'componentWillAppear',
+    value: function componentWillAppear(callback) {
+      console.log("Project Will Appear");
+      this.animateIn();
+    }
+  }, {
+    key: 'componentWillEnter',
+    value: function componentWillEnter(callback) {
+      console.log("Project Entering");
+      this.animateIn();
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      console.log("Project UnMounting");
+      this.animateOut();
+    }
+  }, {
+    key: 'componentDidLeave',
+    value: function componentDidLeave(callback) {
+      console.log("Project Leaving");
+      this.animateOut();
+    }
+  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var id = this.props.params.name;

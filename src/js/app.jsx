@@ -13,9 +13,15 @@ import Projects from './projects';
 import ProjectIndex from './ProjectIndex';
 import Project from './project';
 
+// Utility
+import h from './helpers';
+
 String.prototype.contains = function(s) {
   return this.indexOf(s) !== -1;
 }
+
+    h.saySup("Hola AMIGOS!");
+
 
 // Application
 class App extends React.Component {
@@ -24,8 +30,10 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      isProjectPage: true
+      isProjectPage: false
     }
+
+    h.saySup("Hola AMIGOS!");
   }
 
   render() {

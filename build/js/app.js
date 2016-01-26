@@ -40,6 +40,10 @@ var _project = require('./project');
 
 var _project2 = _interopRequireDefault(_project);
 
+var _helpers = require('./helpers');
+
+var _helpers2 = _interopRequireDefault(_helpers);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -50,9 +54,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // Routes
 
+// Utility
+
 String.prototype.contains = function (s) {
     return this.indexOf(s) !== -1;
 };
+
+_helpers2.default.saySup("Hola AMIGOS!");
 
 // Application
 
@@ -65,8 +73,10 @@ var App = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
 
         _this.state = {
-            isProjectPage: true
+            isProjectPage: false
         };
+
+        _helpers2.default.saySup("Hola AMIGOS!");
         return _this;
     }
 

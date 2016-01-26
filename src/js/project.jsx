@@ -13,25 +13,25 @@ class Project extends React.Component {
   	}
   }
 
- //  componentWillAppear(callback) {
- //  	console.log("Project Will Appear");
-	//  this.animateIn();
- //  }
+  componentWillAppear(callback) {
+  	console.log("Project Will Appear");
+	 this.animateIn();
+  }
 
- //  componentWillEnter(callback) {
- //  	console.log("Project Entering");
-	//  this.animateIn();
- //  }
+  componentWillEnter(callback) {
+  	console.log("Project Entering");
+	 this.animateIn();
+  }
 
- //  componentWillUnmount() {
- //  	console.log("Project UnMounting");
- //  	this.animateOut();
- //  }
+  componentWillUnmount() {
+  	console.log("Project UnMounting");
+  	this.animateOut();
+  }
 
-	// componentDidLeave(callback) {
-	// 	console.log("Project Leaving");
-	// 	this.animateOut();
-	// }
+	componentDidLeave(callback) {
+		console.log("Project Leaving");
+		this.animateOut();
+	}
 
   componentDidMount() {
       const id = this.props.params.name
@@ -42,8 +42,8 @@ class Project extends React.Component {
   	setTimeout(() => { document.getElementById("main").classList.add("light") }, 1500);
   	setTimeout(() => { document.body.style.background = "#111111"}, 1000);
   	setTimeout(() => { this.refs.backgroundImage.style.opacity = "0.3" }, 1100);
-   setTimeout(() => { this.refs.projectSidebar.style.transform = "translateX(0%)" }, 1700);
-   setTimeout(() => { this.refs.projectContent.style.transform = "translateY(0%)" }, 1700);
+    setTimeout(() => { this.refs.projectSidebar.style.transform = "translateX(0%)" }, 1700);
+    setTimeout(() => { this.refs.projectContent.style.transform = "translateY(0%)" }, 1700);
   }
 
   animateOut() {
