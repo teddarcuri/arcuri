@@ -10,10 +10,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
-
-var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
-
 var _reactAddonsTransitionGroup = require('react-addons-transition-group');
 
 var _reactAddonsTransitionGroup2 = _interopRequireDefault(_reactAddonsTransitionGroup);

@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+    font-family: "Proxima Nova", sans-serif !important;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+
+.container {
+  &.mw {
+    max-width: 900px;
+  }
+}
+
+p {
+  color: #666;
+  line-height: 1.5em;
+}
+
+#app {
+  height: 100%;
+}
+
+h1 {
+  font-size: 2.25em;
+  font-weight: 700;
+  color: #333;
+  text-transform: uppercase;
+}
+
+h3 {
+  color: #333;
+  font-weight: 700;
+  font-size: 1.66em;
+  line-height: 1.2em;
+  opacity: 1;
+  text-align: left;
+  text-transform: uppercase;
+   .highlight {
+      color: #3A6877;
+     a {
+       color: #3A6877;
+       &:hover {
+        color: lighten(#3A6877, 20%); 
+       }
+     }
+     &.light {
+      color: lighten(#3A6877, 20%);
+       a {
+         color: lighten(#3A6877, 20%);
+         &:hover {
+            color: #3A6877;
+         }
+       }
+     }
+  }
+}
+
+body {
+  @include linear-gradient(top, #ddd, #fff);
+}

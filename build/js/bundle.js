@@ -61661,10 +61661,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(206);
-
-	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
-
 	var _reactAddonsTransitionGroup = __webpack_require__(213);
 
 	var _reactAddonsTransitionGroup2 = _interopRequireDefault(_reactAddonsTransitionGroup);
@@ -61965,10 +61961,6 @@
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	var _reactAddonsTransitionGroup = __webpack_require__(213);
-
-	var _reactAddonsTransitionGroup2 = _interopRequireDefault(_reactAddonsTransitionGroup);
-
 	var _projectList = __webpack_require__(221);
 
 	var _projectList2 = _interopRequireDefault(_projectList);
@@ -62003,41 +61995,6 @@
 	      this.setState({ project: this.findById(this.state.projects, id) });
 	    }
 	  }, {
-	    key: 'animateIn',
-	    value: function animateIn() {
-	      var _this2 = this;
-
-	      setTimeout(function () {
-	        document.getElementById("main").classList.add("light");
-	      }, 1500);
-	      setTimeout(function () {
-	        document.body.style.background = "#111111";
-	      }, 1000);
-	      setTimeout(function () {
-	        _this2.refs.backgroundImage.style.opacity = "0.3";
-	      }, 1100);
-	      setTimeout(function () {
-	        _this2.refs.projectSidebar.style.transform = "translateX(0%)";
-	      }, 1700);
-	      setTimeout(function () {
-	        _this2.refs.projectContent.style.transform = "translateY(0%)";
-	      }, 1700);
-	    }
-	  }, {
-	    key: 'animateOut',
-	    value: function animateOut() {
-	      var _this3 = this;
-
-	      document.getElementById("main").classList.remove("light");
-	      document.body.style.background = "whitesmoke";
-	      setTimeout(function () {
-	        _this3.refs.backgroundImage.style.opacity = "0";
-	      }, 50);
-	      setTimeout(function () {
-	        _this3.refs.projectSidebar.style.transform = "translateX(-200%)";
-	      }, 100);
-	    }
-	  }, {
 	    key: 'findById',
 	    value: function findById(source, id) {
 	      for (var i = 0; i < source.length; i++) {
@@ -62051,8 +62008,14 @@
 	    value: function render() {
 	      var bgImgPath = this.state.project.background;
 	      return _react2.default.createElement(
-	        'div',
-	        { className: 'project-page' },
+	        _reactAddonsCssTransitionGroup2.default,
+	        { className: 'project-page',
+	          component: 'div',
+	          transitionAppear: true,
+	          transitionAppearTimeout: 0,
+	          transitionName: 'bubbleUp',
+	          transitionEnterTimeout: 1000,
+	          transitionLeaveTimeout: 1000 },
 	        _react2.default.createElement('img', { ref: 'backgroundImage', src: bgImgPath, className: 'bg' }),
 	        _react2.default.createElement(
 	          'div',

@@ -4,44 +4,127 @@ html {
 *, *::after, *::before {
   box-sizing: inherit; }
 
+/*
+
+  Animations
+
+*/
+.bubbleUp-appear {
+  opacity: 0.01;
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%); }
+
+.bubbleUp-appear.bubbleUp-appear-active {
+  opacity: 1;
+  transition: all 1s ease;
+  -webkit-transform: translateY(0%);
+  -moz-transform: translateY(0%);
+  -ms-transform: translateY(0%);
+  -o-transform: translateY(0%);
+  transform: translateY(0%); }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(1) {
+    -webkit-transition-delay: 0.3s;
+    -moz-transition-delay: 0.3s;
+    transition-delay: 0.3s; }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(2) {
+    -webkit-transition-delay: 0.6s;
+    -moz-transition-delay: 0.6s;
+    transition-delay: 0.6s; }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(3) {
+    -webkit-transition-delay: 0.9s;
+    -moz-transition-delay: 0.9s;
+    transition-delay: 0.9s; }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(4) {
+    -webkit-transition-delay: 1.2s;
+    -moz-transition-delay: 1.2s;
+    transition-delay: 1.2s; }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(5) {
+    -webkit-transition-delay: 1.5s;
+    -moz-transition-delay: 1.5s;
+    transition-delay: 1.5s; }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(6) {
+    -webkit-transition-delay: 1.8s;
+    -moz-transition-delay: 1.8s;
+    transition-delay: 1.8s; }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(7) {
+    -webkit-transition-delay: 2.1s;
+    -moz-transition-delay: 2.1s;
+    transition-delay: 2.1s; }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(8) {
+    -webkit-transition-delay: 2.4s;
+    -moz-transition-delay: 2.4s;
+    transition-delay: 2.4s; }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(9) {
+    -webkit-transition-delay: 2.7s;
+    -moz-transition-delay: 2.7s;
+    transition-delay: 2.7s; }
+
+.bubbleUp-leave {
+  opacity: 0.01;
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%); }
+
+.bubbleUp-leave.bubbleUp-leave-active {
+  opacity: 1;
+  transition: all 1s ease;
+  -webkit-transform: translateY(0%);
+  -moz-transform: translateY(0%);
+  -ms-transform: translateY(0%);
+  -o-transform: translateY(0%);
+  transform: translateY(0%); }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(1) {
+    -webkit-transition-delay: 0.2s;
+    -moz-transition-delay: 0.2s;
+    transition-delay: 0.2s; }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(2) {
+    -webkit-transition-delay: 0.4s;
+    -moz-transition-delay: 0.4s;
+    transition-delay: 0.4s; }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(3) {
+    -webkit-transition-delay: 0.6s;
+    -moz-transition-delay: 0.6s;
+    transition-delay: 0.6s; }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(4) {
+    -webkit-transition-delay: 0.8s;
+    -moz-transition-delay: 0.8s;
+    transition-delay: 0.8s; }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(5) {
+    -webkit-transition-delay: 1s;
+    -moz-transition-delay: 1s;
+    transition-delay: 1s; }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(6) {
+    -webkit-transition-delay: 1.2s;
+    -moz-transition-delay: 1.2s;
+    transition-delay: 1.2s; }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(7) {
+    -webkit-transition-delay: 1.4s;
+    -moz-transition-delay: 1.4s;
+    transition-delay: 1.4s; }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(8) {
+    -webkit-transition-delay: 1.6s;
+    -moz-transition-delay: 1.6s;
+    transition-delay: 1.6s; }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(9) {
+    -webkit-transition-delay: 1.8s;
+    -moz-transition-delay: 1.8s;
+    transition-delay: 1.8s; }
+
+.fadeIn-appear {
+  opacity: 0.01; }
+
+.fadeIn-appear.fadeIn-appear-active {
+  opacity: 1;
+  transition: all 2s ease; }
+
 * {
   box-sizing: border-box;
   font-family: "Proxima Nova", sans-serif !important; }
-
-.container.mw {
-  max-width: 900px; }
-
-#thingy {
-  position: absolute;
-  top: 0;
-  right: 30px;
-  background: cornflowerblue;
-  height: 100px;
-  width: 100px;
-  -webkit-transition: all ease 1s;
-  -moz-transition: all ease 1s;
-  transition: all ease 1s; }
-  #thingy.small {
-    bottom: 0px;
-    left: 10px;
-    background: red;
-    height: 50px;
-    width: 500px; }
-
-p {
-  color: #666;
-  line-height: 1.5em; }
-
-.svg-fill {
-  -webkit-transition: all ease 1.5s;
-  -moz-transition: all ease 1.5s;
-  transition: all ease 1.5s; }
-
-.light .svg-fill {
-  fill: #fff !important; }
-
-.dark .svg-fill {
-  fill: #333; }
 
 html, body {
   height: 100%;
@@ -49,26 +132,12 @@ html, body {
   padding: 0px;
   margin: 0px; }
 
-.btns {
-  padding: 60px 0px;
-  display: none; }
+.container.mw {
+  max-width: 900px; }
 
-.btn {
-  background: #333;
-  color: #e9e4dc;
-  padding: 16px 33px;
-  border-radius: 7px;
-  font-size: 0.8em;
-  margin: 12px;
-  line-height: 3em;
-  letter-spacing: 2px;
-  text-transform: uppercase; }
-  .btn:hover {
-    background: #222; }
-  .btn:first-child {
-    margin-left: 0px; }
-  .btn:last-child {
-    margin-right: 0px; }
+p {
+  color: #666;
+  line-height: 1.5em; }
 
 #app {
   height: 100%; }
@@ -104,46 +173,6 @@ body {
   background-color: #ddd;
   background-image: -webkit-linear-gradient(top, #ddd, #fff);
   background-image: linear-gradient(to bottom,#ddd, #fff); }
-
-#scene {
-  width: 500px;
-  height: 500px; }
-
-#app-window {
-  height: 100%; }
-  #app-window::after {
-    clear: both;
-    content: "";
-    display: table; }
-  #app-window.center {
-    display: -webkit-box;
-    display: -moz-box;
-    display: box;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -moz-box-align: center;
-    box-align: center;
-    -webkit-align-items: center;
-    -moz-align-items: center;
-    -ms-align-items: center;
-    -o-align-items: center;
-    align-items: center;
-    -ms-flex-align: center;
-    -webkit-box-pack: center;
-    -moz-box-pack: center;
-    box-pack: center;
-    -webkit-justify-content: center;
-    -moz-justify-content: center;
-    -ms-justify-content: center;
-    -o-justify-content: center;
-    justify-content: center;
-    -ms-flex-pack: center; }
-
-.app-window {
-  height: 100%; }
 
 header#main {
   position: fixed;
@@ -276,14 +305,17 @@ header#main {
     clear: left; }
 
 .project-bubble {
-  height: 133px;
-  width: 133px;
+  height: 120px;
+  width: 120px;
   border-radius: 50%;
   overflow: hidden;
   display: inline-block;
   position: relative;
   z-index: 1;
-  box-shadow: 1px 1px 2px rgba(51, 51, 51, 0.5); }
+  box-shadow: 1px 1px 2px rgba(51, 51, 51, 0.5);
+  -webkit-transition: all ease 0.5s;
+  -moz-transition: all ease 0.5s;
+  transition: all ease 0.5s; }
   .project-bubble img {
     -webkit-transition: all ease 0.5s;
     -moz-transition: all ease 0.5s;
@@ -456,120 +488,74 @@ section.project-content {
     color: #fff;
     line-height: 2em; }
 
-/*
+.btns {
+  padding: 60px 0px;
+  display: none; }
 
-  Animations
+.btn {
+  background: #333;
+  color: #e9e4dc;
+  padding: 16px 33px;
+  border-radius: 7px;
+  font-size: 0.8em;
+  margin: 12px;
+  line-height: 3em;
+  letter-spacing: 2px;
+  text-transform: uppercase; }
+  .btn:hover {
+    background: #222; }
+  .btn:first-child {
+    margin-left: 0px; }
+  .btn:last-child {
+    margin-right: 0px; }
 
-*/
-.bubbleUp-appear {
-  opacity: 0.01;
-  -webkit-transform: translateY(100%);
-  -moz-transform: translateY(100%);
-  -ms-transform: translateY(100%);
-  -o-transform: translateY(100%);
-  transform: translateY(100%); }
+.svg-fill {
+  -webkit-transition: all ease 1.5s;
+  -moz-transition: all ease 1.5s;
+  transition: all ease 1.5s; }
 
-.bubbleUp-appear.bubbleUp-appear-active {
-  opacity: 1;
-  transition: all 1s ease;
-  -webkit-transform: translateY(0%);
-  -moz-transform: translateY(0%);
-  -ms-transform: translateY(0%);
-  -o-transform: translateY(0%);
-  transform: translateY(0%); }
-  .bubbleUp-appear.bubbleUp-appear-active:nth-child(1) {
-    -webkit-transition-delay: 0.3s;
-    -moz-transition-delay: 0.3s;
-    transition-delay: 0.3s; }
-  .bubbleUp-appear.bubbleUp-appear-active:nth-child(2) {
-    -webkit-transition-delay: 0.6s;
-    -moz-transition-delay: 0.6s;
-    transition-delay: 0.6s; }
-  .bubbleUp-appear.bubbleUp-appear-active:nth-child(3) {
-    -webkit-transition-delay: 0.9s;
-    -moz-transition-delay: 0.9s;
-    transition-delay: 0.9s; }
-  .bubbleUp-appear.bubbleUp-appear-active:nth-child(4) {
-    -webkit-transition-delay: 1.2s;
-    -moz-transition-delay: 1.2s;
-    transition-delay: 1.2s; }
-  .bubbleUp-appear.bubbleUp-appear-active:nth-child(5) {
-    -webkit-transition-delay: 1.5s;
-    -moz-transition-delay: 1.5s;
-    transition-delay: 1.5s; }
-  .bubbleUp-appear.bubbleUp-appear-active:nth-child(6) {
-    -webkit-transition-delay: 1.8s;
-    -moz-transition-delay: 1.8s;
-    transition-delay: 1.8s; }
-  .bubbleUp-appear.bubbleUp-appear-active:nth-child(7) {
-    -webkit-transition-delay: 2.1s;
-    -moz-transition-delay: 2.1s;
-    transition-delay: 2.1s; }
-  .bubbleUp-appear.bubbleUp-appear-active:nth-child(8) {
-    -webkit-transition-delay: 2.4s;
-    -moz-transition-delay: 2.4s;
-    transition-delay: 2.4s; }
-  .bubbleUp-appear.bubbleUp-appear-active:nth-child(9) {
-    -webkit-transition-delay: 2.7s;
-    -moz-transition-delay: 2.7s;
-    transition-delay: 2.7s; }
+.light .svg-fill {
+  fill: #fff !important; }
 
-.bubbleUp-leave {
-  opacity: 0.01;
-  -webkit-transform: translateY(100%);
-  -moz-transform: translateY(100%);
-  -ms-transform: translateY(100%);
-  -o-transform: translateY(100%);
-  transform: translateY(100%); }
+.dark .svg-fill {
+  fill: #333; }
 
-.bubbleUp-leave.bubbleUp-leave-active {
-  opacity: 1;
-  transition: all 1s ease;
-  -webkit-transform: translateY(0%);
-  -moz-transform: translateY(0%);
-  -ms-transform: translateY(0%);
-  -o-transform: translateY(0%);
-  transform: translateY(0%); }
-  .bubbleUp-leave.bubbleUp-leave-active:nth-child(1) {
-    -webkit-transition-delay: 0.2s;
-    -moz-transition-delay: 0.2s;
-    transition-delay: 0.2s; }
-  .bubbleUp-leave.bubbleUp-leave-active:nth-child(2) {
-    -webkit-transition-delay: 0.4s;
-    -moz-transition-delay: 0.4s;
-    transition-delay: 0.4s; }
-  .bubbleUp-leave.bubbleUp-leave-active:nth-child(3) {
-    -webkit-transition-delay: 0.6s;
-    -moz-transition-delay: 0.6s;
-    transition-delay: 0.6s; }
-  .bubbleUp-leave.bubbleUp-leave-active:nth-child(4) {
-    -webkit-transition-delay: 0.8s;
-    -moz-transition-delay: 0.8s;
-    transition-delay: 0.8s; }
-  .bubbleUp-leave.bubbleUp-leave-active:nth-child(5) {
-    -webkit-transition-delay: 1s;
-    -moz-transition-delay: 1s;
-    transition-delay: 1s; }
-  .bubbleUp-leave.bubbleUp-leave-active:nth-child(6) {
-    -webkit-transition-delay: 1.2s;
-    -moz-transition-delay: 1.2s;
-    transition-delay: 1.2s; }
-  .bubbleUp-leave.bubbleUp-leave-active:nth-child(7) {
-    -webkit-transition-delay: 1.4s;
-    -moz-transition-delay: 1.4s;
-    transition-delay: 1.4s; }
-  .bubbleUp-leave.bubbleUp-leave-active:nth-child(8) {
-    -webkit-transition-delay: 1.6s;
-    -moz-transition-delay: 1.6s;
-    transition-delay: 1.6s; }
-  .bubbleUp-leave.bubbleUp-leave-active:nth-child(9) {
-    -webkit-transition-delay: 1.8s;
-    -moz-transition-delay: 1.8s;
-    transition-delay: 1.8s; }
+#scene {
+  width: 500px;
+  height: 500px; }
 
-.fadeIn-appear {
-  opacity: 0.01; }
+#app-window {
+  height: 100%; }
+  #app-window::after {
+    clear: both;
+    content: "";
+    display: table; }
+  #app-window.center {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    box-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -o-align-items: center;
+    align-items: center;
+    -ms-flex-align: center;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    box-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    -ms-justify-content: center;
+    -o-justify-content: center;
+    justify-content: center;
+    -ms-flex-pack: center; }
 
-.fadeIn-appear.fadeIn-appear-active {
-  opacity: 1;
-  transition: all 2s ease; }
+.app-window {
+  height: 100%; }

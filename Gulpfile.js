@@ -7,7 +7,7 @@ var webpack = require('gulp-webpack');
 var browserSync = require('browser-sync').create();
 
 gulp.task('sass', function () {
-  gulp.src('./src/sass/**/*.scss')
+  gulp.src('./src/sass/app.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./build/css'))
     .pipe(browserSync.stream());

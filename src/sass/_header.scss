@@ -1,0 +1,90 @@
+
+header#main {
+    position: fixed;
+    top: 0; left: 0;
+    height: 100px; width: 100%;
+    padding: 40px;
+    font-family: "Proxima Nova";
+    font-weight: 700;
+    z-index: 999;
+    @include display(flex);
+    @include bp(600px) {
+      display: none;
+    }
+    svg {
+        height: 60px;
+        width: 60px;
+        padding: 16px;
+    }
+
+    
+    #menu {
+        height: 100%; width: auto;
+        padding: 0px;
+        line-height: 60px;
+        color: #666;
+        position: relative;
+        &:hover {
+          #menu-icon {
+           @include transform(translateY(5px) translateX(-4px));
+          }
+            ul {
+                display: block;
+                list-style: none;
+                padding: 0px;
+            }
+            #Rectangle-1 {
+               height: 10px;
+               @include transform(rotate(50deg)  translateX(21px));
+            }
+            #Rectangle-2 {
+               height: 10px;
+               @include transform(rotate(-50deg) translateX(21px));
+            }
+            #Rectangle-3 {
+                 @include transform(translateX(300px));
+            }
+        }
+        #menu-icon {
+            cursor: pointer;
+            @include transition(transform ease 0.25s);
+            #Rectangle-1 {
+              @include transform-origin(center center);
+              @include transition(all ease 0.5s);
+            }
+            #Rectangle-2 {
+              @include transform-origin(center center);
+              @include transition(all ease 0.5s);
+            }
+             #Rectangle-3 {
+                 @include transition(all ease 0.5s);
+            }
+        }
+        ul {
+            position: absolute;
+            width: auto;
+            top: 50px; left: 0px;
+            text-align: left;
+            background: rgba(whitesmoke,0.9);
+            display: none;
+            z-index: 100;
+            li {
+                font-weight: 700;
+                line-height: 2.5em;
+                font-size: 14px;
+                white-space: nowrap;
+                text-transform: uppercase;
+                &:hover {
+                    background: rgba(white, 0.9);
+                }
+                a {
+                  color: #333;
+                  font-weight: 300;
+                  display: block;
+                  padding: 20px 100px 20px 40px;
+                  text-decoration: none;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,48 @@
+/*
+
+  Animations
+
+*/
+
+// Bubble Up
+.bubbleUp-appear {
+  opacity: 0.01;
+  @include transform(translateY(100%));
+}
+
+.bubbleUp-appear.bubbleUp-appear-active {
+  opacity: 1;
+  transition: all 1s ease;
+  @include transform(translateY(0%));
+    @for $i from 1 through 9 {
+      &:nth-child(#{$i}) { 
+       @include transition-delay(0.3s * $i); 
+      }
+  }
+}
+
+.bubbleUp-leave {
+  opacity: 0.01;
+  @include transform(translateY(100%));
+}
+
+.bubbleUp-leave.bubbleUp-leave-active {
+  opacity: 1;
+  transition: all 1s ease;
+  @include transform(translateY(0%));
+    @for $i from 1 through 9 {
+      &:nth-child(#{$i}) { 
+       @include transition-delay(0.2s * $i); 
+      }
+  }
+}
+
+// Fade In
+.fadeIn-appear {
+  opacity: 0.01;
+}
+
+.fadeIn-appear.fadeIn-appear-active {
+  opacity: 1;
+  transition: all 2s ease;
+}

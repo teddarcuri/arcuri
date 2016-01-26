@@ -1,0 +1,26 @@
+// buttons
+.btns {
+  padding: 60px 0px;
+  display: none;
+}
+
+.btn {
+  background: #333;
+  color: $cream;
+  padding: 16px 33px;
+  border-radius: 7px;
+  font-size: 0.8em;
+  margin: 12px;
+  line-height: 3em;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  &:hover {
+    background: #222;
+  }
+  &:first-child {
+    margin-left: 0px;
+  }
+  &:last-child {
+    margin-right: 0px;  
+  }
+}

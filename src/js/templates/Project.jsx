@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import ReactTransitionGroup from 'react-addons-transition-group';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 import projectList from '../utilities/project-list';
 
 class Project extends React.Component {
@@ -18,21 +17,6 @@ class Project extends React.Component {
       this.setState({project: this.findById(this.state.projects, id) })
   }
 
-  animateIn() {
-  	setTimeout(() => { document.getElementById("main").classList.add("light") }, 1500);
-  	setTimeout(() => { document.body.style.background = "#111111"}, 1000);
-  	setTimeout(() => { this.refs.backgroundImage.style.opacity = "0.3" }, 1100);
-    setTimeout(() => { this.refs.projectSidebar.style.transform = "translateX(0%)" }, 1700);
-    setTimeout(() => { this.refs.projectContent.style.transform = "translateY(0%)" }, 1700);
-  }
-
-  animateOut() {
-  	document.getElementById("main").classList.remove("light");
-  	document.body.style.background = "whitesmoke";
-  	setTimeout(() => { this.refs.backgroundImage.style.opacity = "0" }, 50);
-    setTimeout(() => { this.refs.projectSidebar.style.transform = "translateX(-200%)" }, 100);
-  }
-
   findById(source, id) {
 	  for (var i = 0; i < source.length; i++) {
 	    if (source[i].name == id) {
@@ -44,7 +28,14 @@ class Project extends React.Component {
   render() {
   	var bgImgPath = this.state.project.background;
     return (
-    	<div className="project-page">
+
+      <CSSTransitionGroup className="project-page" 
+              component="div"
+              transitionAppear={true}
+              transitionAppearTimeout={0}
+              transitionName="bubbleUp"
+              transitionEnterTimeout={1000}
+              transitionLeaveTimeout={1000}>
     		<img ref="backgroundImage" src={bgImgPath} className="bg"/>
 
     		<div className="project-sidebar" ref="projectSidebar">
@@ -74,7 +65,7 @@ class Project extends React.Component {
 					</p>
 				</div>
     		</section>
-    	</div>
+    	</CSSTransitionGroup>
     );
   }
 }
