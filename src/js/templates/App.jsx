@@ -33,6 +33,7 @@ class App extends React.Component {
     var logoClasses = this.state.isProjectPage ? "light" : "dark"; 
     return (
     <div className="app-window">
+    
         <header id="main" className={logoClasses}>
            <Link to="/">
               <div id="logo" >   
@@ -89,15 +90,15 @@ class App extends React.Component {
         </header>
 
         <div id="app-window" className="center">
-          <ReactTransitionGroup 
-                        component='div'
-                        className='transition-group'>
+          <ReactTransitionGroup component='div'
+                                className='transition-group'>
     	       {React.cloneElement(this.props.children, {
                 key: this.props.location.pathname,
                 isProjectPage: this.state.isProjectPage
               })}
            </ReactTransitionGroup>
 	     </div>
+
       </div>       
     )
   }

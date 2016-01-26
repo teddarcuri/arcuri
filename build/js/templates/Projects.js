@@ -36,6 +36,13 @@ var Projects = function (_React$Component) {
 	}
 
 	_createClass(Projects, [{
+		key: 'routerWillLeave',
+		value: function routerWillLeave(callback) {
+			setTimeout(function () {
+				callback();
+			}, 1000);
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			var key = this.props.location.pathname;

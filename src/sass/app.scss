@@ -1,4 +1,6 @@
 @import "./bower_components/bourbon/app/assets/stylesheets/bourbon";
+@import "./node_modules/bourbon-neat/app/assets/stylesheets/neat";
+
 
 $cream: #e9e4dc;
 $red: #AC4040;
@@ -59,10 +61,6 @@ html, body {
   width: 100%;
   padding: 0px;
   margin: 0px;
-}
-
-body {
-  background:red;
 }
 
 .btns {
@@ -246,7 +244,14 @@ header#main {
 
 .project-bubbles {
   opacity: 1;
-  @include transition(all ease 1.5s);
+  margin: 0px;
+  padding: 0px;
+}
+
+.project-bubble-wrap {
+    @include span-columns(4);
+    @include omega(3n);
+    padding: 12px;
 }
 
 .project-bubble {
@@ -254,16 +259,9 @@ header#main {
   border-radius: 50%;
   overflow: hidden;
   display: inline-block;
-  margin-right: 30px;
   position: relative;
   z-index:1;
   box-shadow: 1px 1px 2px rgba(#333, 0.5);
-  @include transition(all ease 1.5s);
-  @for $i from 1 through 9 {
-      &:nth-child(#{$i}) { 
-       @include transition-delay(0.2s * $i); 
-      }
-  }
   img {
     @include transition(all ease 0.5s);
   }
@@ -406,5 +404,56 @@ section.project-content {
     line-height: 2em;
   }
 }
+
+
+/*
+
+  Animations
+
+*/
+
+// Bubble Up
+.bubbleUp-appear {
+  opacity: 0.01;
+  @include transform(translateY(100%));
+}
+
+.bubbleUp-appear.bubbleUp-appear-active {
+  opacity: 1;
+  transition: all 1s ease;
+  @include transform(translateY(0%));
+    @for $i from 1 through 9 {
+      &:nth-child(#{$i}) { 
+       @include transition-delay(0.3s * $i); 
+      }
+  }
+}
+
+.bubbleUp-leave {
+  opacity: 0.01;
+  @include transform(translateY(100%));
+}
+
+.bubbleUp-leave.bubbleUp-leave-active {
+  opacity: 1;
+  transition: all 1s ease;
+  @include transform(translateY(0%));
+    @for $i from 1 through 9 {
+      &:nth-child(#{$i}) { 
+       @include transition-delay(0.2s * $i); 
+      }
+  }
+}
+
+// Fade In
+.fadeIn-appear {
+  opacity: 0.01;
+}
+
+.fadeIn-appear.fadeIn-appear-active {
+  opacity: 1;
+  transition: all 2s ease;
+}
+
 
 

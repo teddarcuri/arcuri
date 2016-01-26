@@ -13,26 +13,6 @@ class Project extends React.Component {
   	}
   }
 
-  componentWillAppear(callback) {
-  	console.log("Project Will Appear");
-	 this.animateIn();
-  }
-
-  componentWillEnter(callback) {
-  	console.log("Project Entering");
-	 this.animateIn();
-  }
-
-  componentWillUnmount() {
-  	console.log("Project UnMounting");
-  	this.animateOut();
-  }
-
-	componentDidLeave(callback) {
-		console.log("Project Leaving");
-		this.animateOut();
-	}
-
   componentDidMount() {
       const id = this.props.params.name
       this.setState({project: this.findById(this.state.projects, id) })
@@ -50,7 +30,7 @@ class Project extends React.Component {
   	document.getElementById("main").classList.remove("light");
   	document.body.style.background = "whitesmoke";
   	setTimeout(() => { this.refs.backgroundImage.style.opacity = "0" }, 50);
-   setTimeout(() => { this.refs.projectSidebar.style.transform = "translateX(-200%)" }, 100);
+    setTimeout(() => { this.refs.projectSidebar.style.transform = "translateX(-200%)" }, 100);
   }
 
   findById(source, id) {

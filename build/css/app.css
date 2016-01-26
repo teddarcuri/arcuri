@@ -1,3 +1,9 @@
+html {
+  box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
+
 * {
   box-sizing: border-box;
   font-family: "Proxima Nova", sans-serif !important; }
@@ -42,9 +48,6 @@ html, body {
   width: 100%;
   padding: 0px;
   margin: 0px; }
-
-body {
-  background: red; }
 
 .btns {
   padding: 60px 0px;
@@ -256,9 +259,21 @@ header#main {
 
 .project-bubbles {
   opacity: 1;
-  -webkit-transition: all ease 1.5s;
-  -moz-transition: all ease 1.5s;
-  transition: all ease 1.5s; }
+  margin: 0px;
+  padding: 0px; }
+
+.project-bubble-wrap {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+  padding: 12px; }
+  .project-bubble-wrap:last-child {
+    margin-right: 0; }
+  .project-bubble-wrap:nth-child(3n) {
+    margin-right: 0; }
+  .project-bubble-wrap:nth-child(3n+1) {
+    clear: left; }
 
 .project-bubble {
   height: 133px;
@@ -266,49 +281,9 @@ header#main {
   border-radius: 50%;
   overflow: hidden;
   display: inline-block;
-  margin-right: 30px;
   position: relative;
   z-index: 1;
-  box-shadow: 1px 1px 2px rgba(51, 51, 51, 0.5);
-  -webkit-transition: all ease 1.5s;
-  -moz-transition: all ease 1.5s;
-  transition: all ease 1.5s; }
-  .project-bubble:nth-child(1) {
-    -webkit-transition-delay: 0.2s;
-    -moz-transition-delay: 0.2s;
-    transition-delay: 0.2s; }
-  .project-bubble:nth-child(2) {
-    -webkit-transition-delay: 0.4s;
-    -moz-transition-delay: 0.4s;
-    transition-delay: 0.4s; }
-  .project-bubble:nth-child(3) {
-    -webkit-transition-delay: 0.6s;
-    -moz-transition-delay: 0.6s;
-    transition-delay: 0.6s; }
-  .project-bubble:nth-child(4) {
-    -webkit-transition-delay: 0.8s;
-    -moz-transition-delay: 0.8s;
-    transition-delay: 0.8s; }
-  .project-bubble:nth-child(5) {
-    -webkit-transition-delay: 1s;
-    -moz-transition-delay: 1s;
-    transition-delay: 1s; }
-  .project-bubble:nth-child(6) {
-    -webkit-transition-delay: 1.2s;
-    -moz-transition-delay: 1.2s;
-    transition-delay: 1.2s; }
-  .project-bubble:nth-child(7) {
-    -webkit-transition-delay: 1.4s;
-    -moz-transition-delay: 1.4s;
-    transition-delay: 1.4s; }
-  .project-bubble:nth-child(8) {
-    -webkit-transition-delay: 1.6s;
-    -moz-transition-delay: 1.6s;
-    transition-delay: 1.6s; }
-  .project-bubble:nth-child(9) {
-    -webkit-transition-delay: 1.8s;
-    -moz-transition-delay: 1.8s;
-    transition-delay: 1.8s; }
+  box-shadow: 1px 1px 2px rgba(51, 51, 51, 0.5); }
   .project-bubble img {
     -webkit-transition: all ease 0.5s;
     -moz-transition: all ease 0.5s;
@@ -480,3 +455,121 @@ section.project-content {
   section.project-content p {
     color: #fff;
     line-height: 2em; }
+
+/*
+
+  Animations
+
+*/
+.bubbleUp-appear {
+  opacity: 0.01;
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%); }
+
+.bubbleUp-appear.bubbleUp-appear-active {
+  opacity: 1;
+  transition: all 1s ease;
+  -webkit-transform: translateY(0%);
+  -moz-transform: translateY(0%);
+  -ms-transform: translateY(0%);
+  -o-transform: translateY(0%);
+  transform: translateY(0%); }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(1) {
+    -webkit-transition-delay: 0.3s;
+    -moz-transition-delay: 0.3s;
+    transition-delay: 0.3s; }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(2) {
+    -webkit-transition-delay: 0.6s;
+    -moz-transition-delay: 0.6s;
+    transition-delay: 0.6s; }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(3) {
+    -webkit-transition-delay: 0.9s;
+    -moz-transition-delay: 0.9s;
+    transition-delay: 0.9s; }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(4) {
+    -webkit-transition-delay: 1.2s;
+    -moz-transition-delay: 1.2s;
+    transition-delay: 1.2s; }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(5) {
+    -webkit-transition-delay: 1.5s;
+    -moz-transition-delay: 1.5s;
+    transition-delay: 1.5s; }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(6) {
+    -webkit-transition-delay: 1.8s;
+    -moz-transition-delay: 1.8s;
+    transition-delay: 1.8s; }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(7) {
+    -webkit-transition-delay: 2.1s;
+    -moz-transition-delay: 2.1s;
+    transition-delay: 2.1s; }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(8) {
+    -webkit-transition-delay: 2.4s;
+    -moz-transition-delay: 2.4s;
+    transition-delay: 2.4s; }
+  .bubbleUp-appear.bubbleUp-appear-active:nth-child(9) {
+    -webkit-transition-delay: 2.7s;
+    -moz-transition-delay: 2.7s;
+    transition-delay: 2.7s; }
+
+.bubbleUp-leave {
+  opacity: 0.01;
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%); }
+
+.bubbleUp-leave.bubbleUp-leave-active {
+  opacity: 1;
+  transition: all 1s ease;
+  -webkit-transform: translateY(0%);
+  -moz-transform: translateY(0%);
+  -ms-transform: translateY(0%);
+  -o-transform: translateY(0%);
+  transform: translateY(0%); }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(1) {
+    -webkit-transition-delay: 0.2s;
+    -moz-transition-delay: 0.2s;
+    transition-delay: 0.2s; }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(2) {
+    -webkit-transition-delay: 0.4s;
+    -moz-transition-delay: 0.4s;
+    transition-delay: 0.4s; }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(3) {
+    -webkit-transition-delay: 0.6s;
+    -moz-transition-delay: 0.6s;
+    transition-delay: 0.6s; }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(4) {
+    -webkit-transition-delay: 0.8s;
+    -moz-transition-delay: 0.8s;
+    transition-delay: 0.8s; }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(5) {
+    -webkit-transition-delay: 1s;
+    -moz-transition-delay: 1s;
+    transition-delay: 1s; }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(6) {
+    -webkit-transition-delay: 1.2s;
+    -moz-transition-delay: 1.2s;
+    transition-delay: 1.2s; }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(7) {
+    -webkit-transition-delay: 1.4s;
+    -moz-transition-delay: 1.4s;
+    transition-delay: 1.4s; }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(8) {
+    -webkit-transition-delay: 1.6s;
+    -moz-transition-delay: 1.6s;
+    transition-delay: 1.6s; }
+  .bubbleUp-leave.bubbleUp-leave-active:nth-child(9) {
+    -webkit-transition-delay: 1.8s;
+    -moz-transition-delay: 1.8s;
+    transition-delay: 1.8s; }
+
+.fadeIn-appear {
+  opacity: 0.01; }
+
+.fadeIn-appear.fadeIn-appear-active {
+  opacity: 1;
+  transition: all 2s ease; }

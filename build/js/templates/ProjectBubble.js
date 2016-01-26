@@ -36,10 +36,14 @@ var ProjectBubble = function (_React$Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        _reactRouter.Link,
-        { ref: this.props.ref, key: this.props.key, to: this.props.path, className: 'project-bubble' },
-        _react2.default.createElement('img', { className: 'logo', src: this.props.logoPath }),
-        _react2.default.createElement('img', { className: 'bg', src: this.props.bgImgPath })
+        'div',
+        { className: 'project-bubble-wrap' },
+        _react2.default.createElement(
+          _reactRouter.Link,
+          { ref: this.props.ref, key: this.props.key, to: this.props.path, className: 'project-bubble' },
+          _react2.default.createElement('img', { className: 'logo', src: this.props.logoPath }),
+          _react2.default.createElement('img', { className: 'bg', src: this.props.bgImgPath })
+        )
       );
     }
   }]);

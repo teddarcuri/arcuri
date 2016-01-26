@@ -1,14 +1,18 @@
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+		value: true
 });
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
+
+var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19,35 +23,43 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var About = function (_React$Component) {
-  _inherits(About, _React$Component);
+		_inherits(About, _React$Component);
 
-  function About() {
-    _classCallCheck(this, About);
+		function About() {
+				_classCallCheck(this, About);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(About).apply(this, arguments));
-  }
+				return _possibleConstructorReturn(this, Object.getPrototypeOf(About).apply(this, arguments));
+		}
 
-  _createClass(About, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "div",
-        { className: "container mw" },
-        _react2.default.createElement(
-          "h1",
-          null,
-          "About"
-        ),
-        _react2.default.createElement(
-          "p",
-          null,
-          "Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."
-        )
-      );
-    }
-  }]);
+		_createClass(About, [{
+				key: 'render',
+				value: function render() {
+						return _react2.default.createElement(
+								_reactAddonsCssTransitionGroup2.default,
+								{ transitionAppear: true,
+										transitionAppearTimeout: 2000,
+										transitionName: 'fadeIn',
+										transitionEnterTimeout: 2000,
+										transitionLeaveTimeout: 2000 },
+								_react2.default.createElement(
+										'div',
+										{ className: 'container mw' },
+										_react2.default.createElement(
+												'h1',
+												null,
+												'About'
+										),
+										_react2.default.createElement(
+												'p',
+												null,
+												'Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.'
+										)
+								)
+						);
+				}
+		}]);
 
-  return About;
+		return About;
 }(_react2.default.Component);
 
 exports.default = About;

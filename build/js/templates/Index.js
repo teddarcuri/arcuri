@@ -14,6 +14,10 @@ var _introScene = require('../utilities/intro-scene');
 
 var _introScene2 = _interopRequireDefault(_introScene);
 
+var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
+
+var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -39,7 +43,16 @@ var Index = function (_React$Component) {
 	}, {
 		key: 'render',
 		value: function render() {
-			return _react2.default.createElement('div', { id: 'scene' });
+			return _react2.default.createElement(
+				_reactAddonsCssTransitionGroup2.default,
+				{ component: 'div',
+					transitionAppear: true,
+					transitionAppearTimeout: 2000,
+					transitionName: 'fadeIn',
+					transitionEnterTimeout: 2000,
+					transitionLeaveTimeout: 2000 },
+				_react2.default.createElement('div', { id: 'scene' })
+			);
 		}
 	}]);
 

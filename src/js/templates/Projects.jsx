@@ -9,6 +9,12 @@ class Projects extends React.Component {
 		super(props);
 	}
 
+	routerWillLeave(callback) {
+		setTimeout(function() {
+			callback();
+		}, 1000)
+	}
+
 	render() {
 		var key = this.props.location.pathname;
 		return (

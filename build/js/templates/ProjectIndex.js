@@ -12,6 +12,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
 
+var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
+
+var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
 var _projectList = require('../utilities/project-list');
 
 var _projectList2 = _interopRequireDefault(_projectList);
@@ -43,30 +47,19 @@ var ProjectIndex = function (_React$Component) {
 	}
 
 	_createClass(ProjectIndex, [{
-		key: 'componentWillAppear',
-		value: function componentWillAppear(callback) {}
-	}, {
-		key: 'componentDidMount',
-		value: function componentDidMount() {
-			console.log(this.refs);
-		}
-	}, {
-		key: 'animateIn',
-		value: function animateIn() {
-			this.refs.projectBubbles.style.opacity = "1";
-		}
-	}, {
-		key: 'animateOut',
-		value: function animateOut() {
-			this.refs.projectBubbles.style.opacity = "0";
-		}
-	}, {
 		key: 'render',
 		value: function render() {
 			var projects = this.state.projects;
 			return _react2.default.createElement(
-				'div',
-				{ className: 'project-bubbles', ref: 'projectBubbles' },
+				_reactAddonsCssTransitionGroup2.default,
+				{ className: 'project-bubbles',
+					ref: 'projectBubbles',
+					component: 'ul',
+					transitionAppear: true,
+					transitionAppearTimeout: 0,
+					transitionName: 'bubbleUp',
+					transitionEnterTimeout: 1000,
+					transitionLeaveTimeout: 1000 },
 				projects.map(function (p) {
 					var path = "work/" + p.name,
 					    logoPath = p.logo,

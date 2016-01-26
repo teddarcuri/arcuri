@@ -208,8 +208,7 @@ var App = function (_React$Component) {
           { id: 'app-window', className: 'center' },
           _react2.default.createElement(
             _reactAddonsTransitionGroup2.default,
-            {
-              component: 'div',
+            { component: 'div',
               className: 'transition-group' },
             _react2.default.cloneElement(this.props.children, {
               key: this.props.location.pathname,

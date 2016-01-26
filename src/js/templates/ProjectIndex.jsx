@@ -1,6 +1,6 @@
 import React from 'react';
 import {browserHistory, Router, Route, IndexRoute, Link} from 'react-router';
-
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 import projectList from '../utilities/project-list';
 import ProjectBubble from './ProjectBubble';
 
@@ -13,25 +13,17 @@ class ProjectIndex extends React.Component {
 		}
 	}
 
-	componentWillAppear(callback) {
-	}
-
-	componentDidMount() {
-   		 console.log(this.refs);
-  	}
-
-	animateIn() {
-  		this.refs.projectBubbles.style.opacity = "1";
-  	}
-
-  	animateOut() {
-  		this.refs.projectBubbles.style.opacity = "0";
-  	}
-
 	render() {
 		var projects = this.state.projects;
 		return (
-		<div className="project-bubbles" ref="projectBubbles">
+		<CSSTransitionGroup className="project-bubbles" 
+							ref="projectBubbles"
+							component="ul"
+							transitionAppear={true}
+							transitionAppearTimeout={0}
+							transitionName="bubbleUp"
+							transitionEnterTimeout={1000}
+							transitionLeaveTimeout={1000}>
 	  		{
 	  			projects.map(function(p) {
 	  				let path = "work/" + p.name,
@@ -46,7 +38,7 @@ class ProjectIndex extends React.Component {
 	  				)
 	  			})
 	  		}
-	  	</div>
+	  	</CSSTransitionGroup>
 	   )
 	}
 }

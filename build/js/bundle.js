@@ -254,8 +254,7 @@
 	          { id: 'app-window', className: 'center' },
 	          _react2.default.createElement(
 	            _reactAddonsTransitionGroup2.default,
-	            {
-	              component: 'div',
+	            { component: 'div',
 	              className: 'transition-group' },
 	            _react2.default.cloneElement(this.props.children, {
 	              key: this.props.location.pathname,
@@ -25223,6 +25222,10 @@
 
 	var _introScene2 = _interopRequireDefault(_introScene);
 
+	var _reactAddonsCssTransitionGroup = __webpack_require__(206);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25248,7 +25251,16 @@
 		}, {
 			key: 'render',
 			value: function render() {
-				return _react2.default.createElement('div', { id: 'scene' });
+				return _react2.default.createElement(
+					_reactAddonsCssTransitionGroup2.default,
+					{ component: 'div',
+						transitionAppear: true,
+						transitionAppearTimeout: 2000,
+						transitionName: 'fadeIn',
+						transitionEnterTimeout: 2000,
+						transitionLeaveTimeout: 2000 },
+					_react2.default.createElement('div', { id: 'scene' })
+				);
 			}
 		}]);
 
@@ -61567,17 +61579,21 @@
 /* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+			value: true
 	});
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(206);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -61588,35 +61604,43 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var About = function (_React$Component) {
-	  _inherits(About, _React$Component);
+			_inherits(About, _React$Component);
 
-	  function About() {
-	    _classCallCheck(this, About);
+			function About() {
+					_classCallCheck(this, About);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(About).apply(this, arguments));
-	  }
+					return _possibleConstructorReturn(this, Object.getPrototypeOf(About).apply(this, arguments));
+			}
 
-	  _createClass(About, [{
-	    key: "render",
-	    value: function render() {
-	      return _react2.default.createElement(
-	        "div",
-	        { className: "container mw" },
-	        _react2.default.createElement(
-	          "h1",
-	          null,
-	          "About"
-	        ),
-	        _react2.default.createElement(
-	          "p",
-	          null,
-	          "Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."
-	        )
-	      );
-	    }
-	  }]);
+			_createClass(About, [{
+					key: 'render',
+					value: function render() {
+							return _react2.default.createElement(
+									_reactAddonsCssTransitionGroup2.default,
+									{ transitionAppear: true,
+											transitionAppearTimeout: 2000,
+											transitionName: 'fadeIn',
+											transitionEnterTimeout: 2000,
+											transitionLeaveTimeout: 2000 },
+									_react2.default.createElement(
+											'div',
+											{ className: 'container mw' },
+											_react2.default.createElement(
+													'h1',
+													null,
+													'About'
+											),
+											_react2.default.createElement(
+													'p',
+													null,
+													'Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.'
+											)
+									)
+							);
+					}
+			}]);
 
-	  return About;
+			return About;
 	}(_react2.default.Component);
 
 	exports.default = About;
@@ -61663,6 +61687,13 @@
 		}
 
 		_createClass(Projects, [{
+			key: 'routerWillLeave',
+			value: function routerWillLeave(callback) {
+				setTimeout(function () {
+					callback();
+				}, 1000);
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				var key = this.props.location.pathname;
@@ -61703,6 +61734,10 @@
 
 	var _reactRouter = __webpack_require__(159);
 
+	var _reactAddonsCssTransitionGroup = __webpack_require__(206);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
 	var _projectList = __webpack_require__(221);
 
 	var _projectList2 = _interopRequireDefault(_projectList);
@@ -61734,30 +61769,19 @@
 		}
 
 		_createClass(ProjectIndex, [{
-			key: 'componentWillAppear',
-			value: function componentWillAppear(callback) {}
-		}, {
-			key: 'componentDidMount',
-			value: function componentDidMount() {
-				console.log(this.refs);
-			}
-		}, {
-			key: 'animateIn',
-			value: function animateIn() {
-				this.refs.projectBubbles.style.opacity = "1";
-			}
-		}, {
-			key: 'animateOut',
-			value: function animateOut() {
-				this.refs.projectBubbles.style.opacity = "0";
-			}
-		}, {
 			key: 'render',
 			value: function render() {
 				var projects = this.state.projects;
 				return _react2.default.createElement(
-					'div',
-					{ className: 'project-bubbles', ref: 'projectBubbles' },
+					_reactAddonsCssTransitionGroup2.default,
+					{ className: 'project-bubbles',
+						ref: 'projectBubbles',
+						component: 'ul',
+						transitionAppear: true,
+						transitionAppearTimeout: 0,
+						transitionName: 'bubbleUp',
+						transitionEnterTimeout: 1000,
+						transitionLeaveTimeout: 1000 },
 					projects.map(function (p) {
 						var path = "work/" + p.name,
 						    logoPath = p.logo,
@@ -61818,6 +61842,46 @@
 		images: ["src/img/gallery_images/colorado_gov/front-page.png"],
 		logo: "src/img/logos/stratus.png",
 		background: "src/img/backgrounds/stratus.jpg"
+	}, {
+		id: 5,
+		name: "Colorado.gov",
+		types: ["Web"],
+		roles: ["Front End Development"],
+		images: ["src/img/gallery_images/colorado_gov/front-page.png"],
+		logo: "src/img/logos/co-logo.png",
+		background: "src/img/backgrounds/colorado.jpg"
+	}, {
+		id: 6,
+		name: "Colorado Interactive",
+		types: ["Brand"],
+		roles: ["Designer"],
+		images: ["src/img/gallery_images/hickenlooper/front-page.png"],
+		logo: "src/img/logos/ci-logo.png",
+		background: "src/img/backgrounds/coloradointeractive.jpg"
+	}, {
+		id: 7,
+		name: "Colorado Governor",
+		types: ["Web"],
+		roles: ["Front End Development"],
+		images: ["src/img/gallery_images/hickenlooper/front-page.png"],
+		logo: "src/img/logos/co-state-seal.png",
+		background: "src/img/backgrounds/hickenlooper.jpg"
+	}, {
+		id: 8,
+		name: "Colorado.gov",
+		types: ["Web"],
+		roles: ["Front End Development"],
+		images: ["src/img/gallery_images/colorado_gov/front-page.png"],
+		logo: "src/img/logos/co-logo.png",
+		background: "src/img/backgrounds/colorado.jpg"
+	}, {
+		id: 9,
+		name: "Colorado Interactive",
+		types: ["Brand"],
+		roles: ["Designer"],
+		images: ["src/img/gallery_images/hickenlooper/front-page.png"],
+		logo: "src/img/logos/ci-logo.png",
+		background: "src/img/backgrounds/coloradointeractive.jpg"
 	}];
 
 	exports.default = projectList;
@@ -61864,15 +61928,14 @@
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        _reactRouter.Link,
-	        { ref: this.props.ref, key: this.props.key, to: this.props.path, className: 'project-bubble' },
+	        'div',
+	        { className: 'project-bubble-wrap' },
 	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          'HEY'
-	        ),
-	        _react2.default.createElement('img', { className: 'logo', src: this.props.logoPath }),
-	        _react2.default.createElement('img', { className: 'bg', src: this.props.bgImgPath })
+	          _reactRouter.Link,
+	          { ref: this.props.ref, key: this.props.key, to: this.props.path, className: 'project-bubble' },
+	          _react2.default.createElement('img', { className: 'logo', src: this.props.logoPath }),
+	          _react2.default.createElement('img', { className: 'bg', src: this.props.bgImgPath })
+	        )
 	      );
 	    }
 	  }]);
@@ -61934,30 +61997,6 @@
 	  }
 
 	  _createClass(Project, [{
-	    key: 'componentWillAppear',
-	    value: function componentWillAppear(callback) {
-	      console.log("Project Will Appear");
-	      this.animateIn();
-	    }
-	  }, {
-	    key: 'componentWillEnter',
-	    value: function componentWillEnter(callback) {
-	      console.log("Project Entering");
-	      this.animateIn();
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      console.log("Project UnMounting");
-	      this.animateOut();
-	    }
-	  }, {
-	    key: 'componentDidLeave',
-	    value: function componentDidLeave(callback) {
-	      console.log("Project Leaving");
-	      this.animateOut();
-	    }
-	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var id = this.props.params.name;
@@ -62092,7 +62131,6 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-
 	// Add a method to strings to detect if they contain a substring
 	String.prototype.contains = function (s) {
 		return this.indexOf(s) !== -1;
