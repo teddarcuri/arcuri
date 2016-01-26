@@ -62,7 +62,7 @@ html, body {
 }
 
 body {
-  @include transition(background 1s ease);
+  background:red;
 }
 
 .btns {

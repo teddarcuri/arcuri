@@ -1,11 +1,10 @@
 // React
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, IndexRoute, Link} from 'react-router';
+import {Router, Route, IndexRoute, Link, Navigation} from 'react-router';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
-
 
 // Routes
 import Index from './index';
@@ -15,16 +14,11 @@ import ProjectIndex from './ProjectIndex';
 import Project from './project';
 
 // Utility
-import h from './helpers';
-
-String.prototype.contains = function(s) {
-  return this.indexOf(s) !== -1;
-}
+import h from '../utilities/helpers';
 
 /*
   Application
 */
-
 class App extends React.Component {
 
   constructor(props) {
@@ -110,16 +104,15 @@ class App extends React.Component {
 }
 
 /*
-  Routes
+  Render Routes
 */
-
 ReactDOM.render((
   <Router history={createBrowserHistory()}>
     <Route path="/" component={App}>
     	<IndexRoute component={Index}/>
       <Route path="about" component={About}/>
-      <Route path="work" component={Projects}>
-          <IndexRoute component={ProjectIndex}/>
+      <Route path="work" component={Projects} >
+          <IndexRoute component={ProjectIndex} />
           <Route path=":name" component={Project} />
       </Route>
     </Route>

@@ -10,14 +10,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
-
-var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
-
-var _reactAddonsTransitionGroup = require('react-addons-transition-group');
-
-var _reactAddonsTransitionGroup2 = _interopRequireDefault(_reactAddonsTransitionGroup);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26,35 +18,27 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Projects = function (_React$Component) {
-	_inherits(Projects, _React$Component);
+var NotFound = function (_React$component) {
+	_inherits(NotFound, _React$component);
 
-	function Projects(props) {
-		_classCallCheck(this, Projects);
+	function NotFound() {
+		_classCallCheck(this, NotFound);
 
-		return _possibleConstructorReturn(this, Object.getPrototypeOf(Projects).call(this, props));
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(NotFound).apply(this, arguments));
 	}
 
-	_createClass(Projects, [{
+	_createClass(NotFound, [{
 		key: 'render',
 		value: function render() {
-			var key = this.props.location.pathname;
 			return _react2.default.createElement(
-				'div',
+				'h1',
 				null,
-				_react2.default.createElement(
-					_reactAddonsTransitionGroup2.default,
-					null,
-					_react2.default.cloneElement(this.props.children, {
-						key: key,
-						ref: "childRoute"
-					})
-				)
+				'Not Found'
 			);
 		}
 	}]);
 
-	return Projects;
-}(_react2.default.Component);
+	return NotFound;
+}(_react2.default.component);
 
-exports.default = Projects;
+exports.default = NotFound;

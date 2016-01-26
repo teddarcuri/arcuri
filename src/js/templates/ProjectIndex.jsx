@@ -1,9 +1,8 @@
 import React from 'react';
 import {browserHistory, Router, Route, IndexRoute, Link} from 'react-router';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import ReactTransitionGroup from 'react-addons-transition-group';
 
-import projectList from './project-list';
+import projectList from '../utilities/project-list';
+import ProjectBubble from './ProjectBubble';
 
 
 class ProjectIndex extends React.Component {
@@ -14,25 +13,12 @@ class ProjectIndex extends React.Component {
 		}
 	}
 
-	// componentWillAppear(callback) {
-	// 	console.log("Project Index Appeared");
-	//  this.animateIn();
- 	//  }
-
- 	//  componentWillEnter(callback) {
- 	//  	console.log("Project Index Entering");
-	//  this.animateIn();
- 	//  }
-
-	// componentWillLeave(callback) {
-	// 	console.log("Project Index Leaving");
-	// 	this.animateOut();
-	// }
+	componentWillAppear(callback) {
+	}
 
 	componentDidMount() {
    		 console.log(this.refs);
   	}
-
 
 	animateIn() {
   		this.refs.projectBubbles.style.opacity = "1";
@@ -52,10 +38,11 @@ class ProjectIndex extends React.Component {
 	  					 logoPath = p.logo,
 	  					 bgImgPath = p.background;
 	  				return (
-	  					<Link ref={p.id} key={p.id} to={path} className="project-bubble">
-							<img className="logo" src={logoPath} />
-							<img className="bg" src={bgImgPath} />
-	  					</Link>
+	  					<ProjectBubble ref={p.id}
+	  								   key={p.id}
+	  								   path={path}
+	  								   logoPath={logoPath}
+	  								   bgImgPath={bgImgPath}/>
 	  				)
 	  			})
 	  		}

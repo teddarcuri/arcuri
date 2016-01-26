@@ -1,5 +1,5 @@
 let projectList = [
-	{
+		{
 			id: 1,
 			name: "Colorado.gov",
 			types: ["Web"],

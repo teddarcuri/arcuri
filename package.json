@@ -23,7 +23,9 @@
     "react": "^0.14.6",
     "react-addons-transition-group": "^0.14.6",
     "react-dom": "^0.14.6",
-    "react-router": "^1.0.3"
+    "react-router": "^1.0.3",
+    "three.js": "^0.73.2",
+    "velocity-ui-pack": "^1.2.2"
   },
   "dependencies": {
     "jquery": "^2.2.0",

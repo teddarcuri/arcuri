@@ -12,17 +12,13 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
 
-var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
-
-var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
-
-var _reactAddonsTransitionGroup = require('react-addons-transition-group');
-
-var _reactAddonsTransitionGroup2 = _interopRequireDefault(_reactAddonsTransitionGroup);
-
-var _projectList = require('./project-list');
+var _projectList = require('../utilities/project-list');
 
 var _projectList2 = _interopRequireDefault(_projectList);
+
+var _ProjectBubble = require('./ProjectBubble');
+
+var _ProjectBubble2 = _interopRequireDefault(_ProjectBubble);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46,22 +42,10 @@ var ProjectIndex = function (_React$Component) {
 		return _this;
 	}
 
-	// componentWillAppear(callback) {
-	// 	console.log("Project Index Appeared");
-	//  this.animateIn();
-	//  }
-
-	//  componentWillEnter(callback) {
-	//  	console.log("Project Index Entering");
-	//  this.animateIn();
-	//  }
-
-	// componentWillLeave(callback) {
-	// 	console.log("Project Index Leaving");
-	// 	this.animateOut();
-	// }
-
 	_createClass(ProjectIndex, [{
+		key: 'componentWillAppear',
+		value: function componentWillAppear(callback) {}
+	}, {
 		key: 'componentDidMount',
 		value: function componentDidMount() {
 			console.log(this.refs);
@@ -87,12 +71,11 @@ var ProjectIndex = function (_React$Component) {
 					var path = "work/" + p.name,
 					    logoPath = p.logo,
 					    bgImgPath = p.background;
-					return _react2.default.createElement(
-						_reactRouter.Link,
-						{ ref: p.id, key: p.id, to: path, className: 'project-bubble' },
-						_react2.default.createElement('img', { className: 'logo', src: logoPath }),
-						_react2.default.createElement('img', { className: 'bg', src: bgImgPath })
-					);
+					return _react2.default.createElement(_ProjectBubble2.default, { ref: p.id,
+						key: p.id,
+						path: path,
+						logoPath: logoPath,
+						bgImgPath: bgImgPath });
 				})
 			);
 		}

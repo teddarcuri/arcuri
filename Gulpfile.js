@@ -20,10 +20,9 @@ gulp.task('serve', ['sass', 'build', 'webpack'], function() {
             baseDir: "./"
         }
     });
-
     gulp.watch('./src/sass/**/*.scss', ['sass']);
-	gulp.watch('./src/js/**/*.jsx', ['build', 'webpack']);
-	gulp.watch("./index.html").on('change', browserSync.reload);
+	  gulp.watch('./src/js/**/*.jsx', ['build', 'webpack']);
+	  gulp.watch("./index.html").on('change', browserSync.reload);
 });
 
 gulp.task('build', function () {
@@ -33,7 +32,7 @@ gulp.task('build', function () {
 		}))
 		.pipe(gulp.dest('./build/js'))
 		.pipe(webpack({
-			entry: './build/js/App.js',
+			entry: './build/js/templates/App.js',
 			output: {
        		filename: 'bundle.js'
       		}

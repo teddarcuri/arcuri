@@ -14,10 +14,9 @@ class Projects extends React.Component {
 		return (
 		<div>
 			<ReactTransitionGroup>
- 			{React.cloneElement(this.props.children, {
-          		key: key,
-          		ref: "childRoute"
-        	})}
+	 			{React.cloneElement(this.props.children, {
+	          		key: key
+	        	})}
         	</ReactTransitionGroup>
  		</div>
 	   )	

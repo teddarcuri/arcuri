@@ -44,7 +44,7 @@ var _project = require('./project');
 
 var _project2 = _interopRequireDefault(_project);
 
-var _helpers = require('./helpers');
+var _helpers = require('../utilities/helpers');
 
 var _helpers2 = _interopRequireDefault(_helpers);
 
@@ -59,10 +59,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // Routes
 
 // Utility
-
-String.prototype.contains = function (s) {
-  return this.indexOf(s) !== -1;
-};
 
 /*
   Application
@@ -229,7 +225,7 @@ var App = function (_React$Component) {
 }(_react2.default.Component);
 
 /*
-  Routes
+  Render Routes
 */
 
 _reactDom2.default.render(_react2.default.createElement(

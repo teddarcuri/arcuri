@@ -10,6 +10,8 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouter = require('react-router');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18,27 +20,31 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Index = function (_React$Component) {
-  _inherits(Index, _React$Component);
+var ProjectBubble = function (_React$Component) {
+  _inherits(ProjectBubble, _React$Component);
 
-  function Index() {
-    _classCallCheck(this, Index);
+  function ProjectBubble(props) {
+    _classCallCheck(this, ProjectBubble);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Index).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectBubble).call(this, props));
+
+    console.log(props);
+    return _this;
   }
 
-  _createClass(Index, [{
+  _createClass(ProjectBubble, [{
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'h1',
-        null,
-        'Index'
+        _reactRouter.Link,
+        { ref: this.props.ref, key: this.props.key, to: this.props.path, className: 'project-bubble' },
+        _react2.default.createElement('img', { className: 'logo', src: this.props.logoPath }),
+        _react2.default.createElement('img', { className: 'bg', src: this.props.bgImgPath })
       );
     }
   }]);
 
-  return Index;
+  return ProjectBubble;
 }(_react2.default.Component);
 
-exports.default = Index;
+exports.default = ProjectBubble;

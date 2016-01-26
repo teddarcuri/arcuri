@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ReactTransitionGroup from 'react-addons-transition-group';
-import projectList from './project-list';
+import projectList from '../utilities/project-list';
 
 class Project extends React.Component {
 

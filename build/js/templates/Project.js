@@ -18,7 +18,7 @@ var _reactAddonsTransitionGroup = require('react-addons-transition-group');
 
 var _reactAddonsTransitionGroup2 = _interopRequireDefault(_reactAddonsTransitionGroup);
 
-var _projectList = require('./project-list');
+var _projectList = require('../utilities/project-list');
 
 var _projectList2 = _interopRequireDefault(_projectList);
 
