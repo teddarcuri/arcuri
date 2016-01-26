@@ -46,23 +46,35 @@ var ProjectIndex = function (_React$Component) {
 		return _this;
 	}
 
+	// componentWillAppear(callback) {
+	// 	console.log("Project Index Appeared");
+	//  this.animateIn();
+	//  }
+
+	//  componentWillEnter(callback) {
+	//  	console.log("Project Index Entering");
+	//  this.animateIn();
+	//  }
+
+	// componentWillLeave(callback) {
+	// 	console.log("Project Index Leaving");
+	// 	this.animateOut();
+	// }
+
 	_createClass(ProjectIndex, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			console.log(this.refs);
+		}
+	}, {
 		key: 'animateIn',
 		value: function animateIn() {
-			var _this2 = this;
-
-			setTimeout(function () {
-				_this2.refs.projectBubbles.style.opacity = "1";
-			}, 50);
+			this.refs.projectBubbles.style.opacity = "1";
 		}
 	}, {
 		key: 'animateOut',
 		value: function animateOut() {
-			var _this3 = this;
-
-			setTimeout(function () {
-				_this3.refs.projectBubbles.style.opacity = "0";
-			}, 50);
+			this.refs.projectBubbles.style.opacity = "0";
 		}
 	}, {
 		key: 'render',
@@ -77,7 +89,7 @@ var ProjectIndex = function (_React$Component) {
 					    bgImgPath = p.background;
 					return _react2.default.createElement(
 						_reactRouter.Link,
-						{ key: p.id, to: path, className: 'project-bubble' },
+						{ ref: p.id, key: p.id, to: path, className: 'project-bubble' },
 						_react2.default.createElement('img', { className: 'logo', src: logoPath }),
 						_react2.default.createElement('img', { className: 'bg', src: bgImgPath })
 					);

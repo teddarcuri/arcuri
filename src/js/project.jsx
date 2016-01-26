@@ -13,18 +13,41 @@ class Project extends React.Component {
   	}
   }
 
+ //  componentWillAppear(callback) {
+ //  	console.log("Project Will Appear");
+	//  this.animateIn();
+ //  }
+
+ //  componentWillEnter(callback) {
+ //  	console.log("Project Entering");
+	//  this.animateIn();
+ //  }
+
+ //  componentWillUnmount() {
+ //  	console.log("Project UnMounting");
+ //  	this.animateOut();
+ //  }
+
+	// componentDidLeave(callback) {
+	// 	console.log("Project Leaving");
+	// 	this.animateOut();
+	// }
+
   componentDidMount() {
       const id = this.props.params.name
       this.setState({project: this.findById(this.state.projects, id) })
   }
 
   animateIn() {
-  	setTimeout(() => { document.body.style.background = "#111111"}, 1500);
-  	setTimeout(() => { this.refs.backgroundImage.style.opacity = "0.3" }, 1500);
+  	setTimeout(() => { document.getElementById("main").classList.add("light") }, 1500);
+  	setTimeout(() => { document.body.style.background = "#111111"}, 1000);
+  	setTimeout(() => { this.refs.backgroundImage.style.opacity = "0.3" }, 1100);
    setTimeout(() => { this.refs.projectSidebar.style.transform = "translateX(0%)" }, 1700);
+   setTimeout(() => { this.refs.projectContent.style.transform = "translateY(0%)" }, 1700);
   }
 
   animateOut() {
+  	document.getElementById("main").classList.remove("light");
   	document.body.style.background = "whitesmoke";
   	setTimeout(() => { this.refs.backgroundImage.style.opacity = "0" }, 50);
    setTimeout(() => { this.refs.projectSidebar.style.transform = "translateX(-200%)" }, 100);
@@ -64,8 +87,12 @@ class Project extends React.Component {
     				</li>
     			</ul>
     		</div>
-    		<section className="project-content">
-
+    		<section ref="projectContent" className="project-content">
+    			<div className="container">
+	    			<p>
+		    			Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Etiam porta sem malesuada magna mollis euismod.
+					</p>
+				</div>
     		</section>
     	</div>
     );

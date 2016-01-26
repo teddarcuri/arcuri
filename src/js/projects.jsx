@@ -10,29 +10,39 @@ class Projects extends React.Component {
 		super(props);
 	}
 
-	componentWillAppear(callback) {
-		setTimeout(callback, 2500)
-		this.refs.childRoute.animateIn();
+	componentDidMount() {
+	 	console.log(this.refs);
+	 	this.refs.derp.style.background = "red"     
 	}
 
-	componentWillEnter(callback) {
-		setTimeout(callback, 2500)
-		this.refs.childRoute.animateIn();
-	}
+	// componentWillAppear(callback) {
+	// 	setTimeout(callback, 2000);
+	// 	console.log(this.refs.childRoute);
+	// 	this.refs.childRoute.animateIn();
+	// }
 
-	componentWillLeave(callback) {
-		setTimeout(callback, 2500)
-		this.refs.childRoute.animateOut();
-	}
+	// componentWillEnter(callback) {
+	// 	console.log(this.refs.childRoute + " is entering");
+	// 	setTimeout(callback, 2000)
+	// 	this.refs.childRoute.animateIn();
+	// }
+
+	// componentWillLeave(callback) {
+	// 	console.log(this.refs.childRoute + " is leaving");
+	// 	setTimeout(callback, 2000)
+	// 	this.refs.childRoute.animateOut();
+	// }
 
 	render() {
 		var key = this.props.location.pathname;
 		return (
 		<div>
+			<ReactTransitionGroup ref="derp">
  			{React.cloneElement(this.props.children, {
           		key: key,
           		ref: "childRoute"
         	})}
+ 			</ReactTransitionGroup>
  		</div>
 	   )	
 	}

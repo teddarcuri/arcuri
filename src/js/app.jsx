@@ -14,28 +14,17 @@ import ProjectIndex from './ProjectIndex';
 import Project from './project';
 
 String.prototype.contains = function(s) {
-      return this.indexOf(s) !== -1;
+  return this.indexOf(s) !== -1;
 }
 
+// Application
 class App extends React.Component {
+
   constructor(props) {
     super(props);
 
     this.state = {
-      isProjectPage: false
-    }
-  }
-
-  componentDidMount() {
-    // Keep track if we are on a work page to make the logo light
-    this.checkForProjectPage();
-  }
-
-  checkForProjectPage() {
-    if (this.props.location.pathname.includes('work\/')) {
-      this.setState({isProjectPage: true});
-    } else {
-      this.setState({isProjectPage: false});
+      isProjectPage: true
     }
   }
 

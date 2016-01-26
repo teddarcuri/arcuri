@@ -44,7 +44,7 @@ p {
 }
 .light {
   .svg-fill {
-      fill: #fff;
+      fill: #fff !important;
   }
 }
 
@@ -299,7 +299,6 @@ header#main {
 }
 
 .project-page {
-  background: #141414;
   padding-left: 366px;
   min-height: 100%;
   height: auto;
@@ -391,7 +390,7 @@ header#main {
 section.project-content {
   z-index: 100;
   position: relative;
-  @include transform(translateY(0%));
+  @include transform(translateY(100%));
   @include transition(all ease 1.5s);
   .container {
     position: relative;

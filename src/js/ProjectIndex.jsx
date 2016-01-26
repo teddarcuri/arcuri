@@ -14,12 +14,32 @@ class ProjectIndex extends React.Component {
 		}
 	}
 
+	// componentWillAppear(callback) {
+	// 	console.log("Project Index Appeared");
+	//  this.animateIn();
+ 	//  }
+
+ 	//  componentWillEnter(callback) {
+ 	//  	console.log("Project Index Entering");
+	//  this.animateIn();
+ 	//  }
+
+	// componentWillLeave(callback) {
+	// 	console.log("Project Index Leaving");
+	// 	this.animateOut();
+	// }
+
+	componentDidMount() {
+   		 console.log(this.refs);
+  	}
+
+
 	animateIn() {
-  		setTimeout(() => { this.refs.projectBubbles.style.opacity = "1" }, 50);
+  		this.refs.projectBubbles.style.opacity = "1";
   	}
 
   	animateOut() {
-  		setTimeout(() => { this.refs.projectBubbles.style.opacity = "0" }, 50);
+  		this.refs.projectBubbles.style.opacity = "0";
   	}
 
 	render() {
@@ -32,7 +52,7 @@ class ProjectIndex extends React.Component {
 	  					 logoPath = p.logo,
 	  					 bgImgPath = p.background;
 	  				return (
-	  					<Link key={p.id} to={path} className="project-bubble">
+	  					<Link ref={p.id} key={p.id} to={path} className="project-bubble">
 							<img className="logo" src={logoPath} />
 							<img className="bg" src={bgImgPath} />
 	  					</Link>

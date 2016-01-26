@@ -42,23 +42,30 @@ var Projects = function (_React$Component) {
 	}
 
 	_createClass(Projects, [{
-		key: 'componentWillAppear',
-		value: function componentWillAppear(callback) {
-			setTimeout(callback, 2500);
-			this.refs.childRoute.animateIn();
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			console.log(this.refs);
+			this.refs.derp.style.background = "red";
 		}
-	}, {
-		key: 'componentWillEnter',
-		value: function componentWillEnter(callback) {
-			setTimeout(callback, 2500);
-			this.refs.childRoute.animateIn();
-		}
-	}, {
-		key: 'componentWillLeave',
-		value: function componentWillLeave(callback) {
-			setTimeout(callback, 2500);
-			this.refs.childRoute.animateOut();
-		}
+
+		// componentWillAppear(callback) {
+		// 	setTimeout(callback, 2000);
+		// 	console.log(this.refs.childRoute);
+		// 	this.refs.childRoute.animateIn();
+		// }
+
+		// componentWillEnter(callback) {
+		// 	console.log(this.refs.childRoute + " is entering");
+		// 	setTimeout(callback, 2000)
+		// 	this.refs.childRoute.animateIn();
+		// }
+
+		// componentWillLeave(callback) {
+		// 	console.log(this.refs.childRoute + " is leaving");
+		// 	setTimeout(callback, 2000)
+		// 	this.refs.childRoute.animateOut();
+		// }
+
 	}, {
 		key: 'render',
 		value: function render() {
@@ -66,10 +73,14 @@ var Projects = function (_React$Component) {
 			return _react2.default.createElement(
 				'div',
 				null,
-				_react2.default.cloneElement(this.props.children, {
-					key: key,
-					ref: "childRoute"
-				})
+				_react2.default.createElement(
+					_reactAddonsTransitionGroup2.default,
+					{ ref: 'derp' },
+					_react2.default.cloneElement(this.props.children, {
+						key: key,
+						ref: "childRoute"
+					})
+				)
 			);
 		}
 	}]);

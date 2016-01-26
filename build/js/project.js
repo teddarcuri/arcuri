@@ -45,6 +45,26 @@ var Project = function (_React$Component) {
     return _this;
   }
 
+  //  componentWillAppear(callback) {
+  //  	console.log("Project Will Appear");
+  //  this.animateIn();
+  //  }
+
+  //  componentWillEnter(callback) {
+  //  	console.log("Project Entering");
+  //  this.animateIn();
+  //  }
+
+  //  componentWillUnmount() {
+  //  	console.log("Project UnMounting");
+  //  	this.animateOut();
+  //  }
+
+  // componentDidLeave(callback) {
+  // 	console.log("Project Leaving");
+  // 	this.animateOut();
+  // }
+
   _createClass(Project, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
@@ -57,13 +77,19 @@ var Project = function (_React$Component) {
       var _this2 = this;
 
       setTimeout(function () {
-        document.body.style.background = "#111111";
+        document.getElementById("main").classList.add("light");
       }, 1500);
+      setTimeout(function () {
+        document.body.style.background = "#111111";
+      }, 1000);
       setTimeout(function () {
         _this2.refs.backgroundImage.style.opacity = "0.3";
-      }, 1500);
+      }, 1100);
       setTimeout(function () {
         _this2.refs.projectSidebar.style.transform = "translateX(0%)";
+      }, 1700);
+      setTimeout(function () {
+        _this2.refs.projectContent.style.transform = "translateY(0%)";
       }, 1700);
     }
   }, {
@@ -71,6 +97,7 @@ var Project = function (_React$Component) {
     value: function animateOut() {
       var _this3 = this;
 
+      document.getElementById("main").classList.remove("light");
       document.body.style.background = "whitesmoke";
       setTimeout(function () {
         _this3.refs.backgroundImage.style.opacity = "0";
@@ -142,7 +169,19 @@ var Project = function (_React$Component) {
             )
           )
         ),
-        _react2.default.createElement('section', { className: 'project-content' })
+        _react2.default.createElement(
+          'section',
+          { ref: 'projectContent', className: 'project-content' },
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'p',
+              null,
+              'Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Etiam porta sem malesuada magna mollis euismod.'
+            )
+          )
+        )
       );
     }
   }]);

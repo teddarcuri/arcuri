@@ -32,7 +32,7 @@ p {
   transition: all ease 1.5s; }
 
 .light .svg-fill {
-  fill: #fff; }
+  fill: #fff !important; }
 
 .dark .svg-fill {
   fill: #333; }
@@ -366,7 +366,6 @@ header#main {
       transform: scale(1.2); }
 
 .project-page {
-  background: #141414;
   padding-left: 366px;
   min-height: 100%;
   height: auto;
@@ -465,11 +464,11 @@ header#main {
 section.project-content {
   z-index: 100;
   position: relative;
-  -webkit-transform: translateY(0%);
-  -moz-transform: translateY(0%);
-  -ms-transform: translateY(0%);
-  -o-transform: translateY(0%);
-  transform: translateY(0%);
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%);
   -webkit-transition: all ease 1.5s;
   -moz-transition: all ease 1.5s;
   transition: all ease 1.5s; }
