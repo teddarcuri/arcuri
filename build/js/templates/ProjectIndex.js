@@ -16,13 +16,13 @@ var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group'
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-var _projectList = require('../utilities/project-list');
-
-var _projectList2 = _interopRequireDefault(_projectList);
-
 var _ProjectBubble = require('./ProjectBubble');
 
 var _ProjectBubble2 = _interopRequireDefault(_ProjectBubble);
+
+var _ProjectDiagonal = require('./ProjectDiagonal');
+
+var _ProjectDiagonal2 = _interopRequireDefault(_ProjectDiagonal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38,37 +38,52 @@ var ProjectIndex = function (_React$Component) {
 	function ProjectIndex(props) {
 		_classCallCheck(this, ProjectIndex);
 
-		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectIndex).call(this, props));
-
-		_this.state = {
-			projects: _projectList2.default
-		};
-		return _this;
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectIndex).call(this, props));
 	}
 
 	_createClass(ProjectIndex, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			console.log(this.props.projects);
+		}
+	}, {
 		key: 'render',
 		value: function render() {
-			var projects = this.state.projects;
+			var projects = this.props.projects;
 			return _react2.default.createElement(
 				_reactAddonsCssTransitionGroup2.default,
-				{ className: 'project-bubbles',
+				{ className: 'diagonals',
 					ref: 'projectBubbles',
-					component: 'ul',
+					component: 'div',
 					transitionAppear: true,
 					transitionAppearTimeout: 0,
-					transitionName: 'bubbleUp',
+					transitionName: 'slideLeftIn',
 					transitionEnterTimeout: 1000,
 					transitionLeaveTimeout: 1000 },
 				projects.map(function (p) {
 					var path = "work/" + p.name,
 					    logoPath = p.logo,
-					    bgImgPath = p.background;
-					return _react2.default.createElement(_ProjectBubble2.default, { ref: p.id,
-						key: p.id,
-						path: path,
-						logoPath: logoPath,
-						bgImgPath: bgImgPath });
+					    bgImgPath = p.background,
+					    styles = {
+						backgroundImage: 'url(' + p.background + ')',
+						backgroundSize: 'cover'
+					};
+					return(
+						// <ProjectBubble ref={p.id}
+						// 			   key={p.id}
+						// 			   path={path}
+						// 			   name={p.name}
+						// 			   logoPath={logoPath}
+						// 			   bgImgPath={bgImgPath}/>
+
+						_react2.default.createElement(_ProjectDiagonal2.default, { ref: p.id,
+							key: p.id,
+							path: path,
+							name: p.name,
+							logoPath: logoPath,
+							bgImgPath: bgImgPath,
+							styles: styles })
+					);
 				})
 			);
 		}

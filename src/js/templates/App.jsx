@@ -2,9 +2,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, IndexRoute, Link, Navigation} from 'react-router';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
+import projectList from '../utilities/project-list';
+
+// Utility
+import h from '../utilities/helpers';
+import BackgroundSmoke from '../utilities/background-smoke';
 
 // Routes
 import Index from './index';
@@ -12,9 +16,11 @@ import About from './about';
 import Projects from './projects';
 import ProjectIndex from './ProjectIndex';
 import Project from './project';
+import Contact from './contact';
 
-// Utility
-import h from '../utilities/helpers';
+// Firebase
+import Rebase from 're-base';
+var base = Rebase.createClass('https://tedd-arcuri.firebaseio.com/');
 
 /*
   Application
@@ -25,8 +31,33 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      isProjectPage: false
+      isProjectPage: false,
+      projects: []
     }
+  }
+
+  componentDidUpdate() {
+    // var path = this.props.location.pathname;
+
+    // if (path.contains('/work')) {
+    //   this.setState({isProjectPage: !this.state.isProjectPage});
+    // }
+  }
+
+  componentDidMount() {
+    // Go get projects from Firebase
+    base.syncState('projects', {
+      context: this,
+      state: 'projects',
+      asArray: true,
+      then() {
+        console.log(this.state.projects);
+      }
+    });
+  }
+
+  addProject(project) {
+
   }
 
   render() {
@@ -94,11 +125,14 @@ class App extends React.Component {
                                 className='transition-group'>
     	       {React.cloneElement(this.props.children, {
                 key: this.props.location.pathname,
-                isProjectPage: this.state.isProjectPage
+                isProjectPage: this.state.isProjectPage,
+                projects: this.state.projects
               })}
            </ReactTransitionGroup>
 	     </div>
 
+       <div id="background-smoke">
+       </div>
       </div>       
     )
   }
@@ -112,6 +146,7 @@ ReactDOM.render((
     <Route path="/" component={App}>
     	<IndexRoute component={Index}/>
       <Route path="about" component={About}/>
+      <Route path="contact" component={Contact}/>
       <Route path="work" component={Projects} >
           <IndexRoute component={ProjectIndex} />
           <Route path=":name" component={Project} />

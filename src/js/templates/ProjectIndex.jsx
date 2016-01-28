@@ -1,40 +1,56 @@
 import React from 'react';
 import {browserHistory, Router, Route, IndexRoute, Link} from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import projectList from '../utilities/project-list';
 import ProjectBubble from './ProjectBubble';
+import ProjectDiagonal from './ProjectDiagonal';
 
 
 class ProjectIndex extends React.Component {
+
 	constructor(props) {
 		super(props);
-		this.state = {
-			projects: projectList
-		}
+	}
+
+	componentDidMount() {
+		console.log(this.props.projects);
 	}
 
 	render() {
-		var projects = this.state.projects;
+		var projects = this.props.projects;
 		return (
-		<CSSTransitionGroup className="project-bubbles" 
+		<CSSTransitionGroup className="diagonals" 
 							ref="projectBubbles"
-							component="ul"
+							component="div"
 							transitionAppear={true}
 							transitionAppearTimeout={0}
-							transitionName="bubbleUp"
+							transitionName="slideLeftIn"
 							transitionEnterTimeout={1000}
 							transitionLeaveTimeout={1000}>
 	  		{
 	  			projects.map(function(p) {
 	  				let path = "work/" + p.name,
 	  					 logoPath = p.logo,
-	  					 bgImgPath = p.background;
+	  					 bgImgPath = p.background,
+	  					 styles = {
+	  					 	backgroundImage: 'url(' + p.background + ')',
+	  					 	backgroundSize: 'cover'
+	  					 };
 	  				return (
-	  					<ProjectBubble ref={p.id}
+	  					// <ProjectBubble ref={p.id}
+	  					// 			   key={p.id}
+	  					// 			   path={path}
+	  					// 			   name={p.name}
+	  					// 			   logoPath={logoPath}
+	  					// 			   bgImgPath={bgImgPath}/>
+
+  							<ProjectDiagonal ref={p.id}
 	  								   key={p.id}
 	  								   path={path}
+	  								   name={p.name}
 	  								   logoPath={logoPath}
-	  								   bgImgPath={bgImgPath}/>
+	  								   bgImgPath={bgImgPath}
+	  								   styles={styles}/>
+
 	  				)
 	  			})
 	  		}

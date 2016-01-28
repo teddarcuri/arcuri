@@ -3,16 +3,14 @@
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactAddonsTransitionGroup = require('react-addons-transition-group');
-
-var _reactAddonsTransitionGroup2 = _interopRequireDefault(_reactAddonsTransitionGroup);
+var _reactRouter = require('react-router');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22,35 +20,38 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Projects = function (_React$Component) {
-	_inherits(Projects, _React$Component);
+var ProjectDiagonal = function (_React$Component) {
+  _inherits(ProjectDiagonal, _React$Component);
 
-	function Projects(props) {
-		_classCallCheck(this, Projects);
+  function ProjectDiagonal(props) {
+    _classCallCheck(this, ProjectDiagonal);
 
-		return _possibleConstructorReturn(this, Object.getPrototypeOf(Projects).call(this, props));
-	}
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectDiagonal).call(this, props));
 
-	_createClass(Projects, [{
-		key: 'render',
-		value: function render() {
-			var key = this.props.location.pathname;
-			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement(
-					_reactAddonsTransitionGroup2.default,
-					null,
-					_react2.default.cloneElement(this.props.children, {
-						key: key,
-						projects: this.props.projects
-					})
-				)
-			);
-		}
-	}]);
+    console.log(props);
+    return _this;
+  }
 
-	return Projects;
+  _createClass(ProjectDiagonal, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'diagonal', style: this.props.styles },
+        _react2.default.createElement(
+          'div',
+          { classname: 'project-info' },
+          _react2.default.createElement(
+            _reactRouter.Link,
+            { ref: this.props.ref, key: this.props.key, to: this.props.path },
+            _react2.default.createElement('img', { className: 'logo', src: this.props.logoPath })
+          )
+        )
+      );
+    }
+  }]);
+
+  return ProjectDiagonal;
 }(_react2.default.Component);
 
-exports.default = Projects;
+exports.default = ProjectDiagonal;

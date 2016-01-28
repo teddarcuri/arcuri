@@ -1,0 +1,34 @@
+$color-coral: #F45D4C;
+$color-orange: #F7A541;
+$color-green: #A1DBB2;
+$color-yellow: #FACA66;
+$color-blue: #54787D;
+$color-teal: #60B99A;
+$color-purple: #5B527F;
+$color-gray: #555555;
+$color-black: #000000;
+
+.diagonals {
+    position: fixed;
+    height: 120%;
+    width: 100%;
+    top: 0px;
+    left: 0;
+    
+    @include display(flex);
+    @include align-items(stretch);
+    @include justify-content(center);
+}
+.diagonal {
+    height: 100%;
+    background: $color-coral;
+    background-size: contain;
+    -webkit-backface-visibility: hidden;
+    box-shadow: 0px 0px 10px 10px rgba(#000, 0.2);
+    @include flex(1 0);
+    @include transform(rotate(10deg) translateY(-10%) translateX(0%));
+    @include transition(all ease 0.5s);
+    &:hover {
+        @include flex(6 0); 
+    }
+}

@@ -7,11 +7,11 @@
 .project-bubble-wrap {
     @include span-columns(4);
     @include omega(3n);
-    padding: 12px;
+    padding: 10px;
 }
 
 .project-bubble {
-  height: 120px; width: 120px;
+  height: 110px; width: 110px;
   border-radius: 50%;
   overflow: hidden;
   display: inline-block;
@@ -24,7 +24,7 @@
   }
   img.bg {
    max-height: 100%;
-   @include transform(scale(1.2));
+   @include transform(scale(1.5));
    &.project {
     position: fixed;
     top: 0; left: 0;

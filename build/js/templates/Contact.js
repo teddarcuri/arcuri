@@ -10,9 +10,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactAddonsTransitionGroup = require('react-addons-transition-group');
+var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
 
-var _reactAddonsTransitionGroup2 = _interopRequireDefault(_reactAddonsTransitionGroup);
+var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22,35 +22,49 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Projects = function (_React$Component) {
-	_inherits(Projects, _React$Component);
+var Contact = function (_React$Component) {
+	_inherits(Contact, _React$Component);
 
-	function Projects(props) {
-		_classCallCheck(this, Projects);
+	function Contact() {
+		_classCallCheck(this, Contact);
 
-		return _possibleConstructorReturn(this, Object.getPrototypeOf(Projects).call(this, props));
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(Contact).apply(this, arguments));
 	}
 
-	_createClass(Projects, [{
+	_createClass(Contact, [{
 		key: 'render',
 		value: function render() {
-			var key = this.props.location.pathname;
 			return _react2.default.createElement(
-				'div',
-				null,
+				_reactAddonsCssTransitionGroup2.default,
+				{ transitionAppear: true,
+					transitionAppearTimeout: 2000,
+					transitionName: 'fadeIn',
+					transitionEnterTimeout: 2000,
+					transitionLeaveTimeout: 2000 },
 				_react2.default.createElement(
-					_reactAddonsTransitionGroup2.default,
+					'h1',
 					null,
-					_react2.default.cloneElement(this.props.children, {
-						key: key,
-						projects: this.props.projects
-					})
+					'Contact'
+				),
+				_react2.default.createElement(
+					'section',
+					{ className: 'split' },
+					_react2.default.createElement(
+						'aside',
+						null,
+						'tedd.arcuri@gmail.com'
+					),
+					_react2.default.createElement(
+						'aside',
+						null,
+						'719-440-4732'
+					)
 				)
 			);
 		}
 	}]);
 
-	return Projects;
+	return Contact;
 }(_react2.default.Component);
 
-exports.default = Projects;
+exports.default = Contact;

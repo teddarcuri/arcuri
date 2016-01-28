@@ -10,6 +10,8 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouter = require('react-router');
+
 var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
@@ -45,14 +47,74 @@ var About = function (_React$Component) {
 										'div',
 										{ className: 'container mw' },
 										_react2.default.createElement(
-												'h1',
+												'div',
 												null,
-												'About'
-										),
-										_react2.default.createElement(
-												'p',
-												null,
-												'Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.'
+												_react2.default.createElement(
+														_reactAddonsCssTransitionGroup2.default,
+														{
+																transitionAppear: true,
+																transitionAppearTimeout: 2000,
+																transitionName: 'bubbleUp',
+																transitionEnterTimeout: 2000,
+																transitionLeaveTimeout: 2000 },
+														_react2.default.createElement(
+																'h3',
+																null,
+																'Hello, My Name is ',
+																_react2.default.createElement(
+																		'span',
+																		{ className: 'highlight light' },
+																		'Tedd Arcuri'
+																),
+																'. ',
+																_react2.default.createElement('br', null),
+																'I am Developer + Designer Currently living in Denver, CO.',
+																_react2.default.createElement('br', null),
+																'Checkout some of ',
+																_react2.default.createElement(
+																		'span',
+																		{ className: 'highlight' },
+																		_react2.default.createElement(
+																				_reactRouter.Link,
+																				{ to: 'work' },
+																				' My Work'
+																		)
+																),
+																'.',
+																_react2.default.createElement('br', null),
+																'Like what you see? ',
+																_react2.default.createElement(
+																		'span',
+																		{ className: 'highlight' },
+																		_react2.default.createElement(
+																				_reactRouter.Link,
+																				{ to: 'contact' },
+																				' Hire Me'
+																		)
+																),
+																'.'
+														)
+												),
+												_react2.default.createElement(
+														'div',
+														{ className: 'btns' },
+														_react2.default.createElement(
+																'a',
+																{ className: 'btn' },
+																'About Me'
+														),
+														_react2.default.createElement(
+																'a',
+																{ className: 'btn' },
+																'See My Work'
+														),
+														_react2.default.createElement(
+																'a',
+																{ className: 'btn' },
+																'Get In Touch'
+														)
+												),
+												_react2.default.createElement('img', { id: 'about-image', src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/someguy.png' })
 										)
 								)
 						);

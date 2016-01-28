@@ -5,6 +5,8 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var webpack = require('gulp-webpack');
 var browserSync = require('browser-sync').create();
+var historyApiFallback = require('connect-history-api-fallback')
+
 
 gulp.task('sass', function () {
   gulp.src('./src/sass/app.scss')
@@ -18,7 +20,8 @@ gulp.task('serve', ['sass', 'build', 'webpack'], function() {
     browserSync.init({
         server: {
             baseDir: "./"
-        }
+        },
+        middleware : [ historyApiFallback() ]
     });
     gulp.watch('./src/sass/**/*.scss', ['sass']);
 	  gulp.watch('./src/js/**/*.jsx', ['build', 'webpack']);

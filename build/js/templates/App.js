@@ -12,10 +12,6 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reactRouter = require('react-router');
 
-var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
-
-var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
-
 var _reactAddonsTransitionGroup = require('react-addons-transition-group');
 
 var _reactAddonsTransitionGroup2 = _interopRequireDefault(_reactAddonsTransitionGroup);
@@ -23,6 +19,18 @@ var _reactAddonsTransitionGroup2 = _interopRequireDefault(_reactAddonsTransition
 var _createBrowserHistory = require('history/lib/createBrowserHistory');
 
 var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
+
+var _projectList = require('../utilities/project-list');
+
+var _projectList2 = _interopRequireDefault(_projectList);
+
+var _helpers = require('../utilities/helpers');
+
+var _helpers2 = _interopRequireDefault(_helpers);
+
+var _backgroundSmoke = require('../utilities/background-smoke');
+
+var _backgroundSmoke2 = _interopRequireDefault(_backgroundSmoke);
 
 var _index = require('./index');
 
@@ -44,9 +52,13 @@ var _project = require('./project');
 
 var _project2 = _interopRequireDefault(_project);
 
-var _helpers = require('../utilities/helpers');
+var _contact = require('./contact');
 
-var _helpers2 = _interopRequireDefault(_helpers);
+var _contact2 = _interopRequireDefault(_contact);
+
+var _reBase = require('re-base');
+
+var _reBase2 = _interopRequireDefault(_reBase);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -56,9 +68,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // React
 
+// Utility
+
 // Routes
 
-// Utility
+// Firebase
+
+var base = _reBase2.default.createClass('https://tedd-arcuri.firebaseio.com/');
 
 /*
   Application
@@ -73,12 +89,38 @@ var App = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
 
     _this.state = {
-      isProjectPage: false
+      isProjectPage: false,
+      projects: []
     };
     return _this;
   }
 
   _createClass(App, [{
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      // var path = this.props.location.pathname;
+
+      // if (path.contains('/work')) {
+      //   this.setState({isProjectPage: !this.state.isProjectPage});
+      // }
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // Go get projects from Firebase
+      base.syncState('projects', {
+        context: this,
+        state: 'projects',
+        asArray: true,
+        then: function then() {
+          console.log(this.state.projects);
+        }
+      });
+    }
+  }, {
+    key: 'addProject',
+    value: function addProject(project) {}
+  }, {
     key: 'render',
     value: function render() {
       var logoClasses = this.state.isProjectPage ? "light" : "dark";
@@ -212,10 +254,12 @@ var App = function (_React$Component) {
               className: 'transition-group' },
             _react2.default.cloneElement(this.props.children, {
               key: this.props.location.pathname,
-              isProjectPage: this.state.isProjectPage
+              isProjectPage: this.state.isProjectPage,
+              projects: this.state.projects
             })
           )
-        )
+        ),
+        _react2.default.createElement('div', { id: 'background-smoke' })
       );
     }
   }]);
@@ -235,6 +279,7 @@ _reactDom2.default.render(_react2.default.createElement(
     { path: '/', component: App },
     _react2.default.createElement(_reactRouter.IndexRoute, { component: _index2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _about2.default }),
+    _react2.default.createElement(_reactRouter.Route, { path: 'contact', component: _contact2.default }),
     _react2.default.createElement(
       _reactRouter.Route,
       { path: 'work', component: _projects2.default },

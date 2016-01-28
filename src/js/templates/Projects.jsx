@@ -8,19 +8,14 @@ class Projects extends React.Component {
 		super(props);
 	}
 
-	routerWillLeave(callback) {
-		setTimeout(function() {
-			callback();
-		}, 1000)
-	}
-
 	render() {
 		var key = this.props.location.pathname;
 		return (
 		<div>
 			<ReactTransitionGroup>
 	 			{React.cloneElement(this.props.children, {
-	          		key: key
+	          		key: key,
+	          		projects: this.props.projects
 	        	})}
         	</ReactTransitionGroup>
  		</div>
