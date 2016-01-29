@@ -53,7 +53,6 @@ var ProjectIndex = function (_React$Component) {
 			return _react2.default.createElement(
 				_reactAddonsCssTransitionGroup2.default,
 				{ className: 'diagonals',
-					ref: 'projectBubbles',
 					component: 'div',
 					transitionAppear: true,
 					transitionAppearTimeout: 0,

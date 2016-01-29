@@ -12,10 +12,11 @@ class ProjectDiagonal extends React.Component {
   render() {
     return (
       <div className="diagonal" style={this.props.styles}>
-        <div classname="project-info">
-      	<Link ref={this.props.ref} key={this.props.key} to={this.props.path}>
-          <img className="logo" src={this.props.logoPath} />
-        </Link>
+        <div className="project-overlay">
+        	<div className="project-info">
+            <img className="logo" src={this.props.logoPath} /> <br/>
+            <Link className="btn" to={this.props.path}>View {this.props.name}</Link>
+          </div>
         </div>
       </div>
     );

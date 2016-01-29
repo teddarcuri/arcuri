@@ -40,11 +40,19 @@ var ProjectDiagonal = function (_React$Component) {
         { className: 'diagonal', style: this.props.styles },
         _react2.default.createElement(
           'div',
-          { classname: 'project-info' },
+          { className: 'project-overlay' },
           _react2.default.createElement(
-            _reactRouter.Link,
-            { ref: this.props.ref, key: this.props.key, to: this.props.path },
-            _react2.default.createElement('img', { className: 'logo', src: this.props.logoPath })
+            'div',
+            { className: 'project-info' },
+            _react2.default.createElement('img', { className: 'logo', src: this.props.logoPath }),
+            ' ',
+            _react2.default.createElement('br', null),
+            _react2.default.createElement(
+              _reactRouter.Link,
+              { className: 'btn', to: this.props.path },
+              'View ',
+              this.props.name
+            )
           )
         )
       );

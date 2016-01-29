@@ -19,7 +19,6 @@ class ProjectIndex extends React.Component {
 		var projects = this.props.projects;
 		return (
 		<CSSTransitionGroup className="diagonals" 
-							ref="projectBubbles"
 							component="div"
 							transitionAppear={true}
 							transitionAppearTimeout={0}

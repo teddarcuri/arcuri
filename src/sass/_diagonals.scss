@@ -10,11 +10,12 @@ $color-black: #000000;
 
 .diagonals {
     position: fixed;
-    height: 120%;
+    height: 100%;
     width: 100%;
-    top: 0px;
-    left: 0;
-    
+    top: 17%;
+    right: 0;
+    overflow: hidden;
+
     @include display(flex);
     @include align-items(stretch);
     @include justify-content(center);
@@ -23,12 +24,66 @@ $color-black: #000000;
     height: 100%;
     background: $color-coral;
     background-size: contain;
+    background-position: center;
     -webkit-backface-visibility: hidden;
-    box-shadow: 0px 0px 10px 10px rgba(#000, 0.2);
-    @include flex(1 0);
-    @include transform(rotate(10deg) translateY(-10%) translateX(0%));
+    box-shadow: 2px 2px 7px 2px rgba(#000, 0.4);
+    overflow: hidden;
+    margin-right: 12px;
+    @include flex(83px 0);
+    @include transform(translateY(-10%) translateX(0%) rotate(12deg));
     @include transition(all ease 0.5s);
+    @include display(flex);
+    @include align-items(center);
+    @include justify-content(center);
+    @include transition-delay(0.3s);
     &:hover {
-        @include flex(6 0); 
+        @include flex(66% 0);
+        height: 130%;
+        .project-overlay {
+            opacity: 1;
+            @include transition-delay(0.7s);
+        }
+        .project-info {
+            @include transform(rotate(-12deg) translateY(0%));
+            @include transition-delay(0.7s);
+        }
+    }
+    .project-overlay {
+        opacity: 0;
+        background: rgba(#000, 0.8);
+        padding: 20px;
+        width: 100%;
+        height: 100%;
+        @include transition(all ease 0.5s);
+        @include transform(rotate(0deg));
+        @include transition-delay(0.1s);
+        @include display(flex);
+        @include align-items(center);
+        @include justify-content(center);
+        @include flex-wrap(wrap);
+    }
+
+    .project-info {
+        @include transition(all ease 0.5s);
+        @include transform(rotate(-12deg) translateY(-100%));
+        @include transition-delay(0.3s);
+        margin-top: -200px;
+        .logo {
+            width: 120px;
+            margin: 0px auto;
+            display: block;
+        }
+        .btn {
+            color: #fff;
+            border: solid 3px $cream;
+            background: none;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.8em;
+            &:hover {
+                background: $cream;
+                color: #000;
+            }
+        }
     }
 }

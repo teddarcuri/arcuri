@@ -40,13 +40,28 @@
 // Slide Left
 .slideLeftIn-appear {
   opacity: 0.01;
-  @include transform(translateY(-50%) translateX(-1100%) rotate(10deg)) ;
-}
+@include flex(0px);}
 
 .slideLeftIn-appear.slideLeftIn-appear-active {
   opacity: 1;
-  transition: all 0.5s ease;
-  @include transform(translateY(-10%) translateX(0%) rotate(10deg)) ;
+  transition: all 0.25s ease;
+  @include flex(50px);
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) { 
+       @include transition-delay(0.25s * $i); 
+      }
+  }
+}
+
+.slideLeftIn-enter {
+  opacity: 0.01;
+  @include flex(0px);
+}
+
+.slideLeftIn-enter.slideLeftIn-enter-active {
+  opacity: 1;
+  @include flex(50px);
+  transition: all 1s ease;
     @for $i from 1 through 6 {
       &:nth-child(#{$i}) { 
        @include transition-delay(0.25s * $i); 
