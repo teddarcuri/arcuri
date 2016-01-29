@@ -10,7 +10,7 @@ $color-black: #000000;
 
 .diagonals {
     position: fixed;
-    height: 100%;
+    height: 66%;
     width: 100%;
     top: 17%;
     right: 0;
@@ -21,39 +21,41 @@ $color-black: #000000;
     @include justify-content(center);
 }
 .diagonal {
-    height: 100%;
-    background: $color-coral;
+    height: 130%;
     background-size: contain;
     background-position: center;
     -webkit-backface-visibility: hidden;
-    box-shadow: 2px 2px 7px 2px rgba(#000, 0.4);
     overflow: hidden;
-    margin-right: 12px;
-    @include flex(83px 0);
-    @include transform(translateY(-10%) translateX(0%) rotate(12deg));
+    margin-right: 16px;
+    @include flex(90px 0);
+    @include transform(translateY(-16%) translateX(0%) rotate(16deg));
     @include transition(all ease 0.5s);
     @include display(flex);
     @include align-items(center);
     @include justify-content(center);
     @include transition-delay(0.3s);
     &:hover {
-        @include flex(66% 0);
-        height: 130%;
+        @include flex(50% 0);
+        height: 150%;
+        margin-right: 40px;
         .project-overlay {
             opacity: 1;
             @include transition-delay(0.7s);
         }
         .project-info {
-            @include transform(rotate(-12deg) translateY(0%));
+            @include transform(rotate(-16deg) translateY(0%));
             @include transition-delay(0.7s);
         }
     }
     .project-overlay {
         opacity: 0;
-        background: rgba(#000, 0.8);
+        background: rgba(#000, 0.5);
         padding: 20px;
         width: 100%;
         height: 100%;
+        z-index: 2;
+        position: absolute;
+        right: 0;
         @include transition(all ease 0.5s);
         @include transform(rotate(0deg));
         @include transition-delay(0.1s);
@@ -63,23 +65,41 @@ $color-black: #000000;
         @include flex-wrap(wrap);
     }
 
+    .background {
+        //position: absolute;
+        bottom: 0px;
+        left: 0px;
+        height: 100%;
+        @include transform(rotate(-16deg) translateX(-26px));
+    }
+
     .project-info {
         @include transition(all ease 0.5s);
-        @include transform(rotate(-12deg) translateY(-100%));
+        @include transform(rotate(-16deg) translateY(100%));
         @include transition-delay(0.3s);
-        margin-top: -200px;
+        margin-top: -70px;
         .logo {
             width: 120px;
             margin: 0px auto;
             display: block;
+            padding: 0px;
+        }
+        h3 {
+            color: #fff;
+            text-align: center;
+            text-shadow: 0px 2px 7px rgba(#000, 0.5);
+            margin: -25px 0px 0px 0px;
         }
         .btn {
-            color: #fff;
-            border: solid 3px $cream;
-            background: none;
+            color: #222;
+            background: $cream;
             text-decoration: none;
+            text-align: center;
             font-weight: 700;
-            font-size: 0.8em;
+            font-size: 0.7em;
+            padding: 0.5em;
+            margin: 20px auto;
+            display: block;
             &:hover {
                 background: $cream;
                 color: #000;

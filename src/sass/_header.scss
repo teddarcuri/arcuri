@@ -34,11 +34,9 @@ header#main {
                 padding: 0px;
             }
             #Rectangle-1 {
-               height: 10px;
                @include transform(rotate(50deg)  translateX(21px));
             }
             #Rectangle-2 {
-               height: 10px;
                @include transform(rotate(-50deg) translateX(21px));
             }
             #Rectangle-3 {

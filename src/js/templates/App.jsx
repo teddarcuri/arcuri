@@ -36,13 +36,13 @@ class App extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    // var path = this.props.location.pathname;
+  // componentDidUpdate() {
+  // //   var path = this.props.location.pathname;
 
-    // if (path.contains('/work')) {
-    //   this.setState({isProjectPage: !this.state.isProjectPage});
-    // }
-  }
+  // //   if (path.contains('/work/')) {
+  // //     this.setState({isProjectPage: true});
+  // //   } else {}
+  // }
 
   componentDidMount() {
     // Go get projects from Firebase

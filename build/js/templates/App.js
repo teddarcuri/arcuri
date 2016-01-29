@@ -95,16 +95,15 @@ var App = function (_React$Component) {
     return _this;
   }
 
-  _createClass(App, [{
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate() {
-      // var path = this.props.location.pathname;
+  // componentDidUpdate() {
+  // //   var path = this.props.location.pathname;
 
-      // if (path.contains('/work')) {
-      //   this.setState({isProjectPage: !this.state.isProjectPage});
-      // }
-    }
-  }, {
+  // //   if (path.contains('/work/')) {
+  // //     this.setState({isProjectPage: true});
+  // //   } else {}
+  // }
+
+  _createClass(App, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       // Go get projects from Firebase

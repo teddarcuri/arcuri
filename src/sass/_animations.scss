@@ -40,13 +40,14 @@
 // Slide Left
 .slideLeftIn-appear {
   opacity: 0.01;
-@include flex(0px);}
+  margin-left: 200px;
+}
 
 .slideLeftIn-appear.slideLeftIn-appear-active {
   opacity: 1;
-  transition: all 0.25s ease;
-  @include flex(50px);
-    @for $i from 1 through 6 {
+  transition: all 1s ease;
+  margin-left: 0px;
+    @for $i from 1 through 7 {
       &:nth-child(#{$i}) { 
        @include transition-delay(0.25s * $i); 
       }
@@ -55,13 +56,13 @@
 
 .slideLeftIn-enter {
   opacity: 0.01;
-  @include flex(0px);
+  margin-left: -100px;
 }
 
 .slideLeftIn-enter.slideLeftIn-enter-active {
   opacity: 1;
-  @include flex(50px);
   transition: all 1s ease;
+  margin-left: 0px;
     @for $i from 1 through 6 {
       &:nth-child(#{$i}) { 
        @include transition-delay(0.25s * $i); 

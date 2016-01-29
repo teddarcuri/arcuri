@@ -35,20 +35,13 @@ class ProjectIndex extends React.Component {
 	  					 	backgroundSize: 'cover'
 	  					 };
 	  				return (
-	  					// <ProjectBubble ref={p.id}
-	  					// 			   key={p.id}
-	  					// 			   path={path}
-	  					// 			   name={p.name}
-	  					// 			   logoPath={logoPath}
-	  					// 			   bgImgPath={bgImgPath}/>
-
-  							<ProjectDiagonal ref={p.id}
-	  								   key={p.id}
-	  								   path={path}
-	  								   name={p.name}
-	  								   logoPath={logoPath}
-	  								   bgImgPath={bgImgPath}
-	  								   styles={styles}/>
+					<ProjectDiagonal ref={p.id}
+									 key={p.id}
+									 path={path}
+									 name={p.name}
+									 logo={logoPath}
+									 background={bgImgPath}
+									 styles={styles}/>
 
 	  				)
 	  			})

@@ -117,24 +117,12 @@ html {
 
 .slideLeftIn-appear {
   opacity: 0.01;
-  -webkit-box-flex: 0px;
-  -moz-box-flex: 0px;
-  box-flex: 0px;
-  -webkit-flex: 0px;
-  -moz-flex: 0px;
-  -ms-flex: 0px;
-  flex: 0px; }
+  margin-left: 200px; }
 
 .slideLeftIn-appear.slideLeftIn-appear-active {
   opacity: 1;
-  transition: all 0.25s ease;
-  -webkit-box-flex: 50px;
-  -moz-box-flex: 50px;
-  box-flex: 50px;
-  -webkit-flex: 50px;
-  -moz-flex: 50px;
-  -ms-flex: 50px;
-  flex: 50px; }
+  transition: all 1s ease;
+  margin-left: 0px; }
   .slideLeftIn-appear.slideLeftIn-appear-active:nth-child(1) {
     -webkit-transition-delay: 0.25s;
     -moz-transition-delay: 0.25s;
@@ -159,27 +147,19 @@ html {
     -webkit-transition-delay: 1.5s;
     -moz-transition-delay: 1.5s;
     transition-delay: 1.5s; }
+  .slideLeftIn-appear.slideLeftIn-appear-active:nth-child(7) {
+    -webkit-transition-delay: 1.75s;
+    -moz-transition-delay: 1.75s;
+    transition-delay: 1.75s; }
 
 .slideLeftIn-enter {
   opacity: 0.01;
-  -webkit-box-flex: 0px;
-  -moz-box-flex: 0px;
-  box-flex: 0px;
-  -webkit-flex: 0px;
-  -moz-flex: 0px;
-  -ms-flex: 0px;
-  flex: 0px; }
+  margin-left: -100px; }
 
 .slideLeftIn-enter.slideLeftIn-enter-active {
   opacity: 1;
-  -webkit-box-flex: 50px;
-  -moz-box-flex: 50px;
-  box-flex: 50px;
-  -webkit-flex: 50px;
-  -moz-flex: 50px;
-  -ms-flex: 50px;
-  flex: 50px;
-  transition: all 1s ease; }
+  transition: all 1s ease;
+  margin-left: 0px; }
   .slideLeftIn-enter.slideLeftIn-enter-active:nth-child(1) {
     -webkit-transition-delay: 0.25s;
     -moz-transition-delay: 0.25s;
@@ -214,7 +194,7 @@ html {
 
 .diagonals {
   position: fixed;
-  height: 100%;
+  height: 66%;
   width: 100%;
   top: 17%;
   right: 0;
@@ -246,26 +226,24 @@ html {
   -ms-flex-pack: center; }
 
 .diagonal {
-  height: 100%;
-  background: #F45D4C;
+  height: 130%;
   background-size: contain;
   background-position: center;
   -webkit-backface-visibility: hidden;
-  box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 0.4);
   overflow: hidden;
-  margin-right: 12px;
-  -webkit-box-flex: 83px;
-  -moz-box-flex: 83px;
-  box-flex: 83px;
-  -webkit-flex: 83px 0;
-  -moz-flex: 83px 0;
-  -ms-flex: 83px 0;
-  flex: 83px 0;
-  -webkit-transform: translateY(-10%) translateX(0%) rotate(12deg);
-  -moz-transform: translateY(-10%) translateX(0%) rotate(12deg);
-  -ms-transform: translateY(-10%) translateX(0%) rotate(12deg);
-  -o-transform: translateY(-10%) translateX(0%) rotate(12deg);
-  transform: translateY(-10%) translateX(0%) rotate(12deg);
+  margin-right: 16px;
+  -webkit-box-flex: 90px;
+  -moz-box-flex: 90px;
+  box-flex: 90px;
+  -webkit-flex: 90px 0;
+  -moz-flex: 90px 0;
+  -ms-flex: 90px 0;
+  flex: 90px 0;
+  -webkit-transform: translateY(-16%) translateX(0%) rotate(16deg);
+  -moz-transform: translateY(-16%) translateX(0%) rotate(16deg);
+  -ms-transform: translateY(-16%) translateX(0%) rotate(16deg);
+  -o-transform: translateY(-16%) translateX(0%) rotate(16deg);
+  transform: translateY(-16%) translateX(0%) rotate(16deg);
   -webkit-transition: all ease 0.5s;
   -moz-transition: all ease 0.5s;
   transition: all ease 0.5s;
@@ -298,34 +276,38 @@ html {
   -moz-transition-delay: 0.3s;
   transition-delay: 0.3s; }
   .diagonal:hover {
-    -webkit-box-flex: 66%;
-    -moz-box-flex: 66%;
-    box-flex: 66%;
-    -webkit-flex: 66% 0;
-    -moz-flex: 66% 0;
-    -ms-flex: 66% 0;
-    flex: 66% 0;
-    height: 130%; }
+    -webkit-box-flex: 50%;
+    -moz-box-flex: 50%;
+    box-flex: 50%;
+    -webkit-flex: 50% 0;
+    -moz-flex: 50% 0;
+    -ms-flex: 50% 0;
+    flex: 50% 0;
+    height: 150%;
+    margin-right: 40px; }
     .diagonal:hover .project-overlay {
       opacity: 1;
       -webkit-transition-delay: 0.7s;
       -moz-transition-delay: 0.7s;
       transition-delay: 0.7s; }
     .diagonal:hover .project-info {
-      -webkit-transform: rotate(-12deg) translateY(0%);
-      -moz-transform: rotate(-12deg) translateY(0%);
-      -ms-transform: rotate(-12deg) translateY(0%);
-      -o-transform: rotate(-12deg) translateY(0%);
-      transform: rotate(-12deg) translateY(0%);
+      -webkit-transform: rotate(-16deg) translateY(0%);
+      -moz-transform: rotate(-16deg) translateY(0%);
+      -ms-transform: rotate(-16deg) translateY(0%);
+      -o-transform: rotate(-16deg) translateY(0%);
+      transform: rotate(-16deg) translateY(0%);
       -webkit-transition-delay: 0.7s;
       -moz-transition-delay: 0.7s;
       transition-delay: 0.7s; }
   .diagonal .project-overlay {
     opacity: 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.5);
     padding: 20px;
     width: 100%;
     height: 100%;
+    z-index: 2;
+    position: absolute;
+    right: 0;
     -webkit-transition: all ease 0.5s;
     -moz-transition: all ease 0.5s;
     transition: all ease 0.5s;
@@ -369,30 +351,48 @@ html {
     -moz-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap; }
+  .diagonal .background {
+    bottom: 0px;
+    left: 0px;
+    height: 100%;
+    -webkit-transform: rotate(-16deg) translateX(-26px);
+    -moz-transform: rotate(-16deg) translateX(-26px);
+    -ms-transform: rotate(-16deg) translateX(-26px);
+    -o-transform: rotate(-16deg) translateX(-26px);
+    transform: rotate(-16deg) translateX(-26px); }
   .diagonal .project-info {
     -webkit-transition: all ease 0.5s;
     -moz-transition: all ease 0.5s;
     transition: all ease 0.5s;
-    -webkit-transform: rotate(-12deg) translateY(-100%);
-    -moz-transform: rotate(-12deg) translateY(-100%);
-    -ms-transform: rotate(-12deg) translateY(-100%);
-    -o-transform: rotate(-12deg) translateY(-100%);
-    transform: rotate(-12deg) translateY(-100%);
+    -webkit-transform: rotate(-16deg) translateY(100%);
+    -moz-transform: rotate(-16deg) translateY(100%);
+    -ms-transform: rotate(-16deg) translateY(100%);
+    -o-transform: rotate(-16deg) translateY(100%);
+    transform: rotate(-16deg) translateY(100%);
     -webkit-transition-delay: 0.3s;
     -moz-transition-delay: 0.3s;
     transition-delay: 0.3s;
-    margin-top: -200px; }
+    margin-top: -70px; }
     .diagonal .project-info .logo {
       width: 120px;
       margin: 0px auto;
-      display: block; }
-    .diagonal .project-info .btn {
+      display: block;
+      padding: 0px; }
+    .diagonal .project-info h3 {
       color: #fff;
-      border: solid 3px #e9e4dc;
-      background: none;
+      text-align: center;
+      text-shadow: 0px 2px 7px rgba(0, 0, 0, 0.5);
+      margin: -25px 0px 0px 0px; }
+    .diagonal .project-info .btn {
+      color: #222;
+      background: #e9e4dc;
       text-decoration: none;
+      text-align: center;
       font-weight: 700;
-      font-size: 0.8em; }
+      font-size: 0.7em;
+      padding: 0.5em;
+      margin: 20px auto;
+      display: block; }
       .diagonal .project-info .btn:hover {
         background: #e9e4dc;
         color: #000; }
@@ -491,14 +491,12 @@ header#main {
       list-style: none;
       padding: 0px; }
     header#main #menu:hover #Rectangle-1 {
-      height: 10px;
       -webkit-transform: rotate(50deg) translateX(21px);
       -moz-transform: rotate(50deg) translateX(21px);
       -ms-transform: rotate(50deg) translateX(21px);
       -o-transform: rotate(50deg) translateX(21px);
       transform: rotate(50deg) translateX(21px); }
     header#main #menu:hover #Rectangle-2 {
-      height: 10px;
       -webkit-transform: rotate(-50deg) translateX(21px);
       -moz-transform: rotate(-50deg) translateX(21px);
       -ms-transform: rotate(-50deg) translateX(21px);

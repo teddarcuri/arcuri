@@ -141,16 +141,15 @@
 	    return _this;
 	  }
 
-	  _createClass(App, [{
-	    key: 'componentDidUpdate',
-	    value: function componentDidUpdate() {
-	      // var path = this.props.location.pathname;
+	  // componentDidUpdate() {
+	  // //   var path = this.props.location.pathname;
 
-	      // if (path.contains('/work')) {
-	      //   this.setState({isProjectPage: !this.state.isProjectPage});
-	      // }
-	    }
-	  }, {
+	  // //   if (path.contains('/work/')) {
+	  // //     this.setState({isProjectPage: true});
+	  // //   } else {}
+	  // }
+
+	  _createClass(App, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      // Go get projects from Firebase
@@ -62097,22 +62096,13 @@
 							backgroundImage: 'url(' + p.background + ')',
 							backgroundSize: 'cover'
 						};
-						return(
-							// <ProjectBubble ref={p.id}
-							// 			   key={p.id}
-							// 			   path={path}
-							// 			   name={p.name}
-							// 			   logoPath={logoPath}
-							// 			   bgImgPath={bgImgPath}/>
-
-							_react2.default.createElement(_ProjectDiagonal2.default, { ref: p.id,
-								key: p.id,
-								path: path,
-								name: p.name,
-								logoPath: logoPath,
-								bgImgPath: bgImgPath,
-								styles: styles })
-						);
+						return _react2.default.createElement(_ProjectDiagonal2.default, { ref: p.id,
+							key: p.id,
+							path: path,
+							name: p.name,
+							logo: logoPath,
+							background: bgImgPath,
+							styles: styles });
 					})
 				);
 			}
@@ -62225,24 +62215,29 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'diagonal', style: this.props.styles },
+	        { className: 'diagonal' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'project-overlay' },
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'project-info' },
-	            _react2.default.createElement('img', { className: 'logo', src: this.props.logoPath }),
+	            _react2.default.createElement('img', { className: 'logo', src: this.props.logo }),
 	            ' ',
 	            _react2.default.createElement('br', null),
 	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              this.props.name
+	            ),
+	            _react2.default.createElement(
 	              _reactRouter.Link,
 	              { className: 'btn', to: this.props.path },
-	              'View ',
-	              this.props.name
+	              'View Site'
 	            )
 	          )
-	        )
+	        ),
+	        _react2.default.createElement('img', { className: 'background', src: this.props.background, alt: '' })
 	      );
 	    }
 	  }]);

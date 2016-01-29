@@ -67,22 +67,13 @@ var ProjectIndex = function (_React$Component) {
 						backgroundImage: 'url(' + p.background + ')',
 						backgroundSize: 'cover'
 					};
-					return(
-						// <ProjectBubble ref={p.id}
-						// 			   key={p.id}
-						// 			   path={path}
-						// 			   name={p.name}
-						// 			   logoPath={logoPath}
-						// 			   bgImgPath={bgImgPath}/>
-
-						_react2.default.createElement(_ProjectDiagonal2.default, { ref: p.id,
-							key: p.id,
-							path: path,
-							name: p.name,
-							logoPath: logoPath,
-							bgImgPath: bgImgPath,
-							styles: styles })
-					);
+					return _react2.default.createElement(_ProjectDiagonal2.default, { ref: p.id,
+						key: p.id,
+						path: path,
+						name: p.name,
+						logo: logoPath,
+						background: bgImgPath,
+						styles: styles });
 				})
 			);
 		}
