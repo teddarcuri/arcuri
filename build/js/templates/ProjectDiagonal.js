@@ -26,18 +26,15 @@ var ProjectDiagonal = function (_React$Component) {
   function ProjectDiagonal(props) {
     _classCallCheck(this, ProjectDiagonal);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectDiagonal).call(this, props));
-
-    console.log(props);
-    return _this;
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectDiagonal).call(this, props));
   }
 
   _createClass(ProjectDiagonal, [{
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        { className: 'diagonal' },
+        _reactRouter.Link,
+        { className: 'diagonal', to: this.props.path },
         _react2.default.createElement(
           'div',
           { className: 'project-overlay' },
@@ -51,11 +48,6 @@ var ProjectDiagonal = function (_React$Component) {
               'h3',
               null,
               this.props.name
-            ),
-            _react2.default.createElement(
-              _reactRouter.Link,
-              { className: 'btn', to: this.props.path },
-              'View Site'
             )
           )
         ),

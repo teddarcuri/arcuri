@@ -49,6 +49,5 @@ gulp.task('webpack', function () {
 		.pipe(gulp.dest('./build/js'))
 		.pipe(browserSync.stream());
 });
- 
 
 gulp.task('default', ['serve']);

@@ -21,59 +21,39 @@
   }
 }
 
-.bubbleUp-leave {
+
+// Slide Left
+.slideLeft-appear {
   opacity: 0.01;
+  margin-top: 100px;
+  @include transition(all 1s ease);
+}
+
+.slideLeft-appear.slideLeft-appear-active {
+  opacity: 1;
+  margin-top: 0px;
+  @include transition(all 1s ease);
+  @for $i from 1 through 7 {
+    &:nth-child(#{$i}) { 
+     @include transition-delay(0.25s * $i); 
+    }
+  }
+}
+
+// Slide Up
+.slideUp-appear {
   @include transform(translateY(100%));
 }
 
-.bubbleUp-leave.bubbleUp-leave-active {
-  opacity: 1;
+.slideUp-appear.slideUp-appear-active {
   transition: all 1s ease;
   @include transform(translateY(0%));
-    @for $i from 1 through 9 {
-      &:nth-child(#{$i}) { 
-       @include transition-delay(0.2s * $i); 
-      }
-  }
 }
-
-// Slide Left
-.slideLeftIn-appear {
-  opacity: 0.01;
-  margin-left: 200px;
-}
-
-.slideLeftIn-appear.slideLeftIn-appear-active {
-  opacity: 1;
-  transition: all 1s ease;
-  margin-left: 0px;
-    @for $i from 1 through 7 {
-      &:nth-child(#{$i}) { 
-       @include transition-delay(0.25s * $i); 
-      }
-  }
-}
-
-.slideLeftIn-enter {
-  opacity: 0.01;
-  margin-left: -100px;
-}
-
-.slideLeftIn-enter.slideLeftIn-enter-active {
-  opacity: 1;
-  transition: all 1s ease;
-  margin-left: 0px;
-    @for $i from 1 through 6 {
-      &:nth-child(#{$i}) { 
-       @include transition-delay(0.25s * $i); 
-      }
-  }
-}
-
 
 // Fade In
 .fadeIn-appear {
   opacity: 0.01;
+  transition: all 2s ease;
 }
 
 .fadeIn-appear.fadeIn-appear-active {

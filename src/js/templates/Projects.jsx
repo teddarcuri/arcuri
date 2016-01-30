@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactTransitionGroup from 'react-addons-transition-group';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 
 class Projects extends React.Component {
@@ -9,17 +9,16 @@ class Projects extends React.Component {
 	}
 
 	render() {
-		var key = this.props.location.pathname;
 		return (
 		<div>
-			<ReactTransitionGroup>
-	 			{React.cloneElement(this.props.children, {
-	          		key: key,
-	          		projects: this.props.projects
-	        	})}
-        	</ReactTransitionGroup>
- 		</div>
-	   )	
+			{React.cloneElement(this.props.children, {
+                key: this.props.location.pathname,
+                isProjectPage: this.props.isProjectPage,
+                projects: this.props.projects,
+                currentProject: this.props.currentProject
+              })}
+		</div>
+	   )
 	}
 }
 

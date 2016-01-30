@@ -14,9 +14,9 @@ var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group'
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-var _projectList = require('../utilities/project-list');
+var _ProjectBar = require('./ProjectBar');
 
-var _projectList2 = _interopRequireDefault(_projectList);
+var _ProjectBar2 = _interopRequireDefault(_ProjectBar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32,102 +32,84 @@ var Project = function (_React$Component) {
   function Project(props) {
     _classCallCheck(this, Project);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Project).call(this, props));
-
-    _this.state = {
-      projects: _projectList2.default,
-      project: _projectList2.default[0]
-    };
-    return _this;
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Project).call(this, props));
   }
 
   _createClass(Project, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var id = this.props.params.name;
-      this.setState({ project: this.findById(this.state.projects, id) });
-    }
-  }, {
-    key: 'findById',
-    value: function findById(source, id) {
-      for (var i = 0; i < source.length; i++) {
-        if (source[i].name == id) {
-          return source[i];
-        }
-      }
-    }
-  }, {
     key: 'render',
     value: function render() {
-      var bgImgPath = this.state.project.background;
+      var p = this.props.currentProject;
       return _react2.default.createElement(
-        _reactAddonsCssTransitionGroup2.default,
-        { className: 'project-page',
-          component: 'div',
-          transitionAppear: true,
-          transitionAppearTimeout: 0,
-          transitionName: 'bubbleUp',
-          transitionEnterTimeout: 1000,
-          transitionLeaveTimeout: 1000 },
-        _react2.default.createElement('img', { ref: 'backgroundImage', src: bgImgPath, className: 'bg' }),
+        'div',
+        { className: 'project-page' },
         _react2.default.createElement(
-          'div',
-          { className: 'project-sidebar', ref: 'projectSidebar' },
+          _reactAddonsCssTransitionGroup2.default,
+          { component: "div",
+            transitionName: 'bubbleUp',
+            transitionAppear: true,
+            transitionAppearTimeout: 0,
+            transitionEnterTimeout: 1000,
+            transitionLeaveTimeout: 1000 },
           _react2.default.createElement(
-            'header',
-            null,
-            _react2.default.createElement('img', { ref: 'logo', src: this.state.project.logo, className: 'logo' }),
-            _react2.default.createElement('img', { src: bgImgPath, className: 'bg' }),
+            'div',
+            { className: 'project-window' },
             _react2.default.createElement(
               'h1',
-              null,
-              this.state.project.name
-            )
-          ),
-          _react2.default.createElement(
-            'ul',
-            null,
-            _react2.default.createElement(
-              'li',
-              null,
-              _react2.default.createElement(
-                'span',
-                null,
-                'Gallery'
-              )
+              { className: 'title' },
+              _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }),
+              p.name
             ),
             _react2.default.createElement(
-              'li',
+              'p',
               null,
-              _react2.default.createElement(
-                'span',
-                null,
-                'Overview'
-              )
-            ),
-            _react2.default.createElement(
-              'li',
-              null,
-              _react2.default.createElement(
-                'span',
-                null,
-                'Details'
-              )
+              p.description
             )
           )
         ),
         _react2.default.createElement(
-          'section',
-          { ref: 'projectContent', className: 'project-content' },
+          _reactAddonsCssTransitionGroup2.default,
+          { component: "div",
+            transitionName: 'slideUp',
+            transitionAppear: true,
+            transitionAppearTimeout: 0,
+            transitionEnterTimeout: 1000,
+            transitionLeaveTimeout: 1000 },
           _react2.default.createElement(
             'div',
-            { className: 'container' },
+            { className: 'project-controls' },
             _react2.default.createElement(
-              'p',
+              'ul',
               null,
-              'Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Etiam porta sem malesuada magna mollis euismod.'
-            )
+              _react2.default.createElement(
+                'li',
+                null,
+                'Overview'
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                'Gallery'
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                'Details'
+              )
+            ),
+            _react2.default.createElement(_ProjectBar2.default, { projects: this.props.projects,
+              currentProject: this.props.currentProject })
           )
+        ),
+        _react2.default.createElement(
+          _reactAddonsCssTransitionGroup2.default,
+          { component: "div",
+            className: 'project-bg',
+            transitionName: 'fadeIn',
+            transitionAppear: true,
+            transitionAppearTimeout: 1000,
+            transitionEnterTimeout: 1000,
+            transitionLeaveTimeout: 1000 },
+          _react2.default.createElement('img', { src: p.background })
         )
       );
     }

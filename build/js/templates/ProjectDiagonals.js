@@ -10,9 +10,19 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouter = require('react-router');
+
 var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+var _ProjectBubble = require('./ProjectBubble');
+
+var _ProjectBubble2 = _interopRequireDefault(_ProjectBubble);
+
+var _ProjectDiagonal = require('./ProjectDiagonal');
+
+var _ProjectDiagonal2 = _interopRequireDefault(_ProjectDiagonal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22,32 +32,54 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Projects = function (_React$Component) {
-	_inherits(Projects, _React$Component);
+var ProjectDiagonals = function (_React$Component) {
+	_inherits(ProjectDiagonals, _React$Component);
 
-	function Projects(props) {
-		_classCallCheck(this, Projects);
+	function ProjectDiagonals(props) {
+		_classCallCheck(this, ProjectDiagonals);
 
-		return _possibleConstructorReturn(this, Object.getPrototypeOf(Projects).call(this, props));
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectDiagonals).call(this, props));
 	}
 
-	_createClass(Projects, [{
+	_createClass(ProjectDiagonals, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			console.log(this.props.projects);
+		}
+	}, {
 		key: 'render',
 		value: function render() {
+			var projects = this.props.projects;
 			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.cloneElement(this.props.children, {
-					key: this.props.location.pathname,
-					isProjectPage: this.props.isProjectPage,
-					projects: this.props.projects,
-					currentProject: this.props.currentProject
+				_reactAddonsCssTransitionGroup2.default,
+				{ className: 'diagonals',
+					component: 'div',
+					transitionAppear: true,
+					transitionAppearTimeout: 0,
+					transitionName: 'slideLeft',
+					transitionEnterTimeout: 1000,
+					transitionLeaveTimeout: 1000 },
+				projects.map(function (p) {
+					var path = "/work/" + p.name,
+					    logoPath = p.logo,
+					    bgImgPath = p.background,
+					    styles = {
+						backgroundImage: 'url(' + p.background + ')',
+						backgroundSize: 'cover'
+					};
+					return _react2.default.createElement(_ProjectDiagonal2.default, { ref: p.id,
+						key: p.id,
+						path: path,
+						name: p.name,
+						logo: logoPath,
+						background: bgImgPath,
+						styles: styles });
 				})
 			);
 		}
 	}]);
 
-	return Projects;
+	return ProjectDiagonals;
 }(_react2.default.Component);
 
-exports.default = Projects;
+exports.default = ProjectDiagonals;

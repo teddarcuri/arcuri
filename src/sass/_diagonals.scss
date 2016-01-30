@@ -1,49 +1,53 @@
-$color-coral: #F45D4C;
-$color-orange: #F7A541;
-$color-green: #A1DBB2;
-$color-yellow: #FACA66;
-$color-blue: #54787D;
-$color-teal: #60B99A;
-$color-purple: #5B527F;
-$color-gray: #555555;
-$color-black: #000000;
-
 .diagonals {
     position: fixed;
-    height: 66%;
+    height: 50%;
     width: 100%;
     top: 17%;
     right: 0;
-    overflow: hidden;
+    //overflow: hidden;
 
     @include display(flex);
     @include align-items(stretch);
     @include justify-content(center);
 }
+
 .diagonal {
-    height: 130%;
+    height: 100%;
     background-size: contain;
     background-position: center;
     -webkit-backface-visibility: hidden;
     overflow: hidden;
-    margin-right: 16px;
-    @include flex(90px 0);
-    @include transform(translateY(-16%) translateX(0%) rotate(16deg));
-    @include transition(all ease 0.5s);
+    position: relative;
+    box-shadow: 0px 0px 10px rgba(#000, 0.25);
+    display: block;
+    outline: solid 1px transparent;
+    overflow: hidden;
+    margin-right: 20px;
+    @include flex(100px 0);
     @include display(flex);
     @include align-items(center);
     @include justify-content(center);
-    @include transition-delay(0.3s);
+    @include transform(skew(-15deg));
+    @include transition(all ease 0.5s);
+    @include transition-delay(0.7s);
     &:hover {
+        box-shadow: 3px 3px 10px  5px rgba(#000, 0.3);
+        z-index: 2;
         @include flex(50% 0);
-        height: 150%;
-        margin-right: 40px;
+        @include transform(skew(-15deg));
+        @include transition-delay(0.1s);
+
+        .background {
+            @include transition-delay(0s);
+            @include transform(skew(15deg) translateX(0%) scale(1.25));
+        }
+
         .project-overlay {
             opacity: 1;
             @include transition-delay(0.7s);
         }
         .project-info {
-            @include transform(rotate(-16deg) translateY(0%));
+            @include transform(skew(15deg) translateY(0%));
             @include transition-delay(0.7s);
         }
     }
@@ -66,18 +70,19 @@ $color-black: #000000;
     }
 
     .background {
-        //position: absolute;
-        bottom: 0px;
-        left: 0px;
-        height: 100%;
-        @include transform(rotate(-16deg) translateX(-26px));
+        position: absolute;
+        left: -70px;
+        min-height: 100%;
+        min-width: 120%;
+        @include transition(all ease 0.5s);
+        @include transition-delay(0.7s);
+        @include transform(skew(15deg));
     }
 
     .project-info {
         @include transition(all ease 0.5s);
-        @include transform(rotate(-16deg) translateY(100%));
+        @include transform(skew(15deg) translateY(100%));
         @include transition-delay(0.3s);
-        margin-top: -70px;
         .logo {
             width: 120px;
             margin: 0px auto;
@@ -88,7 +93,6 @@ $color-black: #000000;
             color: #fff;
             text-align: center;
             text-shadow: 0px 2px 7px rgba(#000, 0.5);
-            margin: -25px 0px 0px 0px;
         }
         .btn {
             color: #222;

@@ -42,11 +42,15 @@ section.split {
 
 // T Svg
 .svg-fill {
-   @include transition(all ease 1.5s);
+   @include transition(all ease 0.7s);
 }
 .light {
   .svg-fill {
       fill: #fff !important;
+  }
+
+  .letter {
+    opacity: 0;
   }
 }
 .dark {

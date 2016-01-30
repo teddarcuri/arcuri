@@ -17,6 +17,13 @@ header#main {
         padding: 16px;
     }
 
+    #close-btn {
+
+      svg {
+        height: 60px;
+        width: 60px;
+      }
+    }
     
     #menu {
         height: 100%; width: auto;
@@ -24,6 +31,7 @@ header#main {
         line-height: 60px;
         color: #666;
         position: relative;
+        @include transition(all ease 0.7s);
         &:hover {
           #menu-icon {
            @include transform(translateY(5px) translateX(-4px));
@@ -34,28 +42,31 @@ header#main {
                 padding: 0px;
             }
             #Rectangle-1 {
+              @include transition(all ease 0.7s);
                @include transform(rotate(50deg)  translateX(21px));
             }
             #Rectangle-2 {
+              @include transition(all ease 0.7s);
                @include transform(rotate(-50deg) translateX(21px));
             }
             #Rectangle-3 {
+              @include transition(all ease 0.7s);
                  @include transform(translateX(300px));
             }
         }
         #menu-icon {
             cursor: pointer;
-            @include transition(transform ease 0.25s);
+            @include transition(all ease 0.7s);
             #Rectangle-1 {
               @include transform-origin(center center);
-              @include transition(all ease 0.5s);
+              @include transition(all ease 0.7s);
             }
             #Rectangle-2 {
               @include transform-origin(center center);
-              @include transition(all ease 0.5s);
+              @include transition(all ease 0.7s);
             }
              #Rectangle-3 {
-                 @include transition(all ease 0.5s);
+                 @include transition(all ease 0.7s);
             }
         }
         ul {

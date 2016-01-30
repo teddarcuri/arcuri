@@ -5,23 +5,23 @@ class ProjectDiagonal extends React.Component {
 
   constructor(props) {
   	super(props);
-
-    console.log(props);
   }
+
 
   render() {
     return (
-      <div className="diagonal">
+      <Link className="diagonal" to={this.props.path} >
+
         <div className="project-overlay">
         	<div className="project-info">
             <img className="logo" src={this.props.logo} /> <br/>
             <h3>{this.props.name}</h3>
-            <Link className="btn" to={this.props.path}>View Site</Link>
           </div>
         </div>
 
         <img className="background" src={this.props.background} alt=""/>
-      </div>
+        
+      </Link>
     );
   }
 }

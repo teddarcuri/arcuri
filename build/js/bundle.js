@@ -90,19 +90,19 @@
 
 	var _projects2 = _interopRequireDefault(_projects);
 
-	var _ProjectIndex = __webpack_require__(223);
+	var _ProjectDiagonals = __webpack_require__(223);
 
-	var _ProjectIndex2 = _interopRequireDefault(_ProjectIndex);
+	var _ProjectDiagonals2 = _interopRequireDefault(_ProjectDiagonals);
 
 	var _project = __webpack_require__(226);
 
 	var _project2 = _interopRequireDefault(_project);
 
-	var _contact = __webpack_require__(227);
+	var _contact = __webpack_require__(228);
 
 	var _contact2 = _interopRequireDefault(_contact);
 
-	var _reBase = __webpack_require__(228);
+	var _reBase = __webpack_require__(229);
 
 	var _reBase2 = _interopRequireDefault(_reBase);
 
@@ -136,22 +136,20 @@
 
 	    _this.state = {
 	      isProjectPage: false,
+	      currentProject: {},
 	      projects: []
 	    };
 	    return _this;
 	  }
 
-	  // componentDidUpdate() {
-	  // //   var path = this.props.location.pathname;
-
-	  // //   if (path.contains('/work/')) {
-	  // //     this.setState({isProjectPage: true});
-	  // //   } else {}
-	  // }
-
 	  _createClass(App, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
+
+	      //BackgroundSmoke.init();
+	      // Check to see if the loaded route will be a project component
+	      this.checkIfProjectPage(this.props);
+
 	      // Go get projects from Firebase
 	      base.syncState('projects', {
 	        context: this,
@@ -163,8 +161,38 @@
 	      });
 	    }
 	  }, {
-	    key: 'addProject',
-	    value: function addProject(project) {}
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      // Check to see if the next route will be a project component
+	      this.checkIfProjectPage(nextProps);
+	    }
+	  }, {
+	    key: 'checkIfProjectPage',
+	    value: function checkIfProjectPage(props) {
+	      var path = props.location.pathname;
+
+	      // If the pathname contains work/
+	      if (path.indexOf('work/') != -1) {
+
+	        // Set to Project Page
+	        this.setState({ isProjectPage: true });
+
+	        // Set Current Project
+	        var id = props.params.name;
+	        this.setState({ currentProject: this.findById(this.state.projects, id) });
+	      } else {
+	        this.setState({ isProjectPage: false });
+	      }
+	    }
+	  }, {
+	    key: 'findById',
+	    value: function findById(source, id) {
+	      for (var i = 0; i < source.length; i++) {
+	        if (source[i].name == id) {
+	          return source[i];
+	        }
+	      }
+	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
@@ -177,23 +205,37 @@
 	          { id: 'main', className: logoClasses },
 	          _react2.default.createElement(
 	            _reactRouter.Link,
+	            { id: 'close-btn', to: '/work' },
+	            _react2.default.createElement(
+	              'svg',
+	              { version: '1.1', id: 'Layer_1', x: '0px', y: '0px',
+	                viewBox: '0 0 80 80', 'enable-background': 'new 0 0 80 80' },
+	              _react2.default.createElement(
+	                'g',
+	                null,
+	                _react2.default.createElement('path', { fill: '#FFFFFF', d: 'M38.9,77.5c-19.9,0-36-16.2-36-36c0-19.9,16.2-36,36-36c19.9,0,36,16.2,36,36 C74.9,61.3,58.8,77.5,38.9,77.5z M38.9,12.5c-16,0-29,13-29,29s13,29,29,29s29-13,29-29S54.9,12.5,38.9,12.5z' })
+	              ),
+	              _react2.default.createElement(
+	                'g',
+	                null,
+	                _react2.default.createElement('path', { fill: '#FFFFFF', d: 'M24.8,58.7c-0.8,0-1.6-0.3-2.3-0.9c-1.2-1.2-1.2-3.3,0-4.5l28.7-28.7c1.2-1.2,3.3-1.2,4.5,0 c1.2,1.2,1.2,3.3,0,4.5L27.1,57.7C26.5,58.3,25.7,58.7,24.8,58.7z' })
+	              ),
+	              _react2.default.createElement(
+	                'g',
+	                null,
+	                _react2.default.createElement('path', { fill: '#FFFFFF', d: 'M53.6,58.7c-0.8,0-1.6-0.3-2.3-0.9L22.6,29c-1.2-1.2-1.2-3.3,0-4.5c1.3-1.2,3.3-1.2,4.5,0l28.7,28.7 c1.2,1.2,1.2,3.3,0,4.5C55.2,58.3,54.4,58.7,53.6,58.7z' })
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactRouter.Link,
 	            { to: '/' },
 	            _react2.default.createElement(
 	              'div',
 	              { id: 'logo' },
 	              _react2.default.createElement(
 	                'svg',
-	                { width: '614px', height: '619px', viewBox: '0 0 614 619', version: '1.1' },
-	                _react2.default.createElement(
-	                  'title',
-	                  null,
-	                  'Fill 1 + Fill 2'
-	                ),
-	                _react2.default.createElement(
-	                  'desc',
-	                  null,
-	                  'Created with Sketch.'
-	                ),
+	                { className: 'letter', width: '614px', height: '619px', viewBox: '0 0 614 619', version: '1.1' },
 	                _react2.default.createElement('defs', null),
 	                _react2.default.createElement(
 	                  'g',
@@ -269,7 +311,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'svg',
-	            { version: '1.1', id: 'D-1', x: '0px', y: '0px',
+	            { className: 'letter', version: '1.1', id: 'D-1', x: '0px', y: '0px',
 	              viewBox: '-355.2 -98 94.4 102', 'enable-background': 'new -355.2 -98 94.4 102' },
 	            _react2.default.createElement(
 	              'g',
@@ -280,7 +322,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'svg',
-	            { version: '1.1', id: 'D-2', x: '0px', y: '0px',
+	            { className: 'letter', version: '1.1', id: 'D-2', x: '0px', y: '0px',
 	              viewBox: '-355.2 -98 94.4 102', 'enable-background': 'new -355.2 -98 94.4 102' },
 	            _react2.default.createElement(
 	              'g',
@@ -300,7 +342,8 @@
 	            _react2.default.cloneElement(this.props.children, {
 	              key: this.props.location.pathname,
 	              isProjectPage: this.state.isProjectPage,
-	              projects: this.state.projects
+	              projects: this.state.projects,
+	              currentProject: this.state.currentProject
 	            })
 	          )
 	        ),
@@ -328,7 +371,7 @@
 	    _react2.default.createElement(
 	      _reactRouter.Route,
 	      { path: 'work', component: _projects2.default },
-	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _ProjectIndex2.default }),
+	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _ProjectDiagonals2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: ':name', component: _project2.default })
 	    )
 	  )
@@ -9591,6 +9634,7 @@
 	 */
 	var EventInterface = {
 	  type: null,
+	  target: null,
 	  // currentTarget is set when dispatching; no use in copying it here
 	  currentTarget: emptyFunction.thatReturnsNull,
 	  eventPhase: null,
@@ -9624,8 +9668,6 @@
 	  this.dispatchConfig = dispatchConfig;
 	  this.dispatchMarker = dispatchMarker;
 	  this.nativeEvent = nativeEvent;
-	  this.target = nativeEventTarget;
-	  this.currentTarget = nativeEventTarget;
 
 	  var Interface = this.constructor.Interface;
 	  for (var propName in Interface) {
@@ -9636,7 +9678,11 @@
 	    if (normalize) {
 	      this[propName] = normalize(nativeEvent);
 	    } else {
-	      this[propName] = nativeEvent[propName];
+	      if (propName === 'target') {
+	        this.target = nativeEventTarget;
+	      } else {
+	        this[propName] = nativeEvent[propName];
+	      }
 	    }
 	  }
 
@@ -13485,7 +13531,10 @@
 	      }
 	    });
 
-	    nativeProps.children = content;
+	    if (content) {
+	      nativeProps.children = content;
+	    }
+
 	    return nativeProps;
 	  }
 
@@ -18958,7 +19007,7 @@
 
 	'use strict';
 
-	module.exports = '0.14.6';
+	module.exports = '0.14.7';
 
 /***/ },
 /* 147 */
@@ -61978,9 +62027,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactAddonsTransitionGroup = __webpack_require__(206);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(216);
 
-	var _reactAddonsTransitionGroup2 = _interopRequireDefault(_reactAddonsTransitionGroup);
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -62002,18 +62051,15 @@
 		_createClass(Projects, [{
 			key: 'render',
 			value: function render() {
-				var key = this.props.location.pathname;
 				return _react2.default.createElement(
 					'div',
 					null,
-					_react2.default.createElement(
-						_reactAddonsTransitionGroup2.default,
-						null,
-						_react2.default.cloneElement(this.props.children, {
-							key: key,
-							projects: this.props.projects
-						})
-					)
+					_react2.default.cloneElement(this.props.children, {
+						key: this.props.location.pathname,
+						isProjectPage: this.props.isProjectPage,
+						projects: this.props.projects,
+						currentProject: this.props.currentProject
+					})
 				);
 			}
 		}]);
@@ -62061,16 +62107,16 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var ProjectIndex = function (_React$Component) {
-		_inherits(ProjectIndex, _React$Component);
+	var ProjectDiagonals = function (_React$Component) {
+		_inherits(ProjectDiagonals, _React$Component);
 
-		function ProjectIndex(props) {
-			_classCallCheck(this, ProjectIndex);
+		function ProjectDiagonals(props) {
+			_classCallCheck(this, ProjectDiagonals);
 
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectIndex).call(this, props));
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectDiagonals).call(this, props));
 		}
 
-		_createClass(ProjectIndex, [{
+		_createClass(ProjectDiagonals, [{
 			key: 'componentDidMount',
 			value: function componentDidMount() {
 				console.log(this.props.projects);
@@ -62085,11 +62131,11 @@
 						component: 'div',
 						transitionAppear: true,
 						transitionAppearTimeout: 0,
-						transitionName: 'slideLeftIn',
+						transitionName: 'slideLeft',
 						transitionEnterTimeout: 1000,
 						transitionLeaveTimeout: 1000 },
 					projects.map(function (p) {
-						var path = "work/" + p.name,
+						var path = "/work/" + p.name,
 						    logoPath = p.logo,
 						    bgImgPath = p.background,
 						    styles = {
@@ -62108,10 +62154,10 @@
 			}
 		}]);
 
-		return ProjectIndex;
+		return ProjectDiagonals;
 	}(_react2.default.Component);
 
-	exports.default = ProjectIndex;
+	exports.default = ProjectDiagonals;
 
 /***/ },
 /* 224 */
@@ -62204,18 +62250,15 @@
 	  function ProjectDiagonal(props) {
 	    _classCallCheck(this, ProjectDiagonal);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectDiagonal).call(this, props));
-
-	    console.log(props);
-	    return _this;
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectDiagonal).call(this, props));
 	  }
 
 	  _createClass(ProjectDiagonal, [{
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'div',
-	        { className: 'diagonal' },
+	        _reactRouter.Link,
+	        { className: 'diagonal', to: this.props.path },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'project-overlay' },
@@ -62229,11 +62272,6 @@
 	              'h3',
 	              null,
 	              this.props.name
-	            ),
-	            _react2.default.createElement(
-	              _reactRouter.Link,
-	              { className: 'btn', to: this.props.path },
-	              'View Site'
 	            )
 	          )
 	        ),
@@ -62267,9 +62305,9 @@
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	var _projectList = __webpack_require__(210);
+	var _ProjectBar = __webpack_require__(227);
 
-	var _projectList2 = _interopRequireDefault(_projectList);
+	var _ProjectBar2 = _interopRequireDefault(_ProjectBar);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -62285,102 +62323,84 @@
 	  function Project(props) {
 	    _classCallCheck(this, Project);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Project).call(this, props));
-
-	    _this.state = {
-	      projects: _projectList2.default,
-	      project: _projectList2.default[0]
-	    };
-	    return _this;
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Project).call(this, props));
 	  }
 
 	  _createClass(Project, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var id = this.props.params.name;
-	      this.setState({ project: this.findById(this.state.projects, id) });
-	    }
-	  }, {
-	    key: 'findById',
-	    value: function findById(source, id) {
-	      for (var i = 0; i < source.length; i++) {
-	        if (source[i].name == id) {
-	          return source[i];
-	        }
-	      }
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var bgImgPath = this.state.project.background;
+	      var p = this.props.currentProject;
 	      return _react2.default.createElement(
-	        _reactAddonsCssTransitionGroup2.default,
-	        { className: 'project-page',
-	          component: 'div',
-	          transitionAppear: true,
-	          transitionAppearTimeout: 0,
-	          transitionName: 'bubbleUp',
-	          transitionEnterTimeout: 1000,
-	          transitionLeaveTimeout: 1000 },
-	        _react2.default.createElement('img', { ref: 'backgroundImage', src: bgImgPath, className: 'bg' }),
+	        'div',
+	        { className: 'project-page' },
 	        _react2.default.createElement(
-	          'div',
-	          { className: 'project-sidebar', ref: 'projectSidebar' },
+	          _reactAddonsCssTransitionGroup2.default,
+	          { component: "div",
+	            transitionName: 'bubbleUp',
+	            transitionAppear: true,
+	            transitionAppearTimeout: 0,
+	            transitionEnterTimeout: 1000,
+	            transitionLeaveTimeout: 1000 },
 	          _react2.default.createElement(
-	            'header',
-	            null,
-	            _react2.default.createElement('img', { ref: 'logo', src: this.state.project.logo, className: 'logo' }),
-	            _react2.default.createElement('img', { src: bgImgPath, className: 'bg' }),
+	            'div',
+	            { className: 'project-window' },
 	            _react2.default.createElement(
 	              'h1',
-	              null,
-	              this.state.project.name
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'ul',
-	            null,
-	            _react2.default.createElement(
-	              'li',
-	              null,
-	              _react2.default.createElement(
-	                'span',
-	                null,
-	                'Gallery'
-	              )
+	              { className: 'title' },
+	              _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }),
+	              p.name
 	            ),
 	            _react2.default.createElement(
-	              'li',
+	              'p',
 	              null,
-	              _react2.default.createElement(
-	                'span',
-	                null,
-	                'Overview'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'li',
-	              null,
-	              _react2.default.createElement(
-	                'span',
-	                null,
-	                'Details'
-	              )
+	              p.description
 	            )
 	          )
 	        ),
 	        _react2.default.createElement(
-	          'section',
-	          { ref: 'projectContent', className: 'project-content' },
+	          _reactAddonsCssTransitionGroup2.default,
+	          { component: "div",
+	            transitionName: 'slideUp',
+	            transitionAppear: true,
+	            transitionAppearTimeout: 0,
+	            transitionEnterTimeout: 1000,
+	            transitionLeaveTimeout: 1000 },
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'container' },
+	            { className: 'project-controls' },
 	            _react2.default.createElement(
-	              'p',
+	              'ul',
 	              null,
-	              'Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Etiam porta sem malesuada magna mollis euismod.'
-	            )
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Overview'
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Gallery'
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Details'
+	              )
+	            ),
+	            _react2.default.createElement(_ProjectBar2.default, { projects: this.props.projects,
+	              currentProject: this.props.currentProject })
 	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactAddonsCssTransitionGroup2.default,
+	          { component: "div",
+	            className: 'project-bg',
+	            transitionName: 'fadeIn',
+	            transitionAppear: true,
+	            transitionAppearTimeout: 1000,
+	            transitionEnterTimeout: 1000,
+	            transitionLeaveTimeout: 1000 },
+	          _react2.default.createElement('img', { src: p.background })
 	        )
 	      );
 	    }
@@ -62393,6 +62413,80 @@
 
 /***/ },
 /* 227 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(159);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(216);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ProjectBar = function (_React$Component) {
+	  _inherits(ProjectBar, _React$Component);
+
+	  function ProjectBar(props) {
+	    _classCallCheck(this, ProjectBar);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectBar).call(this, props));
+	  }
+
+	  _createClass(ProjectBar, [{
+	    key: 'render',
+	    value: function render() {
+	      var p = this.props.currentProject,
+	          projects = this.props.projects;
+	      return _react2.default.createElement(
+	        'ul',
+	        { className: 'project-bar' },
+	        projects.map(function (p) {
+	          var path = "/work/" + p.name,
+	              logoPath = p.logo,
+	              bgImgPath = p.background,
+	              styles = {
+	            backgroundImage: 'url(' + p.background + ')',
+	            backgroundSize: 'cover'
+	          };
+	          return _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: path },
+	              _react2.default.createElement('img', { src: p.background })
+	            )
+	          );
+	        })
+	      );
+	    }
+	  }]);
+
+	  return ProjectBar;
+	}(_react2.default.Component);
+
+	exports.default = ProjectBar;
+
+/***/ },
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62467,20 +62561,20 @@
 	exports.default = Contact;
 
 /***/ },
-/* 228 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(229);
+	module.exports = __webpack_require__(230);
 
 
 
 /***/ },
-/* 229 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
-			module.exports = factory(__webpack_require__(230));
+			module.exports = factory(__webpack_require__(231));
 		else if(typeof define === 'function' && define.amd)
 			define(["firebase"], factory);
 		else {
@@ -63010,7 +63104,7 @@
 	;
 
 /***/ },
-/* 230 */
+/* 231 */
 /***/ function(module, exports) {
 
 	/*! @license Firebase v2.4.0

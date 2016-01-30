@@ -3,12 +3,14 @@
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
 
 var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
 
@@ -22,32 +24,46 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Projects = function (_React$Component) {
-	_inherits(Projects, _React$Component);
+var ProjectBar = function (_React$Component) {
+  _inherits(ProjectBar, _React$Component);
 
-	function Projects(props) {
-		_classCallCheck(this, Projects);
+  function ProjectBar(props) {
+    _classCallCheck(this, ProjectBar);
 
-		return _possibleConstructorReturn(this, Object.getPrototypeOf(Projects).call(this, props));
-	}
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectBar).call(this, props));
+  }
 
-	_createClass(Projects, [{
-		key: 'render',
-		value: function render() {
-			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.cloneElement(this.props.children, {
-					key: this.props.location.pathname,
-					isProjectPage: this.props.isProjectPage,
-					projects: this.props.projects,
-					currentProject: this.props.currentProject
-				})
-			);
-		}
-	}]);
+  _createClass(ProjectBar, [{
+    key: 'render',
+    value: function render() {
+      var p = this.props.currentProject,
+          projects = this.props.projects;
+      return _react2.default.createElement(
+        'ul',
+        { className: 'project-bar' },
+        projects.map(function (p) {
+          var path = "/work/" + p.name,
+              logoPath = p.logo,
+              bgImgPath = p.background,
+              styles = {
+            backgroundImage: 'url(' + p.background + ')',
+            backgroundSize: 'cover'
+          };
+          return _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouter.Link,
+              { to: path },
+              _react2.default.createElement('img', { src: p.background })
+            )
+          );
+        })
+      );
+    }
+  }]);
 
-	return Projects;
+  return ProjectBar;
 }(_react2.default.Component);
 
-exports.default = Projects;
+exports.default = ProjectBar;

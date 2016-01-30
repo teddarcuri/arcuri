@@ -44,9 +44,9 @@ var _projects = require('./projects');
 
 var _projects2 = _interopRequireDefault(_projects);
 
-var _ProjectIndex = require('./ProjectIndex');
+var _ProjectDiagonals = require('./ProjectDiagonals');
 
-var _ProjectIndex2 = _interopRequireDefault(_ProjectIndex);
+var _ProjectDiagonals2 = _interopRequireDefault(_ProjectDiagonals);
 
 var _project = require('./project');
 
@@ -90,22 +90,20 @@ var App = function (_React$Component) {
 
     _this.state = {
       isProjectPage: false,
+      currentProject: {},
       projects: []
     };
     return _this;
   }
 
-  // componentDidUpdate() {
-  // //   var path = this.props.location.pathname;
-
-  // //   if (path.contains('/work/')) {
-  // //     this.setState({isProjectPage: true});
-  // //   } else {}
-  // }
-
   _createClass(App, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
+
+      //BackgroundSmoke.init();
+      // Check to see if the loaded route will be a project component
+      this.checkIfProjectPage(this.props);
+
       // Go get projects from Firebase
       base.syncState('projects', {
         context: this,
@@ -117,8 +115,38 @@ var App = function (_React$Component) {
       });
     }
   }, {
-    key: 'addProject',
-    value: function addProject(project) {}
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      // Check to see if the next route will be a project component
+      this.checkIfProjectPage(nextProps);
+    }
+  }, {
+    key: 'checkIfProjectPage',
+    value: function checkIfProjectPage(props) {
+      var path = props.location.pathname;
+
+      // If the pathname contains work/
+      if (path.indexOf('work/') != -1) {
+
+        // Set to Project Page
+        this.setState({ isProjectPage: true });
+
+        // Set Current Project
+        var id = props.params.name;
+        this.setState({ currentProject: this.findById(this.state.projects, id) });
+      } else {
+        this.setState({ isProjectPage: false });
+      }
+    }
+  }, {
+    key: 'findById',
+    value: function findById(source, id) {
+      for (var i = 0; i < source.length; i++) {
+        if (source[i].name == id) {
+          return source[i];
+        }
+      }
+    }
   }, {
     key: 'render',
     value: function render() {
@@ -131,23 +159,37 @@ var App = function (_React$Component) {
           { id: 'main', className: logoClasses },
           _react2.default.createElement(
             _reactRouter.Link,
+            { id: 'close-btn', to: '/work' },
+            _react2.default.createElement(
+              'svg',
+              { version: '1.1', id: 'Layer_1', x: '0px', y: '0px',
+                viewBox: '0 0 80 80', 'enable-background': 'new 0 0 80 80' },
+              _react2.default.createElement(
+                'g',
+                null,
+                _react2.default.createElement('path', { fill: '#FFFFFF', d: 'M38.9,77.5c-19.9,0-36-16.2-36-36c0-19.9,16.2-36,36-36c19.9,0,36,16.2,36,36 C74.9,61.3,58.8,77.5,38.9,77.5z M38.9,12.5c-16,0-29,13-29,29s13,29,29,29s29-13,29-29S54.9,12.5,38.9,12.5z' })
+              ),
+              _react2.default.createElement(
+                'g',
+                null,
+                _react2.default.createElement('path', { fill: '#FFFFFF', d: 'M24.8,58.7c-0.8,0-1.6-0.3-2.3-0.9c-1.2-1.2-1.2-3.3,0-4.5l28.7-28.7c1.2-1.2,3.3-1.2,4.5,0 c1.2,1.2,1.2,3.3,0,4.5L27.1,57.7C26.5,58.3,25.7,58.7,24.8,58.7z' })
+              ),
+              _react2.default.createElement(
+                'g',
+                null,
+                _react2.default.createElement('path', { fill: '#FFFFFF', d: 'M53.6,58.7c-0.8,0-1.6-0.3-2.3-0.9L22.6,29c-1.2-1.2-1.2-3.3,0-4.5c1.3-1.2,3.3-1.2,4.5,0l28.7,28.7 c1.2,1.2,1.2,3.3,0,4.5C55.2,58.3,54.4,58.7,53.6,58.7z' })
+              )
+            )
+          ),
+          _react2.default.createElement(
+            _reactRouter.Link,
             { to: '/' },
             _react2.default.createElement(
               'div',
               { id: 'logo' },
               _react2.default.createElement(
                 'svg',
-                { width: '614px', height: '619px', viewBox: '0 0 614 619', version: '1.1' },
-                _react2.default.createElement(
-                  'title',
-                  null,
-                  'Fill 1 + Fill 2'
-                ),
-                _react2.default.createElement(
-                  'desc',
-                  null,
-                  'Created with Sketch.'
-                ),
+                { className: 'letter', width: '614px', height: '619px', viewBox: '0 0 614 619', version: '1.1' },
                 _react2.default.createElement('defs', null),
                 _react2.default.createElement(
                   'g',
@@ -223,7 +265,7 @@ var App = function (_React$Component) {
           ),
           _react2.default.createElement(
             'svg',
-            { version: '1.1', id: 'D-1', x: '0px', y: '0px',
+            { className: 'letter', version: '1.1', id: 'D-1', x: '0px', y: '0px',
               viewBox: '-355.2 -98 94.4 102', 'enable-background': 'new -355.2 -98 94.4 102' },
             _react2.default.createElement(
               'g',
@@ -234,7 +276,7 @@ var App = function (_React$Component) {
           ),
           _react2.default.createElement(
             'svg',
-            { version: '1.1', id: 'D-2', x: '0px', y: '0px',
+            { className: 'letter', version: '1.1', id: 'D-2', x: '0px', y: '0px',
               viewBox: '-355.2 -98 94.4 102', 'enable-background': 'new -355.2 -98 94.4 102' },
             _react2.default.createElement(
               'g',
@@ -254,7 +296,8 @@ var App = function (_React$Component) {
             _react2.default.cloneElement(this.props.children, {
               key: this.props.location.pathname,
               isProjectPage: this.state.isProjectPage,
-              projects: this.state.projects
+              projects: this.state.projects,
+              currentProject: this.state.currentProject
             })
           )
         ),
@@ -282,7 +325,7 @@ _reactDom2.default.render(_react2.default.createElement(
     _react2.default.createElement(
       _reactRouter.Route,
       { path: 'work', component: _projects2.default },
-      _react2.default.createElement(_reactRouter.IndexRoute, { component: _ProjectIndex2.default }),
+      _react2.default.createElement(_reactRouter.IndexRoute, { component: _ProjectDiagonals2.default }),
       _react2.default.createElement(_reactRouter.Route, { path: ':name', component: _project2.default })
     )
   )
