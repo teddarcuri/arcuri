@@ -159,30 +159,6 @@ var App = function (_React$Component) {
           { id: 'main', className: logoClasses },
           _react2.default.createElement(
             _reactRouter.Link,
-            { id: 'close-btn', to: '/work' },
-            _react2.default.createElement(
-              'svg',
-              { version: '1.1', id: 'Layer_1', x: '0px', y: '0px',
-                viewBox: '0 0 80 80', 'enable-background': 'new 0 0 80 80' },
-              _react2.default.createElement(
-                'g',
-                null,
-                _react2.default.createElement('path', { fill: '#FFFFFF', d: 'M38.9,77.5c-19.9,0-36-16.2-36-36c0-19.9,16.2-36,36-36c19.9,0,36,16.2,36,36 C74.9,61.3,58.8,77.5,38.9,77.5z M38.9,12.5c-16,0-29,13-29,29s13,29,29,29s29-13,29-29S54.9,12.5,38.9,12.5z' })
-              ),
-              _react2.default.createElement(
-                'g',
-                null,
-                _react2.default.createElement('path', { fill: '#FFFFFF', d: 'M24.8,58.7c-0.8,0-1.6-0.3-2.3-0.9c-1.2-1.2-1.2-3.3,0-4.5l28.7-28.7c1.2-1.2,3.3-1.2,4.5,0 c1.2,1.2,1.2,3.3,0,4.5L27.1,57.7C26.5,58.3,25.7,58.7,24.8,58.7z' })
-              ),
-              _react2.default.createElement(
-                'g',
-                null,
-                _react2.default.createElement('path', { fill: '#FFFFFF', d: 'M53.6,58.7c-0.8,0-1.6-0.3-2.3-0.9L22.6,29c-1.2-1.2-1.2-3.3,0-4.5c1.3-1.2,3.3-1.2,4.5,0l28.7,28.7 c1.2,1.2,1.2,3.3,0,4.5C55.2,58.3,54.4,58.7,53.6,58.7z' })
-              )
-            )
-          ),
-          _react2.default.createElement(
-            _reactRouter.Link,
             { to: '/' },
             _react2.default.createElement(
               'div',
@@ -292,7 +268,7 @@ var App = function (_React$Component) {
           _react2.default.createElement(
             _reactAddonsTransitionGroup2.default,
             { component: 'div',
-              className: 'transition-group' },
+              className: 'f-center' },
             _react2.default.cloneElement(this.props.children, {
               key: this.props.location.pathname,
               isProjectPage: this.state.isProjectPage,

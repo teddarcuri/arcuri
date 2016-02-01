@@ -48,6 +48,25 @@ var ProjectDiagonal = function (_React$Component) {
               'h3',
               null,
               this.props.name
+            ),
+            _react2.default.createElement(
+              'ul',
+              { className: 'tags' },
+              _react2.default.createElement(
+                'li',
+                null,
+                'Web'
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                'Logo'
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                'Print'
+              )
             )
           )
         ),

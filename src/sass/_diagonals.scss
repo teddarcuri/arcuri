@@ -1,18 +1,14 @@
 .diagonals {
-    position: fixed;
-    height: 50%;
+    height: 100%;
     width: 100%;
-    top: 17%;
-    right: 0;
-    //overflow: hidden;
-
+    padding: 0px 120px;
     @include display(flex);
-    @include align-items(stretch);
+    @include align-items(center);
     @include justify-content(center);
 }
 
 .diagonal {
-    height: 100%;
+    height: 50%;
     background-size: contain;
     background-position: center;
     -webkit-backface-visibility: hidden;
@@ -22,7 +18,7 @@
     display: block;
     outline: solid 1px transparent;
     overflow: hidden;
-    margin-right: 20px;
+    //margin-right: 20px;
     @include flex(100px 0);
     @include display(flex);
     @include align-items(center);
@@ -53,7 +49,7 @@
     }
     .project-overlay {
         opacity: 0;
-        background: rgba(#000, 0.5);
+        background: rgba(#000, 0.7);
         padding: 20px;
         width: 100%;
         height: 100%;
@@ -84,7 +80,7 @@
         @include transform(skew(15deg) translateY(100%));
         @include transition-delay(0.3s);
         .logo {
-            width: 120px;
+            width: 66px;
             margin: 0px auto;
             display: block;
             padding: 0px;
@@ -94,6 +90,24 @@
             text-align: center;
             text-shadow: 0px 2px 7px rgba(#000, 0.5);
         }
+
+        ul {
+            text-align: center;
+            margin: 0px;
+            padding: 0px;
+            li {
+                background: #fff;
+                color: #666;
+                display: inline-block;
+                margin-right: 10px;
+                border-radius: 7px;
+                padding: 7px 15px;
+                font-weight: 300;
+                font-size: 0.9em;
+                text-transform: uppercase;
+            }
+        }
+
         .btn {
             color: #222;
             background: $cream;

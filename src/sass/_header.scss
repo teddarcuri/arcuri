@@ -31,7 +31,7 @@ header#main {
         line-height: 60px;
         color: #666;
         position: relative;
-        @include transition(all ease 0.7s);
+        @include transition(all ease 1s);
         &:hover {
           #menu-icon {
            @include transform(translateY(5px) translateX(-4px));
@@ -42,15 +42,15 @@ header#main {
                 padding: 0px;
             }
             #Rectangle-1 {
-              @include transition(all ease 0.7s);
+              @include transition(all ease 1s);
                @include transform(rotate(50deg)  translateX(21px));
             }
             #Rectangle-2 {
-              @include transition(all ease 0.7s);
+              @include transition(all ease 1s);
                @include transform(rotate(-50deg) translateX(21px));
             }
             #Rectangle-3 {
-              @include transition(all ease 0.7s);
+              @include transition(all ease 1s);
                  @include transform(translateX(300px));
             }
         }

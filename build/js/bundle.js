@@ -98,11 +98,11 @@
 
 	var _project2 = _interopRequireDefault(_project);
 
-	var _contact = __webpack_require__(228);
+	var _contact = __webpack_require__(229);
 
 	var _contact2 = _interopRequireDefault(_contact);
 
-	var _reBase = __webpack_require__(229);
+	var _reBase = __webpack_require__(230);
 
 	var _reBase2 = _interopRequireDefault(_reBase);
 
@@ -203,30 +203,6 @@
 	        _react2.default.createElement(
 	          'header',
 	          { id: 'main', className: logoClasses },
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { id: 'close-btn', to: '/work' },
-	            _react2.default.createElement(
-	              'svg',
-	              { version: '1.1', id: 'Layer_1', x: '0px', y: '0px',
-	                viewBox: '0 0 80 80', 'enable-background': 'new 0 0 80 80' },
-	              _react2.default.createElement(
-	                'g',
-	                null,
-	                _react2.default.createElement('path', { fill: '#FFFFFF', d: 'M38.9,77.5c-19.9,0-36-16.2-36-36c0-19.9,16.2-36,36-36c19.9,0,36,16.2,36,36 C74.9,61.3,58.8,77.5,38.9,77.5z M38.9,12.5c-16,0-29,13-29,29s13,29,29,29s29-13,29-29S54.9,12.5,38.9,12.5z' })
-	              ),
-	              _react2.default.createElement(
-	                'g',
-	                null,
-	                _react2.default.createElement('path', { fill: '#FFFFFF', d: 'M24.8,58.7c-0.8,0-1.6-0.3-2.3-0.9c-1.2-1.2-1.2-3.3,0-4.5l28.7-28.7c1.2-1.2,3.3-1.2,4.5,0 c1.2,1.2,1.2,3.3,0,4.5L27.1,57.7C26.5,58.3,25.7,58.7,24.8,58.7z' })
-	              ),
-	              _react2.default.createElement(
-	                'g',
-	                null,
-	                _react2.default.createElement('path', { fill: '#FFFFFF', d: 'M53.6,58.7c-0.8,0-1.6-0.3-2.3-0.9L22.6,29c-1.2-1.2-1.2-3.3,0-4.5c1.3-1.2,3.3-1.2,4.5,0l28.7,28.7 c1.2,1.2,1.2,3.3,0,4.5C55.2,58.3,54.4,58.7,53.6,58.7z' })
-	              )
-	            )
-	          ),
 	          _react2.default.createElement(
 	            _reactRouter.Link,
 	            { to: '/' },
@@ -338,7 +314,7 @@
 	          _react2.default.createElement(
 	            _reactAddonsTransitionGroup2.default,
 	            { component: 'div',
-	              className: 'transition-group' },
+	              className: 'f-center' },
 	            _react2.default.cloneElement(this.props.children, {
 	              key: this.props.location.pathname,
 	              isProjectPage: this.state.isProjectPage,
@@ -62053,11 +62029,11 @@
 			value: function render() {
 				return _react2.default.createElement(
 					'div',
-					null,
+					{ className: 'projects' },
 					_react2.default.cloneElement(this.props.children, {
 						key: this.props.location.pathname,
-						isProjectPage: this.props.isProjectPage,
 						projects: this.props.projects,
+						isProjectPage: this.props.isProjectPage,
 						currentProject: this.props.currentProject
 					})
 				);
@@ -62272,6 +62248,25 @@
 	              'h3',
 	              null,
 	              this.props.name
+	            ),
+	            _react2.default.createElement(
+	              'ul',
+	              { className: 'tags' },
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Web'
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Logo'
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Print'
+	              )
 	            )
 	          )
 	        ),
@@ -62309,6 +62304,10 @@
 
 	var _ProjectBar2 = _interopRequireDefault(_ProjectBar);
 
+	var _ProjectGallery = __webpack_require__(228);
+
+	var _ProjectGallery2 = _interopRequireDefault(_ProjectGallery);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -62323,27 +62322,41 @@
 	  function Project(props) {
 	    _classCallCheck(this, Project);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Project).call(this, props));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Project).call(this, props));
+
+	    _this.state = {
+	      showGallery: true
+	    };
+	    return _this;
 	  }
 
 	  _createClass(Project, [{
+	    key: 'showGallery',
+	    value: function showGallery() {
+	      this.setState({ showGallery: true });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var p = this.props.currentProject;
+	      var p = this.props.currentProject,
+	          overview = this.props.currentProject.description,
+	          firstPhoto = Object.keys(this.props.currentProject.gallery)[0];
+
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'project-page' },
 	        _react2.default.createElement(
 	          _reactAddonsCssTransitionGroup2.default,
 	          { component: "div",
+	            className: 'project-overview',
 	            transitionName: 'bubbleUp',
 	            transitionAppear: true,
 	            transitionAppearTimeout: 0,
 	            transitionEnterTimeout: 1000,
 	            transitionLeaveTimeout: 1000 },
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'project-window' },
+	            'header',
+	            null,
 	            _react2.default.createElement(
 	              'h1',
 	              { className: 'title' },
@@ -62351,9 +62364,28 @@
 	              p.name
 	            ),
 	            _react2.default.createElement(
+	              'ul',
+	              { className: 'tags' },
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Web'
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Print'
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'section',
+	            null,
+	            _react2.default.createElement(_ProjectGallery2.default, { project: this.props.currentProject }),
+	            _react2.default.createElement(
 	              'p',
 	              null,
-	              p.description
+	              overview
 	            )
 	          )
 	        ),
@@ -62368,25 +62400,6 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'project-controls' },
-	            _react2.default.createElement(
-	              'ul',
-	              null,
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Overview'
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Gallery'
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Details'
-	              )
-	            ),
 	            _react2.default.createElement(_ProjectBar2.default, { projects: this.props.projects,
 	              currentProject: this.props.currentProject })
 	          )
@@ -62494,6 +62507,88 @@
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(216);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ProjectGallery = function (_React$Component) {
+	  _inherits(ProjectGallery, _React$Component);
+
+	  function ProjectGallery(props) {
+	    _classCallCheck(this, ProjectGallery);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectGallery).call(this, props));
+
+	    _this.state = {
+	      currentImg: _this.props.project.gallery[Object.keys(_this.props.project.gallery)[0]].path
+	    };
+	    return _this;
+	  }
+
+	  _createClass(ProjectGallery, [{
+	    key: 'render',
+	    value: function render() {
+	      var p = this.props.project,
+	          currentImg = this.state.currentImg;
+
+	      return _react2.default.createElement(
+	        _reactAddonsCssTransitionGroup2.default,
+	        { component: "div",
+	          className: 'gallery',
+	          transitionName: 'fadeIn',
+	          transitionAppear: true,
+	          transitionAppearTimeout: 0,
+	          transitionEnterTimeout: 1000,
+	          transitionLeaveTimeout: 1000 },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'current-img' },
+	          _react2.default.createElement('img', { src: currentImg, alt: '' })
+	        ),
+	        _react2.default.createElement(
+	          'ul',
+	          { className: 'gallery-image-thumbs' },
+	          Object.keys(p.gallery).map(function (img, key) {
+	            return _react2.default.createElement(
+	              'li',
+	              { className: 'gallery-image', key: key },
+	              _react2.default.createElement('img', { src: p.gallery[img].path, alt: '' })
+	            );
+	          })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ProjectGallery;
+	}(_react2.default.Component);
+
+	exports.default = ProjectGallery;
+
+/***/ },
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
 
@@ -62561,20 +62656,20 @@
 	exports.default = Contact;
 
 /***/ },
-/* 229 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(230);
+	module.exports = __webpack_require__(231);
 
 
 
 /***/ },
-/* 230 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
-			module.exports = factory(__webpack_require__(231));
+			module.exports = factory(__webpack_require__(232));
 		else if(typeof define === 'function' && define.amd)
 			define(["firebase"], factory);
 		else {
@@ -63104,7 +63199,7 @@
 	;
 
 /***/ },
-/* 231 */
+/* 232 */
 /***/ function(module, exports) {
 
 	/*! @license Firebase v2.4.0

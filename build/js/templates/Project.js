@@ -18,6 +18,10 @@ var _ProjectBar = require('./ProjectBar');
 
 var _ProjectBar2 = _interopRequireDefault(_ProjectBar);
 
+var _ProjectGallery = require('./ProjectGallery');
+
+var _ProjectGallery2 = _interopRequireDefault(_ProjectGallery);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32,27 +36,41 @@ var Project = function (_React$Component) {
   function Project(props) {
     _classCallCheck(this, Project);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Project).call(this, props));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Project).call(this, props));
+
+    _this.state = {
+      showGallery: true
+    };
+    return _this;
   }
 
   _createClass(Project, [{
+    key: 'showGallery',
+    value: function showGallery() {
+      this.setState({ showGallery: true });
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var p = this.props.currentProject;
+      var p = this.props.currentProject,
+          overview = this.props.currentProject.description,
+          firstPhoto = Object.keys(this.props.currentProject.gallery)[0];
+
       return _react2.default.createElement(
         'div',
         { className: 'project-page' },
         _react2.default.createElement(
           _reactAddonsCssTransitionGroup2.default,
           { component: "div",
+            className: 'project-overview',
             transitionName: 'bubbleUp',
             transitionAppear: true,
             transitionAppearTimeout: 0,
             transitionEnterTimeout: 1000,
             transitionLeaveTimeout: 1000 },
           _react2.default.createElement(
-            'div',
-            { className: 'project-window' },
+            'header',
+            null,
             _react2.default.createElement(
               'h1',
               { className: 'title' },
@@ -60,9 +78,28 @@ var Project = function (_React$Component) {
               p.name
             ),
             _react2.default.createElement(
+              'ul',
+              { className: 'tags' },
+              _react2.default.createElement(
+                'li',
+                null,
+                'Web'
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                'Print'
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'section',
+            null,
+            _react2.default.createElement(_ProjectGallery2.default, { project: this.props.currentProject }),
+            _react2.default.createElement(
               'p',
               null,
-              p.description
+              overview
             )
           )
         ),
@@ -77,25 +114,6 @@ var Project = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'project-controls' },
-            _react2.default.createElement(
-              'ul',
-              null,
-              _react2.default.createElement(
-                'li',
-                null,
-                'Overview'
-              ),
-              _react2.default.createElement(
-                'li',
-                null,
-                'Gallery'
-              ),
-              _react2.default.createElement(
-                'li',
-                null,
-                'Details'
-              )
-            ),
             _react2.default.createElement(_ProjectBar2.default, { projects: this.props.projects,
               currentProject: this.props.currentProject })
           )

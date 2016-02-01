@@ -78,8 +78,36 @@ section.split {
   height: 100%;
 }
 
+.projects {
+  width: 100%;
+  height: 100%;
+}
+
+.f-center {
+  @include display(flex);
+  @include align-items(center);
+  @include justify-content(center);
+  height: 100%;
+  width: 100%;
+}
 
 
+.tags {
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    li {
+        background: #fff;
+        color: #666;
+        display: inline-block;
+        margin-right: 10px;
+        border-radius: 7px;
+        padding: 7px 15px;
+        font-weight: 300;
+        font-size: 0.9em;
+        text-transform: uppercase;
+    }
+}
 
 
 

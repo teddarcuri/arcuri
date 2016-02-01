@@ -16,6 +16,11 @@ class ProjectDiagonal extends React.Component {
         	<div className="project-info">
             <img className="logo" src={this.props.logo} /> <br/>
             <h3>{this.props.name}</h3>
+            <ul className="tags">
+              <li>Web</li>
+              <li>Logo</li>
+              <li>Print</li>
+            </ul>
           </div>
         </div>
 

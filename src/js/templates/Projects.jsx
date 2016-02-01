@@ -10,11 +10,11 @@ class Projects extends React.Component {
 
 	render() {
 		return (
-		<div>
+		<div className="projects">
 			{React.cloneElement(this.props.children, {
                 key: this.props.location.pathname,
+               	projects: this.props.projects,
                 isProjectPage: this.props.isProjectPage,
-                projects: this.props.projects,
                 currentProject: this.props.currentProject
               })}
 		</div>
