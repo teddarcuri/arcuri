@@ -89,7 +89,7 @@ var About = function (_React$Component) {
 																		_react2.default.createElement(
 																				_reactRouter.Link,
 																				{ to: 'contact' },
-																				' Experience'
+																				' Experience + Knowledge'
 																		)
 																),
 																'.',
@@ -128,7 +128,7 @@ var About = function (_React$Component) {
 												)
 										)
 								),
-								_react2.default.createElement('img', { id: 'about-image', src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/someguy.png' })
+								_react2.default.createElement('img', { id: 'about-image', src: '/src/img/background-scene.png' })
 						);
 				}
 		}]);

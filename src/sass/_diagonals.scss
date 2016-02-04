@@ -9,6 +9,7 @@
 
 .diagonal {
     height: 60%;
+    max-height: 550px;
     background-size: contain;
     background-position: center;
     -webkit-backface-visibility: hidden;
@@ -18,8 +19,8 @@
     display: block;
     outline: solid 1px transparent;
     overflow: hidden;
-    //=margin-right: 20px;
-    @include flex(100px 0);
+    margin-right: 10px;
+    @include flex(75px 0);
     @include display(flex);
     @include align-items(center);
     @include justify-content(center);

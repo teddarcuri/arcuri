@@ -44,6 +44,10 @@ var _ProjectBar = require('./ProjectBar');
 
 var _ProjectBar2 = _interopRequireDefault(_ProjectBar);
 
+var _ProjectIndex = require('./ProjectIndex');
+
+var _ProjectIndex2 = _interopRequireDefault(_ProjectIndex);
+
 var _NewProjectForm = require('./NewProjectForm');
 
 var _NewProjectForm2 = _interopRequireDefault(_NewProjectForm);
@@ -97,8 +101,16 @@ var App = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
 
     _this.state = {
+      // Projects
       isProjectPage: false,
       currentProject: {},
+      newProject: {
+        name: "New Project",
+        description: "",
+        background: "",
+        logo: "",
+        types: ""
+      },
       projects: []
 
     };
@@ -167,9 +179,16 @@ var App = function (_React$Component) {
       }
     }
   }, {
+    key: 'renderProjectBubbles',
+    value: function renderProjectBubbles() {
+      return _react2.default.createElement(_ProjectIndex2.default, { projects: this.state.projects,
+        currentProject: this.state.currentProject });
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var logoClasses = this.state.isProjectPage ? "light" : "dark";
+      var logoClasses = this.state.isProjectPage ? "light" : "dark",
+          renderBubbles = this.renderProjectBubbles();
 
       return _react2.default.createElement(
         'div',
@@ -230,7 +249,7 @@ var App = function (_React$Component) {
             ),
             _react2.default.createElement(
               'ul',
-              null,
+              { className: 'main' },
               _react2.default.createElement(
                 'li',
                 null,
@@ -248,6 +267,11 @@ var App = function (_React$Component) {
                   { to: '/work' },
                   'My Work'
                 )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                renderBubbles
               ),
               _react2.default.createElement(
                 'li',
@@ -294,7 +318,8 @@ var App = function (_React$Component) {
               key: this.props.location.pathname,
               isProjectPage: this.state.isProjectPage,
               projects: this.state.projects,
-              currentProject: this.state.currentProject
+              currentProject: this.state.currentProject,
+              newProject: this.state.newProject
             })
           )
         ),

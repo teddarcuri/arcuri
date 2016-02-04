@@ -1,10 +1,17 @@
 form {
 	background: #161616;
-	padding: 80px;
+	padding: 40px;
 	box-shadow: 3px 3px 15px 0px rgba(#000, 0.2);
 	@include display(flex);
 	@include justify-content(space-between);
 	@include flex-flow(row wrap);
+
+	&.sidebar-form {
+		position: fixed; 
+		top: 0; left: 0;
+		width: 400px;
+		padding: 20px;
+	}
 
 	&.full-screen {
 		width: 100%;

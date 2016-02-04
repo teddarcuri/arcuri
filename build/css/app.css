@@ -230,6 +230,7 @@ html {
 
 .diagonal {
   height: 60%;
+  max-height: 550px;
   background-size: contain;
   background-position: center;
   -webkit-backface-visibility: hidden;
@@ -239,13 +240,14 @@ html {
   display: block;
   outline: solid 1px transparent;
   overflow: hidden;
-  -webkit-box-flex: 100px;
-  -moz-box-flex: 100px;
-  box-flex: 100px;
-  -webkit-flex: 100px 0;
-  -moz-flex: 100px 0;
-  -ms-flex: 100px 0;
-  flex: 100px 0;
+  margin-right: 10px;
+  -webkit-box-flex: 75px;
+  -moz-box-flex: 75px;
+  box-flex: 75px;
+  -webkit-flex: 75px 0;
+  -moz-flex: 75px 0;
+  -ms-flex: 75px 0;
+  flex: 75px 0;
   display: -webkit-box;
   display: -moz-box;
   display: box;
@@ -443,7 +445,7 @@ html {
 
 form {
   background: #161616;
-  padding: 80px;
+  padding: 40px;
   box-shadow: 3px 3px 15px 0px rgba(0, 0, 0, 0.2);
   display: -webkit-box;
   display: -moz-box;
@@ -464,6 +466,12 @@ form {
   -webkit-flex-flow: row wrap;
   -moz-flex-flow: row wrap;
   flex-flow: row wrap; }
+  form.sidebar-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 400px;
+    padding: 20px; }
   form.full-screen {
     width: 100%;
     height: 100%;
@@ -610,7 +618,7 @@ header#main {
       -ms-transform: translateY(5px) translateX(-4px);
       -o-transform: translateY(5px) translateX(-4px);
       transform: translateY(5px) translateX(-4px); }
-    header#main #menu:hover ul {
+    header#main #menu:hover ul.main {
       display: block;
       list-style: none;
       padding: 0px; }
@@ -668,28 +676,29 @@ header#main {
         -webkit-transition: all ease 0.7s;
         -moz-transition: all ease 0.7s;
         transition: all ease 0.7s; }
-    header#main #menu ul {
+    header#main #menu ul.main {
       position: absolute;
       width: auto;
-      top: 30px;
+      top: 29px;
       left: 0px;
       text-align: left;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0, 0, 0, 0.8);
       display: none;
       z-index: 100; }
-      header#main #menu ul li {
+      header#main #menu ul.main li {
         font-weight: 700;
         line-height: 2.5em;
         font-size: 14px;
         white-space: nowrap;
         text-transform: uppercase; }
-        header#main #menu ul li:hover {
+        header#main #menu ul.main li:hover {
           background: rgba(17, 17, 17, 0.98); }
-        header#main #menu ul li a {
+        header#main #menu ul.main li a {
           color: #fff;
           font-weight: 300;
+          font-size: 0.95em;
           display: block;
-          padding: 20px 100px 20px 40px;
+          padding: 15px 150px 20px 25px;
           text-decoration: none; }
 
 .project-bar {
@@ -1158,27 +1167,33 @@ header#main {
 .project-bubbles {
   opacity: 1;
   margin: 0px;
-  padding: 0px; }
+  padding: 0px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -moz-flex-flow: row wrap;
+  flex-flow: row wrap; }
 
 .project-bubble-wrap {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 31.76157%;
-  padding: 10px; }
-  .project-bubble-wrap:last-child {
-    margin-right: 0; }
-  .project-bubble-wrap:nth-child(3n) {
-    margin-right: 0; }
-  .project-bubble-wrap:nth-child(3n+1) {
-    clear: left; }
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 0;
+  -moz-flex: 1 0;
+  -ms-flex: 1 0;
+  flex: 1 0; }
 
 .project-bubble {
-  height: 110px;
-  width: 110px;
+  height: 100%;
+  width: 100%;
   border-radius: 50%;
   overflow: hidden;
-  display: inline-block;
+  display: block;
   position: relative;
   z-index: 1;
   box-shadow: 1px 1px 2px rgba(51, 51, 51, 0.5);
@@ -1238,6 +1253,25 @@ header#main {
       -ms-transform: scale(1.2);
       -o-transform: scale(1.2);
       transform: scale(1.2); }
+
+#menu .project-bubbles {
+  background: rgba(255, 255, 255, 0.075);
+  padding: 10px; }
+
+#menu .project-bubble {
+  margin: auto;
+  border-radius: 0%;
+  box-shadow: none;
+  height: 30px;
+  padding: 10px !important; }
+  #menu .project-bubble img.logo {
+    width: 25px;
+    height: 25px; }
+  #menu .project-bubble img.bg {
+    width: 0%;
+    height: 100%;
+    top: 0px;
+    position: absolute; }
 
 .btns {
   padding: 60px 0px;
@@ -1400,3 +1434,12 @@ section.split {
 .half {
   width: 50%;
   padding-right: 13px; }
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 100%;
+  padding-top: 100px;
+  background: #111; }

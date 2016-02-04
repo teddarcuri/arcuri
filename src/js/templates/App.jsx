@@ -12,6 +12,7 @@ import About from './about';
 import Projects from './projects';
 import ProjectDiagonals from './ProjectDiagonals';
 import ProjectBar from './ProjectBar';
+import ProjectIndex from './ProjectIndex';
 import NewProjectForm from './NewProjectForm';
 import Project from './project';
 import Contact from './contact';
@@ -33,8 +34,16 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      // Projects
       isProjectPage: false,
       currentProject: {},
+      newProject: {
+        name: "New Project",
+        description: "",
+        background: "",
+        logo: "",
+        types: ""
+      },
       projects: [],
 
     }
@@ -98,8 +107,17 @@ class App extends React.Component {
     }
   }
 
+  renderProjectBubbles() {
+    return (
+      <ProjectIndex projects={this.state.projects}
+                    currentProject={this.state.currentProject} />
+    )
+  }
+
   render() {
-    var logoClasses = this.state.isProjectPage ? "light" : "dark";
+    var logoClasses = this.state.isProjectPage ? "light" : "dark",
+        renderBubbles = this.renderProjectBubbles(); 
+
 
     return (
     <div className="app-window"
@@ -135,9 +153,16 @@ class App extends React.Component {
                         </g>
                     </svg>
                 </span>
-                <ul>
+                <ul className="main">
                    <li><Link to="/about">About</Link></li>
-                   <li><Link to="/work">My Work</Link></li>
+                   <li>
+                    <Link to="/work">
+                      My Work
+                    </Link>
+                  </li>
+                  <li>
+                      {renderBubbles} 
+                  </li>
                    <li><Link to="/contact">Contact</Link></li>
                 </ul>
             </div>
@@ -166,7 +191,8 @@ class App extends React.Component {
                 key: this.props.location.pathname,
                 isProjectPage: this.state.isProjectPage,
                 projects: this.state.projects,
-                currentProject: this.state.currentProject
+                currentProject: this.state.currentProject,
+                newProject: this.state.newProject
               })}
            </ReactTransitionGroup>
 	     </div>

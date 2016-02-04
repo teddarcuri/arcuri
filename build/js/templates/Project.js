@@ -14,10 +14,6 @@ var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group'
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-var _ProjectBar = require('./ProjectBar');
-
-var _ProjectBar2 = _interopRequireDefault(_ProjectBar);
-
 var _ProjectGallery = require('./ProjectGallery');
 
 var _ProjectGallery2 = _interopRequireDefault(_ProjectGallery);

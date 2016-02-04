@@ -18,7 +18,7 @@ class ProjectIndex extends React.Component {
 	render() {
 		var projects = this.props.projects;
 		return (
-		<CSSTransitionGroup className="diagonals" 
+		<CSSTransitionGroup className="project-bubbles" 
 							component="div"
 							transitionAppear={true}
 							transitionAppearTimeout={0}
@@ -35,7 +35,7 @@ class ProjectIndex extends React.Component {
 	  					 	backgroundSize: 'cover'
 	  					 };
 	  				return (
-					<ProjectDiagonal ref={p.id}
+					<ProjectBubble ref={p.id}
 									 key={p.id}
 									 path={path}
 									 name={p.name}

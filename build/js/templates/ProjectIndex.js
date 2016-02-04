@@ -52,7 +52,7 @@ var ProjectIndex = function (_React$Component) {
 			var projects = this.props.projects;
 			return _react2.default.createElement(
 				_reactAddonsCssTransitionGroup2.default,
-				{ className: 'diagonals',
+				{ className: 'project-bubbles',
 					component: 'div',
 					transitionAppear: true,
 					transitionAppearTimeout: 0,
@@ -67,7 +67,7 @@ var ProjectIndex = function (_React$Component) {
 						backgroundImage: 'url(' + p.background + ')',
 						backgroundSize: 'cover'
 					};
-					return _react2.default.createElement(_ProjectDiagonal2.default, { ref: p.id,
+					return _react2.default.createElement(_ProjectBubble2.default, { ref: p.id,
 						key: p.id,
 						path: path,
 						name: p.name,

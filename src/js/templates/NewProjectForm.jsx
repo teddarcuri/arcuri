@@ -1,42 +1,55 @@
 import React from 'react';
+import Project from './project';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 class NewProjectForm extends React.Component {
+  constructor(props) {
+  	super(props);
+  }
+
   render() {
     return (
-    	<form action="" className="full-screen">
-    		<h3>Create Project</h3>
 
-    		<div className="half">
-    			<label htmlFor="name">Name</label>
-    			<input name="name" type="text" />
-    		</div>
-    		<div className="half">
-    			<label htmlFor="types">Types</label>
-    			<input type="types"/>
-    		</div>
-    		<div className="half">
-    			<label htmlFor="background">Background</label>
-    			<input type="background"/>
-    		</div>
-    		<div className="half">
-    			<label htmlFor="logo">Logo</label>
-    			<input type="logo"/>
-    		</div>
+    	<div className="sidebar">
+    		<form action="">
+	    		<h3>Create Project</h3>
 
-    		<label htmlFor="description">Description</label>
-    		<textarea name="description" />
+	    		<div >
+	    			<label htmlFor="name">Name</label>
+	    			<input name="name" type="text" />
+	    		</div>
 
-    		<label htmlFor="my-role">My Role</label>
-    		<textarea name="my-role" />
+	    		<div >
+	    			<label htmlFor="types">Types</label>
+	    			<input type="types"/>
+	    		</div>
+	    		<div >
+	    			<label htmlFor="background">Background</label>
+	    			<input type="background"/>
+	    		</div>
+	    		<div >
+	    			<label htmlFor="logo">Logo</label>
+	    			<input type="logo"/>
+	    		</div>
 
-    		<label htmlFor="tech-used">Tech Used</label>
-    		<textarea name="tech-used" />
+	    		<label htmlFor="description">Description</label>
+	    		<textarea name="description" />
 
-    		<button type="submit">
-    			Create Project
-    		</button>
-    	</form>
+	    		<label htmlFor="my-role">My Role</label>
+	    		<textarea name="my-role" />
+
+	    		<label htmlFor="tech-used">Tech Used</label>
+	    		<textarea name="tech-used" />
+
+	    		<button type="submit">
+	    			Create Project
+	    		</button>
+	    	</form>
+
+	    	<div id="preview-window">
+	    		<Project currentProject={this.props.currentProject} />
+	    	</div>
+    	</div>
     )
   }
 }

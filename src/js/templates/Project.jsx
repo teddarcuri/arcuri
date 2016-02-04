@@ -1,6 +1,5 @@
 import React from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import ProjectBar from './ProjectBar';
 import ProjectGallery from './ProjectGallery';
 
 class Project extends React.Component {

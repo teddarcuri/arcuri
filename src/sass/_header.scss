@@ -35,7 +35,7 @@ header#main {
           #menu-icon {
            @include transform(translateY(5px) translateX(-4px));
           }
-            ul {
+            ul.main {
                 display: block;
                 list-style: none;
                 padding: 0px;
@@ -68,12 +68,12 @@ header#main {
                  @include transition(all ease 0.7s);
             }
         }
-        ul {
+        ul.main {
             position: absolute;
             width: auto;
-            top: 30px; left: 0px;
+            top: 29px; left: 0px;
             text-align: left;
-            background: rgba(#000,0.9);
+            background: rgba(#000,0.8);
             display: none;
             z-index: 100;
             li {
@@ -88,8 +88,9 @@ header#main {
                 a {
                   color: #fff;
                   font-weight: 300;
+                  font-size: 0.95em;
                   display: block;
-                  padding: 20px 100px 20px 40px;
+                  padding: 15px 150px 20px 25px;
                   text-decoration: none;
                 }
             }
