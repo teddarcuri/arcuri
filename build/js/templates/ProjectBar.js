@@ -41,7 +41,7 @@ var ProjectBar = function (_React$Component) {
       return _react2.default.createElement(
         'ul',
         { className: 'project-bar' },
-        projects.map(function (p) {
+        projects.map(function (p, key) {
           var path = "/work/" + p.name,
               logoPath = p.logo,
               bgImgPath = p.background,
@@ -51,7 +51,7 @@ var ProjectBar = function (_React$Component) {
           };
           return _react2.default.createElement(
             'li',
-            null,
+            { key: key },
             _react2.default.createElement(
               _reactRouter.Link,
               { to: path },

@@ -20,6 +20,7 @@ class Project extends React.Component {
   	var p = this.props.currentProject,
         overview = this.props.currentProject.description,
         role = this.props.currentProject.role,
+        logo = p.logo ? <img src={p.logo} alt={p.name} className="project-logo"/> : "",
         firstPhoto = Object.keys(this.props.currentProject.gallery)[0];
 
     return (
@@ -36,7 +37,7 @@ class Project extends React.Component {
                             transitionLeaveTimeout={1000}>
           <header>
             <h1 className="title">
-              <img src={p.logo} alt={p.name} className="project-logo"/>
+              {logo}
               {p.name}
             </h1>
 

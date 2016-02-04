@@ -24,6 +24,8 @@ var base = Rebase.createClass('https://tedd-arcuri.firebaseio.com/');
 // Utility
 import h from '../utilities/helpers';
 import imagesLoaded from 'imagesloaded';
+import Catalyst from 'react-catalyst';
+import reactMixin from 'react-mixin';
 
 /*
   Application
@@ -39,10 +41,15 @@ class App extends React.Component {
       currentProject: {},
       newProject: {
         name: "New Project",
-        description: "",
-        background: "",
+        description: "Enter description",
+        background: "/src/img/backgrounds/colorado.jpg",
         logo: "",
-        types: ""
+        types: "Llama",
+        gallery: {
+          image1: {
+            path: "/src/img/gallery_images/colorado_gov/contact.png"
+          }
+        }
       },
       projects: [],
 
@@ -105,6 +112,14 @@ class App extends React.Component {
         return source[i];
       }
     }
+  }
+
+  addProject(project) {
+    var timestamp = (new Date()).getTime();
+
+    this.projects.push(project);
+    console.log(this.projects);
+    this.setState({projects: this.projects});
   }
 
   renderProjectBubbles() {
@@ -192,7 +207,9 @@ class App extends React.Component {
                 isProjectPage: this.state.isProjectPage,
                 projects: this.state.projects,
                 currentProject: this.state.currentProject,
-                newProject: this.state.newProject
+                newProject: this.state.newProject,
+                addProject: this.addProject,
+                linkState: this.linkState.bind(this)
               })}
            </ReactTransitionGroup>
 	     </div>
@@ -207,6 +224,9 @@ class App extends React.Component {
     )
   }
 }
+
+// Mixins
+reactMixin.onClass(App, Catalyst.LinkedStateMixin);
 
 /*
   Render Routes
@@ -224,4 +244,6 @@ ReactDOM.render((
       </Route>
     </Route>
   </Router>
-), document.getElementById('app'))
+), document.getElementById('app'));
+
+export default App;

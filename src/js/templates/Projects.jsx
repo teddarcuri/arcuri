@@ -15,7 +15,10 @@ class Projects extends React.Component {
                 key: this.props.location.pathname,
                	projects: this.props.projects,
                 isProjectPage: this.props.isProjectPage,
-                currentProject: this.props.currentProject
+                currentProject: this.props.currentProject,
+                newProject: this.props.newProject,
+                addProject: this.props.addProject,
+                linkState: this.props.linkState.bind(this)
               })}
 		</div>
 	   )

@@ -11,10 +11,6 @@ class ProjectIndex extends React.Component {
 		super(props);
 	}
 
-	componentDidMount() {
-		console.log(this.props.projects);
-	}
-
 	render() {
 		var projects = this.props.projects;
 		return (
@@ -27,7 +23,7 @@ class ProjectIndex extends React.Component {
 							transitionLeaveTimeout={1000}>
 	  		{
 	  			projects.map(function(p) {
-	  				let path = "work/" + p.name,
+	  				let path = "/work/" + p.name,
 	  					 logoPath = p.logo,
 	  					 bgImgPath = p.background,
 	  					 styles = {

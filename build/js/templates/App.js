@@ -2,6 +2,10 @@
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -72,6 +76,14 @@ var _imagesloaded = require('imagesloaded');
 
 var _imagesloaded2 = _interopRequireDefault(_imagesloaded);
 
+var _reactCatalyst = require('react-catalyst');
+
+var _reactCatalyst2 = _interopRequireDefault(_reactCatalyst);
+
+var _reactMixin = require('react-mixin');
+
+var _reactMixin2 = _interopRequireDefault(_reactMixin);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -106,10 +118,15 @@ var App = function (_React$Component) {
       currentProject: {},
       newProject: {
         name: "New Project",
-        description: "",
-        background: "",
+        description: "Enter description",
+        background: "/src/img/backgrounds/colorado.jpg",
         logo: "",
-        types: ""
+        types: "Llama",
+        gallery: {
+          image1: {
+            path: "/src/img/gallery_images/colorado_gov/contact.png"
+          }
+        }
       },
       projects: []
 
@@ -177,6 +194,15 @@ var App = function (_React$Component) {
           return source[i];
         }
       }
+    }
+  }, {
+    key: 'addProject',
+    value: function addProject(project) {
+      var timestamp = new Date().getTime();
+
+      this.projects.push(project);
+      console.log(this.projects);
+      this.setState({ projects: this.projects });
     }
   }, {
     key: 'renderProjectBubbles',
@@ -319,7 +345,9 @@ var App = function (_React$Component) {
               isProjectPage: this.state.isProjectPage,
               projects: this.state.projects,
               currentProject: this.state.currentProject,
-              newProject: this.state.newProject
+              newProject: this.state.newProject,
+              addProject: this.addProject,
+              linkState: this.linkState.bind(this)
             })
           )
         ),
@@ -333,10 +361,13 @@ var App = function (_React$Component) {
   return App;
 }(_react2.default.Component);
 
+// Mixins
+
+_reactMixin2.default.onClass(App, _reactCatalyst2.default.LinkedStateMixin);
+
 /*
   Render Routes
 */
-
 _reactDom2.default.render(_react2.default.createElement(
   _reactRouter.Router,
   { history: (0, _createBrowserHistory2.default)() },
@@ -355,3 +386,5 @@ _reactDom2.default.render(_react2.default.createElement(
     )
   )
 ), document.getElementById('app'));
+
+exports.default = App;

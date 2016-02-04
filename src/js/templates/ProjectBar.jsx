@@ -15,7 +15,7 @@ class ProjectBar extends React.Component {
     return (
       <ul className="project-bar">
         {
-          projects.map(function(p) {
+          projects.map(function(p, key) {
             let path = "/work/" + p.name,
                logoPath = p.logo,
                bgImgPath = p.background,
@@ -24,7 +24,7 @@ class ProjectBar extends React.Component {
                 backgroundSize: 'cover'
                };
             return (
-              <li>
+              <li key={key}>
                 <Link to={path}>
                   <img src={p.background} />
                 </Link>

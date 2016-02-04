@@ -18,6 +18,14 @@ var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group'
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
+var _reactMixin = require('react-mixin');
+
+var _reactMixin2 = _interopRequireDefault(_reactMixin);
+
+var _reactCatalyst = require('react-catalyst');
+
+var _reactCatalyst2 = _interopRequireDefault(_reactCatalyst);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -36,87 +44,73 @@ var NewProjectForm = function (_React$Component) {
 		}
 
 		_createClass(NewProjectForm, [{
+				key: 'createProject',
+				value: function createProject(ev) {
+
+						ev.preventDefault();
+
+						var project = {
+								name: this.refs.name.value,
+								background: this.refs.background.value,
+								logo: this.refs.logo.value,
+								types: this.refs.types.value,
+								description: this.refs.description.value
+						};
+
+						// Add to project to state
+						this.props.addProject(project);
+				}
+		}, {
 				key: 'render',
 				value: function render() {
 						return _react2.default.createElement(
-								'div',
-								{ className: 'sidebar' },
+								'section',
+								{ className: 'project-builder' },
 								_react2.default.createElement(
-										'form',
-										{ action: '' },
+										'div',
+										{ className: 'sidebar' },
 										_react2.default.createElement(
-												'h3',
-												null,
-												'Create Project'
-										),
-										_react2.default.createElement(
-												'div',
-												null,
+												'form',
+												{ onSubmit: this.createProject.bind(this) },
 												_react2.default.createElement(
-														'label',
-														{ htmlFor: 'name' },
-														'Name'
+														'h3',
+														null,
+														'Create Project'
 												),
-												_react2.default.createElement('input', { name: 'name', type: 'text' })
-										),
-										_react2.default.createElement(
-												'div',
-												null,
+												_react2.default.createElement('input', { ref: 'name',
+														name: 'name',
+														type: 'text',
+														placeholder: 'name',
+														valueLink: this.props.linkState('newProject.name') }),
+												_react2.default.createElement('input', { ref: 'types',
+														type: 'types',
+														placeholder: 'types' }),
+												_react2.default.createElement('input', { ref: 'background',
+														type: 'background',
+														placeholder: 'background',
+														valueLink: this.props.linkState('newProject.background') }),
+												_react2.default.createElement('input', { ref: 'logo',
+														type: 'logo',
+														placeholder: 'logo',
+														valueLink: this.props.linkState('newProject.logo') }),
+												_react2.default.createElement('textarea', { ref: 'description',
+														name: 'description',
+														valueLink: this.props.linkState('newProject.description') }),
+												_react2.default.createElement('textarea', { ref: 'myRole',
+														name: 'my-role' }),
+												_react2.default.createElement('textarea', { ref: 'techUsed',
+														name: 'tech-used' }),
 												_react2.default.createElement(
-														'label',
-														{ htmlFor: 'types' },
-														'Types'
-												),
-												_react2.default.createElement('input', { type: 'types' })
-										),
-										_react2.default.createElement(
-												'div',
-												null,
-												_react2.default.createElement(
-														'label',
-														{ htmlFor: 'background' },
-														'Background'
-												),
-												_react2.default.createElement('input', { type: 'background' })
-										),
-										_react2.default.createElement(
-												'div',
-												null,
-												_react2.default.createElement(
-														'label',
-														{ htmlFor: 'logo' },
-														'Logo'
-												),
-												_react2.default.createElement('input', { type: 'logo' })
-										),
-										_react2.default.createElement(
-												'label',
-												{ htmlFor: 'description' },
-												'Description'
-										),
-										_react2.default.createElement('textarea', { name: 'description' }),
-										_react2.default.createElement(
-												'label',
-												{ htmlFor: 'my-role' },
-												'My Role'
-										),
-										_react2.default.createElement('textarea', { name: 'my-role' }),
-										_react2.default.createElement(
-												'label',
-												{ htmlFor: 'tech-used' },
-												'Tech Used'
-										),
-										_react2.default.createElement('textarea', { name: 'tech-used' }),
-										_react2.default.createElement(
-												'button',
-												{ type: 'submit' },
-												'Create Project'
+														'button',
+														{ type: 'submit' },
+														'Create Project'
+												)
 										)
 								),
 								_react2.default.createElement(
 										'div',
 										{ id: 'preview-window' },
-										_react2.default.createElement(_project2.default, { currentProject: this.props.currentProject })
+										_react2.default.createElement(_project2.default, { currentProject: this.props.newProject })
 								)
 						);
 				}
@@ -124,5 +118,7 @@ var NewProjectForm = function (_React$Component) {
 
 		return NewProjectForm;
 }(_react2.default.Component);
+
+_reactMixin2.default.onClass(NewProjectForm, _reactCatalyst2.default.LinkedStateMixin);
 
 exports.default = NewProjectForm;

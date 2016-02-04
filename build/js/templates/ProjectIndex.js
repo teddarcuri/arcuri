@@ -42,11 +42,6 @@ var ProjectIndex = function (_React$Component) {
 	}
 
 	_createClass(ProjectIndex, [{
-		key: 'componentDidMount',
-		value: function componentDidMount() {
-			console.log(this.props.projects);
-		}
-	}, {
 		key: 'render',
 		value: function render() {
 			var projects = this.props.projects;
@@ -60,7 +55,7 @@ var ProjectIndex = function (_React$Component) {
 					transitionEnterTimeout: 1000,
 					transitionLeaveTimeout: 1000 },
 				projects.map(function (p) {
-					var path = "work/" + p.name,
+					var path = "/work/" + p.name,
 					    logoPath = p.logo,
 					    bgImgPath = p.background,
 					    styles = {

@@ -92,7 +92,6 @@ section.split {
   width: 100%;
 }
 
-
 .tags {
     text-align: center;
     margin: 0px;
@@ -110,7 +109,6 @@ section.split {
     }
 }
 
-
 // Grids
 .half {
   width: 50%;
@@ -119,10 +117,10 @@ section.split {
 
 
 .sidebar {
-  position: fixed; 
-  top: 0; left: 0;
+  //position: fixed; 
+  //top: 0; left: 0;
   width: 400px;
   height: 100%;
-  padding-top: 100px;
   background: #111;
+  @include flex(1 0 450px);
 }

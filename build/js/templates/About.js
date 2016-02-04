@@ -70,6 +70,9 @@ var About = function (_React$Component) {
 																_react2.default.createElement('br', null),
 																'I am Developer + Designer Currently living in Denver, CO.',
 																_react2.default.createElement('br', null),
+																_react2.default.createElement('br', null),
+																_react2.default.createElement('br', null),
+																_react2.default.createElement('br', null),
 																'Checkout some of ',
 																_react2.default.createElement(
 																		'span',

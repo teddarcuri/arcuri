@@ -26,10 +26,7 @@ var ProjectBubble = function (_React$Component) {
   function ProjectBubble(props) {
     _classCallCheck(this, ProjectBubble);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectBubble).call(this, props));
-
-    console.log(props);
-    return _this;
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectBubble).call(this, props));
   }
 
   _createClass(ProjectBubble, [{

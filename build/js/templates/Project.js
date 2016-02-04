@@ -51,6 +51,7 @@ var Project = function (_React$Component) {
       var p = this.props.currentProject,
           overview = this.props.currentProject.description,
           role = this.props.currentProject.role,
+          logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "",
           firstPhoto = Object.keys(this.props.currentProject.gallery)[0];
 
       return _react2.default.createElement(
@@ -71,7 +72,7 @@ var Project = function (_React$Component) {
             _react2.default.createElement(
               'h1',
               { className: 'title' },
-              _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }),
+              logo,
               p.name
             ),
             _react2.default.createElement(

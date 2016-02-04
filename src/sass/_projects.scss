@@ -1,3 +1,9 @@
+.projects {
+  @include display(flex);
+  @include justify-content(center);
+  @include align-items(center);
+}
+
 .project-bar {
   @include display(flex);
   height: 20px;
@@ -11,9 +17,8 @@
   @include transition(all ease 1s);
   &:hover {
     box-shadow: 0px 0px 25px 2px rgba(#000,0.5);
-    @include transform(translateY(-800%));
     li {
-     //@include transform(translateY(-66px));
+     @include transform(translateY(-66px));
     }
   }
   li {
@@ -28,7 +33,7 @@
       max-width: 100%; 
     }
     &:hover {
-      @include transform(translateY(-100% ));
+      @include transform(translateY(-100px));
       z-index: 9;
       img {
         //border: solid 4px #fff;
@@ -83,6 +88,9 @@
 
     header {
       width: 100%;
+      padding: 0px 10px;
+      background: rgba(#000, 0.2);
+      //border: solid 1px rgba(#000, 0.9);
       @include display(flex);
       @include align-items(center);
       @include justify-content(space-between);
@@ -172,6 +180,22 @@
   }
 }
 
+// Project Builder
+.project-builder {
+  @include display(flex);
+  @include align-items(stretch);
+  height: 100%;
+
+  .project-page {
+    padding: 50px;
+  }
+
+  .preview-window {
+    overflow: auto;
+  }
+}
+
+// Gallery
 .gallery {
   width: 100%;
   background: rgba(#000, 0.66);
@@ -260,7 +284,6 @@
 }
 
 //OLD
-
 .project-bubbles {
   opacity: 1;
   margin: 0px;
@@ -270,7 +293,7 @@
 }
 
 .project-bubble-wrap {
-    @include flex(1 0);
+  @include flex(1 0);
 }
 
 .project-bubble {
@@ -316,32 +339,31 @@
   }
 }
 
-
 #menu {
   .project-bubble-wrap {
-    //padding: 20px;
+    padding: 10px;
+    @include display(flex);
+    @include align-items(center);
+    @include justify-content(center);
   }
   .project-bubbles {
     background: rgba(#fff, 0.075);
-    padding: 10px;
+    padding: 12px;
   }
   .project-bubble {
-    //width: 33px;
-    //height: 33px;
-    margin: auto;
-    border-radius: 0%;
-    box-shadow: none;
-    height: 30px;
-    padding: 10px !important;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    padding: 0px !important;
+    @include display(flex);
+    @include align-items(center);
+    @include justify-content(center);
       img.logo {
-        width: 25px;
-        height: 25px;
+        @include flex(25px);
       } 
       img.bg {
-        width: 0%;
+        width: 100%;
         height: 100%;
-        top: 0px;
-        position: absolute;
       } 
     }
 }

@@ -19,7 +19,6 @@
     display: block;
     outline: solid 1px transparent;
     overflow: hidden;
-    margin-right: 10px;
     @include flex(75px 0);
     @include display(flex);
     @include align-items(center);

@@ -21,7 +21,7 @@ class About extends React.Component {
 					  <h3>
 				          Hello, My Name is <span className="highlight light">Tedd Arcuri</span>. <br />
 				          I am Developer + Designer
-				          Currently living in Denver, CO.<br />
+				          Currently living in Denver, CO.<br /><br /><br /><br />
 				          Checkout some of <span className="highlight"><Link to="work"> My Work</Link></span>.<br />
 				          View my <span className="highlight"><Link to="contact"> Experience + Knowledge</Link></span>.<br />
 				          Like what you see? <span className="highlight"><Link to="contact"> Hire Me</Link></span>.

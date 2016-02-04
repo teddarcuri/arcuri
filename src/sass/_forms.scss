@@ -1,17 +1,15 @@
+.sidebar {
+	form {
+		padding-top: 120px;
+	}
+}
+
 form {
-	background: #161616;
 	padding: 40px;
 	box-shadow: 3px 3px 15px 0px rgba(#000, 0.2);
 	@include display(flex);
 	@include justify-content(space-between);
 	@include flex-flow(row wrap);
-
-	&.sidebar-form {
-		position: fixed; 
-		top: 0; left: 0;
-		width: 400px;
-		padding: 20px;
-	}
 
 	&.full-screen {
 		width: 100%;
@@ -29,7 +27,7 @@ form {
 	}
 
 	label {
-		padding: 7px 0px;
+		padding: 0px 0px;
 		font-size: 0.9em;
 		font-style: italic;
 		color: #eee;
@@ -39,26 +37,50 @@ form {
 		display: block;
 		margin: 12px 0px;
 		font-size: 1em;
-		padding: 10px 5px;
+		padding: 12px;
 		width: 100%;
+		border: solid 2px #333;
+		background: rgba(#fff, 0.01);
+		color: #eee;
 		@include flex(1 0 100%);
+		@include transition(all ease 0.3s);
+		&:focus {
+			border: solid 2px $color-blue;
+			background: rgba(#fff, 0.08);	
+			box-shadow: none;
+			outline: none;
+		}
 	}
 
 	textarea {
 		display: block;
 		height: 80px;
+		border: solid 2px #333;
+		background: rgba(#fff, 0.01);
+		margin: 12px 0px;
+		font-size: 1em;
+		padding: 12px;
+		color: #eee;
 		@include flex(1 0 100%);
+		&:focus {
+			border: solid 2px #fff;	
+			box-shadow: none;
+			outline: none;
+		}
 	}
 
 	button {
 		color: #fff;
-		background: $color-blue;
-		padding: 10px;
-		border: none;
-		border-radius: 5px;
-		font-size: 0.95em;
-		height: 40px;
+		border: solid 2px #333;
+		background: rgba(#fff, 0.01);
+		padding: 12px;
+		border-radius: 8px;
+		font-size: 0.8em;
 		letter-spacing: 1px;
 		margin: 30px 0px 10px 0px;
+		&:hover {
+			border: transparent solid 2px;
+			background: $color-blue;
+		}
 	}
 }
