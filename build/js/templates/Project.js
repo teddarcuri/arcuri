@@ -54,6 +54,7 @@ var Project = function (_React$Component) {
     value: function render() {
       var p = this.props.currentProject,
           overview = this.props.currentProject.description,
+          role = this.props.currentProject.role,
           firstPhoto = Object.keys(this.props.currentProject.gallery)[0];
 
       return _react2.default.createElement(
@@ -63,7 +64,7 @@ var Project = function (_React$Component) {
           _reactAddonsCssTransitionGroup2.default,
           { component: "div",
             className: 'project-overview',
-            transitionName: 'bubbleUp',
+            transitionName: 'project-element',
             transitionAppear: true,
             transitionAppearTimeout: 0,
             transitionEnterTimeout: 1000,
@@ -93,30 +94,50 @@ var Project = function (_React$Component) {
             )
           ),
           _react2.default.createElement(
-            'section',
+            'main',
             null,
             _react2.default.createElement(_ProjectGallery2.default, { project: this.props.currentProject }),
             _react2.default.createElement(
-              'p',
+              'section',
               null,
-              overview
+              _react2.default.createElement(
+                'h3',
+                null,
+                'Overview'
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                overview
+              )
+            ),
+            _react2.default.createElement(
+              'aside',
+              null,
+              _react2.default.createElement(
+                'h3',
+                null,
+                'My Role'
+              ),
+              role,
+              _react2.default.createElement(
+                'h3',
+                null,
+                'Tech Used'
+              ),
+              role
             )
           )
         ),
         _react2.default.createElement(
           _reactAddonsCssTransitionGroup2.default,
           { component: "div",
-            transitionName: 'slideUp',
+            transitionName: 'fadeIn',
             transitionAppear: true,
             transitionAppearTimeout: 0,
             transitionEnterTimeout: 1000,
             transitionLeaveTimeout: 1000 },
-          _react2.default.createElement(
-            'div',
-            { className: 'project-controls' },
-            _react2.default.createElement(_ProjectBar2.default, { projects: this.props.projects,
-              currentProject: this.props.currentProject })
-          )
+          _react2.default.createElement('div', { className: 'project-controls' })
         ),
         _react2.default.createElement(
           _reactAddonsCssTransitionGroup2.default,
@@ -124,7 +145,7 @@ var Project = function (_React$Component) {
             className: 'project-bg',
             transitionName: 'fadeIn',
             transitionAppear: true,
-            transitionAppearTimeout: 1000,
+            transitionAppearTimeout: 0,
             transitionEnterTimeout: 1000,
             transitionLeaveTimeout: 1000 },
           _react2.default.createElement('img', { src: p.background })

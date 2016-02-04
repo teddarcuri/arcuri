@@ -7,6 +7,7 @@
 @import "colors";
 @import "animations";
 @import "diagonals";
+@import "forms";
 
 // Main Styles
 @import "base";
@@ -15,7 +16,7 @@
 @import "buttons";
 
 #about-image {
-  position: absolute; bottom: 0; right: -100px;
+  position: fixed; bottom: 0; right: -100px;
   z-index: -1;
   max-height: 100%;
   opacity: 0.7;
@@ -50,7 +51,7 @@ section.split {
   }
 
   .letter {
-    opacity: 0;
+    opacity: 1;
   }
 }
 .dark {
@@ -110,4 +111,9 @@ section.split {
 }
 
 
+// Grids
+.half {
+  width: 50%;
+  padding-right: 13px;
+}
 

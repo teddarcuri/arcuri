@@ -13,6 +13,7 @@ class ProjectDiagonal extends React.Component {
       <Link className="diagonal" to={this.props.path} >
 
         <div className="project-overlay">
+
         	<div className="project-info">
             <img className="logo" src={this.props.logo} /> <br/>
             <h3>{this.props.name}</h3>
@@ -22,6 +23,7 @@ class ProjectDiagonal extends React.Component {
               <li>Print</li>
             </ul>
           </div>
+          
         </div>
 
         <img className="background" src={this.props.background} alt=""/>

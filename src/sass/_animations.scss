@@ -25,12 +25,13 @@
 // Slide Left
 .slideLeft-appear {
   opacity: 0.01;
-  margin-top: 100px;
+  @include align-self(flex-start);
   @include transition(all 1s ease);
 }
 .slideLeft-appear.slideLeft-appear-active {
   opacity: 1;
   margin-top: 0px;
+  @include align-self(center);
   @include transition(all 1s ease);
   @for $i from 1 through 7 {
     &:nth-child(#{$i}) { 
@@ -53,9 +54,83 @@
 .fadeIn-appear {
   opacity: 0.01;
   transition: all 2s ease;
+  img {
+    opacity: 0.01;
+    transition: all 2s ease;
+  }
 }
 
 .fadeIn-appear.fadeIn-appear-active {
   opacity: 1;
-  transition: all 2s ease;
+  transition: all 0.5s ease;
+  img {
+    opacity: 1;
+  }
+}
+
+.fadeIn-enter {
+  opacity: 0.01;
+  transition: all 0.5s ease;
+  img {
+    opacity: 0.01;
+    transition: all 2s ease;
+  }
+}
+
+.fadeIn-enter.fadeIn-enter-active {
+  opacity: 1;
+  transition: all 0.5s ease;
+  img {
+    opacity: 1;
+  }
+}
+
+.fadeIn-leave {
+  opacity: 0.01;
+  transition: all 0.5s ease;
+  img {
+    opacity: 0.01;
+    transition: all 2s ease;
+  }
+}
+
+.fadeIn-leave.fadeIn-leave-active {
+  opacity: 1;
+  transition: all 0.5s ease;
+  img {
+    opacity: 1;
+  }
+}
+
+
+// Project Element
+.project-element-appear {
+  opacity: 0.01;
+  @include transform(translateY(10px));
+}
+
+.project-element-appear.project-element-appear-active {
+  opacity: 1;
+  transition: all 1s ease;
+  @include transform(translateY(0%));
+}
+
+.project-element-enter {
+  opacity: 0.01;
+  transition: all 0.5s ease;
+}
+
+.project-element-enter.project-element-enter-active {
+  opacity: 1;
+  transition: all 0.5s ease;
+}
+
+.project-element-leave {
+  opacity: 0.01;
+  transition: all 0.5s ease;
+}
+
+.project-element-leave.project-element-leave-active {
+  opacity: 1;
+  transition: all 0.5s ease;
 }

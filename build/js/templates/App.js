@@ -24,14 +24,6 @@ var _projectList = require('../utilities/project-list');
 
 var _projectList2 = _interopRequireDefault(_projectList);
 
-var _helpers = require('../utilities/helpers');
-
-var _helpers2 = _interopRequireDefault(_helpers);
-
-var _backgroundSmoke = require('../utilities/background-smoke');
-
-var _backgroundSmoke2 = _interopRequireDefault(_backgroundSmoke);
-
 var _index = require('./index');
 
 var _index2 = _interopRequireDefault(_index);
@@ -48,6 +40,14 @@ var _ProjectDiagonals = require('./ProjectDiagonals');
 
 var _ProjectDiagonals2 = _interopRequireDefault(_ProjectDiagonals);
 
+var _ProjectBar = require('./ProjectBar');
+
+var _ProjectBar2 = _interopRequireDefault(_ProjectBar);
+
+var _NewProjectForm = require('./NewProjectForm');
+
+var _NewProjectForm2 = _interopRequireDefault(_NewProjectForm);
+
 var _project = require('./project');
 
 var _project2 = _interopRequireDefault(_project);
@@ -60,6 +60,14 @@ var _reBase = require('re-base');
 
 var _reBase2 = _interopRequireDefault(_reBase);
 
+var _helpers = require('../utilities/helpers');
+
+var _helpers2 = _interopRequireDefault(_helpers);
+
+var _imagesloaded = require('imagesloaded');
+
+var _imagesloaded2 = _interopRequireDefault(_imagesloaded);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -68,13 +76,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // React
 
-// Utility
-
 // Routes
 
 // Firebase
 
 var base = _reBase2.default.createClass('https://tedd-arcuri.firebaseio.com/');
+
+// Utility
 
 /*
   Application
@@ -92,6 +100,7 @@ var App = function (_React$Component) {
       isProjectPage: false,
       currentProject: {},
       projects: []
+
     };
     return _this;
   }
@@ -99,8 +108,6 @@ var App = function (_React$Component) {
   _createClass(App, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-
-      //BackgroundSmoke.init();
       // Check to see if the loaded route will be a project component
       this.checkIfProjectPage(this.props);
 
@@ -110,9 +117,21 @@ var App = function (_React$Component) {
         state: 'projects',
         asArray: true,
         then: function then() {
-          console.log(this.state.projects);
+          //console.log(this.state.projects);
         }
       });
+
+      // Images Loaded
+      var imgLoad = (0, _imagesloaded2.default)(this.refs.appWindow, function (instance) {
+        console.log(instance);
+      });
+
+      imgLoad.on('progress', function (imgLoad, image) {
+        var result = image.isLoaded ? 'loaded' : 'broken';
+        console.log('image is ' + result + ' for ' + image.img.src);
+      });
+
+      imgLoad.on('done', function (instance) {});
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -151,9 +170,11 @@ var App = function (_React$Component) {
     key: 'render',
     value: function render() {
       var logoClasses = this.state.isProjectPage ? "light" : "dark";
+
       return _react2.default.createElement(
         'div',
-        { className: 'app-window' },
+        { className: 'app-window',
+          ref: 'appWindow' },
         _react2.default.createElement(
           'header',
           { id: 'main', className: logoClasses },
@@ -277,7 +298,9 @@ var App = function (_React$Component) {
             })
           )
         ),
-        _react2.default.createElement('div', { id: 'background-smoke' })
+        _react2.default.createElement('div', { id: 'background-smoke' }),
+        _react2.default.createElement(_ProjectBar2.default, { projects: this.state.projects,
+          currentProject: this.state.currentProject })
       );
     }
   }]);
@@ -302,6 +325,7 @@ _reactDom2.default.render(_react2.default.createElement(
       _reactRouter.Route,
       { path: 'work', component: _projects2.default },
       _react2.default.createElement(_reactRouter.IndexRoute, { component: _ProjectDiagonals2.default }),
+      _react2.default.createElement(_reactRouter.Route, { path: 'new', component: _NewProjectForm2.default }),
       _react2.default.createElement(_reactRouter.Route, { path: ':name', component: _project2.default })
     )
   )

@@ -51,12 +51,12 @@ var Contact = function (_React$Component) {
 					{ className: 'split' },
 					_react2.default.createElement(
 						'aside',
-						null,
+						{ className: 'half' },
 						'tedd.arcuri@gmail.com'
 					),
 					_react2.default.createElement(
 						'aside',
-						null,
+						{ className: 'half' },
 						'719-440-4732'
 					)
 				)

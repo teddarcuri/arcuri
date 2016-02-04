@@ -20,6 +20,7 @@ class Project extends React.Component {
   render() {
   	var p = this.props.currentProject,
         overview = this.props.currentProject.description,
+        role = this.props.currentProject.role,
         firstPhoto = Object.keys(this.props.currentProject.gallery)[0];
 
     return (
@@ -29,7 +30,7 @@ class Project extends React.Component {
         {/*  Project Window */}
         <CSSTransitionGroup component={"div"}
                             className="project-overview"
-                            transitionName="bubbleUp"
+                            transitionName="project-element"
                             transitionAppear={true}
                             transitionAppearTimeout={0}
                             transitionEnterTimeout={1000}
@@ -46,38 +47,44 @@ class Project extends React.Component {
             </ul>
           </header>
 
-          <section>
+          <main>
 
             {/* Gallery */}
             <ProjectGallery project={this.props.currentProject} />
 
-            <p>
-              {overview}
-            </p>
+            <section>
+              <h3>Overview</h3>
 
-          </section>
+              <p>
+                {overview}
+              </p>
+            </section>
+
+            <aside>
+            <h3>My Role</h3>
+              {role}
+
+            <h3>Tech Used</h3>
+              {role}
+            </aside>
+
+          </main>
       
         </CSSTransitionGroup>
 
-
-
         {/* Project Controls */}
         <CSSTransitionGroup component={"div"}
-                            transitionName="slideUp"
+                            transitionName="fadeIn"
                             transitionAppear={true}
                             transitionAppearTimeout={0}
                             transitionEnterTimeout={1000}
                             transitionLeaveTimeout={1000}>
 
           <div className="project-controls">
-
            {/*} <ul >
               <li>Overview</li>
               <li onClick={this.showGallery.bind(this)}>Gallery</li>
             </ul> */}
-
-            <ProjectBar projects={this.props.projects}
-                    currentProject={this.props.currentProject}/>
           </div>
 
         </CSSTransitionGroup>
@@ -87,7 +94,7 @@ class Project extends React.Component {
                             className="project-bg"
                             transitionName="fadeIn"
                             transitionAppear={true}
-                            transitionAppearTimeout={1000}
+                            transitionAppearTimeout={0}
                             transitionEnterTimeout={1000}
                             transitionLeaveTimeout={1000}>
           <img src={p.background} />

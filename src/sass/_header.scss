@@ -12,13 +12,12 @@ header#main {
       display: none;
     }
     svg {
-        height: 60px;
+        height: 40px;
         width: 60px;
-        padding: 16px;
+        padding: 10px;
     }
 
     #close-btn {
-
       svg {
         height: 60px;
         width: 60px;
@@ -72,9 +71,9 @@ header#main {
         ul {
             position: absolute;
             width: auto;
-            top: 50px; left: 0px;
+            top: 30px; left: 0px;
             text-align: left;
-            background: rgba(whitesmoke,0.9);
+            background: rgba(#000,0.9);
             display: none;
             z-index: 100;
             li {
@@ -84,10 +83,10 @@ header#main {
                 white-space: nowrap;
                 text-transform: uppercase;
                 &:hover {
-                    background: rgba(white, 0.9);
+                    background: rgba(#111, 0.98);
                 }
                 a {
-                  color: #333;
+                  color: #fff;
                   font-weight: 300;
                   display: block;
                   padding: 20px 100px 20px 40px;

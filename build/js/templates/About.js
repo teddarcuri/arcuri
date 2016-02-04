@@ -82,6 +82,18 @@ var About = function (_React$Component) {
 																),
 																'.',
 																_react2.default.createElement('br', null),
+																'View my ',
+																_react2.default.createElement(
+																		'span',
+																		{ className: 'highlight' },
+																		_react2.default.createElement(
+																				_reactRouter.Link,
+																				{ to: 'contact' },
+																				' Experience'
+																		)
+																),
+																'.',
+																_react2.default.createElement('br', null),
 																'Like what you see? ',
 																_react2.default.createElement(
 																		'span',
@@ -113,10 +125,10 @@ var About = function (_React$Component) {
 																{ className: 'btn' },
 																'Get In Touch'
 														)
-												),
-												_react2.default.createElement('img', { id: 'about-image', src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/someguy.png' })
+												)
 										)
-								)
+								),
+								_react2.default.createElement('img', { id: 'about-image', src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/someguy.png' })
 						);
 				}
 		}]);

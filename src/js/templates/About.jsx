@@ -23,6 +23,7 @@ class About extends React.Component {
 				          I am Developer + Designer
 				          Currently living in Denver, CO.<br />
 				          Checkout some of <span className="highlight"><Link to="work"> My Work</Link></span>.<br />
+				          View my <span className="highlight"><Link to="contact"> Experience</Link></span>.<br />
 				          Like what you see? <span className="highlight"><Link to="contact"> Hire Me</Link></span>.
 			          </h3>
  					</CSSTransitionGroup>		        	
@@ -31,9 +32,10 @@ class About extends React.Component {
 			          <a className="btn">See My Work</a>
 			          <a className="btn">Get In Touch</a>
 			        </div>
-			        <img id="about-image" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/someguy.png" />
 			     </div>
 	    	</div>
+
+	    	<img id="about-image" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/someguy.png" />
 	  	</CSSTransitionGroup>
     )
   }

@@ -58,7 +58,16 @@ var ProjectBar = function (_React$Component) {
               _react2.default.createElement('img', { src: p.background })
             )
           );
-        })
+        }),
+        _react2.default.createElement(
+          'li',
+          null,
+          _react2.default.createElement(
+            _reactRouter.Link,
+            { to: '/work/new' },
+            _react2.default.createElement('img', { src: '/src/img/new-project-btn.jpg' })
+          )
+        )
       );
     }
   }]);

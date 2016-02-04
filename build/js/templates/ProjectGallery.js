@@ -31,12 +31,24 @@ var ProjectGallery = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectGallery).call(this, props));
 
     _this.state = {
-      currentImg: _this.props.project.gallery[Object.keys(_this.props.project.gallery)[0]].path
+      currentImg: _this.props.project.gallery[Object.keys(_this.props.project.gallery)[0]]
     };
     return _this;
   }
 
   _createClass(ProjectGallery, [{
+    key: 'setCurrentImg',
+    value: function setCurrentImg(key) {
+      console.log(key);
+
+      this.setState({ currentImg: this.props.project.gallery[Object.keys(this.props.project.gallery)[key]] });
+    }
+  }, {
+    key: 'incrementImg',
+    value: function incrementImg() {
+      this.setState({ currentImg: this.props.project.gallery[Object.keys(this.props.project.gallery)[key]] });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var p = this.props.project,
@@ -52,20 +64,42 @@ var ProjectGallery = function (_React$Component) {
           transitionEnterTimeout: 1000,
           transitionLeaveTimeout: 1000 },
         _react2.default.createElement(
-          'div',
-          { className: 'current-img' },
-          _react2.default.createElement('img', { src: currentImg, alt: '' })
+          _reactAddonsCssTransitionGroup2.default,
+          { component: "div",
+            className: 'current-img',
+            transitionName: 'fadeIn',
+            transitionAppear: true,
+            transitionAppearTimeout: 0,
+            transitionEnterTimeout: 1000,
+            transitionLeaveTimeout: 1000 },
+          _react2.default.createElement('img', { src: currentImg.path, alt: '', key: 'currentImg' }),
+          _react2.default.createElement(
+            'ul',
+            { className: 'dots' },
+            Object.keys(p.gallery).map(function (img, key) {
+              return _react2.default.createElement(
+                'li',
+                { key: key, onClick: this.setCurrentImg.bind(this, key) },
+                '•'
+              );
+            }, this)
+          )
         ),
         _react2.default.createElement(
           'ul',
           { className: 'gallery-image-thumbs' },
+          _react2.default.createElement(
+            'h3',
+            null,
+            'Gallery'
+          ),
           Object.keys(p.gallery).map(function (img, key) {
             return _react2.default.createElement(
               'li',
-              { className: 'gallery-image', key: key },
+              { className: 'gallery-image', key: key, onClick: this.setCurrentImg.bind(this, key) },
               _react2.default.createElement('img', { src: p.gallery[img].path, alt: '' })
             );
-          })
+          }, this)
         )
       );
     }

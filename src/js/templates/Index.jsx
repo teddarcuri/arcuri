@@ -19,6 +19,9 @@ class Index extends React.Component {
 							transitionLeaveTimeout={2000}>
 			<div id="scene">
 			</div>
+
+			      {/* <img id="about-image" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/someguy.png" /> */}
+
 		</CSSTransitionGroup>
 		)
 	}

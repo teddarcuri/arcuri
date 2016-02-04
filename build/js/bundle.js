@@ -70,41 +70,49 @@
 
 	var _projectList2 = _interopRequireDefault(_projectList);
 
-	var _helpers = __webpack_require__(211);
-
-	var _helpers2 = _interopRequireDefault(_helpers);
-
-	var _backgroundSmoke = __webpack_require__(212);
-
-	var _backgroundSmoke2 = _interopRequireDefault(_backgroundSmoke);
-
-	var _index = __webpack_require__(214);
+	var _index = __webpack_require__(211);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _about = __webpack_require__(221);
+	var _about = __webpack_require__(219);
 
 	var _about2 = _interopRequireDefault(_about);
 
-	var _projects = __webpack_require__(222);
+	var _projects = __webpack_require__(220);
 
 	var _projects2 = _interopRequireDefault(_projects);
 
-	var _ProjectDiagonals = __webpack_require__(223);
+	var _ProjectDiagonals = __webpack_require__(221);
 
 	var _ProjectDiagonals2 = _interopRequireDefault(_ProjectDiagonals);
+
+	var _ProjectBar = __webpack_require__(224);
+
+	var _ProjectBar2 = _interopRequireDefault(_ProjectBar);
+
+	var _NewProjectForm = __webpack_require__(225);
+
+	var _NewProjectForm2 = _interopRequireDefault(_NewProjectForm);
 
 	var _project = __webpack_require__(226);
 
 	var _project2 = _interopRequireDefault(_project);
 
-	var _contact = __webpack_require__(229);
+	var _contact = __webpack_require__(228);
 
 	var _contact2 = _interopRequireDefault(_contact);
 
-	var _reBase = __webpack_require__(230);
+	var _reBase = __webpack_require__(229);
 
 	var _reBase2 = _interopRequireDefault(_reBase);
+
+	var _helpers = __webpack_require__(232);
+
+	var _helpers2 = _interopRequireDefault(_helpers);
+
+	var _imagesloaded = __webpack_require__(233);
+
+	var _imagesloaded2 = _interopRequireDefault(_imagesloaded);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -114,13 +122,13 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // React
 
-	// Utility
-
 	// Routes
 
 	// Firebase
 
 	var base = _reBase2.default.createClass('https://tedd-arcuri.firebaseio.com/');
+
+	// Utility
 
 	/*
 	  Application
@@ -138,6 +146,7 @@
 	      isProjectPage: false,
 	      currentProject: {},
 	      projects: []
+
 	    };
 	    return _this;
 	  }
@@ -145,8 +154,6 @@
 	  _createClass(App, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-
-	      //BackgroundSmoke.init();
 	      // Check to see if the loaded route will be a project component
 	      this.checkIfProjectPage(this.props);
 
@@ -156,9 +163,21 @@
 	        state: 'projects',
 	        asArray: true,
 	        then: function then() {
-	          console.log(this.state.projects);
+	          //console.log(this.state.projects);
 	        }
 	      });
+
+	      // Images Loaded
+	      var imgLoad = (0, _imagesloaded2.default)(this.refs.appWindow, function (instance) {
+	        console.log(instance);
+	      });
+
+	      imgLoad.on('progress', function (imgLoad, image) {
+	        var result = image.isLoaded ? 'loaded' : 'broken';
+	        console.log('image is ' + result + ' for ' + image.img.src);
+	      });
+
+	      imgLoad.on('done', function (instance) {});
 	    }
 	  }, {
 	    key: 'componentWillReceiveProps',
@@ -197,9 +216,11 @@
 	    key: 'render',
 	    value: function render() {
 	      var logoClasses = this.state.isProjectPage ? "light" : "dark";
+
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'app-window' },
+	        { className: 'app-window',
+	          ref: 'appWindow' },
 	        _react2.default.createElement(
 	          'header',
 	          { id: 'main', className: logoClasses },
@@ -323,7 +344,9 @@
 	            })
 	          )
 	        ),
-	        _react2.default.createElement('div', { id: 'background-smoke' })
+	        _react2.default.createElement('div', { id: 'background-smoke' }),
+	        _react2.default.createElement(_ProjectBar2.default, { projects: this.state.projects,
+	          currentProject: this.state.currentProject })
 	      );
 	    }
 	  }]);
@@ -348,6 +371,7 @@
 	      _reactRouter.Route,
 	      { path: 'work', component: _projects2.default },
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _ProjectDiagonals2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'new', component: _NewProjectForm2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: ':name', component: _project2.default })
 	    )
 	  )
@@ -24877,32 +24901,76 @@
 
 /***/ },
 /* 211 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	// Add a method to strings to detect if they contain a substring
-	String.prototype.contains = function (s) {
-		return this.indexOf(s) !== -1;
-	};
 
-	// Helper methods
-	var helpers = {
-		saySup: function saySup(message) {
-			alert(message);
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _introScene = __webpack_require__(212);
+
+	var _introScene2 = _interopRequireDefault(_introScene);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Index = function (_React$Component) {
+		_inherits(Index, _React$Component);
+
+		function Index() {
+			_classCallCheck(this, Index);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(Index).apply(this, arguments));
 		}
-	};
 
-	exports.default = helpers;
+		_createClass(Index, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				_introScene2.default.init();
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					_reactAddonsCssTransitionGroup2.default,
+					{ component: 'div',
+						transitionAppear: true,
+						transitionAppearTimeout: 2000,
+						transitionName: 'fadeIn',
+						transitionEnterTimeout: 2000,
+						transitionLeaveTimeout: 2000 },
+					_react2.default.createElement('div', { id: 'scene' })
+				);
+			}
+		}]);
+
+		return Index;
+	}(_react2.default.Component);
+
+	exports.default = Index;
 
 /***/ },
 /* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -24914,7 +24982,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var BackgroundSmoke = {
+	var IntroScene = {
 		init: function init() {
 			var camera, scene, renderer, geometry, material, mesh, renderW, renderH, textGeo, textTexture, textMaterial, text, smokeParticles, clock, cubeSineDriver, delta;
 
@@ -24924,15 +24992,15 @@
 			function init() {
 				clock = new _three2.default.Clock();
 
-				renderW = document.body.offsetWidth;
-				renderH = document.body.offsetHeight;
+				renderW = document.getElementById("scene").offsetWidth;
+				renderH = document.getElementById("scene").offsetHeight;
 				renderer = new _three2.default.WebGLRenderer({ alpha: true });
 				renderer.setSize(renderW, renderH);
 				renderer.setClearColor(0xffffff, 0);
 				scene = new _three2.default.Scene();
 
 				camera = new _three2.default.PerspectiveCamera(75, renderW / renderH, 1, 10000);
-				camera.position.z = 300;
+				camera.position.z = 1250;
 				scene.add(camera);
 
 				geometry = new _three2.default.CubeGeometry(200, 200, 200);
@@ -24940,27 +25008,37 @@
 				mesh = new _three2.default.Mesh(geometry, material);
 				cubeSineDriver = 0;
 
+				textGeo = new _three2.default.PlaneGeometry(300, 300);
+				_three2.default.ImageUtils.crossOrigin = ''; //Need this to pull in crossdomain images from AWS
+				textTexture = _three2.default.ImageUtils.loadTexture('https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/t.svg');
+				textMaterial = new _three2.default.MeshLambertMaterial({ color: 0x222222, opacity: 0.8, map: textTexture, transparent: true, blending: _three2.default.AdditiveAlphaBlending });
+				text = new _three2.default.Mesh(textGeo, textMaterial);
+				text.position.z = 1100;
+				text.scale.x = 0.33;
+				text.scale.y = 0.33;
+				scene.add(text);
+
 				var light = new _three2.default.DirectionalLight(0xffffff, 1);
 				light.position.set(-1, 0, 1);
 				scene.add(light);
 
-				var colors = [/*0x6ecbea, 0xf99d9d*/0xeeeeee];
+				var colors = [0x6ecbea /*, 0xf99d9d*/];
 				var color = colors[Math.floor(Math.random() * colors.length)];
 				var smokeTexture = _three2.default.ImageUtils.loadTexture('https://s3-us-west-2.amazonaws.com/s.cdpn.io/95637/Smoke-Element.png');
-				var smokeMaterial = new _three2.default.MeshLambertMaterial({ color: color, opacity: 0.05, map: smokeTexture, transparent: true });
+				var smokeMaterial = new _three2.default.MeshLambertMaterial({ color: color, opacity: 1, map: smokeTexture, transparent: true });
 				var smokeGeo = new _three2.default.PlaneGeometry(300, 300);
 				smokeParticles = [];
 
 				var p;
 				for (p = 0; p < 20; p++) {
 					var particle = new _three2.default.Mesh(smokeGeo, smokeMaterial);
-					particle.position.set(Math.random() * 200 - 100, Math.random() * 100, 100);
+					particle.position.set(Math.random() * 200 - 100, Math.random() * 200 - 100, Math.random() * 1000 - 100);
 					particle.rotation.z = Math.random() * 360;
 					scene.add(particle);
 					smokeParticles.push(particle);
 				}
 
-				document.getElementById("background-smoke").appendChild(renderer.domElement);
+				document.getElementById("scene").appendChild(renderer.domElement);
 			}
 
 			function animate() {
@@ -24999,7 +25077,7 @@
 		}
 	};
 
-	exports.default = BackgroundSmoke;
+	exports.default = IntroScene;
 
 /***/ },
 /* 213 */
@@ -61198,190 +61276,10 @@
 /* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _introScene = __webpack_require__(215);
-
-	var _introScene2 = _interopRequireDefault(_introScene);
-
-	var _reactAddonsCssTransitionGroup = __webpack_require__(216);
-
-	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Index = function (_React$Component) {
-		_inherits(Index, _React$Component);
-
-		function Index() {
-			_classCallCheck(this, Index);
-
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(Index).apply(this, arguments));
-		}
-
-		_createClass(Index, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {
-				_introScene2.default.init();
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					_reactAddonsCssTransitionGroup2.default,
-					{ component: 'div',
-						transitionAppear: true,
-						transitionAppearTimeout: 2000,
-						transitionName: 'fadeIn',
-						transitionEnterTimeout: 2000,
-						transitionLeaveTimeout: 2000 },
-					_react2.default.createElement('div', { id: 'scene' })
-				);
-			}
-		}]);
-
-		return Index;
-	}(_react2.default.Component);
-
-	exports.default = Index;
+	module.exports = __webpack_require__(215);
 
 /***/ },
 /* 215 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _three = __webpack_require__(213);
-
-	var _three2 = _interopRequireDefault(_three);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var IntroScene = {
-		init: function init() {
-			var camera, scene, renderer, geometry, material, mesh, renderW, renderH, textGeo, textTexture, textMaterial, text, smokeParticles, clock, cubeSineDriver, delta;
-
-			init();
-			animate();
-
-			function init() {
-				clock = new _three2.default.Clock();
-
-				renderW = document.getElementById("scene").offsetWidth;
-				renderH = document.getElementById("scene").offsetHeight;
-				renderer = new _three2.default.WebGLRenderer({ alpha: true });
-				renderer.setSize(renderW, renderH);
-				renderer.setClearColor(0xffffff, 0);
-				scene = new _three2.default.Scene();
-
-				camera = new _three2.default.PerspectiveCamera(75, renderW / renderH, 1, 10000);
-				camera.position.z = 1250;
-				scene.add(camera);
-
-				geometry = new _three2.default.CubeGeometry(200, 200, 200);
-				material = new _three2.default.MeshLambertMaterial({ color: 0xaa6666, wireframe: false });
-				mesh = new _three2.default.Mesh(geometry, material);
-				cubeSineDriver = 0;
-
-				textGeo = new _three2.default.PlaneGeometry(300, 300);
-				_three2.default.ImageUtils.crossOrigin = ''; //Need this to pull in crossdomain images from AWS
-				textTexture = _three2.default.ImageUtils.loadTexture('https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/t.svg');
-				textMaterial = new _three2.default.MeshLambertMaterial({ color: 0x222222, opacity: 0.8, map: textTexture, transparent: true, blending: _three2.default.AdditiveAlphaBlending });
-				text = new _three2.default.Mesh(textGeo, textMaterial);
-				text.position.z = 1100;
-				text.scale.x = 0.33;
-				text.scale.y = 0.33;
-				scene.add(text);
-
-				var light = new _three2.default.DirectionalLight(0xffffff, 1);
-				light.position.set(-1, 0, 1);
-				scene.add(light);
-
-				var colors = [0x6ecbea /*, 0xf99d9d*/];
-				var color = colors[Math.floor(Math.random() * colors.length)];
-				var smokeTexture = _three2.default.ImageUtils.loadTexture('https://s3-us-west-2.amazonaws.com/s.cdpn.io/95637/Smoke-Element.png');
-				var smokeMaterial = new _three2.default.MeshLambertMaterial({ color: color, opacity: 1, map: smokeTexture, transparent: true });
-				var smokeGeo = new _three2.default.PlaneGeometry(300, 300);
-				smokeParticles = [];
-
-				var p;
-				for (p = 0; p < 20; p++) {
-					var particle = new _three2.default.Mesh(smokeGeo, smokeMaterial);
-					particle.position.set(Math.random() * 200 - 100, Math.random() * 200 - 100, Math.random() * 1000 - 100);
-					particle.rotation.z = Math.random() * 360;
-					scene.add(particle);
-					smokeParticles.push(particle);
-				}
-
-				document.getElementById("scene").appendChild(renderer.domElement);
-			}
-
-			function animate() {
-				// note: three.js includes requestAnimationFrame shim
-				delta = clock.getDelta();
-				requestAnimationFrame(animate);
-				evolveSmoke();
-				render();
-				if (textMaterial.opacity < 0.5) {
-					textMaterial.opacity = textMaterial.opacity + 0.0015;
-				}
-			}
-
-			function evolveSmoke() {
-				var sp = smokeParticles.length;
-				while (sp--) {
-					smokeParticles[sp].rotation.z += delta * 0.2;
-				}
-			}
-
-			function render() {
-				mesh.rotation.x += 0.005;
-				mesh.rotation.y += 0.01;
-				cubeSineDriver += .01;
-				mesh.position.z = 100 + Math.sin(cubeSineDriver) * 500;
-				renderer.render(scene, camera);
-			}
-
-			window.onresize = function () {
-				renderW = document.getElementById("scene").offsetWidth;
-				renderH = document.getElementById("scene").offsetHeight;
-				renderer.setSize(renderW, renderH);
-				camera.aspect = renderW / renderH;
-				camera.updateProjectionMatrix();
-			};
-		}
-	};
-
-	exports.default = IntroScene;
-
-/***/ },
-/* 216 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(217);
-
-/***/ },
-/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -61403,7 +61301,7 @@
 	var assign = __webpack_require__(39);
 
 	var ReactTransitionGroup = __webpack_require__(207);
-	var ReactCSSTransitionGroupChild = __webpack_require__(218);
+	var ReactCSSTransitionGroupChild = __webpack_require__(216);
 
 	function createTransitionTimeoutPropValidator(transitionType) {
 	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
@@ -61469,7 +61367,7 @@
 	module.exports = ReactCSSTransitionGroup;
 
 /***/ },
-/* 218 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -61489,8 +61387,8 @@
 	var React = __webpack_require__(2);
 	var ReactDOM = __webpack_require__(3);
 
-	var CSSCore = __webpack_require__(219);
-	var ReactTransitionEvents = __webpack_require__(220);
+	var CSSCore = __webpack_require__(217);
+	var ReactTransitionEvents = __webpack_require__(218);
 
 	var onlyChild = __webpack_require__(156);
 
@@ -61639,7 +61537,7 @@
 	module.exports = ReactCSSTransitionGroupChild;
 
 /***/ },
-/* 219 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -61742,7 +61640,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 220 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -61856,7 +61754,7 @@
 	module.exports = ReactTransitionEvents;
 
 /***/ },
-/* 221 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61873,7 +61771,7 @@
 
 	var _reactRouter = __webpack_require__(159);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(216);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
@@ -61943,6 +61841,18 @@
 																	),
 																	'.',
 																	_react2.default.createElement('br', null),
+																	'View my ',
+																	_react2.default.createElement(
+																			'span',
+																			{ className: 'highlight' },
+																			_react2.default.createElement(
+																					_reactRouter.Link,
+																					{ to: 'contact' },
+																					' Experience'
+																			)
+																	),
+																	'.',
+																	_react2.default.createElement('br', null),
 																	'Like what you see? ',
 																	_react2.default.createElement(
 																			'span',
@@ -61974,10 +61884,10 @@
 																	{ className: 'btn' },
 																	'Get In Touch'
 															)
-													),
-													_react2.default.createElement('img', { id: 'about-image', src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/someguy.png' })
+													)
 											)
-									)
+									),
+									_react2.default.createElement('img', { id: 'about-image', src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/someguy.png' })
 							);
 					}
 			}]);
@@ -61988,7 +61898,7 @@
 	exports.default = About;
 
 /***/ },
-/* 222 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62003,7 +61913,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(216);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
@@ -62046,7 +61956,7 @@
 	exports.default = Projects;
 
 /***/ },
-/* 223 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62063,15 +61973,15 @@
 
 	var _reactRouter = __webpack_require__(159);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(216);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	var _ProjectBubble = __webpack_require__(224);
+	var _ProjectBubble = __webpack_require__(222);
 
 	var _ProjectBubble2 = _interopRequireDefault(_ProjectBubble);
 
-	var _ProjectDiagonal = __webpack_require__(225);
+	var _ProjectDiagonal = __webpack_require__(223);
 
 	var _ProjectDiagonal2 = _interopRequireDefault(_ProjectDiagonal);
 
@@ -62136,7 +62046,7 @@
 	exports.default = ProjectDiagonals;
 
 /***/ },
-/* 224 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62195,7 +62105,7 @@
 	exports.default = ProjectBubble;
 
 /***/ },
-/* 225 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62281,151 +62191,7 @@
 	exports.default = ProjectDiagonal;
 
 /***/ },
-/* 226 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactAddonsCssTransitionGroup = __webpack_require__(216);
-
-	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
-
-	var _ProjectBar = __webpack_require__(227);
-
-	var _ProjectBar2 = _interopRequireDefault(_ProjectBar);
-
-	var _ProjectGallery = __webpack_require__(228);
-
-	var _ProjectGallery2 = _interopRequireDefault(_ProjectGallery);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Project = function (_React$Component) {
-	  _inherits(Project, _React$Component);
-
-	  function Project(props) {
-	    _classCallCheck(this, Project);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Project).call(this, props));
-
-	    _this.state = {
-	      showGallery: true
-	    };
-	    return _this;
-	  }
-
-	  _createClass(Project, [{
-	    key: 'showGallery',
-	    value: function showGallery() {
-	      this.setState({ showGallery: true });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var p = this.props.currentProject,
-	          overview = this.props.currentProject.description,
-	          firstPhoto = Object.keys(this.props.currentProject.gallery)[0];
-
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'project-page' },
-	        _react2.default.createElement(
-	          _reactAddonsCssTransitionGroup2.default,
-	          { component: "div",
-	            className: 'project-overview',
-	            transitionName: 'bubbleUp',
-	            transitionAppear: true,
-	            transitionAppearTimeout: 0,
-	            transitionEnterTimeout: 1000,
-	            transitionLeaveTimeout: 1000 },
-	          _react2.default.createElement(
-	            'header',
-	            null,
-	            _react2.default.createElement(
-	              'h1',
-	              { className: 'title' },
-	              _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }),
-	              p.name
-	            ),
-	            _react2.default.createElement(
-	              'ul',
-	              { className: 'tags' },
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Web'
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Print'
-	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'section',
-	            null,
-	            _react2.default.createElement(_ProjectGallery2.default, { project: this.props.currentProject }),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              overview
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactAddonsCssTransitionGroup2.default,
-	          { component: "div",
-	            transitionName: 'slideUp',
-	            transitionAppear: true,
-	            transitionAppearTimeout: 0,
-	            transitionEnterTimeout: 1000,
-	            transitionLeaveTimeout: 1000 },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'project-controls' },
-	            _react2.default.createElement(_ProjectBar2.default, { projects: this.props.projects,
-	              currentProject: this.props.currentProject })
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactAddonsCssTransitionGroup2.default,
-	          { component: "div",
-	            className: 'project-bg',
-	            transitionName: 'fadeIn',
-	            transitionAppear: true,
-	            transitionAppearTimeout: 1000,
-	            transitionEnterTimeout: 1000,
-	            transitionLeaveTimeout: 1000 },
-	          _react2.default.createElement('img', { src: p.background })
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Project;
-	}(_react2.default.Component);
-
-	exports.default = Project;
-
-/***/ },
-/* 227 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62442,7 +62208,7 @@
 
 	var _reactRouter = __webpack_require__(159);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(216);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
@@ -62488,7 +62254,16 @@
 	              _react2.default.createElement('img', { src: p.background })
 	            )
 	          );
-	        })
+	        }),
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/work/new' },
+	            _react2.default.createElement('img', { src: '/src/img/new-project-btn.jpg' })
+	          )
+	        )
 	      );
 	    }
 	  }]);
@@ -62499,7 +62274,7 @@
 	exports.default = ProjectBar;
 
 /***/ },
-/* 228 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62514,7 +62289,292 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(216);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var NewProjectForm = function (_React$Component) {
+	  _inherits(NewProjectForm, _React$Component);
+
+	  function NewProjectForm() {
+	    _classCallCheck(this, NewProjectForm);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(NewProjectForm).apply(this, arguments));
+	  }
+
+	  _createClass(NewProjectForm, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'form',
+	        { action: '', className: 'full-screen' },
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'Create Project'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'half' },
+	          _react2.default.createElement(
+	            'label',
+	            { htmlFor: 'name' },
+	            'Name'
+	          ),
+	          _react2.default.createElement('input', { name: 'name', type: 'text' })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'half' },
+	          _react2.default.createElement(
+	            'label',
+	            { htmlFor: 'types' },
+	            'Types'
+	          ),
+	          _react2.default.createElement('input', { type: 'types' })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'half' },
+	          _react2.default.createElement(
+	            'label',
+	            { htmlFor: 'background' },
+	            'Background'
+	          ),
+	          _react2.default.createElement('input', { type: 'background' })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'half' },
+	          _react2.default.createElement(
+	            'label',
+	            { htmlFor: 'logo' },
+	            'Logo'
+	          ),
+	          _react2.default.createElement('input', { type: 'logo' })
+	        ),
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'description' },
+	          'Description'
+	        ),
+	        _react2.default.createElement('textarea', { name: 'description' }),
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'my-role' },
+	          'My Role'
+	        ),
+	        _react2.default.createElement('textarea', { name: 'my-role' }),
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'tech-used' },
+	          'Tech Used'
+	        ),
+	        _react2.default.createElement('textarea', { name: 'tech-used' }),
+	        _react2.default.createElement(
+	          'button',
+	          { type: 'submit' },
+	          'Create Project'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return NewProjectForm;
+	}(_react2.default.Component);
+
+	exports.default = NewProjectForm;
+
+/***/ },
+/* 226 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	var _ProjectBar = __webpack_require__(224);
+
+	var _ProjectBar2 = _interopRequireDefault(_ProjectBar);
+
+	var _ProjectGallery = __webpack_require__(227);
+
+	var _ProjectGallery2 = _interopRequireDefault(_ProjectGallery);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Project = function (_React$Component) {
+	  _inherits(Project, _React$Component);
+
+	  function Project(props) {
+	    _classCallCheck(this, Project);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Project).call(this, props));
+
+	    _this.state = {
+	      showGallery: true
+	    };
+	    return _this;
+	  }
+
+	  _createClass(Project, [{
+	    key: 'showGallery',
+	    value: function showGallery() {
+	      this.setState({ showGallery: true });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var p = this.props.currentProject,
+	          overview = this.props.currentProject.description,
+	          role = this.props.currentProject.role,
+	          firstPhoto = Object.keys(this.props.currentProject.gallery)[0];
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'project-page' },
+	        _react2.default.createElement(
+	          _reactAddonsCssTransitionGroup2.default,
+	          { component: "div",
+	            className: 'project-overview',
+	            transitionName: 'project-element',
+	            transitionAppear: true,
+	            transitionAppearTimeout: 0,
+	            transitionEnterTimeout: 1000,
+	            transitionLeaveTimeout: 1000 },
+	          _react2.default.createElement(
+	            'header',
+	            null,
+	            _react2.default.createElement(
+	              'h1',
+	              { className: 'title' },
+	              _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }),
+	              p.name
+	            ),
+	            _react2.default.createElement(
+	              'ul',
+	              { className: 'tags' },
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Web'
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Print'
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'main',
+	            null,
+	            _react2.default.createElement(_ProjectGallery2.default, { project: this.props.currentProject }),
+	            _react2.default.createElement(
+	              'section',
+	              null,
+	              _react2.default.createElement(
+	                'h3',
+	                null,
+	                'Overview'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                overview
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'aside',
+	              null,
+	              _react2.default.createElement(
+	                'h3',
+	                null,
+	                'My Role'
+	              ),
+	              role,
+	              _react2.default.createElement(
+	                'h3',
+	                null,
+	                'Tech Used'
+	              ),
+	              role
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactAddonsCssTransitionGroup2.default,
+	          { component: "div",
+	            transitionName: 'fadeIn',
+	            transitionAppear: true,
+	            transitionAppearTimeout: 0,
+	            transitionEnterTimeout: 1000,
+	            transitionLeaveTimeout: 1000 },
+	          _react2.default.createElement('div', { className: 'project-controls' })
+	        ),
+	        _react2.default.createElement(
+	          _reactAddonsCssTransitionGroup2.default,
+	          { component: "div",
+	            className: 'project-bg',
+	            transitionName: 'fadeIn',
+	            transitionAppear: true,
+	            transitionAppearTimeout: 0,
+	            transitionEnterTimeout: 1000,
+	            transitionLeaveTimeout: 1000 },
+	          _react2.default.createElement('img', { src: p.background })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Project;
+	}(_react2.default.Component);
+
+	exports.default = Project;
+
+/***/ },
+/* 227 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
@@ -62535,12 +62595,24 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectGallery).call(this, props));
 
 	    _this.state = {
-	      currentImg: _this.props.project.gallery[Object.keys(_this.props.project.gallery)[0]].path
+	      currentImg: _this.props.project.gallery[Object.keys(_this.props.project.gallery)[0]]
 	    };
 	    return _this;
 	  }
 
 	  _createClass(ProjectGallery, [{
+	    key: 'setCurrentImg',
+	    value: function setCurrentImg(key) {
+	      console.log(key);
+
+	      this.setState({ currentImg: this.props.project.gallery[Object.keys(this.props.project.gallery)[key]] });
+	    }
+	  }, {
+	    key: 'incrementImg',
+	    value: function incrementImg() {
+	      this.setState({ currentImg: this.props.project.gallery[Object.keys(this.props.project.gallery)[key]] });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var p = this.props.project,
@@ -62556,20 +62628,42 @@
 	          transitionEnterTimeout: 1000,
 	          transitionLeaveTimeout: 1000 },
 	        _react2.default.createElement(
-	          'div',
-	          { className: 'current-img' },
-	          _react2.default.createElement('img', { src: currentImg, alt: '' })
+	          _reactAddonsCssTransitionGroup2.default,
+	          { component: "div",
+	            className: 'current-img',
+	            transitionName: 'fadeIn',
+	            transitionAppear: true,
+	            transitionAppearTimeout: 0,
+	            transitionEnterTimeout: 1000,
+	            transitionLeaveTimeout: 1000 },
+	          _react2.default.createElement('img', { src: currentImg.path, alt: '', key: 'currentImg' }),
+	          _react2.default.createElement(
+	            'ul',
+	            { className: 'dots' },
+	            Object.keys(p.gallery).map(function (img, key) {
+	              return _react2.default.createElement(
+	                'li',
+	                { key: key, onClick: this.setCurrentImg.bind(this, key) },
+	                '•'
+	              );
+	            }, this)
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'ul',
 	          { className: 'gallery-image-thumbs' },
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            'Gallery'
+	          ),
 	          Object.keys(p.gallery).map(function (img, key) {
 	            return _react2.default.createElement(
 	              'li',
-	              { className: 'gallery-image', key: key },
+	              { className: 'gallery-image', key: key, onClick: this.setCurrentImg.bind(this, key) },
 	              _react2.default.createElement('img', { src: p.gallery[img].path, alt: '' })
 	            );
-	          })
+	          }, this)
 	        )
 	      );
 	    }
@@ -62581,7 +62675,7 @@
 	exports.default = ProjectGallery;
 
 /***/ },
-/* 229 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62596,7 +62690,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(216);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
@@ -62637,12 +62731,12 @@
 						{ className: 'split' },
 						_react2.default.createElement(
 							'aside',
-							null,
+							{ className: 'half' },
 							'tedd.arcuri@gmail.com'
 						),
 						_react2.default.createElement(
 							'aside',
-							null,
+							{ className: 'half' },
 							'719-440-4732'
 						)
 					)
@@ -62656,20 +62750,20 @@
 	exports.default = Contact;
 
 /***/ },
-/* 230 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(231);
+	module.exports = __webpack_require__(230);
 
 
 
 /***/ },
-/* 231 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
-			module.exports = factory(__webpack_require__(232));
+			module.exports = factory(__webpack_require__(231));
 		else if(typeof define === 'function' && define.amd)
 			define(["firebase"], factory);
 		else {
@@ -63199,7 +63293,7 @@
 	;
 
 /***/ },
-/* 232 */
+/* 231 */
 /***/ function(module, exports) {
 
 	/*! @license Firebase v2.4.0
@@ -63480,6 +63574,520 @@
 	X.prototype.Ze=function(a,b){D("Firebase.resetPassword",1,2,arguments.length);sg("Firebase.resetPassword",1,a,!1);tg("Firebase.resetPassword",a,"email");F("Firebase.resetPassword",2,b,!0);var c=new B;this.k.O.Ze(a,C(c,b));return c.D};X.prototype.resetPassword=X.prototype.Ze;})();
 
 	module.exports = Firebase;
+
+
+/***/ },
+/* 232 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// Add a method to strings to detect if they contain a substring
+	String.prototype.contains = function (s) {
+		return this.indexOf(s) !== -1;
+	};
+
+	// Helper methods
+	var helpers = {
+		saySup: function saySup(message) {
+			alert(message);
+		}
+	};
+
+	exports.default = helpers;
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	 * imagesLoaded v4.1.0
+	 * JavaScript is all like "You images are done yet or what?"
+	 * MIT License
+	 */
+
+	( function( window, factory ) { 'use strict';
+	  // universal module definition
+
+	  /*global define: false, module: false, require: false */
+
+	  if ( true ) {
+	    // AMD
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
+	      __webpack_require__(234)
+	    ], __WEBPACK_AMD_DEFINE_RESULT__ = function( EvEmitter ) {
+	      return factory( window, EvEmitter );
+	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if ( typeof module == 'object' && module.exports ) {
+	    // CommonJS
+	    module.exports = factory(
+	      window,
+	      require('ev-emitter')
+	    );
+	  } else {
+	    // browser global
+	    window.imagesLoaded = factory(
+	      window,
+	      window.EvEmitter
+	    );
+	  }
+
+	})( window,
+
+	// --------------------------  factory -------------------------- //
+
+	function factory( window, EvEmitter ) {
+
+	'use strict';
+
+	var $ = window.jQuery;
+	var console = window.console;
+
+	// -------------------------- helpers -------------------------- //
+
+	// extend objects
+	function extend( a, b ) {
+	  for ( var prop in b ) {
+	    a[ prop ] = b[ prop ];
+	  }
+	  return a;
+	}
+
+	// turn element or nodeList into an array
+	function makeArray( obj ) {
+	  var ary = [];
+	  if ( Array.isArray( obj ) ) {
+	    // use object if already an array
+	    ary = obj;
+	  } else if ( typeof obj.length == 'number' ) {
+	    // convert nodeList to array
+	    for ( var i=0; i < obj.length; i++ ) {
+	      ary.push( obj[i] );
+	    }
+	  } else {
+	    // array of single index
+	    ary.push( obj );
+	  }
+	  return ary;
+	}
+
+	// -------------------------- imagesLoaded -------------------------- //
+
+	/**
+	 * @param {Array, Element, NodeList, String} elem
+	 * @param {Object or Function} options - if function, use as callback
+	 * @param {Function} onAlways - callback function
+	 */
+	function ImagesLoaded( elem, options, onAlways ) {
+	  // coerce ImagesLoaded() without new, to be new ImagesLoaded()
+	  if ( !( this instanceof ImagesLoaded ) ) {
+	    return new ImagesLoaded( elem, options, onAlways );
+	  }
+	  // use elem as selector string
+	  if ( typeof elem == 'string' ) {
+	    elem = document.querySelectorAll( elem );
+	  }
+
+	  this.elements = makeArray( elem );
+	  this.options = extend( {}, this.options );
+
+	  if ( typeof options == 'function' ) {
+	    onAlways = options;
+	  } else {
+	    extend( this.options, options );
+	  }
+
+	  if ( onAlways ) {
+	    this.on( 'always', onAlways );
+	  }
+
+	  this.getImages();
+
+	  if ( $ ) {
+	    // add jQuery Deferred object
+	    this.jqDeferred = new $.Deferred();
+	  }
+
+	  // HACK check async to allow time to bind listeners
+	  setTimeout( function() {
+	    this.check();
+	  }.bind( this ));
+	}
+
+	ImagesLoaded.prototype = Object.create( EvEmitter.prototype );
+
+	ImagesLoaded.prototype.options = {};
+
+	ImagesLoaded.prototype.getImages = function() {
+	  this.images = [];
+
+	  // filter & find items if we have an item selector
+	  this.elements.forEach( this.addElementImages, this );
+	};
+
+	/**
+	 * @param {Node} element
+	 */
+	ImagesLoaded.prototype.addElementImages = function( elem ) {
+	  // filter siblings
+	  if ( elem.nodeName == 'IMG' ) {
+	    this.addImage( elem );
+	  }
+	  // get background image on element
+	  if ( this.options.background === true ) {
+	    this.addElementBackgroundImages( elem );
+	  }
+
+	  // find children
+	  // no non-element nodes, #143
+	  var nodeType = elem.nodeType;
+	  if ( !nodeType || !elementNodeTypes[ nodeType ] ) {
+	    return;
+	  }
+	  var childImgs = elem.querySelectorAll('img');
+	  // concat childElems to filterFound array
+	  for ( var i=0; i < childImgs.length; i++ ) {
+	    var img = childImgs[i];
+	    this.addImage( img );
+	  }
+
+	  // get child background images
+	  if ( typeof this.options.background == 'string' ) {
+	    var children = elem.querySelectorAll( this.options.background );
+	    for ( i=0; i < children.length; i++ ) {
+	      var child = children[i];
+	      this.addElementBackgroundImages( child );
+	    }
+	  }
+	};
+
+	var elementNodeTypes = {
+	  1: true,
+	  9: true,
+	  11: true
+	};
+
+	ImagesLoaded.prototype.addElementBackgroundImages = function( elem ) {
+	  var style = getComputedStyle( elem );
+	  if ( !style ) {
+	    // Firefox returns null if in a hidden iframe https://bugzil.la/548397
+	    return;
+	  }
+	  // get url inside url("...")
+	  var reURL = /url\((['"])?(.*?)\1\)/gi;
+	  var matches = reURL.exec( style.backgroundImage );
+	  while ( matches !== null ) {
+	    var url = matches && matches[2];
+	    if ( url ) {
+	      this.addBackground( url, elem );
+	    }
+	    matches = reURL.exec( style.backgroundImage );
+	  }
+	};
+
+	/**
+	 * @param {Image} img
+	 */
+	ImagesLoaded.prototype.addImage = function( img ) {
+	  var loadingImage = new LoadingImage( img );
+	  this.images.push( loadingImage );
+	};
+
+	ImagesLoaded.prototype.addBackground = function( url, elem ) {
+	  var background = new Background( url, elem );
+	  this.images.push( background );
+	};
+
+	ImagesLoaded.prototype.check = function() {
+	  var _this = this;
+	  this.progressedCount = 0;
+	  this.hasAnyBroken = false;
+	  // complete if no images
+	  if ( !this.images.length ) {
+	    this.complete();
+	    return;
+	  }
+
+	  function onProgress( image, elem, message ) {
+	    // HACK - Chrome triggers event before object properties have changed. #83
+	    setTimeout( function() {
+	      _this.progress( image, elem, message );
+	    });
+	  }
+
+	  this.images.forEach( function( loadingImage ) {
+	    loadingImage.once( 'progress', onProgress );
+	    loadingImage.check();
+	  });
+	};
+
+	ImagesLoaded.prototype.progress = function( image, elem, message ) {
+	  this.progressedCount++;
+	  this.hasAnyBroken = this.hasAnyBroken || !image.isLoaded;
+	  // progress event
+	  this.emitEvent( 'progress', [ this, image, elem ] );
+	  if ( this.jqDeferred && this.jqDeferred.notify ) {
+	    this.jqDeferred.notify( this, image );
+	  }
+	  // check if completed
+	  if ( this.progressedCount == this.images.length ) {
+	    this.complete();
+	  }
+
+	  if ( this.options.debug && console ) {
+	    console.log( 'progress: ' + message, image, elem );
+	  }
+	};
+
+	ImagesLoaded.prototype.complete = function() {
+	  var eventName = this.hasAnyBroken ? 'fail' : 'done';
+	  this.isComplete = true;
+	  this.emitEvent( eventName, [ this ] );
+	  this.emitEvent( 'always', [ this ] );
+	  if ( this.jqDeferred ) {
+	    var jqMethod = this.hasAnyBroken ? 'reject' : 'resolve';
+	    this.jqDeferred[ jqMethod ]( this );
+	  }
+	};
+
+	// --------------------------  -------------------------- //
+
+	function LoadingImage( img ) {
+	  this.img = img;
+	}
+
+	LoadingImage.prototype = Object.create( EvEmitter.prototype );
+
+	LoadingImage.prototype.check = function() {
+	  // If complete is true and browser supports natural sizes,
+	  // try to check for image status manually.
+	  var isComplete = this.getIsImageComplete();
+	  if ( isComplete ) {
+	    // report based on naturalWidth
+	    this.confirm( this.img.naturalWidth !== 0, 'naturalWidth' );
+	    return;
+	  }
+
+	  // If none of the checks above matched, simulate loading on detached element.
+	  this.proxyImage = new Image();
+	  this.proxyImage.addEventListener( 'load', this );
+	  this.proxyImage.addEventListener( 'error', this );
+	  // bind to image as well for Firefox. #191
+	  this.img.addEventListener( 'load', this );
+	  this.img.addEventListener( 'error', this );
+	  this.proxyImage.src = this.img.src;
+	};
+
+	LoadingImage.prototype.getIsImageComplete = function() {
+	  return this.img.complete && this.img.naturalWidth !== undefined;
+	};
+
+	LoadingImage.prototype.confirm = function( isLoaded, message ) {
+	  this.isLoaded = isLoaded;
+	  this.emitEvent( 'progress', [ this, this.img, message ] );
+	};
+
+	// ----- events ----- //
+
+	// trigger specified handler for event type
+	LoadingImage.prototype.handleEvent = function( event ) {
+	  var method = 'on' + event.type;
+	  if ( this[ method ] ) {
+	    this[ method ]( event );
+	  }
+	};
+
+	LoadingImage.prototype.onload = function() {
+	  this.confirm( true, 'onload' );
+	  this.unbindEvents();
+	};
+
+	LoadingImage.prototype.onerror = function() {
+	  this.confirm( false, 'onerror' );
+	  this.unbindEvents();
+	};
+
+	LoadingImage.prototype.unbindEvents = function() {
+	  this.proxyImage.removeEventListener( 'load', this );
+	  this.proxyImage.removeEventListener( 'error', this );
+	  this.img.removeEventListener( 'load', this );
+	  this.img.removeEventListener( 'error', this );
+	};
+
+	// -------------------------- Background -------------------------- //
+
+	function Background( url, element ) {
+	  this.url = url;
+	  this.element = element;
+	  this.img = new Image();
+	}
+
+	// inherit LoadingImage prototype
+	Background.prototype = Object.create( LoadingImage.prototype );
+
+	Background.prototype.check = function() {
+	  this.img.addEventListener( 'load', this );
+	  this.img.addEventListener( 'error', this );
+	  this.img.src = this.url;
+	  // check if image is already complete
+	  var isComplete = this.getIsImageComplete();
+	  if ( isComplete ) {
+	    this.confirm( this.img.naturalWidth !== 0, 'naturalWidth' );
+	    this.unbindEvents();
+	  }
+	};
+
+	Background.prototype.unbindEvents = function() {
+	  this.img.removeEventListener( 'load', this );
+	  this.img.removeEventListener( 'error', this );
+	};
+
+	Background.prototype.confirm = function( isLoaded, message ) {
+	  this.isLoaded = isLoaded;
+	  this.emitEvent( 'progress', [ this, this.element, message ] );
+	};
+
+	// -------------------------- jQuery -------------------------- //
+
+	ImagesLoaded.makeJQueryPlugin = function( jQuery ) {
+	  jQuery = jQuery || window.jQuery;
+	  if ( !jQuery ) {
+	    return;
+	  }
+	  // set local variable
+	  $ = jQuery;
+	  // $().imagesLoaded()
+	  $.fn.imagesLoaded = function( options, callback ) {
+	    var instance = new ImagesLoaded( this, options, callback );
+	    return instance.jqDeferred.promise( $(this) );
+	  };
+	};
+	// try making plugin
+	ImagesLoaded.makeJQueryPlugin();
+
+	// --------------------------  -------------------------- //
+
+	return ImagesLoaded;
+
+	});
+
+
+/***/ },
+/* 234 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	 * EvEmitter v1.0.1
+	 * Lil' event emitter
+	 * MIT License
+	 */
+
+	/* jshint unused: true, undef: true, strict: true */
+
+	( function( global, factory ) {
+	  // universal module definition
+	  /* jshint strict: false */ /* globals define, module */
+	  if ( true ) {
+	    // AMD - RequireJS
+	    !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if ( typeof module == 'object' && module.exports ) {
+	    // CommonJS - Browserify, Webpack
+	    module.exports = factory();
+	  } else {
+	    // Browser globals
+	    global.EvEmitter = factory();
+	  }
+
+	}( this, function() {
+
+	"use strict";
+
+	function EvEmitter() {}
+
+	var proto = EvEmitter.prototype;
+
+	proto.on = function( eventName, listener ) {
+	  if ( !eventName || !listener ) {
+	    return;
+	  }
+	  // set events hash
+	  var events = this._events = this._events || {};
+	  // set listeners array
+	  var listeners = events[ eventName ] = events[ eventName ] || [];
+	  // only add once
+	  if ( listeners.indexOf( listener ) == -1 ) {
+	    listeners.push( listener );
+	  }
+
+	  return this;
+	};
+
+	proto.once = function( eventName, listener ) {
+	  if ( !eventName || !listener ) {
+	    return;
+	  }
+	  // add event
+	  this.on( eventName, listener );
+	  // set once flag
+	  // set onceEvents hash
+	  var onceEvents = this._onceEvents = this._onceEvents || {};
+	  // set onceListeners array
+	  var onceListeners = onceEvents[ eventName ] = onceEvents[ eventName ] || [];
+	  // set flag
+	  onceListeners[ listener ] = true;
+
+	  return this;
+	};
+
+	proto.off = function( eventName, listener ) {
+	  var listeners = this._events && this._events[ eventName ];
+	  if ( !listeners || !listeners.length ) {
+	    return;
+	  }
+	  var index = listeners.indexOf( listener );
+	  if ( index != -1 ) {
+	    listeners.splice( index, 1 );
+	  }
+
+	  return this;
+	};
+
+	proto.emitEvent = function( eventName, args ) {
+	  var listeners = this._events && this._events[ eventName ];
+	  if ( !listeners || !listeners.length ) {
+	    return;
+	  }
+	  var i = 0;
+	  var listener = listeners[i];
+	  args = args || [];
+	  // once stuff
+	  var onceListeners = this._onceEvents && this._onceEvents[ eventName ];
+
+	  while ( listener ) {
+	    var isOnce = onceListeners && onceListeners[ listener ];
+	    if ( isOnce ) {
+	      // remove listener
+	      // remove before trigger to prevent recursion
+	      this.off( eventName, listener );
+	      // unset once flag
+	      delete onceListeners[ listener ];
+	    }
+	    // trigger listener
+	    listener.apply( this, args );
+	    // get next listener
+	    i += isOnce ? 0 : 1;
+	    listener = listeners[i];
+	  }
+
+	  return this;
+	};
+
+	return EvEmitter;
+
+	}));
 
 
 /***/ }

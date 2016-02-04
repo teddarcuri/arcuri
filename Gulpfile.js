@@ -19,7 +19,7 @@ gulp.task('sass', function () {
 gulp.task('serve', ['sass', 'build', 'webpack'], function() {
     browserSync.init({
         server: {
-            baseDir: "./"
+            
         },
         middleware : [ historyApiFallback() ]
     });

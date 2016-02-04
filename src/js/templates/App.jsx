@@ -6,21 +6,23 @@ import ReactTransitionGroup from 'react-addons-transition-group';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import projectList from '../utilities/project-list';
 
-// Utility
-import h from '../utilities/helpers';
-import BackgroundSmoke from '../utilities/background-smoke';
-
-// Routes
+// Routes 
 import Index from './index';
 import About from './about';
 import Projects from './projects';
 import ProjectDiagonals from './ProjectDiagonals';
+import ProjectBar from './ProjectBar';
+import NewProjectForm from './NewProjectForm';
 import Project from './project';
 import Contact from './contact';
 
 // Firebase
 import Rebase from 're-base';
 var base = Rebase.createClass('https://tedd-arcuri.firebaseio.com/');
+
+// Utility
+import h from '../utilities/helpers';
+import imagesLoaded from 'imagesloaded';
 
 /*
   Application
@@ -33,13 +35,12 @@ class App extends React.Component {
     this.state = {
       isProjectPage: false,
       currentProject: {},
-      projects: []
+      projects: [],
+
     }
   }
 
   componentDidMount() {
-
-    //BackgroundSmoke.init(); 
     // Check to see if the loaded route will be a project component
     this.checkIfProjectPage(this.props);
 
@@ -49,8 +50,21 @@ class App extends React.Component {
       state: 'projects',
       asArray: true,
       then() {
-        console.log(this.state.projects);
+        //console.log(this.state.projects);
       }
+    });
+
+    // Images Loaded
+    var imgLoad = imagesLoaded( this.refs.appWindow, function( instance ) {
+      console.log(instance);
+    });
+
+    imgLoad.on('progress', function(imgLoad, image) {
+    var result = image.isLoaded ? 'loaded' : 'broken';
+    console.log( 'image is ' + result + ' for ' + image.img.src );
+    }) 
+
+    imgLoad.on( 'done', function( instance ) {
     });
   }
 
@@ -86,8 +100,10 @@ class App extends React.Component {
 
   render() {
     var logoClasses = this.state.isProjectPage ? "light" : "dark";
+
     return (
-    <div className="app-window">
+    <div className="app-window"
+          ref="appWindow">
     
         <header id="main" className={logoClasses}>
   
@@ -157,6 +173,10 @@ class App extends React.Component {
 
        <div id="background-smoke">
        </div>
+
+       <ProjectBar projects={this.state.projects}
+                   currentProject={this.state.currentProject} />
+
       </div>       
     )
   }
@@ -173,6 +193,7 @@ ReactDOM.render((
       <Route path="contact" component={Contact}/>
       <Route path="work" component={Projects} >
         <IndexRoute component={ProjectDiagonals} />
+        <Route path="new" component={NewProjectForm} />
         <Route path=":name" component={Project} />
       </Route>
     </Route>

@@ -8,7 +8,7 @@
 }
 
 .diagonal {
-    height: 50%;
+    height: 60%;
     background-size: contain;
     background-position: center;
     -webkit-backface-visibility: hidden;
@@ -18,7 +18,7 @@
     display: block;
     outline: solid 1px transparent;
     overflow: hidden;
-    //margin-right: 20px;
+    //=margin-right: 20px;
     @include flex(100px 0);
     @include display(flex);
     @include align-items(center);
@@ -29,7 +29,7 @@
     &:hover {
         box-shadow: 3px 3px 10px  5px rgba(#000, 0.3);
         z-index: 2;
-        @include flex(50% 0);
+        @include flex(100% 0);
         @include transform(skew(-15deg));
         @include transition-delay(0.1s);
 
@@ -55,7 +55,7 @@
         height: 100%;
         z-index: 2;
         position: absolute;
-        right: 0;
+        right: 0px; top: 0px;
         @include transition(all ease 0.5s);
         @include transform(rotate(0deg));
         @include transition-delay(0.1s);
@@ -67,7 +67,7 @@
 
     .background {
         position: absolute;
-        left: -70px;
+        left: -150px;
         min-height: 100%;
         min-width: 120%;
         @include transition(all ease 0.5s);

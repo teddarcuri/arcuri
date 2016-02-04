@@ -32,6 +32,11 @@ class ProjectBar extends React.Component {
             )
           })
         }
+        <li>
+          <Link to="/work/new">
+            <img src="/src/img/new-project-btn.jpg" />
+          </Link>
+        </li>
       </ul>
     );
   }

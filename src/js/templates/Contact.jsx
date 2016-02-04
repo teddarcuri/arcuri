@@ -13,8 +13,8 @@ class Contact extends React.Component {
 						transitionLeaveTimeout={2000}>
 			<h1>Contact</h1>
 			<section className="split">
-				<aside>tedd.arcuri@gmail.com</aside>
-				<aside>719-440-4732</aside>
+				<aside className="half">tedd.arcuri@gmail.com</aside>
+				<aside className="half">719-440-4732</aside>
 			</section>
 		</CSSTransitionGroup>
 		)
