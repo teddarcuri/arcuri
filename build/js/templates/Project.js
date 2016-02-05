@@ -56,6 +56,51 @@ var Project = function (_React$Component) {
       this.setState({ isEditing: !this.state.isEditing });
     }
   }, {
+    key: 'renderSidebar',
+    value: function renderSidebar() {
+      if (this.state.isEditing) {
+        return _react2.default.createElement(
+          'form',
+          { id: 'edit-project', onSubmit: this.props.updateProject.bind(this) },
+          _react2.default.createElement(
+            'h3',
+            null,
+            'Edit'
+          ),
+          _react2.default.createElement('input', {
+            type: 'text',
+            placeholder: 'name',
+            valueLink: this.props.linkState('currentProject.name')
+          }),
+          _react2.default.createElement('input', { ref: 'types',
+            type: 'types',
+            placeholder: 'types' }),
+          _react2.default.createElement('input', { ref: 'background',
+            type: 'background',
+            placeholder: 'background',
+            valueLink: this.props.linkState('currentProject.background') }),
+          _react2.default.createElement('input', { ref: 'logo',
+            type: 'logo',
+            placeholder: 'logo',
+            valueLink: this.props.linkState('currentProject.logo') }),
+          _react2.default.createElement('textarea', { ref: 'description',
+            name: 'description',
+            valueLink: this.props.linkState('currentProject.description') }),
+          _react2.default.createElement('textarea', { ref: 'myRole',
+            name: 'my-role' }),
+          _react2.default.createElement('textarea', { ref: 'techUsed',
+            name: 'tech-used' }),
+          _react2.default.createElement(
+            'button',
+            { type: 'submit' },
+            'Update Project'
+          )
+        );
+      } else {
+        return;
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       var p = this.props.currentProject,
@@ -71,28 +116,12 @@ var Project = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: sidebarClasses },
-          _react2.default.createElement(
-            'form',
-            { id: 'edit-project' },
-            _react2.default.createElement(
-              'h3',
-              null,
-              'Edit ',
-              p.name
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              placeholder: 'name',
-              valueLink: this.props.linkState('currentProject.name') }),
-            _react2.default.createElement(
-              'button',
-              { type: 'submit' },
-              'Create Project'
-            )
-          )
+          this.renderSidebar()
         ),
         _react2.default.createElement(_ProjectPage2.default, { currentProject: this.props.currentProject,
-          edit: this.isEditing.bind(this) })
+          edit: this.isEditing.bind(this),
+          linkState: this.props.linkState,
+          removeProject: this.props.removeProject })
       );
     }
   }]);

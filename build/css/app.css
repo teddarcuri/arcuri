@@ -795,9 +795,9 @@ header#main {
     -moz-transition: all ease 0.7s;
     transition: all ease 0.7s; }
     .project .sidebar form {
-      padding: 100px 20px 20px 20px; }
+      padding: 100px 55px; }
     .project .sidebar.active {
-      width: 300px;
+      width: 400px;
       -webkit-transform: translateX(0%);
       -moz-transform: translateX(0%);
       -ms-transform: translateX(0%);
@@ -1110,7 +1110,7 @@ header#main {
   -ms-flex-align: stretch;
   height: 100%; }
   .project-builder .project-page {
-    padding: 50px; }
+    padding: 0px 50px; }
   .project-builder .preview-window {
     overflow: auto; }
 

@@ -257,18 +257,17 @@
 	      this.history.pushState(null, '/work/' + project.name);
 	    }
 	  }, {
+	    key: 'updateProject',
+	    value: function updateProject(project) {
+	      console.log(this.state.currentProject);
+	    }
+	  }, {
 	    key: 'removeProject',
 	    value: function removeProject(project) {
-	      var id = this.props.params.name;
-	      var source = this.state.projects;
 
-	      // Find the project and remove it based off url
-	      for (var i = 0; i < source.length; i++) {
-	        if (source[i].name == id) {
-	          this.state.projects.splice(i);
-	          return;
-	        }
-	      }
+	      var key = this.state.currentProject.key;
+
+	      this.state.projects[key] = null;
 
 	      // Update state -> Go to work index page
 	      this.setState({ projects: this.state.projects });
@@ -61993,7 +61992,7 @@
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _react = __webpack_require__(1);
@@ -62013,35 +62012,36 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var Projects = function (_React$Component) {
-		_inherits(Projects, _React$Component);
+	  _inherits(Projects, _React$Component);
 
-		function Projects(props) {
-			_classCallCheck(this, Projects);
+	  function Projects(props) {
+	    _classCallCheck(this, Projects);
 
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(Projects).call(this, props));
-		}
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Projects).call(this, props));
+	  }
 
-		_createClass(Projects, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					{ className: 'projects' },
-					_react2.default.cloneElement(this.props.children, {
-						key: this.props.location.pathname,
-						projects: this.props.projects,
-						isProjectPage: this.props.isProjectPage,
-						currentProject: this.props.currentProject,
-						newProject: this.props.newProject,
-						addProject: this.props.addProject,
-						removeProject: this.props.removeProject,
-						linkState: this.props.linkState
-					})
-				);
-			}
-		}]);
+	  _createClass(Projects, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'projects' },
+	        _react2.default.cloneElement(this.props.children, {
+	          key: this.props.location.pathname,
+	          projects: this.props.projects,
+	          isProjectPage: this.props.isProjectPage,
+	          currentProject: this.props.currentProject,
+	          newProject: this.props.newProject,
+	          addProject: this.props.addProject,
+	          updateProject: this.props.updateProject,
+	          removeProject: this.props.removeProject,
+	          linkState: this.props.linkState
+	        })
+	      );
+	    }
+	  }]);
 
-		return Projects;
+	  return Projects;
 	}(_react2.default.Component);
 
 	exports.default = Projects;
@@ -62642,6 +62642,51 @@
 	      this.setState({ isEditing: !this.state.isEditing });
 	    }
 	  }, {
+	    key: 'renderSidebar',
+	    value: function renderSidebar() {
+	      if (this.state.isEditing) {
+	        return _react2.default.createElement(
+	          'form',
+	          { id: 'edit-project', onSubmit: this.props.updateProject.bind(this) },
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            'Edit'
+	          ),
+	          _react2.default.createElement('input', {
+	            type: 'text',
+	            placeholder: 'name',
+	            valueLink: this.props.linkState('currentProject.name')
+	          }),
+	          _react2.default.createElement('input', { ref: 'types',
+	            type: 'types',
+	            placeholder: 'types' }),
+	          _react2.default.createElement('input', { ref: 'background',
+	            type: 'background',
+	            placeholder: 'background',
+	            valueLink: this.props.linkState('currentProject.background') }),
+	          _react2.default.createElement('input', { ref: 'logo',
+	            type: 'logo',
+	            placeholder: 'logo',
+	            valueLink: this.props.linkState('currentProject.logo') }),
+	          _react2.default.createElement('textarea', { ref: 'description',
+	            name: 'description',
+	            valueLink: this.props.linkState('currentProject.description') }),
+	          _react2.default.createElement('textarea', { ref: 'myRole',
+	            name: 'my-role' }),
+	          _react2.default.createElement('textarea', { ref: 'techUsed',
+	            name: 'tech-used' }),
+	          _react2.default.createElement(
+	            'button',
+	            { type: 'submit' },
+	            'Update Project'
+	          )
+	        );
+	      } else {
+	        return;
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var p = this.props.currentProject,
@@ -62657,28 +62702,12 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: sidebarClasses },
-	          _react2.default.createElement(
-	            'form',
-	            { id: 'edit-project' },
-	            _react2.default.createElement(
-	              'h3',
-	              null,
-	              'Edit ',
-	              p.name
-	            ),
-	            _react2.default.createElement('input', {
-	              type: 'text',
-	              placeholder: 'name',
-	              valueLink: this.props.linkState('currentProject.name') }),
-	            _react2.default.createElement(
-	              'button',
-	              { type: 'submit' },
-	              'Create Project'
-	            )
-	          )
+	          this.renderSidebar()
 	        ),
 	        _react2.default.createElement(_ProjectPage2.default, { currentProject: this.props.currentProject,
-	          edit: this.isEditing.bind(this) })
+	          edit: this.isEditing.bind(this),
+	          linkState: this.props.linkState,
+	          removeProject: this.props.removeProject })
 	      );
 	    }
 	  }]);

@@ -107,7 +107,6 @@ class App extends React.Component {
     }
   }
 
-
   // CRUD
   findById(source, id) {
     for (var i = 0; i < source.length; i++) {
@@ -125,17 +124,15 @@ class App extends React.Component {
     this.history.pushState(null, '/work/' + project.name);
   }
 
-  removeProject(project) {
-   const id = this.props.params.name;
-   var source = this.state.projects;
+  updateProject(project) {
+    console.log(this.state.currentProject);
+  }
 
-   // Find the project and remove it based off url
-    for (var i = 0; i < source.length; i++) {
-      if (source[i].name == id) {
-        this.state.projects.splice(i);
-        return
-      }
-    }
+  removeProject(project) {
+
+    var key = this.state.currentProject.key;
+
+    this.state.projects[key] = null
 
     // Update state -> Go to work index page
     this.setState({projects: this.state.projects});

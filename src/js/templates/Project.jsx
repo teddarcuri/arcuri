@@ -17,9 +17,55 @@ class Project extends React.Component {
   showGallery() {
     this.setState({showGallery: true});
   }
-  
+
   isEditing() {
     this.setState({isEditing: !this.state.isEditing});
+  }
+
+  renderSidebar() {
+    if (this.state.isEditing) {
+      return (
+         <form id="edit-project" onSubmit={this.props.updateProject.bind(this)}>
+            <h3>Edit</h3>
+
+            <input 
+             type="text" 
+             placeholder="name"
+             valueLink={this.props.linkState('currentProject.name')} 
+             />
+
+             <input ref="types" 
+                 type="types" 
+                 placeholder="types"/>
+
+            <input ref="background" 
+                 type="background" 
+                 placeholder="background"
+                 valueLink={this.props.linkState('currentProject.background')}/>
+
+            <input ref="logo" 
+                 type="logo" 
+                 placeholder="logo"
+                 valueLink={this.props.linkState('currentProject.logo')}/>
+
+            <textarea ref="description" 
+                    name="description"
+                    valueLink={this.props.linkState('currentProject.description')} />
+
+            <textarea ref="myRole" 
+                    name="my-role" />
+
+            <textarea ref="techUsed" 
+                    name="tech-used" />
+
+            <button type="submit">
+              Update Project
+            </button>
+          </form>
+      ) 
+    } else {
+      return 
+    }
   }
 
   render() {
@@ -35,23 +81,13 @@ class Project extends React.Component {
       <div className="project">
 
           <div className={sidebarClasses}>
-            <form id="edit-project">
-                <h3>Edit {p.name}</h3>
-
-                <input 
-                 type="text" 
-                 placeholder="name"
-                 valueLink={this.props.linkState('currentProject.name')} />
-
-
-                <button type="submit">
-                  Create Project
-                </button>
-              </form>
+            {this.renderSidebar()}
           </div>
 
          <ProjectPage currentProject={this.props.currentProject}
-                      edit={this.isEditing.bind(this)} />
+                      edit={this.isEditing.bind(this)}
+                      linkState={this.props.linkState}
+                      removeProject={this.props.removeProject} />
 
       </div>
 

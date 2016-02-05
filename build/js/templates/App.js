@@ -211,18 +211,17 @@ var App = function (_React$Component) {
       this.history.pushState(null, '/work/' + project.name);
     }
   }, {
+    key: 'updateProject',
+    value: function updateProject(project) {
+      console.log(this.state.currentProject);
+    }
+  }, {
     key: 'removeProject',
     value: function removeProject(project) {
-      var id = this.props.params.name;
-      var source = this.state.projects;
 
-      // Find the project and remove it based off url
-      for (var i = 0; i < source.length; i++) {
-        if (source[i].name == id) {
-          this.state.projects.splice(i);
-          return;
-        }
-      }
+      var key = this.state.currentProject.key;
+
+      this.state.projects[key] = null;
 
       // Update state -> Go to work index page
       this.setState({ projects: this.state.projects });
