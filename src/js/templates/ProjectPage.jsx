@@ -1,6 +1,7 @@
 import React from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import ProjectGallery from './ProjectGallery';
+import ProjectActionBar from './ProjectActionBar';
 
 class ProjectPage extends React.Component {
 
@@ -8,14 +9,23 @@ class ProjectPage extends React.Component {
   	super(props);
 
     this.state = {
-      showGallery: true
+      showGallery: true,
+      confirmRemoveProject: false
     }
   }
 
-  showGallery() {
-    this.setState({showGallery: true});
+  toggleConfirmBox() {
+    this.setState({confirmRemoveProject: !this.state.confirmRemoveProject});
   }
-  
+
+  renderProjectActionBar() {
+    if (this.state.confirmRemoveProject) {
+      return (
+        <ProjectActionBar confirmRemoveProject={this.props.removeProject}
+                          cancelRemove={this.toggleConfirmBox.bind(this)}/>
+      )
+    }
+  }
 
   render() {
   	var p = this.props.currentProject,
@@ -35,7 +45,7 @@ class ProjectPage extends React.Component {
                               transitionAppear={true}
                               transitionAppearTimeout={0}
                               transitionEnterTimeout={1000}
-                              transitionLeaveTimeout={1000}>
+                              transitionLeaveTimeout={0}>
             <header>
               <h1 className="title">
                 {logo}
@@ -44,7 +54,7 @@ class ProjectPage extends React.Component {
                   <li onClick={this.props.edit}>
                     <img src="/src/img/icons/edit-icon.svg" />
                   </li>
-                  <li onClick={this.props.removeProject}>
+                  <li onClick={this.toggleConfirmBox.bind(this)}>
                     <img src="/src/img/icons/close.svg" />
                   </li>
                 </ul>
@@ -55,6 +65,8 @@ class ProjectPage extends React.Component {
                 <li>Print</li>
               </ul>
             </header>
+
+            {this.renderProjectActionBar()}
 
             <main>
 

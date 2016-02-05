@@ -18,6 +18,10 @@ var _ProjectGallery = require('./ProjectGallery');
 
 var _ProjectGallery2 = _interopRequireDefault(_ProjectGallery);
 
+var _ProjectActionBar = require('./ProjectActionBar');
+
+var _ProjectActionBar2 = _interopRequireDefault(_ProjectActionBar);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -35,15 +39,24 @@ var ProjectPage = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectPage).call(this, props));
 
     _this.state = {
-      showGallery: true
+      showGallery: true,
+      confirmRemoveProject: false
     };
     return _this;
   }
 
   _createClass(ProjectPage, [{
-    key: 'showGallery',
-    value: function showGallery() {
-      this.setState({ showGallery: true });
+    key: 'toggleConfirmBox',
+    value: function toggleConfirmBox() {
+      this.setState({ confirmRemoveProject: !this.state.confirmRemoveProject });
+    }
+  }, {
+    key: 'renderProjectActionBar',
+    value: function renderProjectActionBar() {
+      if (this.state.confirmRemoveProject) {
+        return _react2.default.createElement(_ProjectActionBar2.default, { confirmRemoveProject: this.props.removeProject,
+          cancelRemove: this.toggleConfirmBox.bind(this) });
+      }
     }
   }, {
     key: 'render',
@@ -66,7 +79,7 @@ var ProjectPage = function (_React$Component) {
             transitionAppear: true,
             transitionAppearTimeout: 0,
             transitionEnterTimeout: 1000,
-            transitionLeaveTimeout: 1000 },
+            transitionLeaveTimeout: 0 },
           _react2.default.createElement(
             'header',
             null,
@@ -85,7 +98,7 @@ var ProjectPage = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                   'li',
-                  { onClick: this.props.removeProject },
+                  { onClick: this.toggleConfirmBox.bind(this) },
                   _react2.default.createElement('img', { src: '/src/img/icons/close.svg' })
                 )
               )
@@ -105,6 +118,7 @@ var ProjectPage = function (_React$Component) {
               )
             )
           ),
+          this.renderProjectActionBar(),
           _react2.default.createElement(
             'main',
             null,

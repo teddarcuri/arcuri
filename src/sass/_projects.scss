@@ -366,6 +366,34 @@
   }
 }
 
+.project-action-bar {
+  background: $red;
+  width: 100%;
+  padding: 20px;
+  font-weight: 700;
+  @include display(flex);
+  @include align-items(center);
+  button {
+    background: #fff;
+    color: $red;
+    border: none;
+    outline: none;
+    font-weight: 700;
+    font-size: 0.9em;
+    padding: 17px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+    @include flex(1 0 auto);
+    &:hover {
+      background: darken($red, 10%);
+      color: #fff;
+    }
+  }
+}
+
+
+// Project bubbles in menu
 #menu {
   .project-bubble-wrap {
     padding: 20px 10px;

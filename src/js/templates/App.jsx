@@ -139,6 +139,7 @@ class App extends React.Component {
     this.history.pushState(null, '/work');
   }
 
+
   renderProjectBubbles() {
     return (
       <ProjectIndex projects={this.state.projects}

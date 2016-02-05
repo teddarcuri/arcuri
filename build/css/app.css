@@ -184,19 +184,34 @@ html {
 
 .project-element-enter {
   opacity: 0.01;
-  transition: all 0.5s ease; }
+  transition: all 1s ease;
+  -webkit-transform: translateY(10px);
+  -moz-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  -o-transform: translateY(10px);
+  transform: translateY(10px); }
 
 .project-element-enter.project-element-enter-active {
   opacity: 1;
-  transition: all 0.5s ease; }
+  transition: all 1s ease;
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  -o-transform: translateY(0px);
+  transform: translateY(0px); }
 
 .project-element-leave {
-  opacity: 0.01;
-  transition: all 0.5s ease; }
+  opacity: 1;
+  transition: all 1s ease;
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  -o-transform: translateY(0px);
+  transform: translateY(0px); }
 
 .project-element-leave.project-element-leave-active {
-  opacity: 1;
-  transition: all 0.5s ease; }
+  opacity: 0.01;
+  transition: all 1s ease; }
 
 .diagonals {
   height: 100%;
@@ -1387,6 +1402,49 @@ header#main {
       -ms-transform: scale(1.2);
       -o-transform: scale(1.2);
       transform: scale(1.2); }
+
+.project-action-bar {
+  background: #AC4040;
+  width: 100%;
+  padding: 20px;
+  font-weight: 700;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  box-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -ms-flex-align: center; }
+  .project-action-bar button {
+    background: #fff;
+    color: #AC4040;
+    border: none;
+    outline: none;
+    font-weight: 700;
+    font-size: 0.9em;
+    padding: 17px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex: 1 0 auto;
+    -moz-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto; }
+    .project-action-bar button:hover {
+      background: #873232;
+      color: #fff; }
 
 #menu .project-bubble-wrap {
   padding: 20px 10px;

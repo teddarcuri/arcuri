@@ -117,20 +117,23 @@
 
 .project-element-enter {
   opacity: 0.01;
-  transition: all 0.5s ease;
+  transition: all 1s ease;
+  @include transform(translateY(10px));
 }
 
 .project-element-enter.project-element-enter-active {
   opacity: 1;
-  transition: all 0.5s ease;
+  transition: all 1s ease;
+  @include transform(translateY(0px));
 }
 
 .project-element-leave {
-  opacity: 0.01;
-  transition: all 0.5s ease;
+  opacity: 1;
+  transition: all 1s ease;
+  @include transform(translateY(0px));
 }
 
 .project-element-leave.project-element-leave-active {
-  opacity: 1;
-  transition: all 0.5s ease;
+  opacity: 0.01;
+  transition: all 1s ease;
 }

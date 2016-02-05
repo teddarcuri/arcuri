@@ -21,11 +21,11 @@ class Project extends React.Component {
   isEditing() {
     this.setState({isEditing: !this.state.isEditing});
   }
-
+  
   renderSidebar() {
     if (this.state.isEditing) {
       return (
-         <form id="edit-project" onSubmit={this.props.updateProject.bind(this)}>
+         <form id="edit-project" onSubmit={this.props.updateProject}>
             <h3>Edit</h3>
 
             <input 

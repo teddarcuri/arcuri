@@ -106,27 +106,27 @@
 
 	var _project2 = _interopRequireDefault(_project);
 
-	var _contact = __webpack_require__(235);
+	var _contact = __webpack_require__(236);
 
 	var _contact2 = _interopRequireDefault(_contact);
 
-	var _reBase = __webpack_require__(236);
+	var _reBase = __webpack_require__(237);
 
 	var _reBase2 = _interopRequireDefault(_reBase);
 
-	var _helpers = __webpack_require__(239);
+	var _helpers = __webpack_require__(240);
 
 	var _helpers2 = _interopRequireDefault(_helpers);
 
-	var _imagesloaded = __webpack_require__(240);
+	var _imagesloaded = __webpack_require__(241);
 
 	var _imagesloaded2 = _interopRequireDefault(_imagesloaded);
 
-	var _reactCatalyst = __webpack_require__(233);
+	var _reactCatalyst = __webpack_require__(234);
 
 	var _reactCatalyst2 = _interopRequireDefault(_reactCatalyst);
 
-	var _reactMixin = __webpack_require__(230);
+	var _reactMixin = __webpack_require__(231);
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
@@ -62470,11 +62470,11 @@
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	var _reactMixin = __webpack_require__(230);
+	var _reactMixin = __webpack_require__(231);
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
-	var _reactCatalyst = __webpack_require__(233);
+	var _reactCatalyst = __webpack_require__(234);
 
 	var _reactCatalyst2 = _interopRequireDefault(_reactCatalyst);
 
@@ -62647,7 +62647,7 @@
 	      if (this.state.isEditing) {
 	        return _react2.default.createElement(
 	          'form',
-	          { id: 'edit-project', onSubmit: this.props.updateProject.bind(this) },
+	          { id: 'edit-project', onSubmit: this.props.updateProject },
 	          _react2.default.createElement(
 	            'h3',
 	            null,
@@ -62857,6 +62857,10 @@
 
 	var _ProjectGallery2 = _interopRequireDefault(_ProjectGallery);
 
+	var _ProjectActionBar = __webpack_require__(230);
+
+	var _ProjectActionBar2 = _interopRequireDefault(_ProjectActionBar);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -62874,15 +62878,24 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectPage).call(this, props));
 
 	    _this.state = {
-	      showGallery: true
+	      showGallery: true,
+	      confirmRemoveProject: false
 	    };
 	    return _this;
 	  }
 
 	  _createClass(ProjectPage, [{
-	    key: 'showGallery',
-	    value: function showGallery() {
-	      this.setState({ showGallery: true });
+	    key: 'toggleConfirmBox',
+	    value: function toggleConfirmBox() {
+	      this.setState({ confirmRemoveProject: !this.state.confirmRemoveProject });
+	    }
+	  }, {
+	    key: 'renderProjectActionBar',
+	    value: function renderProjectActionBar() {
+	      if (this.state.confirmRemoveProject) {
+	        return _react2.default.createElement(_ProjectActionBar2.default, { confirmRemoveProject: this.props.removeProject,
+	          cancelRemove: this.toggleConfirmBox.bind(this) });
+	      }
 	    }
 	  }, {
 	    key: 'render',
@@ -62905,7 +62918,7 @@
 	            transitionAppear: true,
 	            transitionAppearTimeout: 0,
 	            transitionEnterTimeout: 1000,
-	            transitionLeaveTimeout: 1000 },
+	            transitionLeaveTimeout: 0 },
 	          _react2.default.createElement(
 	            'header',
 	            null,
@@ -62924,7 +62937,7 @@
 	                ),
 	                _react2.default.createElement(
 	                  'li',
-	                  { onClick: this.props.removeProject },
+	                  { onClick: this.toggleConfirmBox.bind(this) },
 	                  _react2.default.createElement('img', { src: '/src/img/icons/close.svg' })
 	                )
 	              )
@@ -62944,6 +62957,7 @@
 	              )
 	            )
 	          ),
+	          this.renderProjectActionBar(),
 	          _react2.default.createElement(
 	            'main',
 	            null,
@@ -63004,8 +63018,71 @@
 /* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var mixin = __webpack_require__(231);
-	var assign = __webpack_require__(232);
+	"use strict";
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ProjectActionBar = function (_React$Component) {
+		_inherits(ProjectActionBar, _React$Component);
+
+		function ProjectActionBar() {
+			_classCallCheck(this, ProjectActionBar);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectActionBar).apply(this, arguments));
+		}
+
+		_createClass(ProjectActionBar, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "project-action-bar" },
+					_react2.default.createElement(
+						"h3",
+						null,
+						"And you're, like, TOTALLY sure about this?"
+					),
+					_react2.default.createElement(
+						"button",
+						{ onClick: this.props.confirmRemoveProject },
+						"Confirm Deletion"
+					),
+					_react2.default.createElement(
+						"button",
+						{ onClick: this.props.cancelRemove },
+						"Nevermind"
+					)
+				);
+			}
+		}]);
+
+		return ProjectActionBar;
+	}(_react2.default.Component);
+
+	exports.default = ProjectActionBar;
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var mixin = __webpack_require__(232);
+	var assign = __webpack_require__(233);
 
 	var mixinProto = mixin({
 	  // lifecycle stuff is as you'd expect
@@ -63158,7 +63235,7 @@
 
 
 /***/ },
-/* 231 */
+/* 232 */
 /***/ function(module, exports) {
 
 	var objToStr = function(x){ return Object.prototype.toString.call(x); };
@@ -63341,7 +63418,7 @@
 
 
 /***/ },
-/* 232 */
+/* 233 */
 /***/ function(module, exports) {
 
 	/* eslint-disable no-unused-vars */
@@ -63386,15 +63463,15 @@
 
 
 /***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	exports.LinkedStateMixin = __webpack_require__(234);
+	exports.LinkedStateMixin = __webpack_require__(235);
 
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports) {
 
 	
@@ -63429,7 +63506,7 @@
 
 
 /***/ },
-/* 235 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63504,20 +63581,20 @@
 	exports.default = Contact;
 
 /***/ },
-/* 236 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(237);
+	module.exports = __webpack_require__(238);
 
 
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
-			module.exports = factory(__webpack_require__(238));
+			module.exports = factory(__webpack_require__(239));
 		else if(typeof define === 'function' && define.amd)
 			define(["firebase"], factory);
 		else {
@@ -64047,7 +64124,7 @@
 	;
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports) {
 
 	/*! @license Firebase v2.4.0
@@ -64331,7 +64408,7 @@
 
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -64354,7 +64431,7 @@
 	exports.default = helpers;
 
 /***/ },
-/* 240 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -64371,7 +64448,7 @@
 	  if ( true ) {
 	    // AMD
 	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-	      __webpack_require__(241)
+	      __webpack_require__(242)
 	    ], __WEBPACK_AMD_DEFINE_RESULT__ = function( EvEmitter ) {
 	      return factory( window, EvEmitter );
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -64730,7 +64807,7 @@
 
 
 /***/ },
-/* 241 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**

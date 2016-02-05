@@ -61,7 +61,7 @@ var Project = function (_React$Component) {
       if (this.state.isEditing) {
         return _react2.default.createElement(
           'form',
-          { id: 'edit-project', onSubmit: this.props.updateProject.bind(this) },
+          { id: 'edit-project', onSubmit: this.props.updateProject },
           _react2.default.createElement(
             'h3',
             null,
