@@ -214,6 +214,9 @@
 	      // Check to see if the next route will be a project component
 	      this.checkIfProjectPage(nextProps);
 	    }
+
+	    // Page Detection
+
 	  }, {
 	    key: 'checkIfProjectPage',
 	    value: function checkIfProjectPage(props) {
@@ -232,6 +235,9 @@
 	        this.setState({ isProjectPage: false });
 	      }
 	    }
+
+	    // CRUD
+
 	  }, {
 	    key: 'findById',
 	    value: function findById(source, id) {
@@ -246,9 +252,23 @@
 	    value: function addProject(project) {
 	      var timestamp = new Date().getTime();
 
-	      this.projects.push(project);
-	      console.log(this.projects);
-	      this.setState({ projects: this.projects });
+	      this.state.projects.push(project);
+	      this.setState({ projects: this.state.projects });
+	    }
+	  }, {
+	    key: 'removeProject',
+	    value: function removeProject(project) {
+	      var id = this.props.params.name;
+	      var source = this.state.projects;
+
+	      for (var i = 0; i < source.length; i++) {
+	        if (source[i].name == id) {
+	          this.state.projects.splice(i);
+	        }
+	      }
+
+	      this.setState({ projects: this.state.projects });
+	      this.history.pushState(null, '/work');
 	    }
 	  }, {
 	    key: 'renderProjectBubbles',
@@ -392,7 +412,8 @@
 	              projects: this.state.projects,
 	              currentProject: this.state.currentProject,
 	              newProject: this.state.newProject,
-	              addProject: this.addProject,
+	              addProject: this.addProject.bind(this),
+	              removeProject: this.removeProject.bind(this),
 	              linkState: this.linkState.bind(this)
 	            })
 	          )
@@ -410,6 +431,7 @@
 	// Mixins
 
 	_reactMixin2.default.onClass(App, _reactCatalyst2.default.LinkedStateMixin);
+	_reactMixin2.default.onClass(App, _reactRouter.History);
 
 	/*
 	  Render Routes
@@ -62008,7 +62030,8 @@
 						currentProject: this.props.currentProject,
 						newProject: this.props.newProject,
 						addProject: this.props.addProject,
-						linkState: this.props.linkState.bind(this)
+						removeProject: this.props.removeProject,
+						linkState: this.props.linkState
 					})
 				);
 			}
@@ -62479,7 +62502,12 @@
 									background: this.refs.background.value,
 									logo: this.refs.logo.value,
 									types: this.refs.types.value,
-									description: this.refs.description.value
+									description: this.refs.description.value,
+									gallery: {
+											image1: {
+													path: "/src/img/gallery_images/colorado_gov/contact.png"
+											}
+									}
 							};
 
 							// Add to project to state
@@ -62627,7 +62655,21 @@
 	              'h1',
 	              { className: 'title' },
 	              logo,
-	              p.name
+	              p.name,
+	              _react2.default.createElement(
+	                'ul',
+	                { className: 'project-edit-tools' },
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement('img', { src: '/src/img/icons/edit-icon.svg' })
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  { onClick: this.props.removeProject },
+	                  _react2.default.createElement('img', { src: '/src/img/icons/close.svg' })
+	                )
+	              )
 	            ),
 	            _react2.default.createElement(
 	              'ul',

@@ -73,7 +73,21 @@ var Project = function (_React$Component) {
               'h1',
               { className: 'title' },
               logo,
-              p.name
+              p.name,
+              _react2.default.createElement(
+                'ul',
+                { className: 'project-edit-tools' },
+                _react2.default.createElement(
+                  'li',
+                  null,
+                  _react2.default.createElement('img', { src: '/src/img/icons/edit-icon.svg' })
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { onClick: this.props.removeProject },
+                  _react2.default.createElement('img', { src: '/src/img/icons/close.svg' })
+                )
+              )
             ),
             _react2.default.createElement(
               'ul',

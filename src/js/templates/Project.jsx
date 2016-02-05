@@ -39,6 +39,14 @@ class Project extends React.Component {
             <h1 className="title">
               {logo}
               {p.name}
+              <ul className="project-edit-tools">
+                <li>
+                  <img src="/src/img/icons/edit-icon.svg" />
+                </li>
+                <li onClick={this.props.removeProject}>
+                  <img src="/src/img/icons/close.svg" />
+                </li>
+              </ul>
             </h1>
 
             <ul className="tags">

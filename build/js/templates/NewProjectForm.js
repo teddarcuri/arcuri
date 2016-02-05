@@ -54,7 +54,12 @@ var NewProjectForm = function (_React$Component) {
 								background: this.refs.background.value,
 								logo: this.refs.logo.value,
 								types: this.refs.types.value,
-								description: this.refs.description.value
+								description: this.refs.description.value,
+								gallery: {
+										image1: {
+												path: "/src/img/gallery_images/colorado_gov/contact.png"
+										}
+								}
 						};
 
 						// Add to project to state

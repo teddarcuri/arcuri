@@ -168,6 +168,9 @@ var App = function (_React$Component) {
       // Check to see if the next route will be a project component
       this.checkIfProjectPage(nextProps);
     }
+
+    // Page Detection
+
   }, {
     key: 'checkIfProjectPage',
     value: function checkIfProjectPage(props) {
@@ -186,6 +189,9 @@ var App = function (_React$Component) {
         this.setState({ isProjectPage: false });
       }
     }
+
+    // CRUD
+
   }, {
     key: 'findById',
     value: function findById(source, id) {
@@ -200,9 +206,23 @@ var App = function (_React$Component) {
     value: function addProject(project) {
       var timestamp = new Date().getTime();
 
-      this.projects.push(project);
-      console.log(this.projects);
-      this.setState({ projects: this.projects });
+      this.state.projects.push(project);
+      this.setState({ projects: this.state.projects });
+    }
+  }, {
+    key: 'removeProject',
+    value: function removeProject(project) {
+      var id = this.props.params.name;
+      var source = this.state.projects;
+
+      for (var i = 0; i < source.length; i++) {
+        if (source[i].name == id) {
+          this.state.projects.splice(i);
+        }
+      }
+
+      this.setState({ projects: this.state.projects });
+      this.history.pushState(null, '/work');
     }
   }, {
     key: 'renderProjectBubbles',
@@ -346,7 +366,8 @@ var App = function (_React$Component) {
               projects: this.state.projects,
               currentProject: this.state.currentProject,
               newProject: this.state.newProject,
-              addProject: this.addProject,
+              addProject: this.addProject.bind(this),
+              removeProject: this.removeProject.bind(this),
               linkState: this.linkState.bind(this)
             })
           )
@@ -364,6 +385,7 @@ var App = function (_React$Component) {
 // Mixins
 
 _reactMixin2.default.onClass(App, _reactCatalyst2.default.LinkedStateMixin);
+_reactMixin2.default.onClass(App, _reactRouter.History);
 
 /*
   Render Routes

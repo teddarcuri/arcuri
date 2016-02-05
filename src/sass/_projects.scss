@@ -89,8 +89,6 @@
     header {
       width: 100%;
       padding: 0px 10px;
-      background: rgba(#000, 0.2);
-      //border: solid 1px rgba(#000, 0.9);
       @include display(flex);
       @include align-items(center);
       @include justify-content(space-between);
@@ -293,7 +291,7 @@
 }
 
 .project-bubble-wrap {
-  @include flex(1 0);
+  @include flex(1 0 33%);
 }
 
 .project-bubble {
@@ -341,18 +339,21 @@
 
 #menu {
   .project-bubble-wrap {
-    padding: 10px;
+    padding: 20px 10px;
     @include display(flex);
     @include align-items(center);
     @include justify-content(center);
+    &:hover {
+      background: rgba(#000, 0.33);
+    }
   }
   .project-bubbles {
     background: rgba(#fff, 0.075);
     padding: 12px;
   }
   .project-bubble {
-    width: 22px;
-    height: 22px;
+    width: 33px;
+    height: 33px;
     border-radius: 50%;
     padding: 0px !important;
     @include display(flex);

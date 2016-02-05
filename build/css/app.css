@@ -905,7 +905,6 @@ header#main {
     .project-page .project-overview header {
       width: 100%;
       padding: 0px 10px;
-      background: rgba(0, 0, 0, 0.2);
       display: -webkit-box;
       display: -moz-box;
       display: box;
@@ -1254,10 +1253,10 @@ header#main {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   box-flex: 1;
-  -webkit-flex: 1 0;
-  -moz-flex: 1 0;
-  -ms-flex: 1 0;
-  flex: 1 0; }
+  -webkit-flex: 1 0 33%;
+  -moz-flex: 1 0 33%;
+  -ms-flex: 1 0 33%;
+  flex: 1 0 33%; }
 
 .project-bubble {
   height: 100%;
@@ -1326,7 +1325,7 @@ header#main {
       transform: scale(1.2); }
 
 #menu .project-bubble-wrap {
-  padding: 10px;
+  padding: 20px 10px;
   display: -webkit-box;
   display: -moz-box;
   display: box;
@@ -1352,14 +1351,16 @@ header#main {
   -o-justify-content: center;
   justify-content: center;
   -ms-flex-pack: center; }
+  #menu .project-bubble-wrap:hover {
+    background: rgba(0, 0, 0, 0.33); }
 
 #menu .project-bubbles {
   background: rgba(255, 255, 255, 0.075);
   padding: 12px; }
 
 #menu .project-bubble {
-  width: 22px;
-  height: 22px;
+  width: 33px;
+  height: 33px;
   border-radius: 50%;
   padding: 0px !important;
   display: -webkit-box;
@@ -1572,3 +1573,15 @@ section.split {
   -moz-flex: 1 0 450px;
   -ms-flex: 1 0 450px;
   flex: 1 0 450px; }
+
+.project-edit-tools {
+  display: inline-block; }
+  .project-edit-tools li {
+    display: inline-block;
+    padding: 10px;
+    font-size: 12px; }
+    .project-edit-tools li:hover {
+      background: rgba(255, 255, 255, 0.2); }
+    .project-edit-tools li img {
+      width: 17px;
+      height: 17px; }

@@ -18,7 +18,8 @@ class Projects extends React.Component {
                 currentProject: this.props.currentProject,
                 newProject: this.props.newProject,
                 addProject: this.props.addProject,
-                linkState: this.props.linkState.bind(this)
+                removeProject: this.props.removeProject,
+                linkState: this.props.linkState
               })}
 		</div>
 	   )

@@ -1,7 +1,7 @@
 // React
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, IndexRoute, Link, Navigation} from 'react-router';
+import {Router, Route, IndexRoute, Link, Navigation, History} from 'react-router';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import projectList from '../utilities/project-list';
@@ -89,6 +89,7 @@ class App extends React.Component {
     this.checkIfProjectPage(nextProps);
   }
 
+  // Page Detection
   checkIfProjectPage(props) {
     var path = props.location.pathname;
 
@@ -106,6 +107,8 @@ class App extends React.Component {
     }
   }
 
+
+  // CRUD
   findById(source, id) {
     for (var i = 0; i < source.length; i++) {
       if (source[i].name == id) {
@@ -117,9 +120,22 @@ class App extends React.Component {
   addProject(project) {
     var timestamp = (new Date()).getTime();
 
-    this.projects.push(project);
-    console.log(this.projects);
-    this.setState({projects: this.projects});
+    this.state.projects.push(project);
+    this.setState({projects: this.state.projects});
+  }
+
+  removeProject(project) {
+   const id = this.props.params.name;
+   var source = this.state.projects;
+
+    for (var i = 0; i < source.length; i++) {
+      if (source[i].name == id) {
+        this.state.projects.splice(i);
+      }
+    }
+
+    this.setState({projects: this.state.projects});
+    this.history.pushState(null, '/work');
   }
 
   renderProjectBubbles() {
@@ -208,7 +224,8 @@ class App extends React.Component {
                 projects: this.state.projects,
                 currentProject: this.state.currentProject,
                 newProject: this.state.newProject,
-                addProject: this.addProject,
+                addProject: this.addProject.bind(this),
+                removeProject: this.removeProject.bind(this),
                 linkState: this.linkState.bind(this)
               })}
            </ReactTransitionGroup>
@@ -227,6 +244,7 @@ class App extends React.Component {
 
 // Mixins
 reactMixin.onClass(App, Catalyst.LinkedStateMixin);
+reactMixin.onClass(App, History);
 
 /*
   Render Routes

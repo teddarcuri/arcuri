@@ -124,3 +124,20 @@ section.split {
   background: #111;
   @include flex(1 0 450px);
 }
+
+// Edit Project
+.project-edit-tools {
+  display: inline-block;
+  li {
+    display: inline-block;
+    padding: 10px;
+    font-size: 12px;
+    &:hover {
+      background: rgba(#fff, 0.2);
+    }
+    img {
+      width: 17px;
+      height: 17px;
+    }
+  }
+}
