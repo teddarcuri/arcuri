@@ -106,27 +106,27 @@
 
 	var _project2 = _interopRequireDefault(_project);
 
-	var _contact = __webpack_require__(234);
+	var _contact = __webpack_require__(235);
 
 	var _contact2 = _interopRequireDefault(_contact);
 
-	var _reBase = __webpack_require__(235);
+	var _reBase = __webpack_require__(236);
 
 	var _reBase2 = _interopRequireDefault(_reBase);
 
-	var _helpers = __webpack_require__(238);
+	var _helpers = __webpack_require__(239);
 
 	var _helpers2 = _interopRequireDefault(_helpers);
 
-	var _imagesloaded = __webpack_require__(239);
+	var _imagesloaded = __webpack_require__(240);
 
 	var _imagesloaded2 = _interopRequireDefault(_imagesloaded);
 
-	var _reactCatalyst = __webpack_require__(232);
+	var _reactCatalyst = __webpack_require__(233);
 
 	var _reactCatalyst2 = _interopRequireDefault(_reactCatalyst);
 
-	var _reactMixin = __webpack_require__(229);
+	var _reactMixin = __webpack_require__(230);
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
@@ -62470,11 +62470,11 @@
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	var _reactMixin = __webpack_require__(229);
+	var _reactMixin = __webpack_require__(230);
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
-	var _reactCatalyst = __webpack_require__(232);
+	var _reactCatalyst = __webpack_require__(233);
 
 	var _reactCatalyst2 = _interopRequireDefault(_reactCatalyst);
 
@@ -62604,6 +62604,10 @@
 
 	var _ProjectGallery2 = _interopRequireDefault(_ProjectGallery);
 
+	var _ProjectPage = __webpack_require__(229);
+
+	var _ProjectPage2 = _interopRequireDefault(_ProjectPage);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -62621,7 +62625,8 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Project).call(this, props));
 
 	    _this.state = {
-	      showGallery: true
+	      showGallery: true,
+	      isEditing: false
 	    };
 	    return _this;
 	  }
@@ -62632,121 +62637,48 @@
 	      this.setState({ showGallery: true });
 	    }
 	  }, {
+	    key: 'isEditing',
+	    value: function isEditing() {
+	      this.setState({ isEditing: !this.state.isEditing });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var p = this.props.currentProject,
 	          overview = this.props.currentProject.description,
 	          role = this.props.currentProject.role,
 	          logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "",
-	          firstPhoto = Object.keys(this.props.currentProject.gallery)[0];
+	          firstPhoto = Object.keys(this.props.currentProject.gallery)[0],
+	          sidebarClasses = this.state.isEditing ? "sidebar active" : "sidebar";
 
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'project-page' },
+	        { className: 'project' },
 	        _react2.default.createElement(
-	          _reactAddonsCssTransitionGroup2.default,
-	          { component: "div",
-	            className: 'project-overview',
-	            transitionName: 'project-element',
-	            transitionAppear: true,
-	            transitionAppearTimeout: 0,
-	            transitionEnterTimeout: 1000,
-	            transitionLeaveTimeout: 1000 },
+	          'div',
+	          { className: sidebarClasses },
 	          _react2.default.createElement(
-	            'header',
-	            null,
+	            'form',
+	            { id: 'edit-project' },
 	            _react2.default.createElement(
-	              'h1',
-	              { className: 'title' },
-	              logo,
-	              p.name,
-	              _react2.default.createElement(
-	                'ul',
-	                { className: 'project-edit-tools' },
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement('img', { src: '/src/img/icons/edit-icon.svg' })
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  { onClick: this.props.removeProject },
-	                  _react2.default.createElement('img', { src: '/src/img/icons/close.svg' })
-	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'ul',
-	              { className: 'tags' },
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Web'
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Print'
-	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'main',
-	            null,
-	            _react2.default.createElement(_ProjectGallery2.default, { project: this.props.currentProject }),
-	            _react2.default.createElement(
-	              'section',
+	              'h3',
 	              null,
-	              _react2.default.createElement(
-	                'h3',
-	                null,
-	                'Overview'
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                overview
-	              )
+	              'Edit ',
+	              p.name
 	            ),
+	            _react2.default.createElement('input', {
+	              type: 'text',
+	              placeholder: 'name',
+	              valueLink: this.props.linkState('currentProject.name') }),
 	            _react2.default.createElement(
-	              'aside',
-	              null,
-	              _react2.default.createElement(
-	                'h3',
-	                null,
-	                'My Role'
-	              ),
-	              role,
-	              _react2.default.createElement(
-	                'h3',
-	                null,
-	                'Tech Used'
-	              ),
-	              role
+	              'button',
+	              { type: 'submit' },
+	              'Create Project'
 	            )
 	          )
 	        ),
-	        _react2.default.createElement(
-	          _reactAddonsCssTransitionGroup2.default,
-	          { component: "div",
-	            transitionName: 'fadeIn',
-	            transitionAppear: true,
-	            transitionAppearTimeout: 0,
-	            transitionEnterTimeout: 1000,
-	            transitionLeaveTimeout: 1000 },
-	          _react2.default.createElement('div', { className: 'project-controls' })
-	        ),
-	        _react2.default.createElement(
-	          _reactAddonsCssTransitionGroup2.default,
-	          { component: "div",
-	            className: 'project-bg',
-	            transitionName: 'fadeIn',
-	            transitionAppear: true,
-	            transitionAppearTimeout: 0,
-	            transitionEnterTimeout: 1000,
-	            transitionLeaveTimeout: 1000 },
-	          _react2.default.createElement('img', { src: p.background })
-	        )
+	        _react2.default.createElement(_ProjectPage2.default, { currentProject: this.props.currentProject,
+	          edit: this.isEditing.bind(this) })
 	      );
 	    }
 	  }]);
@@ -62876,8 +62808,175 @@
 /* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var mixin = __webpack_require__(230);
-	var assign = __webpack_require__(231);
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	var _ProjectGallery = __webpack_require__(228);
+
+	var _ProjectGallery2 = _interopRequireDefault(_ProjectGallery);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ProjectPage = function (_React$Component) {
+	  _inherits(ProjectPage, _React$Component);
+
+	  function ProjectPage(props) {
+	    _classCallCheck(this, ProjectPage);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectPage).call(this, props));
+
+	    _this.state = {
+	      showGallery: true
+	    };
+	    return _this;
+	  }
+
+	  _createClass(ProjectPage, [{
+	    key: 'showGallery',
+	    value: function showGallery() {
+	      this.setState({ showGallery: true });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var p = this.props.currentProject,
+	          overview = this.props.currentProject.description,
+	          role = this.props.currentProject.role,
+	          logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "",
+	          firstPhoto = Object.keys(this.props.currentProject.gallery)[0],
+	          sidebarClasses = this.state.isEditing ? "sidebar active" : "sidebar";
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'project-page' },
+	        _react2.default.createElement(
+	          _reactAddonsCssTransitionGroup2.default,
+	          { component: "div",
+	            className: 'project-overview',
+	            transitionName: 'project-element',
+	            transitionAppear: true,
+	            transitionAppearTimeout: 0,
+	            transitionEnterTimeout: 1000,
+	            transitionLeaveTimeout: 1000 },
+	          _react2.default.createElement(
+	            'header',
+	            null,
+	            _react2.default.createElement(
+	              'h1',
+	              { className: 'title' },
+	              logo,
+	              p.name,
+	              _react2.default.createElement(
+	                'ul',
+	                { className: 'project-edit-tools' },
+	                _react2.default.createElement(
+	                  'li',
+	                  { onClick: this.props.edit },
+	                  _react2.default.createElement('img', { src: '/src/img/icons/edit-icon.svg' })
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  { onClick: this.props.removeProject },
+	                  _react2.default.createElement('img', { src: '/src/img/icons/close.svg' })
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'ul',
+	              { className: 'tags' },
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Web'
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Print'
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'main',
+	            null,
+	            _react2.default.createElement(_ProjectGallery2.default, { project: this.props.currentProject }),
+	            _react2.default.createElement(
+	              'section',
+	              null,
+	              _react2.default.createElement(
+	                'h3',
+	                null,
+	                'Overview'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                overview
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'aside',
+	              null,
+	              _react2.default.createElement(
+	                'h3',
+	                null,
+	                'My Role'
+	              ),
+	              role,
+	              _react2.default.createElement(
+	                'h3',
+	                null,
+	                'Tech Used'
+	              ),
+	              role
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactAddonsCssTransitionGroup2.default,
+	          { component: "div",
+	            className: 'project-bg',
+	            transitionName: 'fadeIn',
+	            transitionAppear: true,
+	            transitionAppearTimeout: 0,
+	            transitionEnterTimeout: 1000,
+	            transitionLeaveTimeout: 1000 },
+	          _react2.default.createElement('img', { src: p.background })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ProjectPage;
+	}(_react2.default.Component);
+
+	exports.default = ProjectPage;
+
+/***/ },
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var mixin = __webpack_require__(231);
+	var assign = __webpack_require__(232);
 
 	var mixinProto = mixin({
 	  // lifecycle stuff is as you'd expect
@@ -63030,7 +63129,7 @@
 
 
 /***/ },
-/* 230 */
+/* 231 */
 /***/ function(module, exports) {
 
 	var objToStr = function(x){ return Object.prototype.toString.call(x); };
@@ -63213,7 +63312,7 @@
 
 
 /***/ },
-/* 231 */
+/* 232 */
 /***/ function(module, exports) {
 
 	/* eslint-disable no-unused-vars */
@@ -63258,15 +63357,15 @@
 
 
 /***/ },
-/* 232 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	exports.LinkedStateMixin = __webpack_require__(233);
+	exports.LinkedStateMixin = __webpack_require__(234);
 
 
 /***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports) {
 
 	
@@ -63301,7 +63400,7 @@
 
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63376,20 +63475,20 @@
 	exports.default = Contact;
 
 /***/ },
-/* 235 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(236);
+	module.exports = __webpack_require__(237);
 
 
 
 /***/ },
-/* 236 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
-			module.exports = factory(__webpack_require__(237));
+			module.exports = factory(__webpack_require__(238));
 		else if(typeof define === 'function' && define.amd)
 			define(["firebase"], factory);
 		else {
@@ -63919,7 +64018,7 @@
 	;
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports) {
 
 	/*! @license Firebase v2.4.0
@@ -64203,7 +64302,7 @@
 
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -64226,7 +64325,7 @@
 	exports.default = helpers;
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -64243,7 +64342,7 @@
 	  if ( true ) {
 	    // AMD
 	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-	      __webpack_require__(240)
+	      __webpack_require__(241)
 	    ], __WEBPACK_AMD_DEFINE_RESULT__ = function( EvEmitter ) {
 	      return factory( window, EvEmitter );
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -64602,7 +64701,7 @@
 
 
 /***/ },
-/* 240 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**

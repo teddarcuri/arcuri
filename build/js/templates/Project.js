@@ -18,6 +18,10 @@ var _ProjectGallery = require('./ProjectGallery');
 
 var _ProjectGallery2 = _interopRequireDefault(_ProjectGallery);
 
+var _ProjectPage = require('./ProjectPage');
+
+var _ProjectPage2 = _interopRequireDefault(_ProjectPage);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -35,7 +39,8 @@ var Project = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Project).call(this, props));
 
     _this.state = {
-      showGallery: true
+      showGallery: true,
+      isEditing: false
     };
     return _this;
   }
@@ -46,121 +51,48 @@ var Project = function (_React$Component) {
       this.setState({ showGallery: true });
     }
   }, {
+    key: 'isEditing',
+    value: function isEditing() {
+      this.setState({ isEditing: !this.state.isEditing });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var p = this.props.currentProject,
           overview = this.props.currentProject.description,
           role = this.props.currentProject.role,
           logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "",
-          firstPhoto = Object.keys(this.props.currentProject.gallery)[0];
+          firstPhoto = Object.keys(this.props.currentProject.gallery)[0],
+          sidebarClasses = this.state.isEditing ? "sidebar active" : "sidebar";
 
       return _react2.default.createElement(
         'div',
-        { className: 'project-page' },
+        { className: 'project' },
         _react2.default.createElement(
-          _reactAddonsCssTransitionGroup2.default,
-          { component: "div",
-            className: 'project-overview',
-            transitionName: 'project-element',
-            transitionAppear: true,
-            transitionAppearTimeout: 0,
-            transitionEnterTimeout: 1000,
-            transitionLeaveTimeout: 1000 },
+          'div',
+          { className: sidebarClasses },
           _react2.default.createElement(
-            'header',
-            null,
+            'form',
+            { id: 'edit-project' },
             _react2.default.createElement(
-              'h1',
-              { className: 'title' },
-              logo,
-              p.name,
-              _react2.default.createElement(
-                'ul',
-                { className: 'project-edit-tools' },
-                _react2.default.createElement(
-                  'li',
-                  null,
-                  _react2.default.createElement('img', { src: '/src/img/icons/edit-icon.svg' })
-                ),
-                _react2.default.createElement(
-                  'li',
-                  { onClick: this.props.removeProject },
-                  _react2.default.createElement('img', { src: '/src/img/icons/close.svg' })
-                )
-              )
-            ),
-            _react2.default.createElement(
-              'ul',
-              { className: 'tags' },
-              _react2.default.createElement(
-                'li',
-                null,
-                'Web'
-              ),
-              _react2.default.createElement(
-                'li',
-                null,
-                'Print'
-              )
-            )
-          ),
-          _react2.default.createElement(
-            'main',
-            null,
-            _react2.default.createElement(_ProjectGallery2.default, { project: this.props.currentProject }),
-            _react2.default.createElement(
-              'section',
+              'h3',
               null,
-              _react2.default.createElement(
-                'h3',
-                null,
-                'Overview'
-              ),
-              _react2.default.createElement(
-                'p',
-                null,
-                overview
-              )
+              'Edit ',
+              p.name
             ),
+            _react2.default.createElement('input', {
+              type: 'text',
+              placeholder: 'name',
+              valueLink: this.props.linkState('currentProject.name') }),
             _react2.default.createElement(
-              'aside',
-              null,
-              _react2.default.createElement(
-                'h3',
-                null,
-                'My Role'
-              ),
-              role,
-              _react2.default.createElement(
-                'h3',
-                null,
-                'Tech Used'
-              ),
-              role
+              'button',
+              { type: 'submit' },
+              'Create Project'
             )
           )
         ),
-        _react2.default.createElement(
-          _reactAddonsCssTransitionGroup2.default,
-          { component: "div",
-            transitionName: 'fadeIn',
-            transitionAppear: true,
-            transitionAppearTimeout: 0,
-            transitionEnterTimeout: 1000,
-            transitionLeaveTimeout: 1000 },
-          _react2.default.createElement('div', { className: 'project-controls' })
-        ),
-        _react2.default.createElement(
-          _reactAddonsCssTransitionGroup2.default,
-          { component: "div",
-            className: 'project-bg',
-            transitionName: 'fadeIn',
-            transitionAppear: true,
-            transitionAppearTimeout: 0,
-            transitionEnterTimeout: 1000,
-            transitionLeaveTimeout: 1000 },
-          _react2.default.createElement('img', { src: p.background })
-        )
+        _react2.default.createElement(_ProjectPage2.default, { currentProject: this.props.currentProject,
+          edit: this.isEditing.bind(this) })
       );
     }
   }]);
