@@ -122,18 +122,22 @@ class App extends React.Component {
 
     this.state.projects.push(project);
     this.setState({projects: this.state.projects});
+    this.history.pushState(null, '/work/' + project.name);
   }
 
   removeProject(project) {
    const id = this.props.params.name;
    var source = this.state.projects;
 
+   // Find the project and remove it based off url
     for (var i = 0; i < source.length; i++) {
       if (source[i].name == id) {
         this.state.projects.splice(i);
+        return
       }
     }
 
+    // Update state -> Go to work index page
     this.setState({projects: this.state.projects});
     this.history.pushState(null, '/work');
   }
