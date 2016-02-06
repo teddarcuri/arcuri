@@ -1,13 +1,14 @@
 import React from 'react';
-import Project from './project';
+import ProjectPage from './ProjectPage';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import reactMixin from 'react-mixin';
-import Catalyst from 'react-catalyst';
-
 
 class NewProjectForm extends React.Component {
   constructor(props) {
   	super(props);
+
+  	this.state = {
+  		currentStage: "DETAILS"
+  	}
   }
 
   createProject(ev) {
@@ -31,57 +32,100 @@ class NewProjectForm extends React.Component {
   	this.props.addProject(project);
   }
 
+  renderGalleryFields(gallery) {
+  	return (
+  		<div className="gallery-fields">
+  			<h3>Gallery</h3>
+	  		{
+	  			Object.keys(gallery).map(function(g){
+	  				return <input value={gallery[g].path}/>
+	  			})
+	  		}
+	  		<button className="add-gallery-field">
+	  			+
+	  		</button>
+  		</div>
+  	) 
+  }
+
+  showHeaderTab() {
+
+  }
+
+  showDetailsTab() {
+
+  }
+
+  showGalleryTab() {
+
+  }
+
+  renderFormStage() {
+  	return (
+  		<div className="details">
+
+  			<label htmlFor="logo">Logo</label>
+  			<input ref="logo" 
+				   type="logo" 
+				   placeholder="logo"
+				   name="logo"
+				   valueLink={this.props.linkState('newProject.logo')}/>
+
+			<label htmlFor="name">Name</label>
+  			<input ref="name" 
+	    				   name="name" 
+	    				   type="text" 
+	    				   placeholder="name"
+	    				   name="name"
+	    				   valueLink={this.props.linkState('newProject.name')} />
+
+			<input ref="types" 
+				   type="types" 
+				   placeholder="types"/>
+
+			<input ref="background" 
+				   type="background" 
+				   placeholder="background"
+				   valueLink={this.props.linkState('newProject.background')}/>
+  		</div>
+  	) 
+  }
+
   render() {
+
+  	var gallery = this.props.newProject.gallery;
+  	console.log(gallery);
     return (
     	<section className="project-builder">
     		<div className="sidebar">
 	    		<form onSubmit={this.createProject.bind(this)}>
-		    		<h3>Create Project</h3>
 
-	    			<input ref="name" 
-	    				   name="name" 
-	    				   type="text" 
-	    				   placeholder="name"
-	    				   valueLink={this.props.linkState('newProject.name')} />
+	    			<div className="tabs">
+	    				<ul>
+	    					<li onClick={this.showHeaderTab}>Header</li>
+	    					<li onClick={this.showGalleryTab}>Photo Gallery</li>
+	    					<li onClick={this.showDetailsTab}>Project Details</li>
+	    				</ul>
 
-	    			<input ref="types" 
-	    				   type="types" 
-	    				   placeholder="types"/>
+	    				<section>
+	    					{this.renderFormStage()}
+	    				</section>
 
-	    			<input ref="background" 
-	    				   type="background" 
-	    				   placeholder="background"
-	    				   valueLink={this.props.linkState('newProject.background')}/>
+	    				<button>Create Project</button>
+	    			</div>
 
-	    			<input ref="logo" 
-	    				   type="logo" 
-	    				   placeholder="logo"
-	    				   valueLink={this.props.linkState('newProject.logo')}/>
-
-		    		<textarea ref="description" 
-		    			   	  name="description"
-		    			   	  valueLink={this.props.linkState('newProject.description')} />
-
-		    		<textarea ref="myRole" 
-		    			   	  name="my-role" />
-
-		    		<textarea ref="techUsed" 
-		    			  	  name="tech-used" />
-
-		    		<button type="submit">
-		    			Create Project
-		    		</button>
 		    	</form>
 	    	</div>
 
 	    	<div id="preview-window">
-		    	<Project currentProject={this.props.newProject} />
+	    	<ProjectPage currentProject={this.props.newProject}
+                      	 linkState={this.props.linkState}
+                      	 edit={null}
+                     	 />
 		   	</div>
     	</section>
     )
   }
 }
-
-reactMixin.onClass(NewProjectForm, Catalyst.LinkedStateMixin);
 
 export default NewProjectForm;

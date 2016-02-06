@@ -40,7 +40,7 @@ var ProjectActionBar = function (_React$Component) {
 				),
 				_react2.default.createElement(
 					"button",
-					{ onClick: this.props.confirmRemoveProject },
+					{ className: "delete-btn", onClick: this.props.confirmRemoveProject },
 					"Confirm Deletion"
 				),
 				_react2.default.createElement(

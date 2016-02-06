@@ -5,7 +5,7 @@
 }
 
 form {
-	padding: 40px;
+	padding:  20px 40px;
 	box-shadow: 3px 3px 15px 0px rgba(#000, 0.2);
 	@include display(flex);
 	@include justify-content(space-between);
@@ -27,26 +27,29 @@ form {
 	}
 
 	label {
-		padding: 0px 0px;
-		font-size: 0.9em;
+		padding: 10px;
+		font-size: 0.8em;
+		text-transform: uppercase;
+		letter-spacing: 1px;
 		font-style: italic;
-		color: #eee;
+		color: #bbb;
+		display: block;
 	}
 
 	input {
 		display: block;
-		margin: 12px 0px;
-		font-size: 1em;
-		padding: 12px;
+		margin-bottom: 15px;
+		font-size: 0.9em;
+		padding: 15px;
 		width: 100%;
-		border: solid 2px #333;
-		background: rgba(#fff, 0.01);
+		border: solid 2px transparent;
+		background: rgba(#000, 0.2);
 		color: #eee;
 		@include flex(1 0 100%);
 		@include transition(all ease 0.3s);
 		&:focus {
-			border: solid 2px $color-blue;
-			background: rgba(#fff, 0.08);	
+			border: solid 2px $color-green;
+			//background: rgba(#fff, 0.08);	
 			box-shadow: none;
 			outline: none;
 		}
@@ -61,9 +64,12 @@ form {
 		font-size: 1em;
 		padding: 12px;
 		color: #eee;
+		border: solid 2px transparent;
+		background: rgba(#000, 0.2);
+		width: 100%;
 		@include flex(1 0 100%);
 		&:focus {
-			border: solid 2px #fff;	
+			border: solid 2px $color-green;
 			box-shadow: none;
 			outline: none;
 		}

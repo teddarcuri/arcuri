@@ -17,6 +17,12 @@ class ProjectGallery extends React.Component {
     this.setState({ currentImg : this.props.project.gallery[Object.keys(this.props.project.gallery)[key]] });
   }
 
+  renderCurrentImage() {
+    return (
+      <img src={this.state.currentImg.path} alt="" key="currentImg"/>
+    )
+  }
+
   incrementImg() {
     this.setState({ currentImg : this.props.project.gallery[Object.keys(this.props.project.gallery)[key]] });
   }
@@ -41,8 +47,7 @@ class ProjectGallery extends React.Component {
                           transitionAppearTimeout={0}
                           transitionEnterTimeout={1000}
                           transitionLeaveTimeout={1000}>
-            <img src={currentImg.path} alt="" key="currentImg"/>
-
+            {this.renderCurrentImage()}
             <ul className="dots">
               {
                 Object.keys(p.gallery).map(function(img, key) {

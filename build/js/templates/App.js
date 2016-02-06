@@ -119,7 +119,7 @@ var App = function (_React$Component) {
       newProject: {
         name: "New Project",
         description: "Enter description",
-        background: "/src/img/backgrounds/colorado.jpg",
+        background: "http://www.backgroundsy.com/file/large/light-colorful-background.jpg",
         logo: "",
         types: "Llama",
         gallery: {

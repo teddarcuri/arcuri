@@ -461,7 +461,7 @@ html {
   padding-top: 120px; }
 
 form {
-  padding: 40px;
+  padding: 20px 40px;
   box-shadow: 3px 3px 15px 0px rgba(0, 0, 0, 0.2);
   display: -webkit-box;
   display: -moz-box;
@@ -495,18 +495,21 @@ form {
     width: 100%;
     margin: 10px 0px 30px; }
   form label {
-    padding: 0px 0px;
-    font-size: 0.9em;
+    padding: 10px;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     font-style: italic;
-    color: #eee; }
+    color: #bbb;
+    display: block; }
   form input {
     display: block;
-    margin: 12px 0px;
-    font-size: 1em;
-    padding: 12px;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    padding: 15px;
     width: 100%;
-    border: solid 2px #333;
-    background: rgba(255, 255, 255, 0.01);
+    border: solid 2px transparent;
+    background: rgba(0, 0, 0, 0.2);
     color: #eee;
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
@@ -519,8 +522,7 @@ form {
     -moz-transition: all ease 0.3s;
     transition: all ease 0.3s; }
     form input:focus {
-      border: solid 2px #54787D;
-      background: rgba(255, 255, 255, 0.08);
+      border: solid 2px #A1DBB2;
       box-shadow: none;
       outline: none; }
   form textarea {
@@ -532,6 +534,9 @@ form {
     font-size: 1em;
     padding: 12px;
     color: #eee;
+    border: solid 2px transparent;
+    background: rgba(0, 0, 0, 0.2);
+    width: 100%;
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     box-flex: 1;
@@ -540,7 +545,7 @@ form {
     -ms-flex: 1 0 100%;
     flex: 1 0 100%; }
     form textarea:focus {
-      border: solid 2px #fff;
+      border: solid 2px #A1DBB2;
       box-shadow: none;
       outline: none; }
   form button {
@@ -715,7 +720,7 @@ header#main {
       top: 29px;
       left: 0px;
       text-align: left;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.95);
       display: none;
       z-index: 100; }
       header#main #menu ul.main li {
@@ -793,7 +798,6 @@ header#main {
     width: 0px;
     height: 100%;
     overflow: hidden;
-    box-shadow: 0px 2px 20px 10px rgba(0, 0, 0, 0.5);
     -webkit-box-flex: 0;
     -moz-box-flex: 0;
     box-flex: 0;
@@ -810,9 +814,10 @@ header#main {
     -moz-transition: all ease 0.7s;
     transition: all ease 0.7s; }
     .project .sidebar form {
-      padding: 100px 55px; }
+      padding: 100px 55px;
+      height: 100%; }
     .project .sidebar.active {
-      width: 400px;
+      width: 500px;
       -webkit-transform: translateX(0%);
       -moz-transform: translateX(0%);
       -ms-transform: translateX(0%);
@@ -1123,7 +1128,51 @@ header#main {
   -o-align-items: stretch;
   align-items: stretch;
   -ms-flex-align: stretch;
-  height: 100%; }
+  height: 100%;
+  width: 100%; }
+  .project-builder .tabs {
+    padding: 33px;
+    background: rgba(255, 255, 255, 0.066);
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex: 1 0 100%;
+    -moz-flex: 1 0 100%;
+    -ms-flex: 1 0 100%;
+    flex: 1 0 100%; }
+    .project-builder .tabs ul {
+      display: -webkit-box;
+      display: -moz-box;
+      display: box;
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flexbox;
+      display: flex;
+      list-style: none;
+      margin: 0px;
+      padding: 0px; }
+      .project-builder .tabs ul li {
+        color: #fff;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.5);
+        margin-right: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 0.7em;
+        text-align: center;
+        -webkit-box-flex: 1;
+        -moz-box-flex: 1;
+        box-flex: 1;
+        -webkit-flex: 1 0 auto;
+        -moz-flex: 1 0 auto;
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto; }
+        .project-builder .tabs ul li:last-child {
+          margin-right: 0px; }
+        .project-builder .tabs ul li:hover {
+          background: #54787D; }
+    .project-builder .tabs section {
+      padding: 20px 0px; }
   .project-builder .project-page {
     padding: 0px 50px; }
   .project-builder .preview-window {
@@ -1430,11 +1479,11 @@ header#main {
     border: none;
     outline: none;
     font-weight: 700;
-    font-size: 0.9em;
-    padding: 17px 15px;
-    border-radius: 8px;
+    font-size: 0.8em;
+    padding: 12px 10px;
     cursor: pointer;
     margin-right: 10px;
+    text-transform: uppercase;
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     box-flex: 1;
@@ -1442,8 +1491,11 @@ header#main {
     -moz-flex: 1 0 auto;
     -ms-flex: 1 0 auto;
     flex: 1 0 auto; }
+    .project-action-bar button.delete-btn {
+      color: #fff;
+      background: #873232; }
     .project-action-bar button:hover {
-      background: #873232;
+      background: #F45D4C;
       color: #fff; }
 
 #menu .project-bubble-wrap {
@@ -1687,7 +1739,7 @@ section.split {
 .sidebar {
   width: 400px;
   height: 100%;
-  background: #111;
+  background: rgba(0, 0, 0, 0.8);
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   box-flex: 1;

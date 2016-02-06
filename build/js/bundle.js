@@ -102,31 +102,31 @@
 
 	var _NewProjectForm2 = _interopRequireDefault(_NewProjectForm);
 
-	var _project = __webpack_require__(227);
+	var _project = __webpack_require__(230);
 
 	var _project2 = _interopRequireDefault(_project);
 
-	var _contact = __webpack_require__(236);
+	var _contact = __webpack_require__(231);
 
 	var _contact2 = _interopRequireDefault(_contact);
 
-	var _reBase = __webpack_require__(237);
+	var _reBase = __webpack_require__(232);
 
 	var _reBase2 = _interopRequireDefault(_reBase);
 
-	var _helpers = __webpack_require__(240);
+	var _helpers = __webpack_require__(235);
 
 	var _helpers2 = _interopRequireDefault(_helpers);
 
-	var _imagesloaded = __webpack_require__(241);
+	var _imagesloaded = __webpack_require__(236);
 
 	var _imagesloaded2 = _interopRequireDefault(_imagesloaded);
 
-	var _reactCatalyst = __webpack_require__(234);
+	var _reactCatalyst = __webpack_require__(238);
 
 	var _reactCatalyst2 = _interopRequireDefault(_reactCatalyst);
 
-	var _reactMixin = __webpack_require__(231);
+	var _reactMixin = __webpack_require__(240);
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
@@ -165,7 +165,7 @@
 	      newProject: {
 	        name: "New Project",
 	        description: "Enter description",
-	        background: "/src/img/backgrounds/colorado.jpg",
+	        background: "http://www.backgroundsy.com/file/large/light-colorful-background.jpg",
 	        logo: "",
 	        types: "Llama",
 	        gallery: {
@@ -62455,28 +62455,20 @@
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	Object.defineProperty(exports, "__esModule", {
-			value: true
+	  value: true
 	});
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _project = __webpack_require__(227);
+	var _ProjectPage = __webpack_require__(227);
 
-	var _project2 = _interopRequireDefault(_project);
+	var _ProjectPage2 = _interopRequireDefault(_ProjectPage);
 
 	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
-
-	var _reactMixin = __webpack_require__(231);
-
-	var _reactMixin2 = _interopRequireDefault(_reactMixin);
-
-	var _reactCatalyst = __webpack_require__(234);
-
-	var _reactCatalyst2 = _interopRequireDefault(_reactCatalyst);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -62487,96 +62479,178 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var NewProjectForm = function (_React$Component) {
-			_inherits(NewProjectForm, _React$Component);
+	  _inherits(NewProjectForm, _React$Component);
 
-			function NewProjectForm(props) {
-					_classCallCheck(this, NewProjectForm);
+	  function NewProjectForm(props) {
+	    _classCallCheck(this, NewProjectForm);
 
-					return _possibleConstructorReturn(this, Object.getPrototypeOf(NewProjectForm).call(this, props));
-			}
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(NewProjectForm).call(this, props));
 
-			_createClass(NewProjectForm, [{
-					key: 'createProject',
-					value: function createProject(ev) {
+	    _this.state = {
+	      currentStage: "DETAILS"
+	    };
+	    return _this;
+	  }
 
-							ev.preventDefault();
+	  _createClass(NewProjectForm, [{
+	    key: 'createProject',
+	    value: function createProject(ev) {
 
-							var project = {
-									name: this.refs.name.value,
-									background: this.refs.background.value,
-									logo: this.refs.logo.value,
-									types: this.refs.types.value,
-									description: this.refs.description.value,
-									gallery: {
-											image1: {
-													path: "/src/img/gallery_images/colorado_gov/contact.png"
-											}
-									}
-							};
+	      ev.preventDefault();
 
-							// Add to project to state
-							this.props.addProject(project);
-					}
-			}, {
-					key: 'render',
-					value: function render() {
-							return _react2.default.createElement(
-									'section',
-									{ className: 'project-builder' },
-									_react2.default.createElement(
-											'div',
-											{ className: 'sidebar' },
-											_react2.default.createElement(
-													'form',
-													{ onSubmit: this.createProject.bind(this) },
-													_react2.default.createElement(
-															'h3',
-															null,
-															'Create Project'
-													),
-													_react2.default.createElement('input', { ref: 'name',
-															name: 'name',
-															type: 'text',
-															placeholder: 'name',
-															valueLink: this.props.linkState('newProject.name') }),
-													_react2.default.createElement('input', { ref: 'types',
-															type: 'types',
-															placeholder: 'types' }),
-													_react2.default.createElement('input', { ref: 'background',
-															type: 'background',
-															placeholder: 'background',
-															valueLink: this.props.linkState('newProject.background') }),
-													_react2.default.createElement('input', { ref: 'logo',
-															type: 'logo',
-															placeholder: 'logo',
-															valueLink: this.props.linkState('newProject.logo') }),
-													_react2.default.createElement('textarea', { ref: 'description',
-															name: 'description',
-															valueLink: this.props.linkState('newProject.description') }),
-													_react2.default.createElement('textarea', { ref: 'myRole',
-															name: 'my-role' }),
-													_react2.default.createElement('textarea', { ref: 'techUsed',
-															name: 'tech-used' }),
-													_react2.default.createElement(
-															'button',
-															{ type: 'submit' },
-															'Create Project'
-													)
-											)
-									),
-									_react2.default.createElement(
-											'div',
-											{ id: 'preview-window' },
-											_react2.default.createElement(_project2.default, { currentProject: this.props.newProject })
-									)
-							);
-					}
-			}]);
+	      var project = {
+	        name: this.refs.name.value,
+	        background: this.refs.background.value,
+	        logo: this.refs.logo.value,
+	        types: this.refs.types.value,
+	        description: this.refs.description.value,
+	        gallery: {
+	          image1: {
+	            path: "/src/img/gallery_images/colorado_gov/contact.png"
+	          }
+	        }
+	      };
 
-			return NewProjectForm;
+	      // Add to project to state
+	      this.props.addProject(project);
+	    }
+	  }, {
+	    key: 'renderGalleryFields',
+	    value: function renderGalleryFields(gallery) {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'gallery-fields' },
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'Gallery'
+	        ),
+	        Object.keys(gallery).map(function (g) {
+	          return _react2.default.createElement('input', { value: gallery[g].path });
+	        }),
+	        _react2.default.createElement(
+	          'button',
+	          { className: 'add-gallery-field' },
+	          '+'
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'showHeaderTab',
+	    value: function showHeaderTab() {}
+	  }, {
+	    key: 'showDetailsTab',
+	    value: function showDetailsTab() {}
+	  }, {
+	    key: 'showGalleryTab',
+	    value: function showGalleryTab() {}
+	  }, {
+	    key: 'renderFormStage',
+	    value: function renderFormStage() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'details' },
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'logo' },
+	          'Logo'
+	        ),
+	        _react2.default.createElement('input', { ref: 'logo',
+	          type: 'logo',
+	          placeholder: 'logo',
+	          name: 'logo',
+	          valueLink: this.props.linkState('newProject.logo') }),
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'name' },
+	          'Name'
+	        ),
+	        _react2.default.createElement('input', { ref: 'name',
+	          name: 'name',
+	          type: 'text',
+	          placeholder: 'name',
+	          name: 'name',
+	          valueLink: this.props.linkState('newProject.name') }),
+	        _react2.default.createElement('input', { ref: 'types',
+	          type: 'types',
+	          placeholder: 'types' }),
+	        _react2.default.createElement('input', { ref: 'background',
+	          type: 'background',
+	          placeholder: 'background',
+	          valueLink: this.props.linkState('newProject.background') }),
+	        _react2.default.createElement('textarea', { ref: 'description',
+	          name: 'description',
+	          valueLink: this.props.linkState('newProject.description') }),
+	        _react2.default.createElement('textarea', { ref: 'myRole',
+	          name: 'my-role' }),
+	        _react2.default.createElement('textarea', { ref: 'techUsed',
+	          name: 'tech-used' })
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+
+	      var gallery = this.props.newProject.gallery;
+	      console.log(gallery);
+	      return _react2.default.createElement(
+	        'section',
+	        { className: 'project-builder' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'sidebar' },
+	          _react2.default.createElement(
+	            'form',
+	            { onSubmit: this.createProject.bind(this) },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'tabs' },
+	              _react2.default.createElement(
+	                'ul',
+	                null,
+	                _react2.default.createElement(
+	                  'li',
+	                  { onClick: this.showHeaderTab },
+	                  'Header'
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  { onClick: this.showGalleryTab },
+	                  'Photo Gallery'
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  { onClick: this.showDetailsTab },
+	                  'Project Details'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'section',
+	                null,
+	                this.renderFormStage()
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                null,
+	                'Create Project'
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { id: 'preview-window' },
+	          _react2.default.createElement(_ProjectPage2.default, { currentProject: this.props.newProject,
+	            linkState: this.props.linkState,
+	            edit: null
+	          })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return NewProjectForm;
 	}(_react2.default.Component);
-
-	_reactMixin2.default.onClass(NewProjectForm, _reactCatalyst2.default.LinkedStateMixin);
 
 	exports.default = NewProjectForm;
 
@@ -62604,7 +62678,379 @@
 
 	var _ProjectGallery2 = _interopRequireDefault(_ProjectGallery);
 
-	var _ProjectPage = __webpack_require__(229);
+	var _ProjectActionBar = __webpack_require__(229);
+
+	var _ProjectActionBar2 = _interopRequireDefault(_ProjectActionBar);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ProjectPage = function (_React$Component) {
+	  _inherits(ProjectPage, _React$Component);
+
+	  function ProjectPage(props) {
+	    _classCallCheck(this, ProjectPage);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectPage).call(this, props));
+
+	    _this.state = {
+	      showGallery: true,
+	      confirmRemoveProject: false
+	    };
+	    return _this;
+	  }
+
+	  _createClass(ProjectPage, [{
+	    key: 'toggleConfirmBox',
+	    value: function toggleConfirmBox() {
+	      this.setState({ confirmRemoveProject: !this.state.confirmRemoveProject });
+	    }
+	  }, {
+	    key: 'renderEditTools',
+	    value: function renderEditTools() {
+	      if (this.props.edit) {
+	        return _react2.default.createElement(
+	          'ul',
+	          { className: 'project-edit-tools' },
+	          _react2.default.createElement(
+	            'li',
+	            { onClick: this.props.edit },
+	            _react2.default.createElement('img', { src: '/src/img/icons/edit-icon.svg' })
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            { onClick: this.toggleConfirmBox.bind(this) },
+	            _react2.default.createElement('img', { src: '/src/img/icons/close.svg' })
+	          )
+	        );
+	      }
+	    }
+	  }, {
+	    key: 'renderProjectActionBar',
+	    value: function renderProjectActionBar() {
+	      if (this.state.confirmRemoveProject) {
+	        return _react2.default.createElement(_ProjectActionBar2.default, { confirmRemoveProject: this.props.removeProject,
+	          cancelRemove: this.toggleConfirmBox.bind(this) });
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var p = this.props.currentProject,
+	          overview = this.props.currentProject.description,
+	          role = this.props.currentProject.role,
+	          logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "",
+	          firstPhoto = Object.keys(this.props.currentProject.gallery)[0],
+	          sidebarClasses = this.state.isEditing ? "sidebar active" : "sidebar";
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'project-page' },
+	        _react2.default.createElement(
+	          _reactAddonsCssTransitionGroup2.default,
+	          { component: "div",
+	            className: 'project-overview',
+	            transitionName: 'project-element',
+	            transitionAppear: true,
+	            transitionAppearTimeout: 0,
+	            transitionEnterTimeout: 1000,
+	            transitionLeaveTimeout: 0 },
+	          _react2.default.createElement(
+	            'header',
+	            null,
+	            _react2.default.createElement(
+	              'h1',
+	              { className: 'title' },
+	              logo,
+	              p.name,
+	              this.renderEditTools()
+	            ),
+	            _react2.default.createElement(
+	              'ul',
+	              { className: 'tags' },
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Web'
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Print'
+	              )
+	            )
+	          ),
+	          this.renderProjectActionBar(),
+	          _react2.default.createElement(
+	            'main',
+	            null,
+	            _react2.default.createElement(_ProjectGallery2.default, { project: this.props.currentProject }),
+	            _react2.default.createElement(
+	              'section',
+	              null,
+	              _react2.default.createElement(
+	                'h3',
+	                null,
+	                'Overview'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                overview
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'aside',
+	              null,
+	              _react2.default.createElement(
+	                'h3',
+	                null,
+	                'My Role'
+	              ),
+	              role,
+	              _react2.default.createElement(
+	                'h3',
+	                null,
+	                'Tech Used'
+	              ),
+	              role
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactAddonsCssTransitionGroup2.default,
+	          { component: "div",
+	            className: 'project-bg',
+	            transitionName: 'fadeIn',
+	            transitionAppear: true,
+	            transitionAppearTimeout: 0,
+	            transitionEnterTimeout: 1000,
+	            transitionLeaveTimeout: 1000 },
+	          _react2.default.createElement('img', { src: p.background })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ProjectPage;
+	}(_react2.default.Component);
+
+	exports.default = ProjectPage;
+
+/***/ },
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ProjectGallery = function (_React$Component) {
+	  _inherits(ProjectGallery, _React$Component);
+
+	  function ProjectGallery(props) {
+	    _classCallCheck(this, ProjectGallery);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectGallery).call(this, props));
+
+	    _this.state = {
+	      currentImg: _this.props.project.gallery[Object.keys(_this.props.project.gallery)[0]]
+	    };
+	    return _this;
+	  }
+
+	  _createClass(ProjectGallery, [{
+	    key: 'setCurrentImg',
+	    value: function setCurrentImg(key) {
+	      console.log(key);
+
+	      this.setState({ currentImg: this.props.project.gallery[Object.keys(this.props.project.gallery)[key]] });
+	    }
+	  }, {
+	    key: 'renderCurrentImage',
+	    value: function renderCurrentImage() {
+	      return _react2.default.createElement('img', { src: this.state.currentImg.path, alt: '', key: 'currentImg' });
+	    }
+	  }, {
+	    key: 'incrementImg',
+	    value: function incrementImg() {
+	      this.setState({ currentImg: this.props.project.gallery[Object.keys(this.props.project.gallery)[key]] });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var p = this.props.project,
+	          currentImg = this.state.currentImg;
+
+	      return _react2.default.createElement(
+	        _reactAddonsCssTransitionGroup2.default,
+	        { component: "div",
+	          className: 'gallery',
+	          transitionName: 'fadeIn',
+	          transitionAppear: true,
+	          transitionAppearTimeout: 0,
+	          transitionEnterTimeout: 1000,
+	          transitionLeaveTimeout: 1000 },
+	        _react2.default.createElement(
+	          _reactAddonsCssTransitionGroup2.default,
+	          { component: "div",
+	            className: 'current-img',
+	            transitionName: 'fadeIn',
+	            transitionAppear: true,
+	            transitionAppearTimeout: 0,
+	            transitionEnterTimeout: 1000,
+	            transitionLeaveTimeout: 1000 },
+	          this.renderCurrentImage(),
+	          _react2.default.createElement(
+	            'ul',
+	            { className: 'dots' },
+	            Object.keys(p.gallery).map(function (img, key) {
+	              return _react2.default.createElement(
+	                'li',
+	                { key: key, onClick: this.setCurrentImg.bind(this, key) },
+	                '•'
+	              );
+	            }, this)
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'ul',
+	          { className: 'gallery-image-thumbs' },
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            'Gallery'
+	          ),
+	          Object.keys(p.gallery).map(function (img, key) {
+	            return _react2.default.createElement(
+	              'li',
+	              { className: 'gallery-image', key: key, onClick: this.setCurrentImg.bind(this, key) },
+	              _react2.default.createElement('img', { src: p.gallery[img].path, alt: '' })
+	            );
+	          }, this)
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ProjectGallery;
+	}(_react2.default.Component);
+
+	exports.default = ProjectGallery;
+
+/***/ },
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ProjectActionBar = function (_React$Component) {
+		_inherits(ProjectActionBar, _React$Component);
+
+		function ProjectActionBar() {
+			_classCallCheck(this, ProjectActionBar);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectActionBar).apply(this, arguments));
+		}
+
+		_createClass(ProjectActionBar, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "project-action-bar" },
+					_react2.default.createElement(
+						"h3",
+						null,
+						"And you're, like, TOTALLY sure about this?"
+					),
+					_react2.default.createElement(
+						"button",
+						{ className: "delete-btn", onClick: this.props.confirmRemoveProject },
+						"Confirm Deletion"
+					),
+					_react2.default.createElement(
+						"button",
+						{ onClick: this.props.cancelRemove },
+						"Nevermind"
+					)
+				);
+			}
+		}]);
+
+		return ProjectActionBar;
+	}(_react2.default.Component);
+
+	exports.default = ProjectActionBar;
+
+/***/ },
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	var _ProjectGallery = __webpack_require__(228);
+
+	var _ProjectGallery2 = _interopRequireDefault(_ProjectGallery);
+
+	var _ProjectPage = __webpack_require__(227);
 
 	var _ProjectPage2 = _interopRequireDefault(_ProjectPage);
 
@@ -62700,8 +63146,13 @@
 	        'div',
 	        { className: 'project' },
 	        _react2.default.createElement(
-	          'div',
-	          { className: sidebarClasses },
+	          _reactAddonsCssTransitionGroup2.default,
+	          { className: sidebarClasses,
+	            transitionAppear: true,
+	            transitionAppearTimeout: 0,
+	            transitionName: 'fadeIn',
+	            transitionEnterTimeout: 1000,
+	            transitionLeaveTimeout: 1000 },
 	          this.renderSidebar()
 	        ),
 	        _react2.default.createElement(_ProjectPage2.default, { currentProject: this.props.currentProject,
@@ -62718,795 +63169,7 @@
 	exports.default = Project;
 
 /***/ },
-/* 228 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
-
-	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ProjectGallery = function (_React$Component) {
-	  _inherits(ProjectGallery, _React$Component);
-
-	  function ProjectGallery(props) {
-	    _classCallCheck(this, ProjectGallery);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectGallery).call(this, props));
-
-	    _this.state = {
-	      currentImg: _this.props.project.gallery[Object.keys(_this.props.project.gallery)[0]]
-	    };
-	    return _this;
-	  }
-
-	  _createClass(ProjectGallery, [{
-	    key: 'setCurrentImg',
-	    value: function setCurrentImg(key) {
-	      console.log(key);
-
-	      this.setState({ currentImg: this.props.project.gallery[Object.keys(this.props.project.gallery)[key]] });
-	    }
-	  }, {
-	    key: 'incrementImg',
-	    value: function incrementImg() {
-	      this.setState({ currentImg: this.props.project.gallery[Object.keys(this.props.project.gallery)[key]] });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var p = this.props.project,
-	          currentImg = this.state.currentImg;
-
-	      return _react2.default.createElement(
-	        _reactAddonsCssTransitionGroup2.default,
-	        { component: "div",
-	          className: 'gallery',
-	          transitionName: 'fadeIn',
-	          transitionAppear: true,
-	          transitionAppearTimeout: 0,
-	          transitionEnterTimeout: 1000,
-	          transitionLeaveTimeout: 1000 },
-	        _react2.default.createElement(
-	          _reactAddonsCssTransitionGroup2.default,
-	          { component: "div",
-	            className: 'current-img',
-	            transitionName: 'fadeIn',
-	            transitionAppear: true,
-	            transitionAppearTimeout: 0,
-	            transitionEnterTimeout: 1000,
-	            transitionLeaveTimeout: 1000 },
-	          _react2.default.createElement('img', { src: currentImg.path, alt: '', key: 'currentImg' }),
-	          _react2.default.createElement(
-	            'ul',
-	            { className: 'dots' },
-	            Object.keys(p.gallery).map(function (img, key) {
-	              return _react2.default.createElement(
-	                'li',
-	                { key: key, onClick: this.setCurrentImg.bind(this, key) },
-	                '•'
-	              );
-	            }, this)
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'ul',
-	          { className: 'gallery-image-thumbs' },
-	          _react2.default.createElement(
-	            'h3',
-	            null,
-	            'Gallery'
-	          ),
-	          Object.keys(p.gallery).map(function (img, key) {
-	            return _react2.default.createElement(
-	              'li',
-	              { className: 'gallery-image', key: key, onClick: this.setCurrentImg.bind(this, key) },
-	              _react2.default.createElement('img', { src: p.gallery[img].path, alt: '' })
-	            );
-	          }, this)
-	        )
-	      );
-	    }
-	  }]);
-
-	  return ProjectGallery;
-	}(_react2.default.Component);
-
-	exports.default = ProjectGallery;
-
-/***/ },
-/* 229 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
-
-	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
-
-	var _ProjectGallery = __webpack_require__(228);
-
-	var _ProjectGallery2 = _interopRequireDefault(_ProjectGallery);
-
-	var _ProjectActionBar = __webpack_require__(230);
-
-	var _ProjectActionBar2 = _interopRequireDefault(_ProjectActionBar);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ProjectPage = function (_React$Component) {
-	  _inherits(ProjectPage, _React$Component);
-
-	  function ProjectPage(props) {
-	    _classCallCheck(this, ProjectPage);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectPage).call(this, props));
-
-	    _this.state = {
-	      showGallery: true,
-	      confirmRemoveProject: false
-	    };
-	    return _this;
-	  }
-
-	  _createClass(ProjectPage, [{
-	    key: 'toggleConfirmBox',
-	    value: function toggleConfirmBox() {
-	      this.setState({ confirmRemoveProject: !this.state.confirmRemoveProject });
-	    }
-	  }, {
-	    key: 'renderProjectActionBar',
-	    value: function renderProjectActionBar() {
-	      if (this.state.confirmRemoveProject) {
-	        return _react2.default.createElement(_ProjectActionBar2.default, { confirmRemoveProject: this.props.removeProject,
-	          cancelRemove: this.toggleConfirmBox.bind(this) });
-	      }
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var p = this.props.currentProject,
-	          overview = this.props.currentProject.description,
-	          role = this.props.currentProject.role,
-	          logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "",
-	          firstPhoto = Object.keys(this.props.currentProject.gallery)[0],
-	          sidebarClasses = this.state.isEditing ? "sidebar active" : "sidebar";
-
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'project-page' },
-	        _react2.default.createElement(
-	          _reactAddonsCssTransitionGroup2.default,
-	          { component: "div",
-	            className: 'project-overview',
-	            transitionName: 'project-element',
-	            transitionAppear: true,
-	            transitionAppearTimeout: 0,
-	            transitionEnterTimeout: 1000,
-	            transitionLeaveTimeout: 0 },
-	          _react2.default.createElement(
-	            'header',
-	            null,
-	            _react2.default.createElement(
-	              'h1',
-	              { className: 'title' },
-	              logo,
-	              p.name,
-	              _react2.default.createElement(
-	                'ul',
-	                { className: 'project-edit-tools' },
-	                _react2.default.createElement(
-	                  'li',
-	                  { onClick: this.props.edit },
-	                  _react2.default.createElement('img', { src: '/src/img/icons/edit-icon.svg' })
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  { onClick: this.toggleConfirmBox.bind(this) },
-	                  _react2.default.createElement('img', { src: '/src/img/icons/close.svg' })
-	                )
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'ul',
-	              { className: 'tags' },
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Web'
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Print'
-	              )
-	            )
-	          ),
-	          this.renderProjectActionBar(),
-	          _react2.default.createElement(
-	            'main',
-	            null,
-	            _react2.default.createElement(_ProjectGallery2.default, { project: this.props.currentProject }),
-	            _react2.default.createElement(
-	              'section',
-	              null,
-	              _react2.default.createElement(
-	                'h3',
-	                null,
-	                'Overview'
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                overview
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'aside',
-	              null,
-	              _react2.default.createElement(
-	                'h3',
-	                null,
-	                'My Role'
-	              ),
-	              role,
-	              _react2.default.createElement(
-	                'h3',
-	                null,
-	                'Tech Used'
-	              ),
-	              role
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactAddonsCssTransitionGroup2.default,
-	          { component: "div",
-	            className: 'project-bg',
-	            transitionName: 'fadeIn',
-	            transitionAppear: true,
-	            transitionAppearTimeout: 0,
-	            transitionEnterTimeout: 1000,
-	            transitionLeaveTimeout: 1000 },
-	          _react2.default.createElement('img', { src: p.background })
-	        )
-	      );
-	    }
-	  }]);
-
-	  return ProjectPage;
-	}(_react2.default.Component);
-
-	exports.default = ProjectPage;
-
-/***/ },
-/* 230 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ProjectActionBar = function (_React$Component) {
-		_inherits(ProjectActionBar, _React$Component);
-
-		function ProjectActionBar() {
-			_classCallCheck(this, ProjectActionBar);
-
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectActionBar).apply(this, arguments));
-		}
-
-		_createClass(ProjectActionBar, [{
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					{ className: "project-action-bar" },
-					_react2.default.createElement(
-						"h3",
-						null,
-						"And you're, like, TOTALLY sure about this?"
-					),
-					_react2.default.createElement(
-						"button",
-						{ onClick: this.props.confirmRemoveProject },
-						"Confirm Deletion"
-					),
-					_react2.default.createElement(
-						"button",
-						{ onClick: this.props.cancelRemove },
-						"Nevermind"
-					)
-				);
-			}
-		}]);
-
-		return ProjectActionBar;
-	}(_react2.default.Component);
-
-	exports.default = ProjectActionBar;
-
-/***/ },
 /* 231 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var mixin = __webpack_require__(232);
-	var assign = __webpack_require__(233);
-
-	var mixinProto = mixin({
-	  // lifecycle stuff is as you'd expect
-	  componentDidMount: mixin.MANY,
-	  componentWillMount: mixin.MANY,
-	  componentWillReceiveProps: mixin.MANY,
-	  shouldComponentUpdate: mixin.ONCE,
-	  componentWillUpdate: mixin.MANY,
-	  componentDidUpdate: mixin.MANY,
-	  componentWillUnmount: mixin.MANY,
-	  getChildContext: mixin.MANY_MERGED
-	});
-
-	function setDefaultProps(reactMixin) {
-	  var getDefaultProps = reactMixin.getDefaultProps;
-
-	  if (getDefaultProps) {
-	    reactMixin.defaultProps = getDefaultProps();
-
-	    delete reactMixin.getDefaultProps;
-	  }
-	}
-
-	function setInitialState(reactMixin) {
-	  var getInitialState = reactMixin.getInitialState;
-	  var componentWillMount = reactMixin.componentWillMount;
-
-	  function applyInitialState(instance) {
-	    var state = instance.state || {};
-	    assign(state, getInitialState.call(instance));
-	    instance.state = state;
-	  }
-
-	  if (getInitialState) {
-	    if (!componentWillMount) {
-	      reactMixin.componentWillMount = function() {
-	        applyInitialState(this);
-	      };
-	    } else {
-	      reactMixin.componentWillMount = function() {
-	        applyInitialState(this);
-	        componentWillMount.call(this);
-	      };
-	    }
-
-	    delete reactMixin.getInitialState;
-	  }
-	}
-
-	function mixinClass(reactClass, reactMixin) {
-	  setDefaultProps(reactMixin);
-	  setInitialState(reactMixin);
-
-	  var prototypeMethods = {};
-	  var staticProps = {};
-
-	  Object.keys(reactMixin).forEach(function(key) {
-	    if (key === 'mixins') {
-	      return; // Handled below to ensure proper order regardless of property iteration order
-	    }
-	    if (key === 'statics') {
-	      return; // gets special handling
-	    } else if (typeof reactMixin[key] === 'function') {
-	      prototypeMethods[key] = reactMixin[key];
-	    } else {
-	      staticProps[key] = reactMixin[key];
-	    }
-	  });
-
-	  mixinProto(reactClass.prototype, prototypeMethods);
-
-	  var mergePropTypes = function(left, right, key) {
-	    if (!left) return right;
-	    if (!right) return left;
-
-	    var result = {};
-	    Object.keys(left).forEach(function(leftKey) {
-	      if (!right[leftKey]) {
-	        result[leftKey] = left[leftKey];
-	      }
-	    });
-
-	    Object.keys(right).forEach(function(rightKey) {
-	      if (left[rightKey]) {
-	        result[rightKey] = function checkBothContextTypes() {
-	          return right[rightKey].apply(this, arguments) && left[rightKey].apply(this, arguments);
-	        };
-	      } else {
-	        result[rightKey] = right[rightKey];
-	      }
-	    });
-
-	    return result;
-	  };
-
-	  mixin({
-	    childContextTypes: mergePropTypes,
-	    contextTypes: mergePropTypes,
-	    propTypes: mixin.MANY_MERGED_LOOSE,
-	    defaultProps: mixin.MANY_MERGED_LOOSE
-	  })(reactClass, staticProps);
-
-	  // statics is a special case because it merges directly onto the class
-	  if (reactMixin.statics) {
-	    Object.getOwnPropertyNames(reactMixin.statics).forEach(function(key) {
-	      var left = reactClass[key];
-	      var right = reactMixin.statics[key];
-
-	      if (left !== undefined && right !== undefined) {
-	        throw new TypeError('Cannot mixin statics because statics.' + key + ' and Component.' + key + ' are defined.');
-	      }
-
-	      reactClass[key] = left !== undefined ? left : right;
-	    });
-	  }
-
-	  // If more mixins are defined, they need to run. This emulate's react's behavior.
-	  // See behavior in code at:
-	  // https://github.com/facebook/react/blob/41aa3496aa632634f650edbe10d617799922d265/src/isomorphic/classic/class/ReactClass.js#L468
-	  // Note the .reverse(). In React, a fresh constructor is created, then all mixins are mixed in recursively,
-	  // then the actual spec is mixed in last.
-	  //
-	  // With ES6 classes, the properties are already there, so smart-mixin mixes functions (a, b) -> b()a(), which is
-	  // the opposite of how React does it. If we reverse this array, we basically do the whole logic in reverse,
-	  // which makes the result the same. See the test for more.
-	  // See also:
-	  // https://github.com/facebook/react/blob/41aa3496aa632634f650edbe10d617799922d265/src/isomorphic/classic/class/ReactClass.js#L853
-	  if (reactMixin.mixins) {
-	    reactMixin.mixins.reverse().forEach(mixinClass.bind(null, reactClass));
-	  }
-
-	  return reactClass;
-	}
-
-	module.exports = (function() {
-	  var reactMixin = mixinProto;
-
-	  reactMixin.onClass = function(reactClass, mixin) {
-	    return mixinClass(reactClass, mixin);
-	  };
-
-	  reactMixin.decorate = function(mixin) {
-	    return function(reactClass) {
-	      return reactMixin.onClass(reactClass, mixin);
-	    };
-	  };
-
-	  return reactMixin;
-	})();
-
-
-/***/ },
-/* 232 */
-/***/ function(module, exports) {
-
-	var objToStr = function(x){ return Object.prototype.toString.call(x); };
-
-	var thrower = function(error){
-	    throw error;
-	};
-
-	var mixins = module.exports = function makeMixinFunction(rules, _opts){
-	    var opts = _opts || {};
-	    if (!opts.unknownFunction) {
-	        opts.unknownFunction = mixins.ONCE;
-	    }
-
-	    if (!opts.nonFunctionProperty) {
-	        opts.nonFunctionProperty = function(left, right, key){
-	            if (left !== undefined && right !== undefined) {
-	                var getTypeName = function(obj){
-	                    if (obj && obj.constructor && obj.constructor.name) {
-	                        return obj.constructor.name;
-	                    }
-	                    else {
-	                        return objToStr(obj).slice(8, -1);
-	                    }
-	                };
-	                throw new TypeError('Cannot mixin key ' + key + ' because it is provided by multiple sources, '
-	                        + 'and the types are ' + getTypeName(left) + ' and ' + getTypeName(right));
-	            }
-	            return left === undefined ? right : left;
-	        };
-	    }
-
-	    function setNonEnumerable(target, key, value){
-	        if (key in target){
-	            target[key] = value;
-	        }
-	        else {
-	            Object.defineProperty(target, key, {
-	                value: value,
-	                writable: true,
-	                configurable: true
-	            });
-	        }
-	    }
-
-	    return function applyMixin(source, mixin){
-	        Object.keys(mixin).forEach(function(key){
-	            var left = source[key], right = mixin[key], rule = rules[key];
-
-	            // this is just a weird case where the key was defined, but there's no value
-	            // behave like the key wasn't defined
-	            if (left === undefined && right === undefined) return;
-
-	            var wrapIfFunction = function(thing){
-	                return typeof thing !== "function" ? thing
-	                : function(){
-	                    return thing.call(this, arguments);
-	                };
-	            };
-
-	            // do we have a rule for this key?
-	            if (rule) {
-	                // may throw here
-	                var fn = rule(left, right, key);
-	                setNonEnumerable(source, key, wrapIfFunction(fn));
-	                return;
-	            }
-
-	            var leftIsFn = typeof left === "function";
-	            var rightIsFn = typeof right === "function";
-
-	            // check to see if they're some combination of functions or undefined
-	            // we already know there's no rule, so use the unknown function behavior
-	            if (leftIsFn && right === undefined
-	             || rightIsFn && left === undefined
-	             || leftIsFn && rightIsFn) {
-	                // may throw, the default is ONCE so if both are functions
-	                // the default is to throw
-	                setNonEnumerable(source, key, wrapIfFunction(opts.unknownFunction(left, right, key)));
-	                return;
-	            }
-
-	            // we have no rule for them, one may be a function but one or both aren't
-	            // our default is MANY_MERGED_LOOSE which will merge objects, concat arrays
-	            // and throw if there's a type mismatch or both are primitives (how do you merge 3, and "foo"?)
-	            source[key] = opts.nonFunctionProperty(left, right, key);
-	        });
-	    };
-	};
-
-	mixins._mergeObjects = function(obj1, obj2) {
-	    var assertObject = function(obj, obj2){
-	        var type = objToStr(obj);
-	        if (type !== '[object Object]') {
-	            var displayType = obj.constructor ? obj.constructor.name : 'Unknown';
-	            var displayType2 = obj2.constructor ? obj2.constructor.name : 'Unknown';
-	            thrower('cannot merge returned value of type ' + displayType + ' with an ' + displayType2);
-	        }
-	    };
-
-	    if (Array.isArray(obj1) && Array.isArray(obj2)) {
-	        return obj1.concat(obj2);
-	    }
-
-	    assertObject(obj1, obj2);
-	    assertObject(obj2, obj1);
-
-	    var result = {};
-	    Object.keys(obj1).forEach(function(k){
-	        if (Object.prototype.hasOwnProperty.call(obj2, k)) {
-	            thrower('cannot merge returns because both have the ' + JSON.stringify(k) + ' key');
-	        }
-	        result[k] = obj1[k];
-	    });
-
-	    Object.keys(obj2).forEach(function(k){
-	        // we can skip the conflict check because all conflicts would already be found
-	        result[k] = obj2[k];
-	    });
-	    return result;
-
-	}
-
-	// define our built-in mixin types
-	mixins.ONCE = function(left, right, key){
-	    if (left && right) {
-	        throw new TypeError('Cannot mixin ' + key + ' because it has a unique constraint.');
-	    }
-
-	    var fn = left || right;
-
-	    return function(args){
-	        return fn.apply(this, args);
-	    };
-	};
-
-	mixins.MANY = function(left, right, key){
-	    return function(args){
-	        if (right) right.apply(this, args);
-	        return left ? left.apply(this, args) : undefined;
-	    };
-	};
-
-	mixins.MANY_MERGED_LOOSE = function(left, right, key) {
-	    if(left && right) {
-	        return mixins._mergeObjects(left, right);
-	    }
-
-	    return left || right;
-	}
-
-	mixins.MANY_MERGED = function(left, right, key){
-	    return function(args){
-	        var res1 = right && right.apply(this, args);
-	        var res2 = left && left.apply(this, args);
-	        if (res1 && res2) {
-	            return mixins._mergeObjects(res1, res2)
-	        }
-	        return res2 || res1;
-	    };
-	};
-
-
-	mixins.REDUCE_LEFT = function(_left, _right, key){
-	    var left = _left || function(x){ return x };
-	    var right = _right || function(x){ return x };
-	    return function(args){
-	        return right.call(this, left.apply(this, args));
-	    };
-	};
-
-	mixins.REDUCE_RIGHT = function(_left, _right, key){
-	    var left = _left || function(x){ return x };
-	    var right = _right || function(x){ return x };
-	    return function(args){
-	        return left.call(this, right.apply(this, args));
-	    };
-	};
-
-
-
-/***/ },
-/* 233 */
-/***/ function(module, exports) {
-
-	/* eslint-disable no-unused-vars */
-	'use strict';
-	var hasOwnProperty = Object.prototype.hasOwnProperty;
-	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-
-	function toObject(val) {
-		if (val === null || val === undefined) {
-			throw new TypeError('Object.assign cannot be called with null or undefined');
-		}
-
-		return Object(val);
-	}
-
-	module.exports = Object.assign || function (target, source) {
-		var from;
-		var to = toObject(target);
-		var symbols;
-
-		for (var s = 1; s < arguments.length; s++) {
-			from = Object(arguments[s]);
-
-			for (var key in from) {
-				if (hasOwnProperty.call(from, key)) {
-					to[key] = from[key];
-				}
-			}
-
-			if (Object.getOwnPropertySymbols) {
-				symbols = Object.getOwnPropertySymbols(from);
-				for (var i = 0; i < symbols.length; i++) {
-					if (propIsEnumerable.call(from, symbols[i])) {
-						to[symbols[i]] = from[symbols[i]];
-					}
-				}
-			}
-		}
-
-		return to;
-	};
-
-
-/***/ },
-/* 234 */
-/***/ function(module, exports, __webpack_require__) {
-
-	
-	exports.LinkedStateMixin = __webpack_require__(235);
-
-
-/***/ },
-/* 235 */
-/***/ function(module, exports) {
-
-	
-	function getIn(object, path) {
-	  var stack = path.split('.');
-	  while (stack.length > 1) {
-	    object = object[stack.shift()];
-	  }
-	  return object[stack.shift()];
-	}
-
-	function updateIn(object, path, value) {
-	  var current = object, stack = path.split('.');
-	  while (stack.length > 1) {
-	    current = current[stack.shift()];
-	  }
-	  current[stack.shift()] = value;
-	  return object;
-	}
-
-	function setPartialState(component, path, value) {
-	  component.setState(
-	    updateIn(component.state, path, value));
-	}
-
-	exports.linkState = function(path) {
-	  return {
-	    value: getIn(this.state, path),
-	    requestChange: setPartialState.bind(null, this, path)
-	  };
-	};
-
-
-/***/ },
-/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63581,20 +63244,20 @@
 	exports.default = Contact;
 
 /***/ },
-/* 237 */
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(238);
+	module.exports = __webpack_require__(233);
 
 
 
 /***/ },
-/* 238 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
-			module.exports = factory(__webpack_require__(239));
+			module.exports = factory(__webpack_require__(234));
 		else if(typeof define === 'function' && define.amd)
 			define(["firebase"], factory);
 		else {
@@ -64124,7 +63787,7 @@
 	;
 
 /***/ },
-/* 239 */
+/* 234 */
 /***/ function(module, exports) {
 
 	/*! @license Firebase v2.4.0
@@ -64408,7 +64071,7 @@
 
 
 /***/ },
-/* 240 */
+/* 235 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -64431,7 +64094,7 @@
 	exports.default = helpers;
 
 /***/ },
-/* 241 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -64448,7 +64111,7 @@
 	  if ( true ) {
 	    // AMD
 	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-	      __webpack_require__(242)
+	      __webpack_require__(237)
 	    ], __WEBPACK_AMD_DEFINE_RESULT__ = function( EvEmitter ) {
 	      return factory( window, EvEmitter );
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -64807,7 +64470,7 @@
 
 
 /***/ },
-/* 242 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -64919,6 +64582,434 @@
 	return EvEmitter;
 
 	}));
+
+
+/***/ },
+/* 238 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	exports.LinkedStateMixin = __webpack_require__(239);
+
+
+/***/ },
+/* 239 */
+/***/ function(module, exports) {
+
+	
+	function getIn(object, path) {
+	  var stack = path.split('.');
+	  while (stack.length > 1) {
+	    object = object[stack.shift()];
+	  }
+	  return object[stack.shift()];
+	}
+
+	function updateIn(object, path, value) {
+	  var current = object, stack = path.split('.');
+	  while (stack.length > 1) {
+	    current = current[stack.shift()];
+	  }
+	  current[stack.shift()] = value;
+	  return object;
+	}
+
+	function setPartialState(component, path, value) {
+	  component.setState(
+	    updateIn(component.state, path, value));
+	}
+
+	exports.linkState = function(path) {
+	  return {
+	    value: getIn(this.state, path),
+	    requestChange: setPartialState.bind(null, this, path)
+	  };
+	};
+
+
+/***/ },
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var mixin = __webpack_require__(241);
+	var assign = __webpack_require__(242);
+
+	var mixinProto = mixin({
+	  // lifecycle stuff is as you'd expect
+	  componentDidMount: mixin.MANY,
+	  componentWillMount: mixin.MANY,
+	  componentWillReceiveProps: mixin.MANY,
+	  shouldComponentUpdate: mixin.ONCE,
+	  componentWillUpdate: mixin.MANY,
+	  componentDidUpdate: mixin.MANY,
+	  componentWillUnmount: mixin.MANY,
+	  getChildContext: mixin.MANY_MERGED
+	});
+
+	function setDefaultProps(reactMixin) {
+	  var getDefaultProps = reactMixin.getDefaultProps;
+
+	  if (getDefaultProps) {
+	    reactMixin.defaultProps = getDefaultProps();
+
+	    delete reactMixin.getDefaultProps;
+	  }
+	}
+
+	function setInitialState(reactMixin) {
+	  var getInitialState = reactMixin.getInitialState;
+	  var componentWillMount = reactMixin.componentWillMount;
+
+	  function applyInitialState(instance) {
+	    var state = instance.state || {};
+	    assign(state, getInitialState.call(instance));
+	    instance.state = state;
+	  }
+
+	  if (getInitialState) {
+	    if (!componentWillMount) {
+	      reactMixin.componentWillMount = function() {
+	        applyInitialState(this);
+	      };
+	    } else {
+	      reactMixin.componentWillMount = function() {
+	        applyInitialState(this);
+	        componentWillMount.call(this);
+	      };
+	    }
+
+	    delete reactMixin.getInitialState;
+	  }
+	}
+
+	function mixinClass(reactClass, reactMixin) {
+	  setDefaultProps(reactMixin);
+	  setInitialState(reactMixin);
+
+	  var prototypeMethods = {};
+	  var staticProps = {};
+
+	  Object.keys(reactMixin).forEach(function(key) {
+	    if (key === 'mixins') {
+	      return; // Handled below to ensure proper order regardless of property iteration order
+	    }
+	    if (key === 'statics') {
+	      return; // gets special handling
+	    } else if (typeof reactMixin[key] === 'function') {
+	      prototypeMethods[key] = reactMixin[key];
+	    } else {
+	      staticProps[key] = reactMixin[key];
+	    }
+	  });
+
+	  mixinProto(reactClass.prototype, prototypeMethods);
+
+	  var mergePropTypes = function(left, right, key) {
+	    if (!left) return right;
+	    if (!right) return left;
+
+	    var result = {};
+	    Object.keys(left).forEach(function(leftKey) {
+	      if (!right[leftKey]) {
+	        result[leftKey] = left[leftKey];
+	      }
+	    });
+
+	    Object.keys(right).forEach(function(rightKey) {
+	      if (left[rightKey]) {
+	        result[rightKey] = function checkBothContextTypes() {
+	          return right[rightKey].apply(this, arguments) && left[rightKey].apply(this, arguments);
+	        };
+	      } else {
+	        result[rightKey] = right[rightKey];
+	      }
+	    });
+
+	    return result;
+	  };
+
+	  mixin({
+	    childContextTypes: mergePropTypes,
+	    contextTypes: mergePropTypes,
+	    propTypes: mixin.MANY_MERGED_LOOSE,
+	    defaultProps: mixin.MANY_MERGED_LOOSE
+	  })(reactClass, staticProps);
+
+	  // statics is a special case because it merges directly onto the class
+	  if (reactMixin.statics) {
+	    Object.getOwnPropertyNames(reactMixin.statics).forEach(function(key) {
+	      var left = reactClass[key];
+	      var right = reactMixin.statics[key];
+
+	      if (left !== undefined && right !== undefined) {
+	        throw new TypeError('Cannot mixin statics because statics.' + key + ' and Component.' + key + ' are defined.');
+	      }
+
+	      reactClass[key] = left !== undefined ? left : right;
+	    });
+	  }
+
+	  // If more mixins are defined, they need to run. This emulate's react's behavior.
+	  // See behavior in code at:
+	  // https://github.com/facebook/react/blob/41aa3496aa632634f650edbe10d617799922d265/src/isomorphic/classic/class/ReactClass.js#L468
+	  // Note the .reverse(). In React, a fresh constructor is created, then all mixins are mixed in recursively,
+	  // then the actual spec is mixed in last.
+	  //
+	  // With ES6 classes, the properties are already there, so smart-mixin mixes functions (a, b) -> b()a(), which is
+	  // the opposite of how React does it. If we reverse this array, we basically do the whole logic in reverse,
+	  // which makes the result the same. See the test for more.
+	  // See also:
+	  // https://github.com/facebook/react/blob/41aa3496aa632634f650edbe10d617799922d265/src/isomorphic/classic/class/ReactClass.js#L853
+	  if (reactMixin.mixins) {
+	    reactMixin.mixins.reverse().forEach(mixinClass.bind(null, reactClass));
+	  }
+
+	  return reactClass;
+	}
+
+	module.exports = (function() {
+	  var reactMixin = mixinProto;
+
+	  reactMixin.onClass = function(reactClass, mixin) {
+	    return mixinClass(reactClass, mixin);
+	  };
+
+	  reactMixin.decorate = function(mixin) {
+	    return function(reactClass) {
+	      return reactMixin.onClass(reactClass, mixin);
+	    };
+	  };
+
+	  return reactMixin;
+	})();
+
+
+/***/ },
+/* 241 */
+/***/ function(module, exports) {
+
+	var objToStr = function(x){ return Object.prototype.toString.call(x); };
+
+	var thrower = function(error){
+	    throw error;
+	};
+
+	var mixins = module.exports = function makeMixinFunction(rules, _opts){
+	    var opts = _opts || {};
+	    if (!opts.unknownFunction) {
+	        opts.unknownFunction = mixins.ONCE;
+	    }
+
+	    if (!opts.nonFunctionProperty) {
+	        opts.nonFunctionProperty = function(left, right, key){
+	            if (left !== undefined && right !== undefined) {
+	                var getTypeName = function(obj){
+	                    if (obj && obj.constructor && obj.constructor.name) {
+	                        return obj.constructor.name;
+	                    }
+	                    else {
+	                        return objToStr(obj).slice(8, -1);
+	                    }
+	                };
+	                throw new TypeError('Cannot mixin key ' + key + ' because it is provided by multiple sources, '
+	                        + 'and the types are ' + getTypeName(left) + ' and ' + getTypeName(right));
+	            }
+	            return left === undefined ? right : left;
+	        };
+	    }
+
+	    function setNonEnumerable(target, key, value){
+	        if (key in target){
+	            target[key] = value;
+	        }
+	        else {
+	            Object.defineProperty(target, key, {
+	                value: value,
+	                writable: true,
+	                configurable: true
+	            });
+	        }
+	    }
+
+	    return function applyMixin(source, mixin){
+	        Object.keys(mixin).forEach(function(key){
+	            var left = source[key], right = mixin[key], rule = rules[key];
+
+	            // this is just a weird case where the key was defined, but there's no value
+	            // behave like the key wasn't defined
+	            if (left === undefined && right === undefined) return;
+
+	            var wrapIfFunction = function(thing){
+	                return typeof thing !== "function" ? thing
+	                : function(){
+	                    return thing.call(this, arguments);
+	                };
+	            };
+
+	            // do we have a rule for this key?
+	            if (rule) {
+	                // may throw here
+	                var fn = rule(left, right, key);
+	                setNonEnumerable(source, key, wrapIfFunction(fn));
+	                return;
+	            }
+
+	            var leftIsFn = typeof left === "function";
+	            var rightIsFn = typeof right === "function";
+
+	            // check to see if they're some combination of functions or undefined
+	            // we already know there's no rule, so use the unknown function behavior
+	            if (leftIsFn && right === undefined
+	             || rightIsFn && left === undefined
+	             || leftIsFn && rightIsFn) {
+	                // may throw, the default is ONCE so if both are functions
+	                // the default is to throw
+	                setNonEnumerable(source, key, wrapIfFunction(opts.unknownFunction(left, right, key)));
+	                return;
+	            }
+
+	            // we have no rule for them, one may be a function but one or both aren't
+	            // our default is MANY_MERGED_LOOSE which will merge objects, concat arrays
+	            // and throw if there's a type mismatch or both are primitives (how do you merge 3, and "foo"?)
+	            source[key] = opts.nonFunctionProperty(left, right, key);
+	        });
+	    };
+	};
+
+	mixins._mergeObjects = function(obj1, obj2) {
+	    var assertObject = function(obj, obj2){
+	        var type = objToStr(obj);
+	        if (type !== '[object Object]') {
+	            var displayType = obj.constructor ? obj.constructor.name : 'Unknown';
+	            var displayType2 = obj2.constructor ? obj2.constructor.name : 'Unknown';
+	            thrower('cannot merge returned value of type ' + displayType + ' with an ' + displayType2);
+	        }
+	    };
+
+	    if (Array.isArray(obj1) && Array.isArray(obj2)) {
+	        return obj1.concat(obj2);
+	    }
+
+	    assertObject(obj1, obj2);
+	    assertObject(obj2, obj1);
+
+	    var result = {};
+	    Object.keys(obj1).forEach(function(k){
+	        if (Object.prototype.hasOwnProperty.call(obj2, k)) {
+	            thrower('cannot merge returns because both have the ' + JSON.stringify(k) + ' key');
+	        }
+	        result[k] = obj1[k];
+	    });
+
+	    Object.keys(obj2).forEach(function(k){
+	        // we can skip the conflict check because all conflicts would already be found
+	        result[k] = obj2[k];
+	    });
+	    return result;
+
+	}
+
+	// define our built-in mixin types
+	mixins.ONCE = function(left, right, key){
+	    if (left && right) {
+	        throw new TypeError('Cannot mixin ' + key + ' because it has a unique constraint.');
+	    }
+
+	    var fn = left || right;
+
+	    return function(args){
+	        return fn.apply(this, args);
+	    };
+	};
+
+	mixins.MANY = function(left, right, key){
+	    return function(args){
+	        if (right) right.apply(this, args);
+	        return left ? left.apply(this, args) : undefined;
+	    };
+	};
+
+	mixins.MANY_MERGED_LOOSE = function(left, right, key) {
+	    if(left && right) {
+	        return mixins._mergeObjects(left, right);
+	    }
+
+	    return left || right;
+	}
+
+	mixins.MANY_MERGED = function(left, right, key){
+	    return function(args){
+	        var res1 = right && right.apply(this, args);
+	        var res2 = left && left.apply(this, args);
+	        if (res1 && res2) {
+	            return mixins._mergeObjects(res1, res2)
+	        }
+	        return res2 || res1;
+	    };
+	};
+
+
+	mixins.REDUCE_LEFT = function(_left, _right, key){
+	    var left = _left || function(x){ return x };
+	    var right = _right || function(x){ return x };
+	    return function(args){
+	        return right.call(this, left.apply(this, args));
+	    };
+	};
+
+	mixins.REDUCE_RIGHT = function(_left, _right, key){
+	    var left = _left || function(x){ return x };
+	    var right = _right || function(x){ return x };
+	    return function(args){
+	        return left.call(this, right.apply(this, args));
+	    };
+	};
+
+
+
+/***/ },
+/* 242 */
+/***/ function(module, exports) {
+
+	/* eslint-disable no-unused-vars */
+	'use strict';
+	var hasOwnProperty = Object.prototype.hasOwnProperty;
+	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+	function toObject(val) {
+		if (val === null || val === undefined) {
+			throw new TypeError('Object.assign cannot be called with null or undefined');
+		}
+
+		return Object(val);
+	}
+
+	module.exports = Object.assign || function (target, source) {
+		var from;
+		var to = toObject(target);
+		var symbols;
+
+		for (var s = 1; s < arguments.length; s++) {
+			from = Object(arguments[s]);
+
+			for (var key in from) {
+				if (hasOwnProperty.call(from, key)) {
+					to[key] = from[key];
+				}
+			}
+
+			if (Object.getOwnPropertySymbols) {
+				symbols = Object.getOwnPropertySymbols(from);
+				for (var i = 0; i < symbols.length; i++) {
+					if (propIsEnumerable.call(from, symbols[i])) {
+						to[symbols[i]] = from[symbols[i]];
+					}
+				}
+			}
+		}
+
+		return to;
+	};
 
 
 /***/ }

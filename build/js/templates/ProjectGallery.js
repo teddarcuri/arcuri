@@ -44,6 +44,11 @@ var ProjectGallery = function (_React$Component) {
       this.setState({ currentImg: this.props.project.gallery[Object.keys(this.props.project.gallery)[key]] });
     }
   }, {
+    key: 'renderCurrentImage',
+    value: function renderCurrentImage() {
+      return _react2.default.createElement('img', { src: this.state.currentImg.path, alt: '', key: 'currentImg' });
+    }
+  }, {
     key: 'incrementImg',
     value: function incrementImg() {
       this.setState({ currentImg: this.props.project.gallery[Object.keys(this.props.project.gallery)[key]] });
@@ -72,7 +77,7 @@ var ProjectGallery = function (_React$Component) {
             transitionAppearTimeout: 0,
             transitionEnterTimeout: 1000,
             transitionLeaveTimeout: 1000 },
-          _react2.default.createElement('img', { src: currentImg.path, alt: '', key: 'currentImg' }),
+          this.renderCurrentImage(),
           _react2.default.createElement(
             'ul',
             { className: 'dots' },

@@ -114,8 +114,13 @@ var Project = function (_React$Component) {
         'div',
         { className: 'project' },
         _react2.default.createElement(
-          'div',
-          { className: sidebarClasses },
+          _reactAddonsCssTransitionGroup2.default,
+          { className: sidebarClasses,
+            transitionAppear: true,
+            transitionAppearTimeout: 0,
+            transitionName: 'fadeIn',
+            transitionEnterTimeout: 1000,
+            transitionLeaveTimeout: 1000 },
           this.renderSidebar()
         ),
         _react2.default.createElement(_ProjectPage2.default, { currentProject: this.props.currentProject,

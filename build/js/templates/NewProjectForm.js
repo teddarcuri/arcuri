@@ -3,28 +3,20 @@
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 Object.defineProperty(exports, "__esModule", {
-		value: true
+  value: true
 });
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _project = require('./project');
+var _ProjectPage = require('./ProjectPage');
 
-var _project2 = _interopRequireDefault(_project);
+var _ProjectPage2 = _interopRequireDefault(_ProjectPage);
 
 var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
-
-var _reactMixin = require('react-mixin');
-
-var _reactMixin2 = _interopRequireDefault(_reactMixin);
-
-var _reactCatalyst = require('react-catalyst');
-
-var _reactCatalyst2 = _interopRequireDefault(_reactCatalyst);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35,95 +27,170 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var NewProjectForm = function (_React$Component) {
-		_inherits(NewProjectForm, _React$Component);
+  _inherits(NewProjectForm, _React$Component);
 
-		function NewProjectForm(props) {
-				_classCallCheck(this, NewProjectForm);
+  function NewProjectForm(props) {
+    _classCallCheck(this, NewProjectForm);
 
-				return _possibleConstructorReturn(this, Object.getPrototypeOf(NewProjectForm).call(this, props));
-		}
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(NewProjectForm).call(this, props));
 
-		_createClass(NewProjectForm, [{
-				key: 'createProject',
-				value: function createProject(ev) {
+    _this.state = {
+      currentStage: "DETAILS"
+    };
+    return _this;
+  }
 
-						ev.preventDefault();
+  _createClass(NewProjectForm, [{
+    key: 'createProject',
+    value: function createProject(ev) {
 
-						var project = {
-								name: this.refs.name.value,
-								background: this.refs.background.value,
-								logo: this.refs.logo.value,
-								types: this.refs.types.value,
-								description: this.refs.description.value,
-								gallery: {
-										image1: {
-												path: "/src/img/gallery_images/colorado_gov/contact.png"
-										}
-								}
-						};
+      ev.preventDefault();
 
-						// Add to project to state
-						this.props.addProject(project);
-				}
-		}, {
-				key: 'render',
-				value: function render() {
-						return _react2.default.createElement(
-								'section',
-								{ className: 'project-builder' },
-								_react2.default.createElement(
-										'div',
-										{ className: 'sidebar' },
-										_react2.default.createElement(
-												'form',
-												{ onSubmit: this.createProject.bind(this) },
-												_react2.default.createElement(
-														'h3',
-														null,
-														'Create Project'
-												),
-												_react2.default.createElement('input', { ref: 'name',
-														name: 'name',
-														type: 'text',
-														placeholder: 'name',
-														valueLink: this.props.linkState('newProject.name') }),
-												_react2.default.createElement('input', { ref: 'types',
-														type: 'types',
-														placeholder: 'types' }),
-												_react2.default.createElement('input', { ref: 'background',
-														type: 'background',
-														placeholder: 'background',
-														valueLink: this.props.linkState('newProject.background') }),
-												_react2.default.createElement('input', { ref: 'logo',
-														type: 'logo',
-														placeholder: 'logo',
-														valueLink: this.props.linkState('newProject.logo') }),
-												_react2.default.createElement('textarea', { ref: 'description',
-														name: 'description',
-														valueLink: this.props.linkState('newProject.description') }),
-												_react2.default.createElement('textarea', { ref: 'myRole',
-														name: 'my-role' }),
-												_react2.default.createElement('textarea', { ref: 'techUsed',
-														name: 'tech-used' }),
-												_react2.default.createElement(
-														'button',
-														{ type: 'submit' },
-														'Create Project'
-												)
-										)
-								),
-								_react2.default.createElement(
-										'div',
-										{ id: 'preview-window' },
-										_react2.default.createElement(_project2.default, { currentProject: this.props.newProject })
-								)
-						);
-				}
-		}]);
+      var project = {
+        name: this.refs.name.value,
+        background: this.refs.background.value,
+        logo: this.refs.logo.value,
+        types: this.refs.types.value,
+        description: this.refs.description.value,
+        gallery: {
+          image1: {
+            path: "/src/img/gallery_images/colorado_gov/contact.png"
+          }
+        }
+      };
 
-		return NewProjectForm;
+      // Add to project to state
+      this.props.addProject(project);
+    }
+  }, {
+    key: 'renderGalleryFields',
+    value: function renderGalleryFields(gallery) {
+      return _react2.default.createElement(
+        'div',
+        { className: 'gallery-fields' },
+        _react2.default.createElement(
+          'h3',
+          null,
+          'Gallery'
+        ),
+        Object.keys(gallery).map(function (g) {
+          return _react2.default.createElement('input', { value: gallery[g].path });
+        }),
+        _react2.default.createElement(
+          'button',
+          { className: 'add-gallery-field' },
+          '+'
+        )
+      );
+    }
+  }, {
+    key: 'showHeaderTab',
+    value: function showHeaderTab() {}
+  }, {
+    key: 'showDetailsTab',
+    value: function showDetailsTab() {}
+  }, {
+    key: 'showGalleryTab',
+    value: function showGalleryTab() {}
+  }, {
+    key: 'renderFormStage',
+    value: function renderFormStage() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'details' },
+        _react2.default.createElement(
+          'label',
+          { htmlFor: 'logo' },
+          'Logo'
+        ),
+        _react2.default.createElement('input', { ref: 'logo',
+          type: 'logo',
+          placeholder: 'logo',
+          name: 'logo',
+          valueLink: this.props.linkState('newProject.logo') }),
+        _react2.default.createElement(
+          'label',
+          { htmlFor: 'name' },
+          'Name'
+        ),
+        _react2.default.createElement('input', { ref: 'name',
+          name: 'name',
+          type: 'text',
+          placeholder: 'name',
+          name: 'name',
+          valueLink: this.props.linkState('newProject.name') }),
+        _react2.default.createElement('input', { ref: 'types',
+          type: 'types',
+          placeholder: 'types' }),
+        _react2.default.createElement('input', { ref: 'background',
+          type: 'background',
+          placeholder: 'background',
+          valueLink: this.props.linkState('newProject.background') })
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+
+      var gallery = this.props.newProject.gallery;
+      console.log(gallery);
+      return _react2.default.createElement(
+        'section',
+        { className: 'project-builder' },
+        _react2.default.createElement(
+          'div',
+          { className: 'sidebar' },
+          _react2.default.createElement(
+            'form',
+            { onSubmit: this.createProject.bind(this) },
+            _react2.default.createElement(
+              'div',
+              { className: 'tabs' },
+              _react2.default.createElement(
+                'ul',
+                null,
+                _react2.default.createElement(
+                  'li',
+                  { onClick: this.showHeaderTab },
+                  'Header'
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { onClick: this.showGalleryTab },
+                  'Photo Gallery'
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { onClick: this.showDetailsTab },
+                  'Project Details'
+                )
+              ),
+              _react2.default.createElement(
+                'section',
+                null,
+                this.renderFormStage()
+              ),
+              _react2.default.createElement(
+                'button',
+                null,
+                'Create Project'
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { id: 'preview-window' },
+          _react2.default.createElement(_ProjectPage2.default, { currentProject: this.props.newProject,
+            linkState: this.props.linkState,
+            edit: null
+          })
+        )
+      );
+    }
+  }]);
+
+  return NewProjectForm;
 }(_react2.default.Component);
-
-_reactMixin2.default.onClass(NewProjectForm, _reactCatalyst2.default.LinkedStateMixin);
 
 exports.default = NewProjectForm;

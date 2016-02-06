@@ -18,6 +18,21 @@ class ProjectPage extends React.Component {
     this.setState({confirmRemoveProject: !this.state.confirmRemoveProject});
   }
 
+  renderEditTools() {
+    if (this.props.edit) {
+      return (
+        <ul className="project-edit-tools">
+          <li onClick={this.props.edit}>
+            <img src="/src/img/icons/edit-icon.svg" />
+          </li>
+          <li onClick={this.toggleConfirmBox.bind(this)}>
+            <img src="/src/img/icons/close.svg" />
+          </li>
+        </ul>
+      )            
+    }
+  }
+
   renderProjectActionBar() {
     if (this.state.confirmRemoveProject) {
       return (
@@ -50,14 +65,7 @@ class ProjectPage extends React.Component {
               <h1 className="title">
                 {logo}
                 {p.name}
-                <ul className="project-edit-tools">
-                  <li onClick={this.props.edit}>
-                    <img src="/src/img/icons/edit-icon.svg" />
-                  </li>
-                  <li onClick={this.toggleConfirmBox.bind(this)}>
-                    <img src="/src/img/icons/close.svg" />
-                  </li>
-                </ul>
+                {this.renderEditTools()}
               </h1>
 
               <ul className="tags">

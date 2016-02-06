@@ -51,6 +51,26 @@ var ProjectPage = function (_React$Component) {
       this.setState({ confirmRemoveProject: !this.state.confirmRemoveProject });
     }
   }, {
+    key: 'renderEditTools',
+    value: function renderEditTools() {
+      if (this.props.edit) {
+        return _react2.default.createElement(
+          'ul',
+          { className: 'project-edit-tools' },
+          _react2.default.createElement(
+            'li',
+            { onClick: this.props.edit },
+            _react2.default.createElement('img', { src: '/src/img/icons/edit-icon.svg' })
+          ),
+          _react2.default.createElement(
+            'li',
+            { onClick: this.toggleConfirmBox.bind(this) },
+            _react2.default.createElement('img', { src: '/src/img/icons/close.svg' })
+          )
+        );
+      }
+    }
+  }, {
     key: 'renderProjectActionBar',
     value: function renderProjectActionBar() {
       if (this.state.confirmRemoveProject) {
@@ -88,20 +108,7 @@ var ProjectPage = function (_React$Component) {
               { className: 'title' },
               logo,
               p.name,
-              _react2.default.createElement(
-                'ul',
-                { className: 'project-edit-tools' },
-                _react2.default.createElement(
-                  'li',
-                  { onClick: this.props.edit },
-                  _react2.default.createElement('img', { src: '/src/img/icons/edit-icon.svg' })
-                ),
-                _react2.default.createElement(
-                  'li',
-                  { onClick: this.toggleConfirmBox.bind(this) },
-                  _react2.default.createElement('img', { src: '/src/img/icons/close.svg' })
-                )
-              )
+              this.renderEditTools()
             ),
             _react2.default.createElement(
               'ul',

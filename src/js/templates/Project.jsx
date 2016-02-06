@@ -80,9 +80,14 @@ class Project extends React.Component {
 
       <div className="project">
 
-          <div className={sidebarClasses}>
+          <CSSTransitionGroup className={sidebarClasses}
+                              transitionAppear={true}
+                              transitionAppearTimeout={0}
+                              transitionName="fadeIn"
+                              transitionEnterTimeout={1000}
+                              transitionLeaveTimeout={1000}>
             {this.renderSidebar()}
-          </div>
+          </CSSTransitionGroup>
 
          <ProjectPage currentProject={this.props.currentProject}
                       edit={this.isEditing.bind(this)}
