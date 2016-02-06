@@ -119,10 +119,31 @@ section.split {
 .sidebar {
   height: 100%;
   background: rgba(#000, 0.8);
-  @include flex(40% 0 400px);
+  @include flex(1 0 500px);
 }
 
 // util
+
+#active-window {
+  border: none;
+  background: rgba(#fff, 0.3);
+  position: absolute;
+  top: 0; left: 0;
+  @include transition(all ease 1s);
+  pointer-events: none;
+  &.active {
+    width: 100%;
+    height: 100%;
+    border: solid 2px $color-green;
+    background: rgba(#fff, 0.1);
+    pointer-events: auto;
+  }
+}
+
+[data-section].active {
+  border: solid 4px $color-green;
+  background: rgba(#fff, 0.3);
+}
 
 .thumb {
   width: 40px;

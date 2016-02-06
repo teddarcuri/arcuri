@@ -59,7 +59,7 @@ var ProjectDiagonals = function (_React$Component) {
 					transitionName: 'slideLeft',
 					transitionEnterTimeout: 1000,
 					transitionLeaveTimeout: 1000 },
-				projects.map(function (p) {
+				projects.map(function (p, key) {
 					var path = "/work/" + p.name,
 					    logoPath = p.logo,
 					    bgImgPath = p.background,
@@ -68,7 +68,7 @@ var ProjectDiagonals = function (_React$Component) {
 						backgroundSize: 'cover'
 					};
 					return _react2.default.createElement(_ProjectDiagonal2.default, { ref: p.id,
-						key: p.id,
+						key: "diagonal" + key,
 						path: path,
 						name: p.name,
 						logo: logoPath,

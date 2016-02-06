@@ -22,6 +22,10 @@ var _ProjectPage = require('./ProjectPage');
 
 var _ProjectPage2 = _interopRequireDefault(_ProjectPage);
 
+var _tabs = require('./tabs');
+
+var _tabs2 = _interopRequireDefault(_tabs);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -39,9 +43,9 @@ var Project = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Project).call(this, props));
 
     _this.state = {
-      showGallery: true,
+      mode: "CREATE",
       isEditing: false,
-      activeSection: 1,
+      activeSection: 0,
       sections: [{
         title: "Header"
       }, {
@@ -53,70 +57,72 @@ var Project = function (_React$Component) {
     return _this;
   }
 
+  /* 
+    Lifecycle
+  */
+
   _createClass(Project, [{
-    key: 'showGallery',
-    value: function showGallery() {
-      this.setState({ showGallery: true });
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var path = this.props.location.pathname;
+
+      // Determine if New or Exisiting Project
+      if (path.indexOf('work/new') != -1) {
+        this.setState({ mode: "CREATE" });
+      } else {
+        this.setState({ mode: "EDIT" });
+      }
     }
   }, {
     key: 'isEditing',
     value: function isEditing() {
+      // Set Editing Mode
       this.setState({ isEditing: !this.state.isEditing });
     }
+
+    /*
+      Active Sections 
+    */
+
+  }, {
+    key: 'setActiveSection',
+    value: function setActiveSection(key) {
+      this.setState({ activeSection: key });
+    }
+
+    /*
+      Sidebar
+    */
+
   }, {
     key: 'renderSidebar',
     value: function renderSidebar() {
-      if (this.state.isEditing) {
-        return _react2.default.createElement(
-          'form',
-          { id: 'edit-project', onSubmit: this.props.updateProject },
-          _react2.default.createElement(
-            'h3',
-            null,
-            'Edit'
-          ),
-          _react2.default.createElement('input', {
-            type: 'text',
-            placeholder: 'name',
-            valueLink: this.props.linkState('currentProject.name')
-          }),
-          _react2.default.createElement('input', { ref: 'types',
-            type: 'types',
-            placeholder: 'types' }),
-          _react2.default.createElement('input', { ref: 'background',
-            type: 'background',
-            placeholder: 'background',
-            valueLink: this.props.linkState('currentProject.background') }),
-          _react2.default.createElement('input', { ref: 'logo',
-            type: 'logo',
-            placeholder: 'logo',
-            valueLink: this.props.linkState('currentProject.logo') }),
-          _react2.default.createElement('textarea', { ref: 'description',
-            name: 'description',
-            valueLink: this.props.linkState('currentProject.description') }),
-          _react2.default.createElement('textarea', { ref: 'myRole',
-            name: 'my-role' }),
-          _react2.default.createElement('textarea', { ref: 'techUsed',
-            name: 'tech-used' }),
-          _react2.default.createElement(
-            'button',
-            { type: 'submit' },
-            'Update Project'
-          )
-        );
-      } else {
-        return;
+      if (this.state.mode === "EDIT" && this.state.isEditing) {
+        return _react2.default.createElement(_tabs2.default, { sections: this.state.sections,
+          activeSection: this.state.activeSection,
+          project: this.props.currentProject,
+          linkState: this.props.linkState,
+          mode: this.state.mode,
+          addProject: this.props.addProject,
+          setActiveSection: this.setActiveSection.bind(this) });
+      } else if (this.state.mode === "CREATE") {
+        return _react2.default.createElement(_tabs2.default, { sections: this.state.sections,
+          activeSection: this.state.activeSection,
+          project: this.props.newProject,
+          linkState: this.props.linkState,
+          mode: this.state.mode,
+          addProject: this.props.addProject,
+          setActiveSection: this.setActiveSection.bind(this) });
       }
     }
   }, {
     key: 'render',
     value: function render() {
-      var p = this.props.currentProject,
-          overview = this.props.currentProject.description,
-          role = this.props.currentProject.role,
+      var p = this.state.mode === "EDIT" ? this.props.currentProject : this.props.newProject,
+          overview = p.description ? p.description : "",
+          role = p.role ? p.role : "",
           logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "",
-          firstPhoto = Object.keys(this.props.currentProject.gallery)[0],
-          sidebarClasses = this.state.isEditing ? "sidebar active" : "sidebar";
+          sidebarClasses = this.state.isEditing || this.state.mode === "CREATE" ? "sidebar active" : "sidebar";
 
       return _react2.default.createElement(
         'div',
@@ -131,10 +137,14 @@ var Project = function (_React$Component) {
             transitionLeaveTimeout: 1000 },
           this.renderSidebar()
         ),
-        _react2.default.createElement(_ProjectPage2.default, { currentProject: this.props.currentProject,
+        _react2.default.createElement(_ProjectPage2.default, { currentProject: p,
+          mode: this.state.mode,
+          isEditing: this.state.isEditing,
           edit: this.isEditing.bind(this),
           linkState: this.props.linkState,
-          removeProject: this.props.removeProject })
+          removeProject: this.props.removeProject,
+          sections: this.state.sections,
+          activeSection: this.state.activeSection })
       );
     }
   }]);

@@ -21,8 +21,6 @@
     @include transition(all ease 0.7s);
     form {
       padding: 100px 55px;
-      //overflow: auto;
-      height: 100%;
     }
     &.active {
       @include flex(1 0 500px);
@@ -80,6 +78,7 @@
     header {
       width: 100%;
       padding: 0px 10px;
+      position: relative;
       @include display(flex);
       @include align-items(center);
       @include justify-content(space-between);
@@ -107,6 +106,7 @@
 
       section {
         @include flex(3);
+        position: relative;
         background: rgba(#000, 0.85);
         p {
           padding: 30px 70px;
@@ -211,56 +211,57 @@
   }
 }
 
+// Tabs
+.tabs {
+  padding: 20px;
+  background: rgba(#fff, 0.066);
+  width: 100%;
+  @include flex(1 0 100%);
+  ul {
+    @include display(flex);
+    @include flex-flow(row wrap);
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    li {
+      color: #fff;
+      padding: 20px;
+      background: rgba(#000, 0.5);
+      //margin-right: 5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.7em;
+      text-align: center;
+      width: 33%;
+      border: solid 1px rgba(#fff, 0.1);
+      @include flex(1 0 auto);
+      &:last-child {
+        margin-right: 0px;
+      }
+      &:hover {
+        background: rgba(#fff, 0.1);
+      }
+      &.active {
+        border-radius: 5px;
+        border: solid 1px $color-green;
+      }
+    }
+  }
+
+  section {
+    padding: 20px 0px;
+  }
+
+}
+
 // Project Builder
 .project-builder {
   @include display(flex);
   @include align-items(stretch);
   height: 100%;
   width: 100%;
-
-  .tabs {
-    padding: 20px;
-    background: rgba(#fff, 0.066);
-    width: 100%;
-    @include flex(1 0 100%);
-    ul {
-      @include display(flex);
-      @include flex-flow(row wrap);
-      width: 100%;
-      height: 100%;
-      list-style: none;
-      margin: 0px;
-      padding: 0px;
-      li {
-        color: #fff;
-        padding: 20px;
-        background: rgba(#000, 0.5);
-        //margin-right: 5px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-size: 0.7em;
-        text-align: center;
-        width: 33%;
-        border: solid 1px rgba(#fff, 0.1);
-        @include flex(1 0 auto);
-        &:last-child {
-          margin-right: 0px;
-        }
-        &:hover {
-          background: rgba(#fff, 0.1);
-        }
-        &.active {
-          border-radius: 5px;
-          border: solid 1px $color-green;
-        }
-      }
-    }
-
-    section {
-      padding: 20px 0px;
-    }
-
-  }
 
   .add-gallery-field {
     background: $color-coral;
@@ -276,7 +277,7 @@
 
   #preview-window {
     overflow: auto;
-    @include flex(1 0 auto);
+    @include flex(1 1 auto);
   }
 }
 

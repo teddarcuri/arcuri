@@ -22,7 +22,7 @@ class ProjectIndex extends React.Component {
 							transitionEnterTimeout={1000}
 							transitionLeaveTimeout={1000}>
 	  		{
-	  			projects.map(function(p) {
+	  			projects.map(function(p, key) {
 	  				let path = "/work/" + p.name,
 	  					 logoPath = p.logo,
 	  					 bgImgPath = p.background,
@@ -31,8 +31,8 @@ class ProjectIndex extends React.Component {
 	  					 	backgroundSize: 'cover'
 	  					 };
 	  				return (
-					<ProjectBubble ref={p.id}
-									 key={p.id}
+					<ProjectBubble ref={key}
+									 key={"bubble" + key}
 									 path={path}
 									 name={p.name}
 									 logo={logoPath}

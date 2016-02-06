@@ -37,6 +37,7 @@ class App extends React.Component {
 
     this.state = {
       // Projects
+      projects: [],
       isProjectPage: false,
       currentProject: {},
       newProject: {
@@ -45,16 +46,8 @@ class App extends React.Component {
         background: "http://www.backgroundsy.com/file/large/light-colorful-background.jpg",
         logo: "https://s3.amazonaws.com/launchkey-resources/logo/logo/launchkey-logos_launchkey-icon-white.png",
         types: "Llama",
-        gallery: {
-           image1: {
-            path: "/src/img/gallery_images/colorado_gov/contact.png"
-          },
-           image2: {
-            path: "/src/img/gallery_images/colorado_gov/home.png"
-          }
-        }
-      },
-      projects: [],
+        gallery: {}
+      }
     }
   }
 
@@ -118,9 +111,8 @@ class App extends React.Component {
     }
   }
 
-  addProject(project) {
-    var timestamp = (new Date()).getTime();
-
+  addProject() {
+    var project = this.state.newProject;
     this.state.projects.push(project);
     this.setState({projects: this.state.projects});
     this.history.pushState(null, '/work/' + project.name);
@@ -131,16 +123,12 @@ class App extends React.Component {
   }
 
   removeProject(project) {
-
     var key = this.state.currentProject.key;
-
     this.state.projects[key] = null
-
     // Update state -> Go to work index page
     this.setState({projects: this.state.projects});
     this.history.pushState(null, '/work');
   }
-
 
   renderProjectBubbles() {
     return (
@@ -260,7 +248,7 @@ ReactDOM.render((
       <Route path="contact" component={Contact}/>
       <Route path="work" component={Projects} >
         <IndexRoute component={ProjectDiagonals} />
-        <Route path="new" component={NewProjectForm} />
+        <Route path="new" component={Project} />
         <Route path=":name" component={Project} />
       </Route>
     </Route>

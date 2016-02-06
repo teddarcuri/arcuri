@@ -10,7 +10,7 @@ class ProjectBubble extends React.Component {
   render() {
     return (
       <div className="project-bubble-wrap">
-      	<Link ref={this.props.ref} key={this.props.key} to={this.props.path} className="project-bubble">
+      	<Link ref={this.props.ref} to={this.props.path} className="project-bubble">
           <img className="logo" src={this.props.logo} />
           <img className="bg" src={this.props.background} />
         </Link>

@@ -37,7 +37,7 @@ var ProjectBubble = function (_React$Component) {
         { className: 'project-bubble-wrap' },
         _react2.default.createElement(
           _reactRouter.Link,
-          { ref: this.props.ref, key: this.props.key, to: this.props.path, className: 'project-bubble' },
+          { ref: this.props.ref, to: this.props.path, className: 'project-bubble' },
           _react2.default.createElement('img', { className: 'logo', src: this.props.logo }),
           _react2.default.createElement('img', { className: 'bg', src: this.props.background })
         )

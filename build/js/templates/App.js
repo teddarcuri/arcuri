@@ -114,6 +114,7 @@ var App = function (_React$Component) {
 
     _this.state = {
       // Projects
+      projects: [],
       isProjectPage: false,
       currentProject: {},
       newProject: {
@@ -122,16 +123,8 @@ var App = function (_React$Component) {
         background: "http://www.backgroundsy.com/file/large/light-colorful-background.jpg",
         logo: "https://s3.amazonaws.com/launchkey-resources/logo/logo/launchkey-logos_launchkey-icon-white.png",
         types: "Llama",
-        gallery: {
-          image1: {
-            path: "/src/img/gallery_images/colorado_gov/contact.png"
-          },
-          image2: {
-            path: "/src/img/gallery_images/colorado_gov/home.png"
-          }
-        }
-      },
-      projects: []
+        gallery: {}
+      }
     };
     return _this;
   }
@@ -205,9 +198,8 @@ var App = function (_React$Component) {
     }
   }, {
     key: 'addProject',
-    value: function addProject(project) {
-      var timestamp = new Date().getTime();
-
+    value: function addProject() {
+      var project = this.state.newProject;
       this.state.projects.push(project);
       this.setState({ projects: this.state.projects });
       this.history.pushState(null, '/work/' + project.name);
@@ -220,11 +212,8 @@ var App = function (_React$Component) {
   }, {
     key: 'removeProject',
     value: function removeProject(project) {
-
       var key = this.state.currentProject.key;
-
       this.state.projects[key] = null;
-
       // Update state -> Go to work index page
       this.setState({ projects: this.state.projects });
       this.history.pushState(null, '/work');
@@ -408,7 +397,7 @@ _reactDom2.default.render(_react2.default.createElement(
       _reactRouter.Route,
       { path: 'work', component: _projects2.default },
       _react2.default.createElement(_reactRouter.IndexRoute, { component: _ProjectDiagonals2.default }),
-      _react2.default.createElement(_reactRouter.Route, { path: 'new', component: _NewProjectForm2.default }),
+      _react2.default.createElement(_reactRouter.Route, { path: 'new', component: _project2.default }),
       _react2.default.createElement(_reactRouter.Route, { path: ':name', component: _project2.default })
     )
   )

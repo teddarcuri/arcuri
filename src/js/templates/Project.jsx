@@ -2,6 +2,7 @@ import React from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import ProjectGallery from './ProjectGallery';
 import ProjectPage from './ProjectPage';
+import Tabs from './tabs';
 
 class Project extends React.Component {
 
@@ -9,9 +10,9 @@ class Project extends React.Component {
   	super(props);
 
     this.state = {
-      showGallery: true,
+      mode: "CREATE",
       isEditing: false,
-      activeSection: 1,
+      activeSection: 0,
       sections: [
         {
           title: "Header"
@@ -26,67 +27,67 @@ class Project extends React.Component {
     }
   }
 
-  showGallery() {
-    this.setState({showGallery: true});
+  /* 
+    Lifecycle
+  */
+
+  componentWillMount() {
+    var path = this.props.location.pathname;
+
+    // Determine if New or Exisiting Project
+    if (path.indexOf('work/new') != -1) {
+      this.setState({mode: "CREATE"});
+    } else {
+      this.setState({mode: "EDIT"});
+    }
   }
 
   isEditing() {
+    // Set Editing Mode
     this.setState({isEditing: !this.state.isEditing});
   }
-  
+
+  /*
+    Active Sections 
+  */
+
+  setActiveSection(key) {
+    this.setState({activeSection: key});
+  }
+
+  /*
+    Sidebar
+  */
   renderSidebar() {
-    if (this.state.isEditing) {
+    if (this.state.mode === "EDIT" && this.state.isEditing) {
       return (
-         <form id="edit-project" onSubmit={this.props.updateProject}>
-            <h3>Edit</h3>
-
-            <input 
-             type="text" 
-             placeholder="name"
-             valueLink={this.props.linkState('currentProject.name')} 
-             />
-
-             <input ref="types" 
-                 type="types" 
-                 placeholder="types"/>
-
-            <input ref="background" 
-                 type="background" 
-                 placeholder="background"
-                 valueLink={this.props.linkState('currentProject.background')}/>
-
-            <input ref="logo" 
-                 type="logo" 
-                 placeholder="logo"
-                 valueLink={this.props.linkState('currentProject.logo')}/>
-
-            <textarea ref="description" 
-                    name="description"
-                    valueLink={this.props.linkState('currentProject.description')} />
-
-            <textarea ref="myRole" 
-                    name="my-role" />
-
-            <textarea ref="techUsed" 
-                    name="tech-used" />
-
-            <button type="submit">
-              Update Project
-            </button>
-          </form>
+         <Tabs sections={this.state.sections}
+              activeSection={this.state.activeSection}
+              project={this.props.currentProject}
+              linkState={this.props.linkState}
+              mode={this.state.mode}
+              addProject={this.props.addProject}
+              setActiveSection={this.setActiveSection.bind(this)} /> 
       ) 
-    } else {
-      return 
+    } else if (this.state.mode === "CREATE") {
+      return  (
+        <Tabs sections={this.state.sections}
+              activeSection={this.state.activeSection}
+              project={this.props.newProject}
+              linkState={this.props.linkState}
+              mode={this.state.mode}
+              addProject={this.props.addProject}
+              setActiveSection={this.setActiveSection.bind(this)} />  
+      )
     }
   }
 
   render() {
-  	var p = this.props.currentProject,
-        overview = this.props.currentProject.description,
-        role = this.props.currentProject.role,
+  	var p = this.state.mode === "EDIT" ? this.props.currentProject : this.props.newProject,
+        overview = p.description ? p.description : "",
+        role = p.role ? p.role : "",
         logo = p.logo ? <img src={p.logo} alt={p.name} className="project-logo"/> : "",
-        firstPhoto = Object.keys(this.props.currentProject.gallery)[0],
-        sidebarClasses = this.state.isEditing ? "sidebar active" : "sidebar";
+        sidebarClasses = this.state.isEditing || this.state.mode === "CREATE"  ? "sidebar active" : "sidebar";
 
     return (
 
@@ -101,11 +102,14 @@ class Project extends React.Component {
             {this.renderSidebar()}
           </CSSTransitionGroup>
 
-         <ProjectPage currentProject={this.props.currentProject}
+         <ProjectPage currentProject={p}
+                      mode={this.state.mode}
+                      isEditing={this.state.isEditing}
                       edit={this.isEditing.bind(this)}
                       linkState={this.props.linkState}
-                      removeProject={this.props.removeProject} />
-
+                      removeProject={this.props.removeProject}
+                      sections={this.state.sections}
+                      activeSection={this.state.activeSection} />
       </div>
 
       

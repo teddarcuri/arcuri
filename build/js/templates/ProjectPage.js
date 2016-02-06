@@ -10,6 +10,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
 var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
@@ -46,6 +50,60 @@ var ProjectPage = function (_React$Component) {
   }
 
   _createClass(ProjectPage, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      // Create Active Window Div
+      var activeWindow = document.createElement('div');
+      activeWindow.id = "active-window";
+      document.body.appendChild(activeWindow);
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // Determine active section to highlight
+      this.setActiveSection(this.props.activeSection);
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      // Determine active section to highlight
+      this.setActiveSection(this.props.activeSection);
+    }
+
+    /*
+      Highlight Active Section 
+    */
+
+  }, {
+    key: 'setActiveSection',
+    value: function setActiveSection(section) {
+
+      var el;
+
+      switch (this.props.activeSection) {
+        case 0:
+          el = _reactDom2.default.findDOMNode(this.refs.header);
+          break;
+        case 1:
+          el = _reactDom2.default.findDOMNode(this.refs.gallery);
+          break;
+        case 2:
+          el = _reactDom2.default.findDOMNode(this.refs.details);
+          break;
+        default:
+          return;
+      }
+
+      // highlight active section if editing or creating
+      var activeWindow = document.getElementById("active-window");
+      if (this.props.isEditing || this.props.mode === "CREATE") {
+        activeWindow.classList.add('active');
+        el.appendChild(activeWindow);
+      } else {
+        activeWindow.classList.remove('active');
+      }
+    }
+  }, {
     key: 'toggleConfirmBox',
     value: function toggleConfirmBox() {
       this.setState({ confirmRemoveProject: !this.state.confirmRemoveProject });
@@ -54,13 +112,15 @@ var ProjectPage = function (_React$Component) {
     key: 'renderGallery',
     value: function renderGallery() {
       if (Object.keys(this.props.currentProject.gallery).length) {
-        return _react2.default.createElement(_ProjectGallery2.default, { project: this.props.currentProject });
+        return _react2.default.createElement(_ProjectGallery2.default, { ref: 'gallery',
+          project: this.props.currentProject,
+          'data-section': 'gallery' });
       }
     }
   }, {
     key: 'renderEditTools',
     value: function renderEditTools() {
-      if (this.props.edit) {
+      if (this.props.mode === "EDIT") {
         return _react2.default.createElement(
           'ul',
           { className: 'project-edit-tools' },
@@ -91,9 +151,7 @@ var ProjectPage = function (_React$Component) {
       var p = this.props.currentProject,
           overview = this.props.currentProject.description,
           role = this.props.currentProject.role,
-          logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "",
-          firstPhoto = Object.keys(this.props.currentProject.gallery)[0],
-          sidebarClasses = this.state.isEditing ? "sidebar active" : "sidebar";
+          logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "";
 
       return _react2.default.createElement(
         'div',
@@ -109,7 +167,8 @@ var ProjectPage = function (_React$Component) {
             transitionLeaveTimeout: 0 },
           _react2.default.createElement(
             'header',
-            { ref: 'header' },
+            { ref: 'header',
+              'data-section': 'header' },
             _react2.default.createElement(
               'h1',
               { className: 'title' },
@@ -139,7 +198,8 @@ var ProjectPage = function (_React$Component) {
             this.renderGallery(),
             _react2.default.createElement(
               'section',
-              null,
+              { ref: 'details',
+                'data-section': 'details' },
               _react2.default.createElement(
                 'h3',
                 null,

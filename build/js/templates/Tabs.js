@@ -30,56 +30,38 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var NewProjectForm = function (_React$Component) {
-  _inherits(NewProjectForm, _React$Component);
+var Tabs = function (_React$Component) {
+  _inherits(Tabs, _React$Component);
 
-  function NewProjectForm(props) {
-    _classCallCheck(this, NewProjectForm);
+  function Tabs(props) {
+    _classCallCheck(this, Tabs);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(NewProjectForm).call(this, props));
-
-    _this.state = {
-      currentTab: 0,
-
-      tabs: [{
-        title: "Header"
-      }, {
-        title: "Gallery"
-      }, {
-        title: "Details"
-      }]
-    };
-    return _this;
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Tabs).call(this, props));
   }
 
-  _createClass(NewProjectForm, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {}
-    //ReactDOM.findDOMNode(this.refs.header).classList.add("active");
+  // // Send the new project off to the App
 
-    // Send the new project off to the App
-
-  }, {
+  _createClass(Tabs, [{
     key: 'createProject',
     value: function createProject(ev) {
 
       ev.preventDefault();
 
-      // var project = {
-      // 	name: this.refs.name.value,
-      // 	background: this.refs.background.value,
-      // 	logo: this.refs.logo.value,
-      // 	types: this.refs.types.value,
-      // 	description: this.refs.description.value,
-      // 	gallery: {
-      //        image1: {
-      //          path: "/src/img/gallery_images/colorado_gov/contact.png"
-      //        }
-      //      }
-      // }
+      // 	// var project = {
+      // 	// 	name: this.refs.name.value,
+      // 	// 	background: this.refs.background.value,
+      // 	// 	logo: this.refs.logo.value,
+      // 	// 	types: this.refs.types.value,
+      // 	// 	description: this.refs.description.value,
+      // 	// 	gallery: {
+      //  //        image1: {
+      //  //          path: "/src/img/gallery_images/colorado_gov/contact.png"
+      //  //        }
+      //  //      }
+      // 	// }
 
-      // Add to project to state
-      //this.props.addProject();
+      // 	// Add to project to state
+      this.props.addProject();
     }
   }, {
     key: 'showHeaderTab',
@@ -97,7 +79,7 @@ var NewProjectForm = function (_React$Component) {
           type: 'text',
           placeholder: 'name',
           name: 'name',
-          valueLink: this.props.linkState('newProject.name') }),
+          valueLink: this.props.mode === "CREATE" ? this.props.linkState('newProject.name') : this.props.linkState('currentProject.name') }),
         _react2.default.createElement(
           'label',
           { htmlFor: 'logo' },
@@ -106,12 +88,12 @@ var NewProjectForm = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'flex' },
-          _react2.default.createElement('img', { className: 'thumb', src: this.props.newProject.logo }),
+          _react2.default.createElement('img', { className: 'thumb', src: this.props.project.logo }),
           _react2.default.createElement('input', { ref: 'logo',
             type: 'logo',
             placeholder: 'logo',
             name: 'logo',
-            valueLink: this.props.linkState('newProject.logo') })
+            valueLink: this.props.mode === "CREATE" ? this.props.linkState('newProject.logo') : this.props.linkState('currentProject.logo') })
         ),
         _react2.default.createElement(
           'label',
@@ -121,12 +103,12 @@ var NewProjectForm = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'flex' },
-          _react2.default.createElement('img', { className: 'thumb', src: this.props.newProject.background }),
+          _react2.default.createElement('img', { className: 'thumb', src: this.props.project.background }),
           _react2.default.createElement('input', { ref: 'background',
             type: 'background',
             placeholder: 'background',
             name: 'background',
-            valueLink: this.props.linkState('newProject.background') })
+            valueLink: this.props.mode === "CREATE" ? this.props.linkState('newProject.background') : this.props.linkState('currentProject.background') })
         )
       );
     }
@@ -154,22 +136,27 @@ var NewProjectForm = function (_React$Component) {
           id: '',
           cols: '30',
           rows: '10',
-          valueLink: this.props.linkState('newProject.description') })
+          valueLink: this.props.mode === "CREATE" ? this.props.linkState('newProject.description') : this.props.linkState('currentProject.description') })
       );
     }
   }, {
     key: 'showGalleryTab',
     value: function showGalleryTab(gallery) {
+      var images = Object.keys(gallery),
+          fields;
+
+      if (images.length) {
+        images.map(function (g) {
+          return _react2.default.createElement('input', { key: g, valueLink: this.props.mode === "CREATE" ? this.props.linkState('newProject.gallery[' + g + '].path') : this.props.linkState('currentProject.gallery[' + g + '].path') });
+        }, this);
+      }
+
       return _react2.default.createElement(
         'div',
         { className: 'details' },
         _react2.default.createElement(
           'div',
           { className: 'gallery-fields' },
-          Object.keys(gallery).map(function (g) {
-            console.log(this.props.newProject.gallery[g].path);
-            return _react2.default.createElement('input', { key: g, valueLink: this.props.linkState('newProject.gallery[' + g + '].path') });
-          }, this),
           _react2.default.createElement(
             'button',
             { className: 'add-gallery-field', onClick: this.addGalleryImage.bind(this) },
@@ -182,24 +169,24 @@ var NewProjectForm = function (_React$Component) {
     key: 'addGalleryImage',
     value: function addGalleryImage() {
       var timestamp = new Date().getTime();
-      this.props.newProject.gallery['image' + timestamp] = { path: "/src/img/gallery_images/colorado_gov/front-page.png" };
+      this.props.project.gallery['image' + timestamp] = { path: "/src/img/gallery_images/colorado_gov/front-page.png" };
     }
   }, {
     key: 'updateTab',
     value: function updateTab(key) {
-      this.setState({ currentTab: key });
+      this.props.setActiveSection(key);
     }
   }, {
     key: 'renderTabs',
     value: function renderTabs() {
-      var tabs = this.state.tabs;
+      var tabs = this.props.sections;
 
       return _react2.default.createElement(
         'ul',
         null,
         tabs.map(function (t, key) {
           var boundClick = this.updateTab.bind(this, key),
-              classes = this.state.currentTab === key ? "tab active" : "tab";
+              classes = this.props.activeSection === key ? "tab active" : "tab";
           return _react2.default.createElement(
             'li',
             { className: classes, key: key, ref: key, onClick: boundClick },
@@ -211,13 +198,12 @@ var NewProjectForm = function (_React$Component) {
   }, {
     key: 'renderTab',
     value: function renderTab() {
-      console.log(this.state.currentTab);
-      switch (this.state.currentTab) {
+      switch (this.props.activeSection) {
         case 0:
           return this.showHeaderTab();
           break;
         case 1:
-          return this.showGalleryTab(this.props.newProject.gallery);
+          return this.showGalleryTab(this.props.project.gallery);
           break;
         case 2:
           return this.showDetailsTab();
@@ -230,51 +216,35 @@ var NewProjectForm = function (_React$Component) {
     key: 'render',
     value: function render() {
 
-      var gallery = this.props.newProject.gallery;
+      var title = this.props.mode === "CREATE" ? "Create" : "Edit";
       return _react2.default.createElement(
-        'section',
-        { className: 'project-builder' },
+        'form',
+        { onSubmit: this.createProject.bind(this) },
         _react2.default.createElement(
-          'div',
-          { className: 'sidebar' },
-          _react2.default.createElement(
-            'form',
-            { onSubmit: this.createProject.bind(this) },
-            _react2.default.createElement(
-              'h3',
-              null,
-              'Create'
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'tabs' },
-              this.renderTabs(),
-              _react2.default.createElement(
-                'section',
-                null,
-                this.renderTab()
-              ),
-              _react2.default.createElement(
-                'button',
-                null,
-                'Create Project'
-              )
-            )
-          )
+          'h3',
+          null,
+          title
         ),
         _react2.default.createElement(
           'div',
-          { id: 'preview-window' },
-          _react2.default.createElement(_ProjectPage2.default, { currentProject: this.props.newProject,
-            linkState: this.props.linkState,
-            edit: null,
-            activeSection: this.state.activeSection })
+          { className: 'tabs' },
+          this.renderTabs(),
+          _react2.default.createElement(
+            'section',
+            null,
+            this.renderTab()
+          ),
+          _react2.default.createElement(
+            'button',
+            null,
+            'Create Project'
+          )
         )
       );
     }
   }]);
 
-  return NewProjectForm;
+  return Tabs;
 }(_react2.default.Component);
 
-exports.default = NewProjectForm;
+exports.default = Tabs;

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import ProjectPage from './ProjectPage';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -8,6 +9,7 @@ class NewProjectForm extends React.Component {
 
   	this.state = {
   		currentTab: 0,
+
   		tabs: [
   			{
   				title: "Header"
@@ -22,26 +24,30 @@ class NewProjectForm extends React.Component {
   	}
   }
 
+  componentDidMount() {
+  	//ReactDOM.findDOMNode(this.refs.header).classList.add("active");
+  }
+
   // Send the new project off to the App
   createProject(ev) {
 
   	ev.preventDefault();
 
-  	var project = {
-  		name: this.refs.name.value,
-  		background: this.refs.background.value,
-  		logo: this.refs.logo.value,
-  		types: this.refs.types.value,
-  		description: this.refs.description.value,
-  		gallery: {
-          image1: {
-            path: "/src/img/gallery_images/colorado_gov/contact.png"
-          }
-        }
-  	}
+  	// var project = {
+  	// 	name: this.refs.name.value,
+  	// 	background: this.refs.background.value,
+  	// 	logo: this.refs.logo.value,
+  	// 	types: this.refs.types.value,
+  	// 	description: this.refs.description.value,
+  	// 	gallery: {
+   //        image1: {
+   //          path: "/src/img/gallery_images/colorado_gov/contact.png"
+   //        }
+   //      }
+  	// }
 
   	// Add to project to state
-  	this.props.addProject(project);
+  	//this.props.addProject();
   }
 
   showHeaderTab() {
@@ -107,10 +113,11 @@ class NewProjectForm extends React.Component {
   			<div className="gallery-fields">
 		  		{
 		  			Object.keys(gallery).map(function(g){
-		  				return <input value={gallery[g].path}/>
-		  			})
+		  				console.log(this.props.newProject.gallery[g].path)
+		  				return <input key={g} valueLink={this.props.linkState('newProject.gallery[' + g + '].path')} />
+		  			}, this)
 		  		}
-		  		<button className="add-gallery-field">
+		  		<button className="add-gallery-field" onClick={this.addGalleryImage.bind(this)}>
 		  			+
 		  		</button>
 	  		</div>
@@ -119,7 +126,8 @@ class NewProjectForm extends React.Component {
   }
 
   addGalleryImage() {
-  	this.setState({newProject})
+  	var timestamp = (new Date()).getTime();
+  	this.props.newProject.gallery['image' + timestamp] = {path: "/src/img/gallery_images/colorado_gov/front-page.png"};
   }
 
   updateTab(key) {
@@ -185,7 +193,7 @@ class NewProjectForm extends React.Component {
 	    	<ProjectPage currentProject={this.props.newProject}
                       	 linkState={this.props.linkState}
                       	 edit={null}
-                     	 />
+                     	 activeSection={this.state.activeSection}/>
 		   	</div>
     	</section>
     )

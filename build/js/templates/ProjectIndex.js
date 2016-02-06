@@ -54,7 +54,7 @@ var ProjectIndex = function (_React$Component) {
 					transitionName: 'slideLeftIn',
 					transitionEnterTimeout: 1000,
 					transitionLeaveTimeout: 1000 },
-				projects.map(function (p) {
+				projects.map(function (p, key) {
 					var path = "/work/" + p.name,
 					    logoPath = p.logo,
 					    bgImgPath = p.background,
@@ -62,8 +62,8 @@ var ProjectIndex = function (_React$Component) {
 						backgroundImage: 'url(' + p.background + ')',
 						backgroundSize: 'cover'
 					};
-					return _react2.default.createElement(_ProjectBubble2.default, { ref: p.id,
-						key: p.id,
+					return _react2.default.createElement(_ProjectBubble2.default, { ref: key,
+						key: "bubble" + key,
 						path: path,
 						name: p.name,
 						logo: logoPath,

@@ -26,7 +26,7 @@ class ProjectDiagonals extends React.Component {
 							transitionEnterTimeout={1000}
 							transitionLeaveTimeout={1000}>
 	  		{
-	  			projects.map(function(p) {
+	  			projects.map(function(p, key) {
 	  				let path = "/work/" + p.name,
 	  					 logoPath = p.logo,
 	  					 bgImgPath = p.background,
@@ -36,7 +36,7 @@ class ProjectDiagonals extends React.Component {
 	  					 };
 	  				return (
 					<ProjectDiagonal ref={p.id}
-									 key={p.id}
+									 key={"diagonal" + key}
 									 path={path}
 									 name={p.name}
 									 logo={logoPath}

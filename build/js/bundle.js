@@ -106,27 +106,27 @@
 
 	var _project2 = _interopRequireDefault(_project);
 
-	var _contact = __webpack_require__(231);
+	var _contact = __webpack_require__(232);
 
 	var _contact2 = _interopRequireDefault(_contact);
 
-	var _reBase = __webpack_require__(232);
+	var _reBase = __webpack_require__(233);
 
 	var _reBase2 = _interopRequireDefault(_reBase);
 
-	var _helpers = __webpack_require__(235);
+	var _helpers = __webpack_require__(236);
 
 	var _helpers2 = _interopRequireDefault(_helpers);
 
-	var _imagesloaded = __webpack_require__(236);
+	var _imagesloaded = __webpack_require__(237);
 
 	var _imagesloaded2 = _interopRequireDefault(_imagesloaded);
 
-	var _reactCatalyst = __webpack_require__(238);
+	var _reactCatalyst = __webpack_require__(239);
 
 	var _reactCatalyst2 = _interopRequireDefault(_reactCatalyst);
 
-	var _reactMixin = __webpack_require__(240);
+	var _reactMixin = __webpack_require__(241);
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
@@ -160,6 +160,7 @@
 
 	    _this.state = {
 	      // Projects
+	      projects: [],
 	      isProjectPage: false,
 	      currentProject: {},
 	      newProject: {
@@ -168,16 +169,8 @@
 	        background: "http://www.backgroundsy.com/file/large/light-colorful-background.jpg",
 	        logo: "https://s3.amazonaws.com/launchkey-resources/logo/logo/launchkey-logos_launchkey-icon-white.png",
 	        types: "Llama",
-	        gallery: {
-	          image1: {
-	            path: "/src/img/gallery_images/colorado_gov/contact.png"
-	          },
-	          image2: {
-	            path: "/src/img/gallery_images/colorado_gov/home.png"
-	          }
-	        }
-	      },
-	      projects: []
+	        gallery: {}
+	      }
 	    };
 	    return _this;
 	  }
@@ -251,9 +244,8 @@
 	    }
 	  }, {
 	    key: 'addProject',
-	    value: function addProject(project) {
-	      var timestamp = new Date().getTime();
-
+	    value: function addProject() {
+	      var project = this.state.newProject;
 	      this.state.projects.push(project);
 	      this.setState({ projects: this.state.projects });
 	      this.history.pushState(null, '/work/' + project.name);
@@ -266,11 +258,8 @@
 	  }, {
 	    key: 'removeProject',
 	    value: function removeProject(project) {
-
 	      var key = this.state.currentProject.key;
-
 	      this.state.projects[key] = null;
-
 	      // Update state -> Go to work index page
 	      this.setState({ projects: this.state.projects });
 	      this.history.pushState(null, '/work');
@@ -454,7 +443,7 @@
 	      _reactRouter.Route,
 	      { path: 'work', component: _projects2.default },
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _ProjectDiagonals2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: 'new', component: _NewProjectForm2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'new', component: _project2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: ':name', component: _project2.default })
 	    )
 	  )
@@ -62113,7 +62102,7 @@
 						transitionName: 'slideLeft',
 						transitionEnterTimeout: 1000,
 						transitionLeaveTimeout: 1000 },
-					projects.map(function (p) {
+					projects.map(function (p, key) {
 						var path = "/work/" + p.name,
 						    logoPath = p.logo,
 						    bgImgPath = p.background,
@@ -62122,7 +62111,7 @@
 							backgroundSize: 'cover'
 						};
 						return _react2.default.createElement(_ProjectDiagonal2.default, { ref: p.id,
-							key: p.id,
+							key: "diagonal" + key,
 							path: path,
 							name: p.name,
 							logo: logoPath,
@@ -62181,7 +62170,7 @@
 	        { className: 'project-bubble-wrap' },
 	        _react2.default.createElement(
 	          _reactRouter.Link,
-	          { ref: this.props.ref, key: this.props.key, to: this.props.path, className: 'project-bubble' },
+	          { ref: this.props.ref, to: this.props.path, className: 'project-bubble' },
 	          _react2.default.createElement('img', { className: 'logo', src: this.props.logo }),
 	          _react2.default.createElement('img', { className: 'bg', src: this.props.background })
 	        )
@@ -62423,7 +62412,7 @@
 						transitionName: 'slideLeftIn',
 						transitionEnterTimeout: 1000,
 						transitionLeaveTimeout: 1000 },
-					projects.map(function (p) {
+					projects.map(function (p, key) {
 						var path = "/work/" + p.name,
 						    logoPath = p.logo,
 						    bgImgPath = p.background,
@@ -62431,8 +62420,8 @@
 							backgroundImage: 'url(' + p.background + ')',
 							backgroundSize: 'cover'
 						};
-						return _react2.default.createElement(_ProjectBubble2.default, { ref: p.id,
-							key: p.id,
+						return _react2.default.createElement(_ProjectBubble2.default, { ref: key,
+							key: "bubble" + key,
 							path: path,
 							name: p.name,
 							logo: logoPath,
@@ -62464,6 +62453,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactDom = __webpack_require__(158);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
 	var _ProjectPage = __webpack_require__(227);
 
 	var _ProjectPage2 = _interopRequireDefault(_ProjectPage);
@@ -62490,6 +62483,7 @@
 
 	    _this.state = {
 	      currentTab: 0,
+
 	      tabs: [{
 	        title: "Header"
 	      }, {
@@ -62501,29 +62495,34 @@
 	    return _this;
 	  }
 
-	  // Send the new project off to the App
-
 	  _createClass(NewProjectForm, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {}
+	    //ReactDOM.findDOMNode(this.refs.header).classList.add("active");
+
+	    // Send the new project off to the App
+
+	  }, {
 	    key: 'createProject',
 	    value: function createProject(ev) {
 
 	      ev.preventDefault();
 
-	      var project = {
-	        name: this.refs.name.value,
-	        background: this.refs.background.value,
-	        logo: this.refs.logo.value,
-	        types: this.refs.types.value,
-	        description: this.refs.description.value,
-	        gallery: {
-	          image1: {
-	            path: "/src/img/gallery_images/colorado_gov/contact.png"
-	          }
-	        }
-	      };
+	      // var project = {
+	      // 	name: this.refs.name.value,
+	      // 	background: this.refs.background.value,
+	      // 	logo: this.refs.logo.value,
+	      // 	types: this.refs.types.value,
+	      // 	description: this.refs.description.value,
+	      // 	gallery: {
+	      //        image1: {
+	      //          path: "/src/img/gallery_images/colorado_gov/contact.png"
+	      //        }
+	      //      }
+	      // }
 
 	      // Add to project to state
-	      this.props.addProject(project);
+	      //this.props.addProject();
 	    }
 	  }, {
 	    key: 'showHeaderTab',
@@ -62611,11 +62610,12 @@
 	          'div',
 	          { className: 'gallery-fields' },
 	          Object.keys(gallery).map(function (g) {
-	            return _react2.default.createElement('input', { value: gallery[g].path });
-	          }),
+	            console.log(this.props.newProject.gallery[g].path);
+	            return _react2.default.createElement('input', { key: g, valueLink: this.props.linkState('newProject.gallery[' + g + '].path') });
+	          }, this),
 	          _react2.default.createElement(
 	            'button',
-	            { className: 'add-gallery-field' },
+	            { className: 'add-gallery-field', onClick: this.addGalleryImage.bind(this) },
 	            '+'
 	          )
 	        )
@@ -62624,7 +62624,8 @@
 	  }, {
 	    key: 'addGalleryImage',
 	    value: function addGalleryImage() {
-	      this.setState({ newProject: newProject });
+	      var timestamp = new Date().getTime();
+	      this.props.newProject.gallery['image' + timestamp] = { path: "/src/img/gallery_images/colorado_gov/front-page.png" };
 	    }
 	  }, {
 	    key: 'updateTab',
@@ -62672,8 +62673,6 @@
 	    key: 'render',
 	    value: function render() {
 
-	      console.log(this.refs);
-
 	      var gallery = this.props.newProject.gallery;
 	      return _react2.default.createElement(
 	        'section',
@@ -62711,8 +62710,8 @@
 	          { id: 'preview-window' },
 	          _react2.default.createElement(_ProjectPage2.default, { currentProject: this.props.newProject,
 	            linkState: this.props.linkState,
-	            edit: null
-	          })
+	            edit: null,
+	            activeSection: this.state.activeSection })
 	        )
 	      );
 	    }
@@ -62738,6 +62737,10 @@
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(158);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
 
 	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
 
@@ -62775,6 +62778,60 @@
 	  }
 
 	  _createClass(ProjectPage, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      // Create Active Window Div
+	      var activeWindow = document.createElement('div');
+	      activeWindow.id = "active-window";
+	      document.body.appendChild(activeWindow);
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      // Determine active section to highlight
+	      this.setActiveSection(this.props.activeSection);
+	    }
+	  }, {
+	    key: 'componentDidUpdate',
+	    value: function componentDidUpdate() {
+	      // Determine active section to highlight
+	      this.setActiveSection(this.props.activeSection);
+	    }
+
+	    /*
+	      Highlight Active Section 
+	    */
+
+	  }, {
+	    key: 'setActiveSection',
+	    value: function setActiveSection(section) {
+
+	      var el;
+
+	      switch (this.props.activeSection) {
+	        case 0:
+	          el = _reactDom2.default.findDOMNode(this.refs.header);
+	          break;
+	        case 1:
+	          el = _reactDom2.default.findDOMNode(this.refs.gallery);
+	          break;
+	        case 2:
+	          el = _reactDom2.default.findDOMNode(this.refs.details);
+	          break;
+	        default:
+	          return;
+	      }
+
+	      // highlight active section if editing or creating
+	      var activeWindow = document.getElementById("active-window");
+	      if (this.props.isEditing || this.props.mode === "CREATE") {
+	        activeWindow.classList.add('active');
+	        el.appendChild(activeWindow);
+	      } else {
+	        activeWindow.classList.remove('active');
+	      }
+	    }
+	  }, {
 	    key: 'toggleConfirmBox',
 	    value: function toggleConfirmBox() {
 	      this.setState({ confirmRemoveProject: !this.state.confirmRemoveProject });
@@ -62783,13 +62840,15 @@
 	    key: 'renderGallery',
 	    value: function renderGallery() {
 	      if (Object.keys(this.props.currentProject.gallery).length) {
-	        return _react2.default.createElement(_ProjectGallery2.default, { project: this.props.currentProject });
+	        return _react2.default.createElement(_ProjectGallery2.default, { ref: 'gallery',
+	          project: this.props.currentProject,
+	          'data-section': 'gallery' });
 	      }
 	    }
 	  }, {
 	    key: 'renderEditTools',
 	    value: function renderEditTools() {
-	      if (this.props.edit) {
+	      if (this.props.mode === "EDIT") {
 	        return _react2.default.createElement(
 	          'ul',
 	          { className: 'project-edit-tools' },
@@ -62820,9 +62879,7 @@
 	      var p = this.props.currentProject,
 	          overview = this.props.currentProject.description,
 	          role = this.props.currentProject.role,
-	          logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "",
-	          firstPhoto = Object.keys(this.props.currentProject.gallery)[0],
-	          sidebarClasses = this.state.isEditing ? "sidebar active" : "sidebar";
+	          logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "";
 
 	      return _react2.default.createElement(
 	        'div',
@@ -62838,7 +62895,8 @@
 	            transitionLeaveTimeout: 0 },
 	          _react2.default.createElement(
 	            'header',
-	            { ref: 'header' },
+	            { ref: 'header',
+	              'data-section': 'header' },
 	            _react2.default.createElement(
 	              'h1',
 	              { className: 'title' },
@@ -62868,7 +62926,8 @@
 	            this.renderGallery(),
 	            _react2.default.createElement(
 	              'section',
-	              null,
+	              { ref: 'details',
+	                'data-section': 'details' },
 	              _react2.default.createElement(
 	                'h3',
 	                null,
@@ -63130,6 +63189,10 @@
 
 	var _ProjectPage2 = _interopRequireDefault(_ProjectPage);
 
+	var _tabs = __webpack_require__(231);
+
+	var _tabs2 = _interopRequireDefault(_tabs);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -63147,9 +63210,9 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Project).call(this, props));
 
 	    _this.state = {
-	      showGallery: true,
+	      mode: "CREATE",
 	      isEditing: false,
-	      activeSection: 1,
+	      activeSection: 0,
 	      sections: [{
 	        title: "Header"
 	      }, {
@@ -63161,70 +63224,72 @@
 	    return _this;
 	  }
 
+	  /* 
+	    Lifecycle
+	  */
+
 	  _createClass(Project, [{
-	    key: 'showGallery',
-	    value: function showGallery() {
-	      this.setState({ showGallery: true });
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var path = this.props.location.pathname;
+
+	      // Determine if New or Exisiting Project
+	      if (path.indexOf('work/new') != -1) {
+	        this.setState({ mode: "CREATE" });
+	      } else {
+	        this.setState({ mode: "EDIT" });
+	      }
 	    }
 	  }, {
 	    key: 'isEditing',
 	    value: function isEditing() {
+	      // Set Editing Mode
 	      this.setState({ isEditing: !this.state.isEditing });
 	    }
+
+	    /*
+	      Active Sections 
+	    */
+
+	  }, {
+	    key: 'setActiveSection',
+	    value: function setActiveSection(key) {
+	      this.setState({ activeSection: key });
+	    }
+
+	    /*
+	      Sidebar
+	    */
+
 	  }, {
 	    key: 'renderSidebar',
 	    value: function renderSidebar() {
-	      if (this.state.isEditing) {
-	        return _react2.default.createElement(
-	          'form',
-	          { id: 'edit-project', onSubmit: this.props.updateProject },
-	          _react2.default.createElement(
-	            'h3',
-	            null,
-	            'Edit'
-	          ),
-	          _react2.default.createElement('input', {
-	            type: 'text',
-	            placeholder: 'name',
-	            valueLink: this.props.linkState('currentProject.name')
-	          }),
-	          _react2.default.createElement('input', { ref: 'types',
-	            type: 'types',
-	            placeholder: 'types' }),
-	          _react2.default.createElement('input', { ref: 'background',
-	            type: 'background',
-	            placeholder: 'background',
-	            valueLink: this.props.linkState('currentProject.background') }),
-	          _react2.default.createElement('input', { ref: 'logo',
-	            type: 'logo',
-	            placeholder: 'logo',
-	            valueLink: this.props.linkState('currentProject.logo') }),
-	          _react2.default.createElement('textarea', { ref: 'description',
-	            name: 'description',
-	            valueLink: this.props.linkState('currentProject.description') }),
-	          _react2.default.createElement('textarea', { ref: 'myRole',
-	            name: 'my-role' }),
-	          _react2.default.createElement('textarea', { ref: 'techUsed',
-	            name: 'tech-used' }),
-	          _react2.default.createElement(
-	            'button',
-	            { type: 'submit' },
-	            'Update Project'
-	          )
-	        );
-	      } else {
-	        return;
+	      if (this.state.mode === "EDIT" && this.state.isEditing) {
+	        return _react2.default.createElement(_tabs2.default, { sections: this.state.sections,
+	          activeSection: this.state.activeSection,
+	          project: this.props.currentProject,
+	          linkState: this.props.linkState,
+	          mode: this.state.mode,
+	          addProject: this.props.addProject,
+	          setActiveSection: this.setActiveSection.bind(this) });
+	      } else if (this.state.mode === "CREATE") {
+	        return _react2.default.createElement(_tabs2.default, { sections: this.state.sections,
+	          activeSection: this.state.activeSection,
+	          project: this.props.newProject,
+	          linkState: this.props.linkState,
+	          mode: this.state.mode,
+	          addProject: this.props.addProject,
+	          setActiveSection: this.setActiveSection.bind(this) });
 	      }
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var p = this.props.currentProject,
-	          overview = this.props.currentProject.description,
-	          role = this.props.currentProject.role,
+	      var p = this.state.mode === "EDIT" ? this.props.currentProject : this.props.newProject,
+	          overview = p.description ? p.description : "",
+	          role = p.role ? p.role : "",
 	          logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "",
-	          firstPhoto = Object.keys(this.props.currentProject.gallery)[0],
-	          sidebarClasses = this.state.isEditing ? "sidebar active" : "sidebar";
+	          sidebarClasses = this.state.isEditing || this.state.mode === "CREATE" ? "sidebar active" : "sidebar";
 
 	      return _react2.default.createElement(
 	        'div',
@@ -63239,10 +63304,14 @@
 	            transitionLeaveTimeout: 1000 },
 	          this.renderSidebar()
 	        ),
-	        _react2.default.createElement(_ProjectPage2.default, { currentProject: this.props.currentProject,
+	        _react2.default.createElement(_ProjectPage2.default, { currentProject: p,
+	          mode: this.state.mode,
+	          isEditing: this.state.isEditing,
 	          edit: this.isEditing.bind(this),
 	          linkState: this.props.linkState,
-	          removeProject: this.props.removeProject })
+	          removeProject: this.props.removeProject,
+	          sections: this.state.sections,
+	          activeSection: this.state.activeSection })
 	      );
 	    }
 	  }]);
@@ -63254,6 +63323,261 @@
 
 /***/ },
 /* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(158);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _ProjectPage = __webpack_require__(227);
+
+	var _ProjectPage2 = _interopRequireDefault(_ProjectPage);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Tabs = function (_React$Component) {
+	  _inherits(Tabs, _React$Component);
+
+	  function Tabs(props) {
+	    _classCallCheck(this, Tabs);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Tabs).call(this, props));
+	  }
+
+	  // // Send the new project off to the App
+
+	  _createClass(Tabs, [{
+	    key: 'createProject',
+	    value: function createProject(ev) {
+
+	      ev.preventDefault();
+
+	      // 	// var project = {
+	      // 	// 	name: this.refs.name.value,
+	      // 	// 	background: this.refs.background.value,
+	      // 	// 	logo: this.refs.logo.value,
+	      // 	// 	types: this.refs.types.value,
+	      // 	// 	description: this.refs.description.value,
+	      // 	// 	gallery: {
+	      //  //        image1: {
+	      //  //          path: "/src/img/gallery_images/colorado_gov/contact.png"
+	      //  //        }
+	      //  //      }
+	      // 	// }
+
+	      // 	// Add to project to state
+	      this.props.addProject();
+	    }
+	  }, {
+	    key: 'showHeaderTab',
+	    value: function showHeaderTab() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'details' },
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'name' },
+	          'Name'
+	        ),
+	        _react2.default.createElement('input', { ref: 'name',
+	          name: 'name',
+	          type: 'text',
+	          placeholder: 'name',
+	          name: 'name',
+	          valueLink: this.props.mode === "CREATE" ? this.props.linkState('newProject.name') : this.props.linkState('currentProject.name') }),
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'logo' },
+	          'Logo'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'flex' },
+	          _react2.default.createElement('img', { className: 'thumb', src: this.props.project.logo }),
+	          _react2.default.createElement('input', { ref: 'logo',
+	            type: 'logo',
+	            placeholder: 'logo',
+	            name: 'logo',
+	            valueLink: this.props.mode === "CREATE" ? this.props.linkState('newProject.logo') : this.props.linkState('currentProject.logo') })
+	        ),
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'background' },
+	          'Background'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'flex' },
+	          _react2.default.createElement('img', { className: 'thumb', src: this.props.project.background }),
+	          _react2.default.createElement('input', { ref: 'background',
+	            type: 'background',
+	            placeholder: 'background',
+	            name: 'background',
+	            valueLink: this.props.mode === "CREATE" ? this.props.linkState('newProject.background') : this.props.linkState('currentProject.background') })
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'showDetailsTab',
+	    value: function showDetailsTab() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'details' },
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'types' },
+	          'Types'
+	        ),
+	        _react2.default.createElement('input', { ref: 'types',
+	          type: 'types',
+	          placeholder: 'types' }),
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'description' },
+	          'Description'
+	        ),
+	        _react2.default.createElement('textarea', { name: 'description',
+	          ref: 'description',
+	          id: '',
+	          cols: '30',
+	          rows: '10',
+	          valueLink: this.props.mode === "CREATE" ? this.props.linkState('newProject.description') : this.props.linkState('currentProject.description') })
+	      );
+	    }
+	  }, {
+	    key: 'showGalleryTab',
+	    value: function showGalleryTab(gallery) {
+	      var images = Object.keys(gallery),
+	          fields;
+
+	      if (images.length) {
+	        images.map(function (g) {
+	          return _react2.default.createElement('input', { key: g, valueLink: this.props.mode === "CREATE" ? this.props.linkState('newProject.gallery[' + g + '].path') : this.props.linkState('currentProject.gallery[' + g + '].path') });
+	        }, this);
+	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'details' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'gallery-fields' },
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'add-gallery-field', onClick: this.addGalleryImage.bind(this) },
+	            '+'
+	          )
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'addGalleryImage',
+	    value: function addGalleryImage() {
+	      var timestamp = new Date().getTime();
+	      this.props.project.gallery['image' + timestamp] = { path: "/src/img/gallery_images/colorado_gov/front-page.png" };
+	    }
+	  }, {
+	    key: 'updateTab',
+	    value: function updateTab(key) {
+	      this.props.setActiveSection(key);
+	    }
+	  }, {
+	    key: 'renderTabs',
+	    value: function renderTabs() {
+	      var tabs = this.props.sections;
+
+	      return _react2.default.createElement(
+	        'ul',
+	        null,
+	        tabs.map(function (t, key) {
+	          var boundClick = this.updateTab.bind(this, key),
+	              classes = this.props.activeSection === key ? "tab active" : "tab";
+	          return _react2.default.createElement(
+	            'li',
+	            { className: classes, key: key, ref: key, onClick: boundClick },
+	            t.title
+	          );
+	        }, this)
+	      );
+	    }
+	  }, {
+	    key: 'renderTab',
+	    value: function renderTab() {
+	      switch (this.props.activeSection) {
+	        case 0:
+	          return this.showHeaderTab();
+	          break;
+	        case 1:
+	          return this.showGalleryTab(this.props.project.gallery);
+	          break;
+	        case 2:
+	          return this.showDetailsTab();
+	          break;
+	        default:
+	          return this.showHeaderTab();
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+
+	      var title = this.props.mode === "CREATE" ? "Create" : "Edit";
+	      return _react2.default.createElement(
+	        'form',
+	        { onSubmit: this.createProject.bind(this) },
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          title
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'tabs' },
+	          this.renderTabs(),
+	          _react2.default.createElement(
+	            'section',
+	            null,
+	            this.renderTab()
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            null,
+	            'Create Project'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Tabs;
+	}(_react2.default.Component);
+
+	exports.default = Tabs;
+
+/***/ },
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63328,20 +63652,20 @@
 	exports.default = Contact;
 
 /***/ },
-/* 232 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(233);
+	module.exports = __webpack_require__(234);
 
 
 
 /***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
-			module.exports = factory(__webpack_require__(234));
+			module.exports = factory(__webpack_require__(235));
 		else if(typeof define === 'function' && define.amd)
 			define(["firebase"], factory);
 		else {
@@ -63871,7 +64195,7 @@
 	;
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports) {
 
 	/*! @license Firebase v2.4.0
@@ -64155,7 +64479,7 @@
 
 
 /***/ },
-/* 235 */
+/* 236 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -64178,7 +64502,7 @@
 	exports.default = helpers;
 
 /***/ },
-/* 236 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -64195,7 +64519,7 @@
 	  if ( true ) {
 	    // AMD
 	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-	      __webpack_require__(237)
+	      __webpack_require__(238)
 	    ], __WEBPACK_AMD_DEFINE_RESULT__ = function( EvEmitter ) {
 	      return factory( window, EvEmitter );
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -64554,7 +64878,7 @@
 
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -64669,15 +64993,15 @@
 
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	exports.LinkedStateMixin = __webpack_require__(239);
+	exports.LinkedStateMixin = __webpack_require__(240);
 
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports) {
 
 	
@@ -64712,11 +65036,11 @@
 
 
 /***/ },
-/* 240 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var mixin = __webpack_require__(241);
-	var assign = __webpack_require__(242);
+	var mixin = __webpack_require__(242);
+	var assign = __webpack_require__(243);
 
 	var mixinProto = mixin({
 	  // lifecycle stuff is as you'd expect
@@ -64869,7 +65193,7 @@
 
 
 /***/ },
-/* 241 */
+/* 242 */
 /***/ function(module, exports) {
 
 	var objToStr = function(x){ return Object.prototype.toString.call(x); };
@@ -65052,7 +65376,7 @@
 
 
 /***/ },
-/* 242 */
+/* 243 */
 /***/ function(module, exports) {
 
 	/* eslint-disable no-unused-vars */
