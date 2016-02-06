@@ -166,16 +166,18 @@
 	        name: "New Project",
 	        description: "Enter description",
 	        background: "http://www.backgroundsy.com/file/large/light-colorful-background.jpg",
-	        logo: "",
+	        logo: "https://s3.amazonaws.com/launchkey-resources/logo/logo/launchkey-logos_launchkey-icon-white.png",
 	        types: "Llama",
 	        gallery: {
 	          image1: {
 	            path: "/src/img/gallery_images/colorado_gov/contact.png"
+	          },
+	          image2: {
+	            path: "/src/img/gallery_images/colorado_gov/home.png"
 	          }
 	        }
 	      },
 	      projects: []
-
 	    };
 	    return _this;
 	  }
@@ -198,12 +200,12 @@
 
 	      // Images Loaded
 	      var imgLoad = (0, _imagesloaded2.default)(this.refs.appWindow, function (instance) {
-	        console.log(instance);
+	        //console.log(instance);
 	      });
 
 	      imgLoad.on('progress', function (imgLoad, image) {
 	        var result = image.isLoaded ? 'loaded' : 'broken';
-	        console.log('image is ' + result + ' for ' + image.img.src);
+	        //console.log( 'image is ' + result + ' for ' + image.img.src );
 	      });
 
 	      imgLoad.on('done', function (instance) {});
@@ -62487,10 +62489,19 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(NewProjectForm).call(this, props));
 
 	    _this.state = {
-	      currentStage: "DETAILS"
+	      currentTab: 0,
+	      tabs: [{
+	        title: "Header"
+	      }, {
+	        title: "Gallery"
+	      }, {
+	        title: "Details"
+	      }]
 	    };
 	    return _this;
 	  }
+
+	  // Send the new project off to the App
 
 	  _createClass(NewProjectForm, [{
 	    key: 'createProject',
@@ -62515,51 +62526,11 @@
 	      this.props.addProject(project);
 	    }
 	  }, {
-	    key: 'renderGalleryFields',
-	    value: function renderGalleryFields(gallery) {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'gallery-fields' },
-	        _react2.default.createElement(
-	          'h3',
-	          null,
-	          'Gallery'
-	        ),
-	        Object.keys(gallery).map(function (g) {
-	          return _react2.default.createElement('input', { value: gallery[g].path });
-	        }),
-	        _react2.default.createElement(
-	          'button',
-	          { className: 'add-gallery-field' },
-	          '+'
-	        )
-	      );
-	    }
-	  }, {
 	    key: 'showHeaderTab',
-	    value: function showHeaderTab() {}
-	  }, {
-	    key: 'showDetailsTab',
-	    value: function showDetailsTab() {}
-	  }, {
-	    key: 'showGalleryTab',
-	    value: function showGalleryTab() {}
-	  }, {
-	    key: 'renderFormStage',
-	    value: function renderFormStage() {
+	    value: function showHeaderTab() {
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'details' },
-	        _react2.default.createElement(
-	          'label',
-	          { htmlFor: 'logo' },
-	          'Logo'
-	        ),
-	        _react2.default.createElement('input', { ref: 'logo',
-	          type: 'logo',
-	          placeholder: 'logo',
-	          name: 'logo',
-	          valueLink: this.props.linkState('newProject.logo') }),
 	        _react2.default.createElement(
 	          'label',
 	          { htmlFor: 'name' },
@@ -62571,28 +62542,139 @@
 	          placeholder: 'name',
 	          name: 'name',
 	          valueLink: this.props.linkState('newProject.name') }),
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'logo' },
+	          'Logo'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'flex' },
+	          _react2.default.createElement('img', { className: 'thumb', src: this.props.newProject.logo }),
+	          _react2.default.createElement('input', { ref: 'logo',
+	            type: 'logo',
+	            placeholder: 'logo',
+	            name: 'logo',
+	            valueLink: this.props.linkState('newProject.logo') })
+	        ),
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'background' },
+	          'Background'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'flex' },
+	          _react2.default.createElement('img', { className: 'thumb', src: this.props.newProject.background }),
+	          _react2.default.createElement('input', { ref: 'background',
+	            type: 'background',
+	            placeholder: 'background',
+	            name: 'background',
+	            valueLink: this.props.linkState('newProject.background') })
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'showDetailsTab',
+	    value: function showDetailsTab() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'details' },
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'types' },
+	          'Types'
+	        ),
 	        _react2.default.createElement('input', { ref: 'types',
 	          type: 'types',
 	          placeholder: 'types' }),
-	        _react2.default.createElement('input', { ref: 'background',
-	          type: 'background',
-	          placeholder: 'background',
-	          valueLink: this.props.linkState('newProject.background') }),
-	        _react2.default.createElement('textarea', { ref: 'description',
-	          name: 'description',
-	          valueLink: this.props.linkState('newProject.description') }),
-	        _react2.default.createElement('textarea', { ref: 'myRole',
-	          name: 'my-role' }),
-	        _react2.default.createElement('textarea', { ref: 'techUsed',
-	          name: 'tech-used' })
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'description' },
+	          'Description'
+	        ),
+	        _react2.default.createElement('textarea', { name: 'description',
+	          ref: 'description',
+	          id: '',
+	          cols: '30',
+	          rows: '10',
+	          valueLink: this.props.linkState('newProject.description') })
 	      );
+	    }
+	  }, {
+	    key: 'showGalleryTab',
+	    value: function showGalleryTab(gallery) {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'details' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'gallery-fields' },
+	          Object.keys(gallery).map(function (g) {
+	            return _react2.default.createElement('input', { value: gallery[g].path });
+	          }),
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'add-gallery-field' },
+	            '+'
+	          )
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'addGalleryImage',
+	    value: function addGalleryImage() {
+	      this.setState({ newProject: newProject });
+	    }
+	  }, {
+	    key: 'updateTab',
+	    value: function updateTab(key) {
+	      this.setState({ currentTab: key });
+	    }
+	  }, {
+	    key: 'renderTabs',
+	    value: function renderTabs() {
+	      var tabs = this.state.tabs;
+
+	      return _react2.default.createElement(
+	        'ul',
+	        null,
+	        tabs.map(function (t, key) {
+	          var boundClick = this.updateTab.bind(this, key),
+	              classes = this.state.currentTab === key ? "tab active" : "tab";
+	          return _react2.default.createElement(
+	            'li',
+	            { className: classes, key: key, ref: key, onClick: boundClick },
+	            t.title
+	          );
+	        }, this)
+	      );
+	    }
+	  }, {
+	    key: 'renderTab',
+	    value: function renderTab() {
+	      console.log(this.state.currentTab);
+	      switch (this.state.currentTab) {
+	        case 0:
+	          return this.showHeaderTab();
+	          break;
+	        case 1:
+	          return this.showGalleryTab(this.props.newProject.gallery);
+	          break;
+	        case 2:
+	          return this.showDetailsTab();
+	          break;
+	        default:
+	          return this.showHeaderTab();
+	      }
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 
+	      console.log(this.refs);
+
 	      var gallery = this.props.newProject.gallery;
-	      console.log(gallery);
 	      return _react2.default.createElement(
 	        'section',
 	        { className: 'project-builder' },
@@ -62603,31 +62685,18 @@
 	            'form',
 	            { onSubmit: this.createProject.bind(this) },
 	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              'Create'
+	            ),
+	            _react2.default.createElement(
 	              'div',
 	              { className: 'tabs' },
-	              _react2.default.createElement(
-	                'ul',
-	                null,
-	                _react2.default.createElement(
-	                  'li',
-	                  { onClick: this.showHeaderTab },
-	                  'Header'
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  { onClick: this.showGalleryTab },
-	                  'Photo Gallery'
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  { onClick: this.showDetailsTab },
-	                  'Project Details'
-	                )
-	              ),
+	              this.renderTabs(),
 	              _react2.default.createElement(
 	                'section',
 	                null,
-	                this.renderFormStage()
+	                this.renderTab()
 	              ),
 	              _react2.default.createElement(
 	                'button',
@@ -62711,6 +62780,13 @@
 	      this.setState({ confirmRemoveProject: !this.state.confirmRemoveProject });
 	    }
 	  }, {
+	    key: 'renderGallery',
+	    value: function renderGallery() {
+	      if (Object.keys(this.props.currentProject.gallery).length) {
+	        return _react2.default.createElement(_ProjectGallery2.default, { project: this.props.currentProject });
+	      }
+	    }
+	  }, {
 	    key: 'renderEditTools',
 	    value: function renderEditTools() {
 	      if (this.props.edit) {
@@ -62762,7 +62838,7 @@
 	            transitionLeaveTimeout: 0 },
 	          _react2.default.createElement(
 	            'header',
-	            null,
+	            { ref: 'header' },
 	            _react2.default.createElement(
 	              'h1',
 	              { className: 'title' },
@@ -62789,7 +62865,7 @@
 	          _react2.default.createElement(
 	            'main',
 	            null,
-	            _react2.default.createElement(_ProjectGallery2.default, { project: this.props.currentProject }),
+	            this.renderGallery(),
 	            _react2.default.createElement(
 	              'section',
 	              null,
@@ -63072,7 +63148,15 @@
 
 	    _this.state = {
 	      showGallery: true,
-	      isEditing: false
+	      isEditing: false,
+	      activeSection: 1,
+	      sections: [{
+	        title: "Header"
+	      }, {
+	        title: "Gallery"
+	      }, {
+	        title: "Details"
+	      }]
 	    };
 	    return _this;
 	  }

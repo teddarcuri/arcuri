@@ -47,7 +47,7 @@ section.split {
 }
 .light {
   .svg-fill {
-      fill: #fff !important;
+      fill: #ccc !important;
   }
 
   .letter {
@@ -98,13 +98,14 @@ section.split {
     padding: 0px;
     li {
         background: #fff;
-        color: #666;
+        color: #222;
         display: inline-block;
         margin-right: 10px;
-        border-radius: 7px;
-        padding: 7px 15px;
-        font-weight: 300;
-        font-size: 0.9em;
+        border-radius: 8px;
+        padding: 8px 15px;
+        letter-spacing: 2px;
+        font-weight: 700;
+        font-size: 0.7em;
         text-transform: uppercase;
     }
 }
@@ -115,15 +116,35 @@ section.split {
   padding-right: 13px;
 }
 
-
 .sidebar {
-  //position: fixed; 
-  //top: 0; left: 0;
-  width: 400px;
   height: 100%;
   background: rgba(#000, 0.8);
-  @include flex(1 0 400px);
+  @include flex(40% 0 400px);
 }
+
+// util
+
+.thumb {
+  width: 40px;
+  height: 40px;
+}
+
+.flex {
+  width: 100%;
+  @include display(flex);
+  @include align-items(stretch);
+
+  input {
+    width: auto;
+    @include flex(1 0 auto);
+  }
+
+  img {
+    padding: 7px;
+    margin-right: 10px;
+  }
+}
+
 
 // Edit Project
 .project-edit-tools {

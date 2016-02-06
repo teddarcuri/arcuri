@@ -18,6 +18,12 @@ class ProjectPage extends React.Component {
     this.setState({confirmRemoveProject: !this.state.confirmRemoveProject});
   }
 
+  renderGallery() {
+    if (Object.keys(this.props.currentProject.gallery).length) {
+      return (<ProjectGallery project={this.props.currentProject} />)
+    }
+  }
+
   renderEditTools() {
     if (this.props.edit) {
       return (
@@ -61,7 +67,7 @@ class ProjectPage extends React.Component {
                               transitionAppearTimeout={0}
                               transitionEnterTimeout={1000}
                               transitionLeaveTimeout={0}>
-            <header>
+            <header ref="header">
               <h1 className="title">
                 {logo}
                 {p.name}
@@ -78,8 +84,7 @@ class ProjectPage extends React.Component {
 
             <main>
 
-              {/* Gallery */}
-              <ProjectGallery project={this.props.currentProject} />
+              {this.renderGallery()}
 
               <section>
                 <h3>Overview</h3>

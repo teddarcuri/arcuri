@@ -10,7 +10,19 @@ class Project extends React.Component {
 
     this.state = {
       showGallery: true,
-      isEditing: false
+      isEditing: false,
+      activeSection: 1,
+      sections: [
+        {
+          title: "Header"
+        },
+        {
+          title: "Gallery"        
+        },
+        {
+          title: "Details"
+        }
+      ]
     }
   }
 

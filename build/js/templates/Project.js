@@ -40,7 +40,15 @@ var Project = function (_React$Component) {
 
     _this.state = {
       showGallery: true,
-      isEditing: false
+      isEditing: false,
+      activeSection: 1,
+      sections: [{
+        title: "Header"
+      }, {
+        title: "Gallery"
+      }, {
+        title: "Details"
+      }]
     };
     return _this;
   }

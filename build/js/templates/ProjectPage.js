@@ -51,6 +51,13 @@ var ProjectPage = function (_React$Component) {
       this.setState({ confirmRemoveProject: !this.state.confirmRemoveProject });
     }
   }, {
+    key: 'renderGallery',
+    value: function renderGallery() {
+      if (Object.keys(this.props.currentProject.gallery).length) {
+        return _react2.default.createElement(_ProjectGallery2.default, { project: this.props.currentProject });
+      }
+    }
+  }, {
     key: 'renderEditTools',
     value: function renderEditTools() {
       if (this.props.edit) {
@@ -102,7 +109,7 @@ var ProjectPage = function (_React$Component) {
             transitionLeaveTimeout: 0 },
           _react2.default.createElement(
             'header',
-            null,
+            { ref: 'header' },
             _react2.default.createElement(
               'h1',
               { className: 'title' },
@@ -129,7 +136,7 @@ var ProjectPage = function (_React$Component) {
           _react2.default.createElement(
             'main',
             null,
-            _react2.default.createElement(_ProjectGallery2.default, { project: this.props.currentProject }),
+            this.renderGallery(),
             _react2.default.createElement(
               'section',
               null,

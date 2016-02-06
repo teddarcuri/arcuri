@@ -798,6 +798,7 @@ header#main {
     width: 0px;
     height: 100%;
     overflow: hidden;
+    box-shadow: 0px 2px 20px 10px rgba(0, 0, 0, 0.5);
     -webkit-box-flex: 0;
     -moz-box-flex: 0;
     box-flex: 0;
@@ -817,7 +818,13 @@ header#main {
       padding: 100px 55px;
       height: 100%; }
     .project .sidebar.active {
-      width: 500px;
+      -webkit-box-flex: 1;
+      -moz-box-flex: 1;
+      box-flex: 1;
+      -webkit-flex: 1 0 500px;
+      -moz-flex: 1 0 500px;
+      -ms-flex: 1 0 500px;
+      flex: 1 0 500px;
       -webkit-transform: translateX(0%);
       -moz-transform: translateX(0%);
       -ms-transform: translateX(0%);
@@ -968,15 +975,15 @@ header#main {
       display: -moz-flex;
       display: -ms-flexbox;
       display: flex;
-      -webkit-box-align: start;
-      -moz-box-align: start;
-      box-align: start;
-      -webkit-align-items: flex-start;
-      -moz-align-items: flex-start;
-      -ms-align-items: flex-start;
-      -o-align-items: flex-start;
-      align-items: flex-start;
-      -ms-flex-align: start;
+      -webkit-box-align: stretch;
+      -moz-box-align: stretch;
+      box-align: stretch;
+      -webkit-align-items: stretch;
+      -moz-align-items: stretch;
+      -ms-align-items: stretch;
+      -o-align-items: stretch;
+      align-items: stretch;
+      -ms-flex-align: stretch;
       -webkit-box-pack: center;
       -moz-box-pack: center;
       box-pack: center;
@@ -988,7 +995,9 @@ header#main {
       -ms-flex-pack: center;
       -webkit-flex-flow: row wrap;
       -moz-flex-flow: row wrap;
-      flex-flow: row wrap; }
+      flex-flow: row wrap;
+      width: 100%;
+      height: 100%; }
       .project-page .project-overview main h3 {
         padding: 70px 70px 10px 70px; }
       .project-page .project-overview main section {
@@ -1131,8 +1140,9 @@ header#main {
   height: 100%;
   width: 100%; }
   .project-builder .tabs {
-    padding: 33px;
+    padding: 20px;
     background: rgba(255, 255, 255, 0.066);
+    width: 100%;
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     box-flex: 1;
@@ -1148,6 +1158,11 @@ header#main {
       display: -moz-flex;
       display: -ms-flexbox;
       display: flex;
+      -webkit-flex-flow: row wrap;
+      -moz-flex-flow: row wrap;
+      flex-flow: row wrap;
+      width: 100%;
+      height: 100%;
       list-style: none;
       margin: 0px;
       padding: 0px; }
@@ -1155,11 +1170,12 @@ header#main {
         color: #fff;
         padding: 20px;
         background: rgba(0, 0, 0, 0.5);
-        margin-right: 5px;
         text-transform: uppercase;
         letter-spacing: 1px;
         font-size: 0.7em;
         text-align: center;
+        width: 33%;
+        border: solid 1px rgba(255, 255, 255, 0.1);
         -webkit-box-flex: 1;
         -moz-box-flex: 1;
         box-flex: 1;
@@ -1170,13 +1186,29 @@ header#main {
         .project-builder .tabs ul li:last-child {
           margin-right: 0px; }
         .project-builder .tabs ul li:hover {
-          background: #54787D; }
+          background: rgba(255, 255, 255, 0.1); }
+        .project-builder .tabs ul li.active {
+          border-radius: 5px;
+          border: solid 1px #A1DBB2; }
     .project-builder .tabs section {
       padding: 20px 0px; }
+  .project-builder .add-gallery-field {
+    background: #F45D4C;
+    border: none;
+    border-radius: 50%;
+    font-size: 2em;
+    padding: 3px 10px; }
   .project-builder .project-page {
     padding: 0px 50px; }
-  .project-builder .preview-window {
-    overflow: auto; }
+  .project-builder #preview-window {
+    overflow: auto;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex: 1 0 auto;
+    -moz-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto; }
 
 .gallery {
   width: 100%;
@@ -1473,6 +1505,8 @@ header#main {
   -o-align-items: center;
   align-items: center;
   -ms-flex-align: center; }
+  .project-action-bar h3 {
+    font-size: 1.3em; }
   .project-action-bar button {
     background: #fff;
     color: #AC4040;
@@ -1636,7 +1670,7 @@ section.split {
   transition: all ease 0.7s; }
 
 .light .svg-fill {
-  fill: #fff !important; }
+  fill: #ccc !important; }
 
 .light .letter {
   opacity: 1; }
@@ -1723,13 +1757,14 @@ section.split {
   padding: 0px; }
   .tags li {
     background: #fff;
-    color: #666;
+    color: #222;
     display: inline-block;
     margin-right: 10px;
-    border-radius: 7px;
-    padding: 7px 15px;
-    font-weight: 300;
-    font-size: 0.9em;
+    border-radius: 8px;
+    padding: 8px 15px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    font-size: 0.7em;
     text-transform: uppercase; }
 
 .half {
@@ -1737,16 +1772,50 @@ section.split {
   padding-right: 13px; }
 
 .sidebar {
-  width: 400px;
   height: 100%;
   background: rgba(0, 0, 0, 0.8);
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex: 1 0 400px;
-  -moz-flex: 1 0 400px;
-  -ms-flex: 1 0 400px;
-  flex: 1 0 400px; }
+  -webkit-box-flex: 40%;
+  -moz-box-flex: 40%;
+  box-flex: 40%;
+  -webkit-flex: 40% 0 400px;
+  -moz-flex: 40% 0 400px;
+  -ms-flex: 40% 0 400px;
+  flex: 40% 0 400px; }
+
+.thumb {
+  width: 40px;
+  height: 40px; }
+
+.flex {
+  width: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  box-align: stretch;
+  -webkit-align-items: stretch;
+  -moz-align-items: stretch;
+  -ms-align-items: stretch;
+  -o-align-items: stretch;
+  align-items: stretch;
+  -ms-flex-align: stretch; }
+  .flex input {
+    width: auto;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex: 1 0 auto;
+    -moz-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto; }
+  .flex img {
+    padding: 7px;
+    margin-right: 10px; }
 
 .project-edit-tools {
   display: inline-block; }

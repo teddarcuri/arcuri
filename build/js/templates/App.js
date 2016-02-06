@@ -120,16 +120,18 @@ var App = function (_React$Component) {
         name: "New Project",
         description: "Enter description",
         background: "http://www.backgroundsy.com/file/large/light-colorful-background.jpg",
-        logo: "",
+        logo: "https://s3.amazonaws.com/launchkey-resources/logo/logo/launchkey-logos_launchkey-icon-white.png",
         types: "Llama",
         gallery: {
           image1: {
             path: "/src/img/gallery_images/colorado_gov/contact.png"
+          },
+          image2: {
+            path: "/src/img/gallery_images/colorado_gov/home.png"
           }
         }
       },
       projects: []
-
     };
     return _this;
   }
@@ -152,12 +154,12 @@ var App = function (_React$Component) {
 
       // Images Loaded
       var imgLoad = (0, _imagesloaded2.default)(this.refs.appWindow, function (instance) {
-        console.log(instance);
+        //console.log(instance);
       });
 
       imgLoad.on('progress', function (imgLoad, image) {
         var result = image.isLoaded ? 'loaded' : 'broken';
-        console.log('image is ' + result + ' for ' + image.img.src);
+        //console.log( 'image is ' + result + ' for ' + image.img.src );
       });
 
       imgLoad.on('done', function (instance) {});
