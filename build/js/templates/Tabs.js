@@ -39,30 +39,19 @@ var Tabs = function (_React$Component) {
     return _possibleConstructorReturn(this, Object.getPrototypeOf(Tabs).call(this, props));
   }
 
-  // // Send the new project off to the App
-
   _createClass(Tabs, [{
-    key: 'createProject',
-    value: function createProject(ev) {
-
+    key: 'handleSubmit',
+    value: function handleSubmit(ev) {
       ev.preventDefault();
 
-      // 	// var project = {
-      // 	// 	name: this.refs.name.value,
-      // 	// 	background: this.refs.background.value,
-      // 	// 	logo: this.refs.logo.value,
-      // 	// 	types: this.refs.types.value,
-      // 	// 	description: this.refs.description.value,
-      // 	// 	gallery: {
-      //  //        image1: {
-      //  //          path: "/src/img/gallery_images/colorado_gov/contact.png"
-      //  //        }
-      //  //      }
-      // 	// }
-
-      // 	// Add to project to state
       this.props.addProject();
     }
+
+    // Send the new project off to the App
+    /* 
+      Tab Renders
+    */
+
   }, {
     key: 'showHeaderTab',
     value: function showHeaderTab() {
@@ -146,9 +135,26 @@ var Tabs = function (_React$Component) {
           fields;
 
       if (images.length) {
-        images.map(function (g) {
-          return _react2.default.createElement('input', { key: g, valueLink: this.props.mode === "CREATE" ? this.props.linkState('newProject.gallery[' + g + '].path') : this.props.linkState('currentProject.gallery[' + g + '].path') });
+        fields = images.map(function (g) {
+          return _react2.default.createElement(
+            'div',
+            { className: 'flex', key: g },
+            _react2.default.createElement('img', { className: 'thumb', src: this.props.project.gallery[g].path }),
+            _react2.default.createElement('input', { ref: g,
+              type: 'text' }),
+            _react2.default.createElement(
+              'span',
+              { className: 'remove-btn', onClick: this.props.removeGalleryImage.bind(this, g) },
+              'X'
+            )
+          );
         }, this);
+      } else {
+        fields = _react2.default.createElement(
+          'span',
+          { className: 'support-text' },
+          'There is no gallery yet. Add Image below.'
+        );
       }
 
       return _react2.default.createElement(
@@ -157,19 +163,14 @@ var Tabs = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'gallery-fields' },
+          fields,
           _react2.default.createElement(
-            'button',
-            { className: 'add-gallery-field', onClick: this.addGalleryImage.bind(this) },
+            'a',
+            { className: 'add-gallery-field', onClick: this.props.addGalleryImage },
             '+'
           )
         )
       );
-    }
-  }, {
-    key: 'addGalleryImage',
-    value: function addGalleryImage() {
-      var timestamp = new Date().getTime();
-      this.props.project.gallery['image' + timestamp] = { path: "/src/img/gallery_images/colorado_gov/front-page.png" };
     }
   }, {
     key: 'updateTab',
@@ -216,10 +217,11 @@ var Tabs = function (_React$Component) {
     key: 'render',
     value: function render() {
 
-      var title = this.props.mode === "CREATE" ? "Create" : "Edit";
+      var title = this.props.mode === "CREATE" ? "Create" : "Edit",
+          btnText = this.props.mode === "CREATE" ? "Create Project" : "Apply Changes";
       return _react2.default.createElement(
         'form',
-        { onSubmit: this.createProject.bind(this) },
+        { onSubmit: this.handleSubmit.bind(this) },
         _react2.default.createElement(
           'h3',
           null,
@@ -237,7 +239,7 @@ var Tabs = function (_React$Component) {
           _react2.default.createElement(
             'button',
             null,
-            'Create Project'
+            btnText
           )
         )
       );

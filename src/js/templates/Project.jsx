@@ -10,7 +10,6 @@ class Project extends React.Component {
   	super(props);
 
     this.state = {
-      mode: "CREATE",
       isEditing: false,
       activeSection: 0,
       sections: [
@@ -22,6 +21,12 @@ class Project extends React.Component {
         },
         {
           title: "Details"
+        },
+        {
+          title: "Role"
+        },
+        {
+          title: "Tech"
         }
       ]
     }
@@ -36,9 +41,9 @@ class Project extends React.Component {
 
     // Determine if New or Exisiting Project
     if (path.indexOf('work/new') != -1) {
-      this.setState({mode: "CREATE"});
+      this.props.setProjectMode("CREATE");
     } else {
-      this.setState({mode: "EDIT"});
+      this.props.setProjectMode("EDIT");
     }
   }
 
@@ -59,35 +64,39 @@ class Project extends React.Component {
     Sidebar
   */
   renderSidebar() {
-    if (this.state.mode === "EDIT" && this.state.isEditing) {
+    if (this.props.projectMode === "EDIT" && this.state.isEditing) {
       return (
          <Tabs sections={this.state.sections}
               activeSection={this.state.activeSection}
               project={this.props.currentProject}
               linkState={this.props.linkState}
-              mode={this.state.mode}
+              mode={this.props.projectMode}
               addProject={this.props.addProject}
-              setActiveSection={this.setActiveSection.bind(this)} /> 
+              setActiveSection={this.setActiveSection.bind(this)}
+              addGalleryImage={this.props.addGalleryImage}
+              removeGalleryImage={this.props.removeGalleryImage} /> 
       ) 
-    } else if (this.state.mode === "CREATE") {
+    } else if (this.props.projectMode === "CREATE") {
       return  (
         <Tabs sections={this.state.sections}
               activeSection={this.state.activeSection}
               project={this.props.newProject}
               linkState={this.props.linkState}
-              mode={this.state.mode}
+              mode={this.props.projectMode}
               addProject={this.props.addProject}
-              setActiveSection={this.setActiveSection.bind(this)} />  
+              setActiveSection={this.setActiveSection.bind(this)} 
+              addGalleryImage={this.props.addGalleryImage}
+              removeGalleryImage={this.props.removeGalleryImage}/>  
       )
     }
   }
 
   render() {
-  	var p = this.state.mode === "EDIT" ? this.props.currentProject : this.props.newProject,
+  	var p = this.props.projectMode === "EDIT" ? this.props.currentProject : this.props.newProject,
         overview = p.description ? p.description : "",
         role = p.role ? p.role : "",
         logo = p.logo ? <img src={p.logo} alt={p.name} className="project-logo"/> : "",
-        sidebarClasses = this.state.isEditing || this.state.mode === "CREATE"  ? "sidebar active" : "sidebar";
+        sidebarClasses = this.state.isEditing || this.props.projectMode === "CREATE"  ? "sidebar active" : "sidebar";
 
     return (
 
@@ -103,7 +112,7 @@ class Project extends React.Component {
           </CSSTransitionGroup>
 
          <ProjectPage currentProject={p}
-                      mode={this.state.mode}
+                      mode={this.props.projectMode}
                       isEditing={this.state.isEditing}
                       edit={this.isEditing.bind(this)}
                       linkState={this.props.linkState}

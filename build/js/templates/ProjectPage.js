@@ -90,6 +90,9 @@ var ProjectPage = function (_React$Component) {
         case 2:
           el = _reactDom2.default.findDOMNode(this.refs.details);
           break;
+        case 3:
+          el = _reactDom2.default.findDOMNode(this.refs.role);
+          break;
         default:
           return;
       }
@@ -213,7 +216,7 @@ var ProjectPage = function (_React$Component) {
             ),
             _react2.default.createElement(
               'aside',
-              null,
+              { ref: 'role' },
               _react2.default.createElement(
                 'h3',
                 null,

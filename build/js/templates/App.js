@@ -117,6 +117,7 @@ var App = function (_React$Component) {
       projects: [],
       isProjectPage: false,
       currentProject: {},
+      projectMode: "CREATE",
       newProject: {
         name: "New Project",
         description: "Enter description",
@@ -128,6 +129,10 @@ var App = function (_React$Component) {
     };
     return _this;
   }
+
+  /*
+    Life Cycle 
+  */
 
   _createClass(App, [{
     key: 'componentDidMount',
@@ -164,7 +169,9 @@ var App = function (_React$Component) {
       this.checkIfProjectPage(nextProps);
     }
 
-    // Page Detection
+    /* 
+      Page Detection
+    */
 
   }, {
     key: 'checkIfProjectPage',
@@ -184,8 +191,19 @@ var App = function (_React$Component) {
         this.setState({ isProjectPage: false });
       }
     }
+  }, {
+    key: 'setProjectMode',
+    value: function setProjectMode(mode) {
+      if (mode === "CREATE") {
+        this.setState({ projectMode: "CREATE" });
+      } else {
+        this.setState({ projectMode: "EDIT" });
+      }
+    }
 
-    // CRUD
+    /*
+      CRUD 
+    */
 
   }, {
     key: 'findById',
@@ -218,6 +236,37 @@ var App = function (_React$Component) {
       this.setState({ projects: this.state.projects });
       this.history.pushState(null, '/work');
     }
+  }, {
+    key: 'addGalleryImage',
+    value: function addGalleryImage() {
+      var timestamp = new Date().getTime();
+
+      console.log(this.state.projectMode);
+
+      if (this.state.projectMode === "CREATE") {
+        this.state.newProject.gallery['image' + timestamp] = { path: "http://mbeyacityfc.com/wp-content/themes-wp-appkit/wpak-tabs-android/img/img-icon.svg" };
+        this.setState({ newProject: this.state.newProject });
+      } else {
+        this.state.currentProject.gallery['image' + timestamp] = { path: "http://mbeyacityfc.com/wp-content/themes-wp-appkit/wpak-tabs-android/img/img-icon.svg" };
+        this.setState({ currentProject: this.state.currentProject });
+      }
+    }
+  }, {
+    key: 'removeGalleryImage',
+    value: function removeGalleryImage(key) {
+      if (this.state.projectMode === "CREATE") {
+        delete this.state.newProject.gallery[key];
+        this.setState({ newProject: this.state.newProject });
+      } else {
+        delete this.state.currentProject.gallery[key];
+        this.setState({ currentProject: this.state.currentProject });
+      }
+    }
+
+    /*
+      Render 
+    */
+
   }, {
     key: 'renderProjectBubbles',
     value: function renderProjectBubbles() {
@@ -362,7 +411,11 @@ var App = function (_React$Component) {
               newProject: this.state.newProject,
               addProject: this.addProject.bind(this),
               removeProject: this.removeProject.bind(this),
-              linkState: this.linkState.bind(this)
+              linkState: this.linkState.bind(this),
+              addGalleryImage: this.addGalleryImage.bind(this),
+              removeGalleryImage: this.removeGalleryImage.bind(this),
+              projectMode: this.state.projectMode,
+              setProjectMode: this.setProjectMode.bind(this)
             })
           )
         ),

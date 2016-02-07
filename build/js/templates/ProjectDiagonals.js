@@ -42,11 +42,6 @@ var ProjectDiagonals = function (_React$Component) {
 	}
 
 	_createClass(ProjectDiagonals, [{
-		key: 'componentDidMount',
-		value: function componentDidMount() {
-			console.log(this.props.projects);
-		}
-	}, {
 		key: 'render',
 		value: function render() {
 			var projects = this.props.projects;

@@ -40,6 +40,7 @@ class App extends React.Component {
       projects: [],
       isProjectPage: false,
       currentProject: {},
+      projectMode: "CREATE",
       newProject: {
         name: "New Project",
         description: "Enter description",
@@ -50,6 +51,10 @@ class App extends React.Component {
       }
     }
   }
+
+  /*
+    Life Cycle 
+  */
 
   componentDidMount() {
     // Check to see if the loaded route will be a project component
@@ -84,7 +89,10 @@ class App extends React.Component {
     this.checkIfProjectPage(nextProps);
   }
 
-  // Page Detection
+  /* 
+    Page Detection
+  */
+
   checkIfProjectPage(props) {
     var path = props.location.pathname;
 
@@ -102,7 +110,17 @@ class App extends React.Component {
     }
   }
 
-  // CRUD
+  setProjectMode(mode) {
+    if (mode === "CREATE") {
+      this.setState({projectMode: "CREATE"});
+    } else {
+      this.setState({projectMode: "EDIT"});
+    }
+  } 
+
+  /*
+    CRUD 
+  */
   findById(source, id) {
     for (var i = 0; i < source.length; i++) {
       if (source[i].name == id) {
@@ -129,6 +147,34 @@ class App extends React.Component {
     this.setState({projects: this.state.projects});
     this.history.pushState(null, '/work');
   }
+
+  addGalleryImage() {
+    var timestamp = (new Date()).getTime();
+
+    console.log(this.state.projectMode);
+
+    if (this.state.projectMode === "CREATE") {
+      this.state.newProject.gallery['image' + timestamp] = {path: "http://mbeyacityfc.com/wp-content/themes-wp-appkit/wpak-tabs-android/img/img-icon.svg"}
+      this.setState({newProject: this.state.newProject});
+    } else {
+      this.state.currentProject.gallery['image' + timestamp] = {path: "http://mbeyacityfc.com/wp-content/themes-wp-appkit/wpak-tabs-android/img/img-icon.svg"}
+      this.setState({currentProject: this.state.currentProject});
+    }
+  }
+
+  removeGalleryImage(key) {
+    if (this.state.projectMode === "CREATE") {
+      delete this.state.newProject.gallery[key]
+      this.setState({newProject: this.state.newProject});
+    } else {
+      delete this.state.currentProject.gallery[key]
+      this.setState({currentProject: this.state.currentProject});
+    }
+  }
+
+  /*
+    Render 
+  */
 
   renderProjectBubbles() {
     return (
@@ -217,7 +263,11 @@ class App extends React.Component {
                 newProject: this.state.newProject,
                 addProject: this.addProject.bind(this),
                 removeProject: this.removeProject.bind(this),
-                linkState: this.linkState.bind(this)
+                linkState: this.linkState.bind(this),
+                addGalleryImage: this.addGalleryImage.bind(this),
+                removeGalleryImage: this.removeGalleryImage.bind(this),
+                projectMode: this.state.projectMode,
+                setProjectMode: this.setProjectMode.bind(this)
               })}
            </ReactTransitionGroup>
 	     </div>

@@ -20,7 +20,11 @@ class Projects extends React.Component {
                 addProject: this.props.addProject,
                 updateProject: this.props.updateProject,
                 removeProject: this.props.removeProject,
-                linkState: this.props.linkState
+                linkState: this.props.linkState,
+                addGalleryImage: this.props.addGalleryImage,
+                removeGalleryImage: this.props.removeGalleryImage,
+                projectMode: this.props.projectMode,
+                setProjectMode: this.props.setProjectMode
               })}
 		</div>
 	   )

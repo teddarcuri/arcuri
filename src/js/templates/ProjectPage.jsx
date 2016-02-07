@@ -49,6 +49,9 @@ class ProjectPage extends React.Component {
       case 2:
         el = ReactDOM.findDOMNode(this.refs.details);
         break;
+      case 3:
+        el = ReactDOM.findDOMNode(this.refs.role);
+        break;
       default:
         return;
     }
@@ -146,7 +149,7 @@ class ProjectPage extends React.Component {
                 </p>
               </section>
 
-              <aside>
+              <aside ref="role">
               <h3>My Role</h3>
                 {role}
 

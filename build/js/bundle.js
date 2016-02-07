@@ -163,6 +163,7 @@
 	      projects: [],
 	      isProjectPage: false,
 	      currentProject: {},
+	      projectMode: "CREATE",
 	      newProject: {
 	        name: "New Project",
 	        description: "Enter description",
@@ -174,6 +175,10 @@
 	    };
 	    return _this;
 	  }
+
+	  /*
+	    Life Cycle 
+	  */
 
 	  _createClass(App, [{
 	    key: 'componentDidMount',
@@ -210,7 +215,9 @@
 	      this.checkIfProjectPage(nextProps);
 	    }
 
-	    // Page Detection
+	    /* 
+	      Page Detection
+	    */
 
 	  }, {
 	    key: 'checkIfProjectPage',
@@ -230,8 +237,19 @@
 	        this.setState({ isProjectPage: false });
 	      }
 	    }
+	  }, {
+	    key: 'setProjectMode',
+	    value: function setProjectMode(mode) {
+	      if (mode === "CREATE") {
+	        this.setState({ projectMode: "CREATE" });
+	      } else {
+	        this.setState({ projectMode: "EDIT" });
+	      }
+	    }
 
-	    // CRUD
+	    /*
+	      CRUD 
+	    */
 
 	  }, {
 	    key: 'findById',
@@ -264,6 +282,39 @@
 	      this.setState({ projects: this.state.projects });
 	      this.history.pushState(null, '/work');
 	    }
+	  }, {
+	    key: 'addGalleryImage',
+	    value: function addGalleryImage() {
+	      var timestamp = new Date().getTime();
+
+	      console.log(this.state.projectMode);
+
+	      if (this.state.projectMode === "CREATE") {
+	        this.state.newProject.gallery['image' + timestamp] = { path: "http://mbeyacityfc.com/wp-content/themes-wp-appkit/wpak-tabs-android/img/img-icon.svg" };
+	        this.setState({ newProject: this.state.newProject });
+	      } else {
+	        this.state.currentProject.gallery['image' + timestamp] = { path: "http://mbeyacityfc.com/wp-content/themes-wp-appkit/wpak-tabs-android/img/img-icon.svg" };
+	        this.setState({ currentProject: this.state.currentProject });
+	      }
+	    }
+	  }, {
+	    key: 'removeGalleryImage',
+	    value: function removeGalleryImage(key) {
+	      if (this.state.projectMode === "CREATE") {
+	        console.log(this.state.newProject.gallery[key]);
+	        delete this.state.newProject.gallery[key];
+	        this.setState({ newProject: this.state.newProject });
+	      } else {
+	        console.log(this.state.currentProject.gallery[key]);
+	        delete this.state.currentProject.gallery[key];
+	        this.setState({ currentProject: this.state.currentProject });
+	      }
+	    }
+
+	    /*
+	      Render 
+	    */
+
 	  }, {
 	    key: 'renderProjectBubbles',
 	    value: function renderProjectBubbles() {
@@ -408,7 +459,11 @@
 	              newProject: this.state.newProject,
 	              addProject: this.addProject.bind(this),
 	              removeProject: this.removeProject.bind(this),
-	              linkState: this.linkState.bind(this)
+	              linkState: this.linkState.bind(this),
+	              addGalleryImage: this.addGalleryImage.bind(this),
+	              removeGalleryImage: this.removeGalleryImage.bind(this),
+	              projectMode: this.state.projectMode,
+	              setProjectMode: this.setProjectMode.bind(this)
 	            })
 	          )
 	        ),
@@ -62026,7 +62081,11 @@
 	          addProject: this.props.addProject,
 	          updateProject: this.props.updateProject,
 	          removeProject: this.props.removeProject,
-	          linkState: this.props.linkState
+	          linkState: this.props.linkState,
+	          addGalleryImage: this.props.addGalleryImage,
+	          removeGalleryImage: this.props.removeGalleryImage,
+	          projectMode: this.props.projectMode,
+	          setProjectMode: this.props.setProjectMode
 	        })
 	      );
 	    }
@@ -62085,11 +62144,6 @@
 		}
 
 		_createClass(ProjectDiagonals, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {
-				console.log(this.props.projects);
-			}
-		}, {
 			key: 'render',
 			value: function render() {
 				var projects = this.props.projects;
@@ -62818,6 +62872,9 @@
 	        case 2:
 	          el = _reactDom2.default.findDOMNode(this.refs.details);
 	          break;
+	        case 3:
+	          el = _reactDom2.default.findDOMNode(this.refs.role);
+	          break;
 	        default:
 	          return;
 	      }
@@ -62941,7 +62998,7 @@
 	            ),
 	            _react2.default.createElement(
 	              'aside',
-	              null,
+	              { ref: 'role' },
 	              _react2.default.createElement(
 	                'h3',
 	                null,
@@ -63210,7 +63267,6 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Project).call(this, props));
 
 	    _this.state = {
-	      mode: "CREATE",
 	      isEditing: false,
 	      activeSection: 0,
 	      sections: [{
@@ -63219,6 +63275,10 @@
 	        title: "Gallery"
 	      }, {
 	        title: "Details"
+	      }, {
+	        title: "Role"
+	      }, {
+	        title: "Tech"
 	      }]
 	    };
 	    return _this;
@@ -63235,9 +63295,9 @@
 
 	      // Determine if New or Exisiting Project
 	      if (path.indexOf('work/new') != -1) {
-	        this.setState({ mode: "CREATE" });
+	        this.props.setProjectMode("CREATE");
 	      } else {
-	        this.setState({ mode: "EDIT" });
+	        this.props.setProjectMode("EDIT");
 	      }
 	    }
 	  }, {
@@ -63264,32 +63324,36 @@
 	  }, {
 	    key: 'renderSidebar',
 	    value: function renderSidebar() {
-	      if (this.state.mode === "EDIT" && this.state.isEditing) {
+	      if (this.props.projectMode === "EDIT" && this.state.isEditing) {
 	        return _react2.default.createElement(_tabs2.default, { sections: this.state.sections,
 	          activeSection: this.state.activeSection,
 	          project: this.props.currentProject,
 	          linkState: this.props.linkState,
-	          mode: this.state.mode,
+	          mode: this.props.projectMode,
 	          addProject: this.props.addProject,
-	          setActiveSection: this.setActiveSection.bind(this) });
-	      } else if (this.state.mode === "CREATE") {
+	          setActiveSection: this.setActiveSection.bind(this),
+	          addGalleryImage: this.props.addGalleryImage,
+	          removeGalleryImage: this.props.removeGalleryImage });
+	      } else if (this.props.projectMode === "CREATE") {
 	        return _react2.default.createElement(_tabs2.default, { sections: this.state.sections,
 	          activeSection: this.state.activeSection,
 	          project: this.props.newProject,
 	          linkState: this.props.linkState,
-	          mode: this.state.mode,
+	          mode: this.props.projectMode,
 	          addProject: this.props.addProject,
-	          setActiveSection: this.setActiveSection.bind(this) });
+	          setActiveSection: this.setActiveSection.bind(this),
+	          addGalleryImage: this.props.addGalleryImage,
+	          removeGalleryImage: this.props.removeGalleryImage });
 	      }
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var p = this.state.mode === "EDIT" ? this.props.currentProject : this.props.newProject,
+	      var p = this.props.projectMode === "EDIT" ? this.props.currentProject : this.props.newProject,
 	          overview = p.description ? p.description : "",
 	          role = p.role ? p.role : "",
 	          logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "",
-	          sidebarClasses = this.state.isEditing || this.state.mode === "CREATE" ? "sidebar active" : "sidebar";
+	          sidebarClasses = this.state.isEditing || this.props.projectMode === "CREATE" ? "sidebar active" : "sidebar";
 
 	      return _react2.default.createElement(
 	        'div',
@@ -63305,7 +63369,7 @@
 	          this.renderSidebar()
 	        ),
 	        _react2.default.createElement(_ProjectPage2.default, { currentProject: p,
-	          mode: this.state.mode,
+	          mode: this.props.projectMode,
 	          isEditing: this.state.isEditing,
 	          edit: this.isEditing.bind(this),
 	          linkState: this.props.linkState,
@@ -63366,30 +63430,19 @@
 	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Tabs).call(this, props));
 	  }
 
-	  // // Send the new project off to the App
-
 	  _createClass(Tabs, [{
-	    key: 'createProject',
-	    value: function createProject(ev) {
-
+	    key: 'handleSubmit',
+	    value: function handleSubmit(ev) {
 	      ev.preventDefault();
 
-	      // 	// var project = {
-	      // 	// 	name: this.refs.name.value,
-	      // 	// 	background: this.refs.background.value,
-	      // 	// 	logo: this.refs.logo.value,
-	      // 	// 	types: this.refs.types.value,
-	      // 	// 	description: this.refs.description.value,
-	      // 	// 	gallery: {
-	      //  //        image1: {
-	      //  //          path: "/src/img/gallery_images/colorado_gov/contact.png"
-	      //  //        }
-	      //  //      }
-	      // 	// }
-
-	      // 	// Add to project to state
 	      this.props.addProject();
 	    }
+
+	    // Send the new project off to the App
+	    /* 
+	      Tab Renders
+	    */
+
 	  }, {
 	    key: 'showHeaderTab',
 	    value: function showHeaderTab() {
@@ -63473,9 +63526,26 @@
 	          fields;
 
 	      if (images.length) {
-	        images.map(function (g) {
-	          return _react2.default.createElement('input', { key: g, valueLink: this.props.mode === "CREATE" ? this.props.linkState('newProject.gallery[' + g + '].path') : this.props.linkState('currentProject.gallery[' + g + '].path') });
+	        fields = images.map(function (g) {
+	          return _react2.default.createElement(
+	            'div',
+	            { className: 'flex', key: g },
+	            _react2.default.createElement('img', { className: 'thumb', src: this.props.project.gallery[g].path }),
+	            _react2.default.createElement('input', { ref: g,
+	              type: 'text' }),
+	            _react2.default.createElement(
+	              'span',
+	              { className: 'remove-btn', onClick: this.props.removeGalleryImage.bind(this, g) },
+	              'X'
+	            )
+	          );
 	        }, this);
+	      } else {
+	        fields = _react2.default.createElement(
+	          'span',
+	          { className: 'support-text' },
+	          'There is no gallery yet. Add Image below.'
+	        );
 	      }
 
 	      return _react2.default.createElement(
@@ -63484,19 +63554,14 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'gallery-fields' },
+	          fields,
 	          _react2.default.createElement(
-	            'button',
-	            { className: 'add-gallery-field', onClick: this.addGalleryImage.bind(this) },
+	            'a',
+	            { className: 'add-gallery-field', onClick: this.props.addGalleryImage },
 	            '+'
 	          )
 	        )
 	      );
-	    }
-	  }, {
-	    key: 'addGalleryImage',
-	    value: function addGalleryImage() {
-	      var timestamp = new Date().getTime();
-	      this.props.project.gallery['image' + timestamp] = { path: "/src/img/gallery_images/colorado_gov/front-page.png" };
 	    }
 	  }, {
 	    key: 'updateTab',
@@ -63543,10 +63608,11 @@
 	    key: 'render',
 	    value: function render() {
 
-	      var title = this.props.mode === "CREATE" ? "Create" : "Edit";
+	      var title = this.props.mode === "CREATE" ? "Create" : "Edit",
+	          btnText = this.props.mode === "CREATE" ? "Create Project" : "Apply Changes";
 	      return _react2.default.createElement(
 	        'form',
-	        { onSubmit: this.createProject.bind(this) },
+	        { onSubmit: this.handleSubmit.bind(this) },
 	        _react2.default.createElement(
 	          'h3',
 	          null,
@@ -63564,7 +63630,7 @@
 	          _react2.default.createElement(
 	            'button',
 	            null,
-	            'Create Project'
+	            btnText
 	          )
 	        )
 	      );

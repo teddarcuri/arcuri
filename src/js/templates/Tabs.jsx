@@ -8,28 +8,16 @@ class Tabs extends React.Component {
   	super(props);
   }
 
-  // // Send the new project off to the App
-   createProject(ev) {
+  handleSubmit(ev) {
+    ev.preventDefault();
 
-   	ev.preventDefault();
+    this.props.addProject();
+  }
 
-  // 	// var project = {
-  // 	// 	name: this.refs.name.value,
-  // 	// 	background: this.refs.background.value,
-  // 	// 	logo: this.refs.logo.value,
-  // 	// 	types: this.refs.types.value,
-  // 	// 	description: this.refs.description.value,
-  // 	// 	gallery: {
-  //  //        image1: {
-  //  //          path: "/src/img/gallery_images/colorado_gov/contact.png"
-  //  //        }
-  //  //      }
-  // 	// }
-
-  // 	// Add to project to state
-      this.props.addProject();
-   }
-
+  // Send the new project off to the App
+  /* 
+    Tab Renders
+  */
   showHeaderTab() {
   	return (
   		<div className="details">
@@ -92,25 +80,30 @@ class Tabs extends React.Component {
         fields;
 
     if (images.length) {
-      images.map(function(g){
-        return <input key={g} valueLink={ this.props.mode === "CREATE" ? this.props.linkState('newProject.gallery[' + g + '].path') :  this.props.linkState('currentProject.gallery[' + g + '].path')} />
+      fields = images.map(function(g){
+        return (
+          <div className="flex" key={g}>
+            <img className="thumb" src={this.props.project.gallery[g].path} />
+            <input ref={g}
+                   type="text" />
+            <span className="remove-btn" onClick={this.props.removeGalleryImage.bind(this, g)}>X</span>
+          </div>
+        )
       }, this)
+    } else {
+      fields = <span className="support-text">There is no gallery yet. Add Image below.</span>
     }
 
   	return (
   		<div className="details">
   			<div className="gallery-fields">
-		  		<button className="add-gallery-field" onClick={this.addGalleryImage.bind(this)}>
+          {fields}
+		  		<a className="add-gallery-field" onClick={this.props.addGalleryImage}>
 		  			+
-		  		</button>
+		  		</a>
 	  		</div>
   		</div>
   	) 
-  }
-
-  addGalleryImage() {
-  	var timestamp = (new Date()).getTime();
-  	this.props.project.gallery['image' + timestamp] = {path: "/src/img/gallery_images/colorado_gov/front-page.png"};
   }
 
   updateTab(key) { 
@@ -149,9 +142,10 @@ class Tabs extends React.Component {
 
   render() {
 
-    var title = this.props.mode === "CREATE" ? "Create" : "Edit";
+    var title = this.props.mode === "CREATE" ? "Create" : "Edit",
+        btnText = this.props.mode === "CREATE" ? "Create Project" : "Apply Changes";
     return (
-      <form onSubmit={this.createProject.bind(this)}>
+      <form onSubmit={this.handleSubmit.bind(this)}>
 
         <h3>{title}</h3>
 
@@ -163,7 +157,7 @@ class Tabs extends React.Component {
             {this.renderTab()}
           </section>
 
-          <button>Create Project</button>
+          <button>{btnText}</button>
         </div>
 
        </form>
