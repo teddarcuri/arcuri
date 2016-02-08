@@ -26,6 +26,10 @@ var _ProjectActionBar = require('./ProjectActionBar');
 
 var _ProjectActionBar2 = _interopRequireDefault(_ProjectActionBar);
 
+var _showdown = require('showdown');
+
+var _showdown2 = _interopRequireDefault(_showdown);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -42,6 +46,8 @@ var ProjectPage = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectPage).call(this, props));
 
+    _this.converter = new _showdown2.default.Converter();
+
     _this.state = {
       showGallery: true,
       confirmRemoveProject: false
@@ -55,6 +61,7 @@ var ProjectPage = function (_React$Component) {
       console.log("component will mount");
       // Create Active Window Div
       this.createActiveWindow();
+      console.log(_showdown2.default);
     }
   }, {
     key: 'componentWillUpdate',
@@ -164,10 +171,15 @@ var ProjectPage = function (_React$Component) {
       }
     }
   }, {
+    key: 'renderOverview',
+    value: function renderOverview() {
+      return { __html: this.converter.makeHtml(this.props.currentProject.description) };
+    }
+  }, {
     key: 'render',
     value: function render() {
       var p = this.props.currentProject,
-          overview = this.props.currentProject.description,
+          overview = this.converter.makeHtml(this.props.currentProject.description),
           role = this.props.currentProject.role,
           logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "";
 
@@ -214,21 +226,9 @@ var ProjectPage = function (_React$Component) {
             'main',
             null,
             this.renderGallery(),
-            _react2.default.createElement(
-              'section',
-              { ref: 'details',
-                'data-section': 'details' },
-              _react2.default.createElement(
-                'h3',
-                null,
-                'Overview'
-              ),
-              _react2.default.createElement(
-                'p',
-                null,
-                overview
-              )
-            ),
+            _react2.default.createElement('section', { ref: 'details',
+              'data-section': 'details',
+              dangerouslySetInnerHTML: this.renderOverview() }),
             _react2.default.createElement(
               'aside',
               { ref: 'role' },

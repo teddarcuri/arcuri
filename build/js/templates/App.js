@@ -123,7 +123,7 @@ var App = function (_React$Component) {
         description: "Enter description",
         background: "http://www.backgroundsy.com/file/large/light-colorful-background.jpg",
         logo: "https://s3.amazonaws.com/launchkey-resources/logo/logo/launchkey-logos_launchkey-icon-white.png",
-        types: "Llama",
+        types: "CHANGE ME",
         gallery: {}
       }
     };
@@ -144,23 +144,21 @@ var App = function (_React$Component) {
       base.syncState('projects', {
         context: this,
         state: 'projects',
-        asArray: true,
-        then: function then() {
-          //console.log(this.state.projects);
-        }
+        asArray: true
       });
 
-      // Images Loaded
-      var imgLoad = (0, _imagesloaded2.default)(this.refs.appWindow, function (instance) {
-        //console.log(instance);
-      });
+      // // Images Loaded
+      // var imgLoad = imagesLoaded( this.refs.appWindow, function( instance ) {
+      //   //console.log(instance);
+      // });
 
-      imgLoad.on('progress', function (imgLoad, image) {
-        var result = image.isLoaded ? 'loaded' : 'broken';
-        //console.log( 'image is ' + result + ' for ' + image.img.src );
-      });
+      // imgLoad.on('progress', function(imgLoad, image) {
+      //   var result = image.isLoaded ? 'loaded' : 'broken';
+      //   //console.log( 'image is ' + result + ' for ' + image.img.src );
+      // })
 
-      imgLoad.on('done', function (instance) {});
+      // imgLoad.on( 'done', function( instance ) {
+      // });
     }
   }, {
     key: 'componentWillReceiveProps',

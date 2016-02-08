@@ -44,6 +44,7 @@ var Project = function (_React$Component) {
 
     _this.state = {
       isEditing: false,
+      showActiveSection: true,
       activeSection: 0,
       sections: [{
         title: "Header"
@@ -119,7 +120,8 @@ var Project = function (_React$Component) {
           addProject: this.props.addProject,
           setActiveSection: this.setActiveSection.bind(this),
           addGalleryImage: this.props.addGalleryImage,
-          removeGalleryImage: this.props.removeGalleryImage });
+          removeGalleryImage: this.props.removeGalleryImage,
+          showActiveSection: this.state.showActiveSection });
       }
     }
   }, {
@@ -151,7 +153,8 @@ var Project = function (_React$Component) {
           linkState: this.props.linkState,
           removeProject: this.props.removeProject,
           sections: this.state.sections,
-          activeSection: this.state.activeSection })
+          activeSection: this.state.activeSection,
+          showActiveSection: this.state.showActiveSection })
       );
     }
   }]);

@@ -11,7 +11,12 @@ class Tabs extends React.Component {
   handleSubmit(ev) {
     ev.preventDefault();
 
-    this.props.addProject();
+    if (this.props.mode === "CREATE") {
+      this.props.addProject();
+    } else {
+      alert("Updated " + this.props.project.name);
+    }
+
   }
 
   // Send the new project off to the App
@@ -93,16 +98,16 @@ class Tabs extends React.Component {
         )
       }, this)
     } else {
-      fields = <span className="support-text">There is no gallery yet. Add Image below.</span>
+      fields = <span className="support-text">There is no gallery yet. Add some images!</span>
     }
  
   	return (
   		<div className="details">
   			<div className="gallery-fields">
+          <a className="add-gallery-field" onClick={this.props.addGalleryImage}>
+            Add Image
+          </a>
           {fields}
-		  		<a className="add-gallery-field" onClick={this.props.addGalleryImage}>
-		  			+
-		  		</a>
 	  		</div>
   		</div>
   	) 
@@ -144,7 +149,7 @@ class Tabs extends React.Component {
 
   render() {
 
-    var title = this.props.mode === "CREATE" ? "Create" : "Edit",
+    var title = this.props.mode === "CREATE" ? "Create" : "Edit Sections",
         btnText = this.props.mode === "CREATE" ? "Create Project" : "Apply Changes";
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>

@@ -11,6 +11,7 @@ class Project extends React.Component {
 
     this.state = {
       isEditing: false,
+      showActiveSection: true,
       activeSection: 0,
       sections: [
         {
@@ -86,7 +87,8 @@ class Project extends React.Component {
               addProject={this.props.addProject}
               setActiveSection={this.setActiveSection.bind(this)} 
               addGalleryImage={this.props.addGalleryImage}
-              removeGalleryImage={this.props.removeGalleryImage}/>  
+              removeGalleryImage={this.props.removeGalleryImage}
+              showActiveSection={this.state.showActiveSection} />  
       )
     }
   }
@@ -118,7 +120,8 @@ class Project extends React.Component {
                       linkState={this.props.linkState}
                       removeProject={this.props.removeProject}
                       sections={this.state.sections}
-                      activeSection={this.state.activeSection} />
+                      activeSection={this.state.activeSection}
+                      showActiveSection={this.state.showActiveSection} />
       </div>
 
       

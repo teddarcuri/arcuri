@@ -46,7 +46,7 @@ class App extends React.Component {
         description: "Enter description",
         background: "http://www.backgroundsy.com/file/large/light-colorful-background.jpg",
         logo: "https://s3.amazonaws.com/launchkey-resources/logo/logo/launchkey-logos_launchkey-icon-white.png",
-        types: "Llama",
+        types: "CHANGE ME",
         gallery: {}
       }
     }
@@ -64,24 +64,21 @@ class App extends React.Component {
     base.syncState('projects', {
       context: this,
       state: 'projects',
-      asArray: true,
-      then() {
-        //console.log(this.state.projects);
-      }
+      asArray: true
     });
 
-    // Images Loaded
-    var imgLoad = imagesLoaded( this.refs.appWindow, function( instance ) {
-      //console.log(instance);
-    });
+    // // Images Loaded
+    // var imgLoad = imagesLoaded( this.refs.appWindow, function( instance ) {
+    //   //console.log(instance);
+    // });
 
-    imgLoad.on('progress', function(imgLoad, image) {
-      var result = image.isLoaded ? 'loaded' : 'broken';
-      //console.log( 'image is ' + result + ' for ' + image.img.src );
-    }) 
+    // imgLoad.on('progress', function(imgLoad, image) {
+    //   var result = image.isLoaded ? 'loaded' : 'broken';
+    //   //console.log( 'image is ' + result + ' for ' + image.img.src );
+    // }) 
 
-    imgLoad.on( 'done', function( instance ) {
-    });
+    // imgLoad.on( 'done', function( instance ) {
+    // });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -138,6 +135,7 @@ class App extends React.Component {
 
   updateProject(project) {
     console.log(this.state.currentProject);
+
   }
 
   removeProject(project) {
@@ -162,10 +160,10 @@ class App extends React.Component {
 
   removeGalleryImage(key) {
     if (this.state.projectMode === "CREATE") {
-      delete this.state.newProject.gallery[key]
+      delete this.state.newProject.gallery[key];
       this.setState({newProject: this.state.newProject});
     } else {
-      delete this.state.currentProject.gallery[key]
+      delete this.state.currentProject.gallery[key];
       this.setState({currentProject: this.state.currentProject});
     }
   }

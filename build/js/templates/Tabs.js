@@ -44,7 +44,11 @@ var Tabs = function (_React$Component) {
     value: function handleSubmit(ev) {
       ev.preventDefault();
 
-      this.props.addProject();
+      if (this.props.mode === "CREATE") {
+        this.props.addProject();
+      } else {
+        alert("Updated " + this.props.project.name);
+      }
     }
 
     // Send the new project off to the App
@@ -155,7 +159,7 @@ var Tabs = function (_React$Component) {
         fields = _react2.default.createElement(
           'span',
           { className: 'support-text' },
-          'There is no gallery yet. Add Image below.'
+          'There is no gallery yet. Add some images!'
         );
       }
 
@@ -165,12 +169,12 @@ var Tabs = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'gallery-fields' },
-          fields,
           _react2.default.createElement(
             'a',
             { className: 'add-gallery-field', onClick: this.props.addGalleryImage },
-            '+'
-          )
+            'Add Image'
+          ),
+          fields
         )
       );
     }
@@ -219,7 +223,7 @@ var Tabs = function (_React$Component) {
     key: 'render',
     value: function render() {
 
-      var title = this.props.mode === "CREATE" ? "Create" : "Edit",
+      var title = this.props.mode === "CREATE" ? "Create" : "Edit Sections",
           btnText = this.props.mode === "CREATE" ? "Create Project" : "Apply Changes";
       return _react2.default.createElement(
         'form',

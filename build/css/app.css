@@ -582,9 +582,15 @@ p {
   height: 100%; }
 
 h1 {
-  font-size: 2.25em;
+  font-size: 2.5em;
   font-weight: 700;
   color: #333;
+  text-transform: uppercase; }
+
+h2 {
+  font-size: 2em;
+  font-weight: 700;
+  color: #fff;
   text-transform: uppercase; }
 
 h3 {
@@ -594,6 +600,8 @@ h3 {
   line-height: 1.2em;
   opacity: 1;
   text-align: left;
+  padding: 0px;
+  margin: 0px;
   text-transform: uppercase; }
   h3 .highlight {
     color: #3A6877; }
@@ -607,6 +615,9 @@ h3 {
         color: #64a0b3; }
         h3 .highlight.light a:hover {
           color: #3A6877; }
+
+h4 {
+  color: #fff; }
 
 body {
   background-color: #ddd;
@@ -1007,8 +1018,6 @@ header#main {
       flex-flow: row wrap;
       width: 100%;
       height: 100%; }
-      .project-page .project-overview main h3 {
-        padding: 70px 70px 10px 70px; }
       .project-page .project-overview main section {
         -webkit-box-flex: 3;
         -moz-box-flex: 3;
@@ -1018,17 +1027,43 @@ header#main {
         -ms-flex: 3;
         flex: 3;
         position: relative;
-        background: rgba(0, 0, 0, 0.85); }
+        background: rgba(0, 0, 0, 0.85);
+        padding: 40px; }
+        .project-page .project-overview main section h1 {
+          color: #ccc; }
         .project-page .project-overview main section p {
-          padding: 30px 70px;
-          line-height: 2em;
-          color: #fff; }
+          color: #ccc; }
+        .project-page .project-overview main section hr {
+          border-color: #333; }
+        .project-page .project-overview main section pre {
+          color: #88aaaf; }
+        .project-page .project-overview main section span {
+          color: red; }
+        .project-page .project-overview main section a {
+          color: #ccc; }
+          .project-page .project-overview main section a:hover {
+            color: #A1DBB2; }
+        .project-page .project-overview main section ul {
+          margin: 0px;
+          padding: 0px;
+          list-style: none; }
+          .project-page .project-overview main section ul li {
+            display: inline-block;
+            margin: 10px;
+            border-radius: 3px;
+            border: solid 1px #333; }
+            .project-page .project-overview main section ul li a {
+              display: block;
+              padding: 12px;
+              text-decoration: none;
+              background: rgba(255, 255, 255, 0.1); }
+              .project-page .project-overview main section ul li a:hover {
+                background: rgba(255, 255, 255, 0.2); }
       .project-page .project-overview main aside {
         background: #333;
         padding: 70px;
         color: #aaa;
         position: relative;
-        line-height: 2em;
         -webkit-box-flex: 1;
         -moz-box-flex: 1;
         box-flex: 1;
@@ -1036,8 +1071,6 @@ header#main {
         -moz-flex: 1;
         -ms-flex: 1;
         flex: 1; }
-        .project-page .project-overview main aside h3 {
-          padding: 10px 0px; }
   .project-page .project-logo {
     width: 70px;
     padding: 15px;
@@ -1181,7 +1214,6 @@ header#main {
         background: rgba(255, 255, 255, 0.1); }
       .tabs ul li.active {
         border-radius: 5px;
-        background: rgba(255, 255, 255, 0.05);
         border: solid 1px #A1DBB2; }
   .tabs section {
     padding: 20px 0px; }
@@ -1787,7 +1819,7 @@ section.split {
 
 .sidebar {
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   box-flex: 1;
@@ -1802,8 +1834,6 @@ section.split {
   font-style: italic; }
 
 #active-window {
-  border: solid 3px blue;
-  background: rgba(255, 255, 255, 0.3);
   position: absolute;
   top: 0;
   left: 0;
@@ -1811,24 +1841,20 @@ section.split {
   #active-window.active {
     width: 100%;
     height: 100%;
-    border: solid 1px #A1DBB2;
-    box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.25);
-    background: rgba(255, 255, 255, 0.025); }
+    border: solid 1px #A1DBB2; }
 
 .add-gallery-field {
-  background: #54787D;
-  border: none;
-  border-radius: 50%;
-  font-size: 2em;
-  display: inline-block;
-  text-align: center;
-  color: #fff;
-  height: 30px;
-  width: 30px;
-  cursor: pointer; }
+  border: solid 1px transparent;
+  border-radius: 2px;
+  padding: 7px 10px;
+  color: #eee;
+  font-size: 0.8em;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  text-transform: uppercase; }
   .add-gallery-field:hover {
-    background: #354c4f;
-    color: #fff; }
+    border: solid 1px #A1DBB2;
+    background: rgba(255, 255, 255, 0.12); }
 
 [data-section].active {
   border: solid 4px #A1DBB2;
@@ -1841,7 +1867,7 @@ section.split {
 .flex {
   width: 100%;
   padding: 10px 0px;
-  border-bottom: solid 1px #333;
+  border-bottom: solid 1px #111;
   display: -webkit-box;
   display: -moz-box;
   display: box;
@@ -1870,10 +1896,11 @@ section.split {
     -ms-flex: 1 0 auto;
     flex: 1 0 auto; }
   .flex img {
-    padding: 7px;
-    margin-right: 10px; }
+    height: 100%;
+    margin-right: 0px; }
   .flex .remove-btn {
-    color: #F45D4C;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
     width: 23px;
     height: 23px;
     font-size: 0.8em;
@@ -1901,10 +1928,13 @@ section.split {
     -ms-justify-content: center;
     -o-justify-content: center;
     justify-content: center;
-    -ms-flex-pack: center; }
+    -ms-flex-pack: center;
+    border-radius: 50%;
+    margin-left: 10px;
+    cursor: pointer; }
     .flex .remove-btn:hover {
       color: #fff;
-      background: #F45D4C; }
+      background: #AC4040; }
 
 .project-edit-tools {
   display: inline-block; }

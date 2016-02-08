@@ -3,15 +3,18 @@ import ReactDOM from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import ProjectGallery from './ProjectGallery';
 import ProjectActionBar from './ProjectActionBar';
+import showdown from 'showdown';
 
 class ProjectPage extends React.Component {
 
   constructor(props) {
   	super(props);
 
+    this.converter = new showdown.Converter();
+
     this.state = {
       showGallery: true,
-      confirmRemoveProject: false
+      confirmRemoveProject: false,
     }
   }
 
@@ -19,6 +22,7 @@ class ProjectPage extends React.Component {
     console.log("component will mount");
     // Create Active Window Div
     this.createActiveWindow();
+    console.log(showdown);
   }
 
   componentWillUpdate() {
@@ -116,9 +120,13 @@ class ProjectPage extends React.Component {
     }
   }
 
+  renderOverview() {
+    return {__html: this.converter.makeHtml(this.props.currentProject.description) }
+  }
+
   render() {
   	var p = this.props.currentProject,
-        overview = this.props.currentProject.description,
+        overview = this.converter.makeHtml(this.props.currentProject.description),
         role = this.props.currentProject.role,
         logo = p.logo ? <img src={p.logo} alt={p.name} className="project-logo"/> : "";
 
@@ -154,12 +162,8 @@ class ProjectPage extends React.Component {
               {this.renderGallery()}
 
               <section ref="details"
-                        data-section="details">
-                <h3>Overview</h3>
-
-                <p>
-                  {overview}
-                </p>
+                        data-section="details"
+                        dangerouslySetInnerHTML={this.renderOverview()}>
               </section>
 
               <aside ref="role">
