@@ -16,10 +16,23 @@ class ProjectPage extends React.Component {
   }
 
   componentWillMount() {
+    console.log("component will mount");
     // Create Active Window Div
-    var activeWindow = document.createElement('div');
-    activeWindow.id = "active-window";
-    document.body.appendChild(activeWindow);
+    this.createActiveWindow();
+  }
+
+  componentWillUpdate() {
+    console.log("updating");
+    // Create Active Window Div
+    this.createActiveWindow();
+  }
+
+  createActiveWindow() {
+     if (!document.getElementById('active-window')) {
+      var activeWindow = document.createElement('div');
+      activeWindow.id = "active-window";
+      document.body.appendChild(activeWindow);
+    }
   }
 
   componentDidMount() {

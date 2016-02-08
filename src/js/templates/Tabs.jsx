@@ -79,6 +79,8 @@ class Tabs extends React.Component {
     var images = Object.keys(gallery),
         fields;
 
+    /* FIGURE OUT HOW TO LINK STATE TO IMAGES */
+
     if (images.length) {
       fields = images.map(function(g){
         return (
@@ -86,14 +88,14 @@ class Tabs extends React.Component {
             <img className="thumb" src={this.props.project.gallery[g].path} />
             <input ref={g}
                    type="text" />
-            <span className="remove-btn" onClick={this.props.removeGalleryImage.bind(this, g)}>X</span>
+            <span className="remove-btn" onClick={this.props.removeGalleryImage.bind(null, g)}>X</span>
           </div>
         )
       }, this)
     } else {
       fields = <span className="support-text">There is no gallery yet. Add Image below.</span>
     }
-
+ 
   	return (
   		<div className="details">
   			<div className="gallery-fields">

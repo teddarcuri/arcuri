@@ -52,10 +52,25 @@ var ProjectPage = function (_React$Component) {
   _createClass(ProjectPage, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
+      console.log("component will mount");
       // Create Active Window Div
-      var activeWindow = document.createElement('div');
-      activeWindow.id = "active-window";
-      document.body.appendChild(activeWindow);
+      this.createActiveWindow();
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate() {
+      console.log("updating");
+      // Create Active Window Div
+      this.createActiveWindow();
+    }
+  }, {
+    key: 'createActiveWindow',
+    value: function createActiveWindow() {
+      if (!document.getElementById('active-window')) {
+        var activeWindow = document.createElement('div');
+        activeWindow.id = "active-window";
+        document.body.appendChild(activeWindow);
+      }
     }
   }, {
     key: 'componentDidMount',

@@ -134,6 +134,8 @@ var Tabs = function (_React$Component) {
       var images = Object.keys(gallery),
           fields;
 
+      /* FIGURE OUT HOW TO LINK STATE TO IMAGES */
+
       if (images.length) {
         fields = images.map(function (g) {
           return _react2.default.createElement(
@@ -144,7 +146,7 @@ var Tabs = function (_React$Component) {
               type: 'text' }),
             _react2.default.createElement(
               'span',
-              { className: 'remove-btn', onClick: this.props.removeGalleryImage.bind(this, g) },
+              { className: 'remove-btn', onClick: this.props.removeGalleryImage.bind(null, g) },
               'X'
             )
           );

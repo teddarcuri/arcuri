@@ -1802,7 +1802,7 @@ section.split {
   font-style: italic; }
 
 #active-window {
-  border: none;
+  border: solid 3px blue;
   background: rgba(255, 255, 255, 0.3);
   position: absolute;
   top: 0;
@@ -1840,6 +1840,8 @@ section.split {
 
 .flex {
   width: 100%;
+  padding: 10px 0px;
+  border-bottom: solid 1px #333;
   display: -webkit-box;
   display: -moz-box;
   display: box;
@@ -1847,17 +1849,19 @@ section.split {
   display: -moz-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: stretch;
-  -moz-box-align: stretch;
-  box-align: stretch;
-  -webkit-align-items: stretch;
-  -moz-align-items: stretch;
-  -ms-align-items: stretch;
-  -o-align-items: stretch;
-  align-items: stretch;
-  -ms-flex-align: stretch; }
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  box-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -ms-flex-align: center; }
   .flex input {
     width: auto;
+    position: relative;
+    margin: 0px;
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     box-flex: 1;
@@ -1869,8 +1873,7 @@ section.split {
     padding: 7px;
     margin-right: 10px; }
   .flex .remove-btn {
-    background: #AC4040;
-    color: #fff;
+    color: #F45D4C;
     width: 23px;
     height: 23px;
     font-size: 0.8em;
@@ -1900,6 +1903,7 @@ section.split {
     justify-content: center;
     -ms-flex-pack: center; }
     .flex .remove-btn:hover {
+      color: #fff;
       background: #F45D4C; }
 
 .project-edit-tools {

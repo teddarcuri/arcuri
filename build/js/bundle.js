@@ -287,8 +287,6 @@
 	    value: function addGalleryImage() {
 	      var timestamp = new Date().getTime();
 
-	      console.log(this.state.projectMode);
-
 	      if (this.state.projectMode === "CREATE") {
 	        this.state.newProject.gallery['image' + timestamp] = { path: "http://mbeyacityfc.com/wp-content/themes-wp-appkit/wpak-tabs-android/img/img-icon.svg" };
 	        this.setState({ newProject: this.state.newProject });
@@ -301,11 +299,9 @@
 	    key: 'removeGalleryImage',
 	    value: function removeGalleryImage(key) {
 	      if (this.state.projectMode === "CREATE") {
-	        console.log(this.state.newProject.gallery[key]);
 	        delete this.state.newProject.gallery[key];
 	        this.setState({ newProject: this.state.newProject });
 	      } else {
-	        console.log(this.state.currentProject.gallery[key]);
 	        delete this.state.currentProject.gallery[key];
 	        this.setState({ currentProject: this.state.currentProject });
 	      }
@@ -62834,10 +62830,25 @@
 	  _createClass(ProjectPage, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
+	      console.log("component will mount");
 	      // Create Active Window Div
-	      var activeWindow = document.createElement('div');
-	      activeWindow.id = "active-window";
-	      document.body.appendChild(activeWindow);
+	      this.createActiveWindow();
+	    }
+	  }, {
+	    key: 'componentWillUpdate',
+	    value: function componentWillUpdate() {
+	      console.log("updating");
+	      // Create Active Window Div
+	      this.createActiveWindow();
+	    }
+	  }, {
+	    key: 'createActiveWindow',
+	    value: function createActiveWindow() {
+	      if (!document.getElementById('active-window')) {
+	        var activeWindow = document.createElement('div');
+	        activeWindow.id = "active-window";
+	        document.body.appendChild(activeWindow);
+	      }
 	    }
 	  }, {
 	    key: 'componentDidMount',
@@ -63525,6 +63536,8 @@
 	      var images = Object.keys(gallery),
 	          fields;
 
+	      /* FIGURE OUT HOW TO LINK STATE TO IMAGES */
+
 	      if (images.length) {
 	        fields = images.map(function (g) {
 	          return _react2.default.createElement(
@@ -63535,7 +63548,7 @@
 	              type: 'text' }),
 	            _react2.default.createElement(
 	              'span',
-	              { className: 'remove-btn', onClick: this.props.removeGalleryImage.bind(this, g) },
+	              { className: 'remove-btn', onClick: this.props.removeGalleryImage.bind(null, g) },
 	              'X'
 	            )
 	          );

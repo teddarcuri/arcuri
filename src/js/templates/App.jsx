@@ -151,8 +151,6 @@ class App extends React.Component {
   addGalleryImage() {
     var timestamp = (new Date()).getTime();
 
-    console.log(this.state.projectMode);
-
     if (this.state.projectMode === "CREATE") {
       this.state.newProject.gallery['image' + timestamp] = {path: "http://mbeyacityfc.com/wp-content/themes-wp-appkit/wpak-tabs-android/img/img-icon.svg"}
       this.setState({newProject: this.state.newProject});

@@ -129,7 +129,7 @@ section.split {
   font-style: italic;
 }
 #active-window {
-  border: none;
+  border: solid 3px blue;
   background: rgba(#fff, 0.3);
   position: absolute;
   top: 0; left: 0;
@@ -171,11 +171,15 @@ section.split {
 
 .flex {
   width: 100%;
+  padding: 10px 0px;
+  border-bottom: solid 1px #333;
   @include display(flex);
-  @include align-items(stretch);
+  @include align-items(center);
 
   input {
     width: auto;
+    position: relative;
+    margin: 0px;
     @include flex(1 0 auto);
   }
 
@@ -185,13 +189,13 @@ section.split {
   }
 
   .remove-btn {
-    background: $red;
-    color: #fff;
+    color: $color-coral;
     width: 23px;
     height: 23px;
     font-size: 0.8em;
     @include flex-c;
     &:hover {
+      color: #fff;
       background: $color-coral;
     }
   }
