@@ -124,6 +124,7 @@ var App = function (_React$Component) {
         background: "http://www.backgroundsy.com/file/large/light-colorful-background.jpg",
         logo: "https://s3.amazonaws.com/launchkey-resources/logo/logo/launchkey-logos_launchkey-icon-white.png",
         types: "CHANGE ME",
+        role: "uhh",
         gallery: {}
       }
     };

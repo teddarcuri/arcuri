@@ -128,9 +128,6 @@ var Project = function (_React$Component) {
     key: 'render',
     value: function render() {
       var p = this.props.projectMode === "EDIT" ? this.props.currentProject : this.props.newProject,
-          overview = p.description ? p.description : "",
-          role = p.role ? p.role : "",
-          logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "",
           sidebarClasses = this.state.isEditing || this.props.projectMode === "CREATE" ? "sidebar active" : "sidebar";
 
       return _react2.default.createElement(

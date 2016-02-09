@@ -170,6 +170,7 @@
 	        background: "http://www.backgroundsy.com/file/large/light-colorful-background.jpg",
 	        logo: "https://s3.amazonaws.com/launchkey-resources/logo/logo/launchkey-logos_launchkey-icon-white.png",
 	        types: "CHANGE ME",
+	        role: "uhh",
 	        gallery: {}
 	      }
 	    };
@@ -62949,13 +62950,14 @@
 	  }, {
 	    key: 'renderOverview',
 	    value: function renderOverview() {
-	      return { __html: this.converter.makeHtml(this.props.currentProject.description) };
+	      if (this.props.currentProject.description) {
+	        return { __html: this.converter.makeHtml(this.props.currentProject.description) };
+	      }
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var p = this.props.currentProject,
-	          overview = this.converter.makeHtml(this.props.currentProject.description),
 	          role = this.props.currentProject.role,
 	          logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "";
 
@@ -63013,13 +63015,13 @@
 	                null,
 	                'My Role'
 	              ),
-	              role,
+	              _react2.default.createElement('p', { dangerouslySetInnerHTML: this.renderOverview() }),
 	              _react2.default.createElement(
 	                'h3',
 	                null,
 	                'Tech Used'
 	              ),
-	              role
+	              _react2.default.createElement('p', { dangerouslySetInnerHTML: this.renderOverview() })
 	            )
 	          )
 	        ),
@@ -65858,9 +65860,6 @@
 	    key: 'render',
 	    value: function render() {
 	      var p = this.props.projectMode === "EDIT" ? this.props.currentProject : this.props.newProject,
-	          overview = p.description ? p.description : "",
-	          role = p.role ? p.role : "",
-	          logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "",
 	          sidebarClasses = this.state.isEditing || this.props.projectMode === "CREATE" ? "sidebar active" : "sidebar";
 
 	      return _react2.default.createElement(
@@ -66042,12 +66041,14 @@
 
 	      if (images.length) {
 	        fields = images.map(function (g) {
+	          var linkState = this.props.mode === "CREATE" ? this.props.linkState('newProject.gallery.' + g + '.path') : this.props.linkState('currentProject.gallery.' + g + '.path');
 	          return _react2.default.createElement(
 	            'div',
 	            { className: 'flex', key: g },
 	            _react2.default.createElement('img', { className: 'thumb', src: this.props.project.gallery[g].path }),
 	            _react2.default.createElement('input', { ref: g,
-	              type: 'text' }),
+	              type: 'text',
+	              valueLink: linkState }),
 	            _react2.default.createElement(
 	              'span',
 	              { className: 'remove-btn', onClick: this.props.removeGalleryImage.bind(null, g) },
@@ -66122,7 +66123,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-
 	      var title = this.props.mode === "CREATE" ? "Create" : "Edit Sections",
 	          btnText = this.props.mode === "CREATE" ? "Create Project" : "Apply Changes";
 	      return _react2.default.createElement(

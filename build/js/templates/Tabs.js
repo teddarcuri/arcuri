@@ -142,12 +142,14 @@ var Tabs = function (_React$Component) {
 
       if (images.length) {
         fields = images.map(function (g) {
+          var linkState = this.props.mode === "CREATE" ? this.props.linkState('newProject.gallery.' + g + '.path') : this.props.linkState('currentProject.gallery.' + g + '.path');
           return _react2.default.createElement(
             'div',
             { className: 'flex', key: g },
             _react2.default.createElement('img', { className: 'thumb', src: this.props.project.gallery[g].path }),
             _react2.default.createElement('input', { ref: g,
-              type: 'text' }),
+              type: 'text',
+              valueLink: linkState }),
             _react2.default.createElement(
               'span',
               { className: 'remove-btn', onClick: this.props.removeGalleryImage.bind(null, g) },
@@ -222,7 +224,6 @@ var Tabs = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-
       var title = this.props.mode === "CREATE" ? "Create" : "Edit Sections",
           btnText = this.props.mode === "CREATE" ? "Create Project" : "Apply Changes";
       return _react2.default.createElement(

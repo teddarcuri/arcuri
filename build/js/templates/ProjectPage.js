@@ -173,13 +173,14 @@ var ProjectPage = function (_React$Component) {
   }, {
     key: 'renderOverview',
     value: function renderOverview() {
-      return { __html: this.converter.makeHtml(this.props.currentProject.description) };
+      if (this.props.currentProject.description) {
+        return { __html: this.converter.makeHtml(this.props.currentProject.description) };
+      }
     }
   }, {
     key: 'render',
     value: function render() {
       var p = this.props.currentProject,
-          overview = this.converter.makeHtml(this.props.currentProject.description),
           role = this.props.currentProject.role,
           logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "";
 
@@ -237,13 +238,13 @@ var ProjectPage = function (_React$Component) {
                 null,
                 'My Role'
               ),
-              role,
+              _react2.default.createElement('p', { dangerouslySetInnerHTML: this.renderOverview() }),
               _react2.default.createElement(
                 'h3',
                 null,
                 'Tech Used'
               ),
-              role
+              _react2.default.createElement('p', { dangerouslySetInnerHTML: this.renderOverview() })
             )
           )
         ),

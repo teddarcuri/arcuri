@@ -95,9 +95,6 @@ class Project extends React.Component {
 
   render() {
   	var p = this.props.projectMode === "EDIT" ? this.props.currentProject : this.props.newProject,
-        overview = p.description ? p.description : "",
-        role = p.role ? p.role : "",
-        logo = p.logo ? <img src={p.logo} alt={p.name} className="project-logo"/> : "",
         sidebarClasses = this.state.isEditing || this.props.projectMode === "CREATE"  ? "sidebar active" : "sidebar";
 
     return (

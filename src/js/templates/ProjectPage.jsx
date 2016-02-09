@@ -121,12 +121,13 @@ class ProjectPage extends React.Component {
   }
 
   renderOverview() {
-    return {__html: this.converter.makeHtml(this.props.currentProject.description) }
+    if (this.props.currentProject.description) {
+      return {__html: this.converter.makeHtml(this.props.currentProject.description) }
+    }
   }
 
   render() {
   	var p = this.props.currentProject,
-        overview = this.converter.makeHtml(this.props.currentProject.description),
         role = this.props.currentProject.role,
         logo = p.logo ? <img src={p.logo} alt={p.name} className="project-logo"/> : "";
 
@@ -168,10 +169,12 @@ class ProjectPage extends React.Component {
 
               <aside ref="role">
               <h3>My Role</h3>
-                {role}
+              <p dangerouslySetInnerHTML={this.renderOverview()}>
+              </p>
 
               <h3>Tech Used</h3>
-                {role}
+              <p dangerouslySetInnerHTML={this.renderOverview()}>
+              </p>
               </aside>
 
             </main>

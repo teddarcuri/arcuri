@@ -88,11 +88,13 @@ class Tabs extends React.Component {
 
     if (images.length) {
       fields = images.map(function(g){
+        var linkState = this.props.mode === "CREATE" ? this.props.linkState('newProject.gallery.' + g + '.path') : this.props.linkState('currentProject.gallery.' + g + '.path');
         return (
           <div className="flex" key={g}>
             <img className="thumb" src={this.props.project.gallery[g].path} />
             <input ref={g}
-                   type="text" />
+                   type="text"
+                   valueLink={linkState} />
             <span className="remove-btn" onClick={this.props.removeGalleryImage.bind(null, g)}>X</span>
           </div>
         )
@@ -148,7 +150,6 @@ class Tabs extends React.Component {
   }
 
   render() {
-
     var title = this.props.mode === "CREATE" ? "Create" : "Edit Sections",
         btnText = this.props.mode === "CREATE" ? "Create Project" : "Apply Changes";
     return (
