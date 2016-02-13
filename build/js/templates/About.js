@@ -66,14 +66,31 @@ var About = function (_React$Component) {
 																		{ className: 'highlight light' },
 																		'Tedd Arcuri'
 																),
-																'. ',
-																_react2.default.createElement('br', null),
-																'I am Developer + Designer Currently living in Denver, CO.',
-																_react2.default.createElement('br', null),
-																_react2.default.createElement('br', null),
-																_react2.default.createElement('br', null),
-																_react2.default.createElement('br', null),
-																'Checkout some of ',
+																'. I am designer + software developer Currently living in Denver, CO. I am seriously ',
+																_react2.default.createElement(
+																		'span',
+																		{ className: 'highlight' },
+																		'passionate'
+																),
+																' about delivering high ',
+																_react2.default.createElement(
+																		'span',
+																		{ className: 'highlight' },
+																		'quality products'
+																),
+																' that emphasize ',
+																_react2.default.createElement(
+																		'span',
+																		{ className: 'highlight' },
+																		'great user experience'
+																),
+																' and ',
+																_react2.default.createElement(
+																		'span',
+																		{ className: 'highlight' },
+																		'rich, interactive features'
+																),
+																'. Checkout some of ',
 																_react2.default.createElement(
 																		'span',
 																		{ className: 'highlight' },
@@ -83,9 +100,7 @@ var About = function (_React$Component) {
 																				' My Work'
 																		)
 																),
-																'.',
-																_react2.default.createElement('br', null),
-																'View my ',
+																'. View my ',
 																_react2.default.createElement(
 																		'span',
 																		{ className: 'highlight' },
@@ -95,9 +110,7 @@ var About = function (_React$Component) {
 																				' Experience + Knowledge'
 																		)
 																),
-																'.',
-																_react2.default.createElement('br', null),
-																'Like what you see? ',
+																'. Like what you see? ',
 																_react2.default.createElement(
 																		'span',
 																		{ className: 'highlight' },

@@ -73,6 +73,7 @@ class Project extends React.Component {
               linkState={this.props.linkState}
               mode={this.props.projectMode}
               addProject={this.props.addProject}
+              updateProject={this.props.updateProject}
               setActiveSection={this.setActiveSection.bind(this)}
               addGalleryImage={this.props.addGalleryImage}
               removeGalleryImage={this.props.removeGalleryImage} /> 
@@ -85,6 +86,7 @@ class Project extends React.Component {
               linkState={this.props.linkState}
               mode={this.props.projectMode}
               addProject={this.props.addProject}
+              updateProject={this.props.updateProject}
               setActiveSection={this.setActiveSection.bind(this)} 
               addGalleryImage={this.props.addGalleryImage}
               removeGalleryImage={this.props.removeGalleryImage}

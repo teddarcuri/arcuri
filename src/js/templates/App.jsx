@@ -49,7 +49,14 @@ class App extends React.Component {
         types: "CHANGE ME",
         role: "uhh",
         gallery: {}
-      }
+      },
+      // Notification Bar
+      notificationBar: {
+        isActive: false,
+        type: "alert"
+      },
+      // User
+      uid: ""
     }
   }
 
@@ -134,9 +141,16 @@ class App extends React.Component {
     this.history.pushState(null, '/work/' + project.name);
   }
 
-  updateProject(project) {
-    console.log(this.state.currentProject);
+  updateProject() {
+    var key = this.state.currentProject.key;
 
+    this.state.projects[key] = this.state.currentProject;
+    this.setState({projects: this.state.projects})
+
+    var notification = {
+      isActive: true,
+      type: "update-success"
+    }
   }
 
   removeProject(project) {
@@ -259,6 +273,7 @@ class App extends React.Component {
                 currentProject: this.state.currentProject,
                 newProject: this.state.newProject,
                 addProject: this.addProject.bind(this),
+                updateProject: this.updateProject.bind(this),
                 removeProject: this.removeProject.bind(this),
                 linkState: this.linkState.bind(this),
                 addGalleryImage: this.addGalleryImage.bind(this),

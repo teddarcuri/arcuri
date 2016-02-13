@@ -19,14 +19,11 @@ class ProjectPage extends React.Component {
   }
 
   componentWillMount() {
-    console.log("component will mount");
     // Create Active Window Div
     this.createActiveWindow();
-    console.log(showdown);
   }
 
   componentWillUpdate() {
-    console.log("updating");
     // Create Active Window Div
     this.createActiveWindow();
   }

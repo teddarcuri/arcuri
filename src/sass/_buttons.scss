@@ -24,3 +24,21 @@
     margin-right: 0px;  
   }
 }
+
+.red-btn-outline {
+  border: solid 2px $red;
+  &:hover {
+    background: rgba($red, 0.3);
+      border: solid 2px $red;
+
+  }
+}
+
+.confirm-btn-outline {
+  border: solid 2px $color-green;
+   &:hover {
+    background: rgba($color-green, 0.3);
+      border: solid 2px $color-green;
+
+  }
+}

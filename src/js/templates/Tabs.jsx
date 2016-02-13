@@ -14,7 +14,7 @@ class Tabs extends React.Component {
     if (this.props.mode === "CREATE") {
       this.props.addProject();
     } else {
-      alert("Updated " + this.props.project.name);
+      this.props.updateProject();
     }
 
   }
@@ -27,13 +27,15 @@ class Tabs extends React.Component {
   	return (
   		<div className="details">
   			<label htmlFor="name">Name</label>
-  			<input ref="name" 
-	    				   name="name" 
-	    				   type="text" 
-	    				   placeholder="name"
-	    				   name="name"
-	    				   valueLink={ this.props.mode === "CREATE" ? this.props.linkState('newProject.name') : this.props.linkState('currentProject.name')} />
-
+        <div className="flex">
+    			<input ref="name" 
+  	    				   name="name" 
+  	    				   type="text" 
+  	    				   placeholder="name"
+  	    				   name="name"
+  	    				   valueLink={ this.props.mode === "CREATE" ? this.props.linkState('newProject.name') : this.props.linkState('currentProject.name')} />
+        </div>
+        
   			<label htmlFor="logo">Logo</label>
   			<div className="flex">
   				<img className="thumb" src={this.props.project.logo} />
@@ -151,7 +153,8 @@ class Tabs extends React.Component {
 
   render() {
     var title = this.props.mode === "CREATE" ? "Create" : "Edit Sections",
-        btnText = this.props.mode === "CREATE" ? "Create Project" : "Apply Changes";
+        btnText = this.props.mode === "CREATE" ? "Create Project" : "Apply Changes",
+        deleteBtn = this.props.mode === "EDIT" ? <button className="red-btn-outline">Delete Project</button> : "";
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
 
@@ -165,7 +168,9 @@ class Tabs extends React.Component {
             {this.renderTab()}
           </section>
 
-          <button>{btnText}</button>
+          <button className="confirm-btn-outline">{btnText}</button>
+
+          {deleteBtn}
         </div>
 
        </form>

@@ -105,7 +105,7 @@
       section {
         @include flex(3);
         position: relative;
-        background: rgba(#000, 0.85);
+        background: rgba(#111, 0.85);
         padding: 40px;
         h1 {
           color: #ccc;
@@ -267,9 +267,17 @@
 // Tabs
 .tabs {
   padding: 20px;
-  background: rgba(#fff, 0.066);
+  background: rgba(#fff, 0.1);
   width: 100%;
   @include flex(1 0 100%);
+
+  button {
+    margin-right: 15px;
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+
   ul {
     @include display(flex);
     @include flex-flow(row wrap);
@@ -298,7 +306,7 @@
       }
       &.active {
         border-radius: 5px;
-        border: solid 1px $color-green;
+        border: solid 2px rgba(#fff, 0.3);
       }
     }
   }
@@ -309,35 +317,10 @@
 
 }
 
-// Project Builder
-.project-builder {
-  @include display(flex);
-  @include align-items(stretch);
-  height: 100%;
-  width: 100%;
-
-  .add-gallery-field {
-    background: $color-coral;
-    border: none;
-    border-radius: 50%;
-    font-size: 2em;
-    padding: 3px 10px;
-  }
-
-  .project-page {
-    padding: 0px 50px;
-  }
-
-  #preview-window {
-    overflow: auto;
-    @include flex(1 1 auto);
-  }
-}
-
 // Gallery
 .gallery {
   width: 100%;
-  background: rgba(#000, 0.66);
+  background: rgba(#111, 0.66);
   display: block;
   position: relative;
   @include flex(2 0 100%);
@@ -399,6 +382,14 @@
     @include align-content(flex-start);
     @include justify-content(center);
     @include flex-flow(row wrap);
+
+    &.small {
+      border: solid red 2px;
+    }
+
+    &.large {
+      border: solid blue 3px;
+    }
 
     .gallery-image {
       overflow: hidden;

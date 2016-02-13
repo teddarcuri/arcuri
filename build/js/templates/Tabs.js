@@ -47,7 +47,7 @@ var Tabs = function (_React$Component) {
       if (this.props.mode === "CREATE") {
         this.props.addProject();
       } else {
-        alert("Updated " + this.props.project.name);
+        this.props.updateProject();
       }
     }
 
@@ -67,12 +67,16 @@ var Tabs = function (_React$Component) {
           { htmlFor: 'name' },
           'Name'
         ),
-        _react2.default.createElement('input', { ref: 'name',
-          name: 'name',
-          type: 'text',
-          placeholder: 'name',
-          name: 'name',
-          valueLink: this.props.mode === "CREATE" ? this.props.linkState('newProject.name') : this.props.linkState('currentProject.name') }),
+        _react2.default.createElement(
+          'div',
+          { className: 'flex' },
+          _react2.default.createElement('input', { ref: 'name',
+            name: 'name',
+            type: 'text',
+            placeholder: 'name',
+            name: 'name',
+            valueLink: this.props.mode === "CREATE" ? this.props.linkState('newProject.name') : this.props.linkState('currentProject.name') })
+        ),
         _react2.default.createElement(
           'label',
           { htmlFor: 'logo' },
@@ -225,7 +229,12 @@ var Tabs = function (_React$Component) {
     key: 'render',
     value: function render() {
       var title = this.props.mode === "CREATE" ? "Create" : "Edit Sections",
-          btnText = this.props.mode === "CREATE" ? "Create Project" : "Apply Changes";
+          btnText = this.props.mode === "CREATE" ? "Create Project" : "Apply Changes",
+          deleteBtn = this.props.mode === "EDIT" ? _react2.default.createElement(
+        'button',
+        { className: 'red-btn-outline' },
+        'Delete Project'
+      ) : "";
       return _react2.default.createElement(
         'form',
         { onSubmit: this.handleSubmit.bind(this) },
@@ -245,9 +254,10 @@ var Tabs = function (_React$Component) {
           ),
           _react2.default.createElement(
             'button',
-            null,
+            { className: 'confirm-btn-outline' },
             btnText
-          )
+          ),
+          deleteBtn
         )
       );
     }

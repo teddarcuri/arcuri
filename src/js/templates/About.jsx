@@ -19,11 +19,12 @@ class About extends React.Component {
 										transitionEnterTimeout={2000}
 										transitionLeaveTimeout={2000}>
 					  <h3>
-				          Hello, My Name is <span className="highlight light">Tedd Arcuri</span>. <br />
-				          I am Developer + Designer
-				          Currently living in Denver, CO.<br /><br /><br /><br />
-				          Checkout some of <span className="highlight"><Link to="work"> My Work</Link></span>.<br />
-				          View my <span className="highlight"><Link to="contact"> Experience + Knowledge</Link></span>.<br />
+				          Hello, My Name is <span className="highlight light">Tedd Arcuri</span>. 
+				          I am designer + software developer
+				          Currently living in Denver, CO.
+				          I am seriously <span className="highlight">passionate</span> about delivering high <span className="highlight">quality products</span> that emphasize <span className="highlight">great user experience</span> and <span className="highlight">rich, interactive features</span>.
+				          Checkout some of <span className="highlight"><Link to="work"> My Work</Link></span>.
+				          View my <span className="highlight"><Link to="contact"> Experience + Knowledge</Link></span>.
 				          Like what you see? <span className="highlight"><Link to="contact"> Hire Me</Link></span>.
 			          </h3>
  					</CSSTransitionGroup>		        	

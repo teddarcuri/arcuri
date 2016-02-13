@@ -1,5 +1,7 @@
 import React from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
+import ElementQuery from 'react-element-query';
+
 
 class ProjectGallery extends React.Component {
 
@@ -47,33 +49,34 @@ class ProjectGallery extends React.Component {
                           transitionAppearTimeout={0}
                           transitionEnterTimeout={1000}
                           transitionLeaveTimeout={1000}>
-            {this.renderCurrentImage()}
-            <ul className="dots">
-              {
+              {this.renderCurrentImage()}
+              <ul className="dots">
+                {
+                  Object.keys(p.gallery).map(function(img, key) {
+                    return (
+                      <li key={key} onClick={this.setCurrentImg.bind(this, key)}>
+                        •
+                      </li>
+                    )
+                  }, this)
+                }
+              </ul>
+          </CSSTransitionGroup>
+
+          <ElementQuery sizes={[{name: 'large', width: 300}, {name: 'small', width: 150}]}>
+            <ul className="gallery-image-thumbs">
+              <h3>Gallery</h3>
+             {
                 Object.keys(p.gallery).map(function(img, key) {
                   return (
-                    <li key={key} onClick={this.setCurrentImg.bind(this, key)}>
-                      •
+                    <li className="gallery-image" key={key} onClick={this.setCurrentImg.bind(this, key)}>
+                      <img src={p.gallery[img].path} alt=""/>
                     </li>
                   )
                 }, this)
-              }
+             }
             </ul>
-
-          </CSSTransitionGroup>
-
-          <ul className="gallery-image-thumbs">
-            <h3>Gallery</h3>
-           {
-              Object.keys(p.gallery).map(function(img, key) {
-                return (
-                  <li className="gallery-image" key={key} onClick={this.setCurrentImg.bind(this, key)}>
-                    <img src={p.gallery[img].path} alt=""/>
-                  </li>
-                )
-              }, this)
-           }
-          </ul>
+          </ElementQuery>
       </CSSTransitionGroup>
     )
   }

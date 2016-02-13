@@ -33,7 +33,7 @@
   margin-top: 0px;
   @include align-self(center);
   @include transition(all 1s ease);
-  @for $i from 1 through 7 {
+  @for $i from 1 through 12 {
     &:nth-child(#{$i}) { 
      @include transition-delay(0.25s * $i); 
     }

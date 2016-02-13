@@ -126,7 +126,14 @@ var App = function (_React$Component) {
         types: "CHANGE ME",
         role: "uhh",
         gallery: {}
-      }
+      },
+      // Notification Bar
+      notificationBar: {
+        isActive: false,
+        type: "alert"
+      },
+      // User
+      uid: ""
     };
     return _this;
   }
@@ -223,8 +230,16 @@ var App = function (_React$Component) {
     }
   }, {
     key: 'updateProject',
-    value: function updateProject(project) {
-      console.log(this.state.currentProject);
+    value: function updateProject() {
+      var key = this.state.currentProject.key;
+
+      this.state.projects[key] = this.state.currentProject;
+      this.setState({ projects: this.state.projects });
+
+      var notification = {
+        isActive: true,
+        type: "update-success"
+      };
     }
   }, {
     key: 'removeProject',
@@ -407,6 +422,7 @@ var App = function (_React$Component) {
               currentProject: this.state.currentProject,
               newProject: this.state.newProject,
               addProject: this.addProject.bind(this),
+              updateProject: this.updateProject.bind(this),
               removeProject: this.removeProject.bind(this),
               linkState: this.linkState.bind(this),
               addGalleryImage: this.addGalleryImage.bind(this),

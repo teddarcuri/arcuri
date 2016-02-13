@@ -58,15 +58,12 @@ var ProjectPage = function (_React$Component) {
   _createClass(ProjectPage, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      console.log("component will mount");
       // Create Active Window Div
       this.createActiveWindow();
-      console.log(_showdown2.default);
     }
   }, {
     key: 'componentWillUpdate',
     value: function componentWillUpdate() {
-      console.log("updating");
       // Create Active Window Div
       this.createActiveWindow();
     }

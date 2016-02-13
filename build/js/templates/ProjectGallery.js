@@ -14,6 +14,10 @@ var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group'
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
+var _reactElementQuery = require('react-element-query');
+
+var _reactElementQuery2 = _interopRequireDefault(_reactElementQuery);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -91,20 +95,24 @@ var ProjectGallery = function (_React$Component) {
           )
         ),
         _react2.default.createElement(
-          'ul',
-          { className: 'gallery-image-thumbs' },
+          _reactElementQuery2.default,
+          { sizes: [{ name: 'large', width: 300 }, { name: 'small', width: 150 }] },
           _react2.default.createElement(
-            'h3',
-            null,
-            'Gallery'
-          ),
-          Object.keys(p.gallery).map(function (img, key) {
-            return _react2.default.createElement(
-              'li',
-              { className: 'gallery-image', key: key, onClick: this.setCurrentImg.bind(this, key) },
-              _react2.default.createElement('img', { src: p.gallery[img].path, alt: '' })
-            );
-          }, this)
+            'ul',
+            { className: 'gallery-image-thumbs' },
+            _react2.default.createElement(
+              'h3',
+              null,
+              'Gallery'
+            ),
+            Object.keys(p.gallery).map(function (img, key) {
+              return _react2.default.createElement(
+                'li',
+                { className: 'gallery-image', key: key, onClick: this.setCurrentImg.bind(this, key) },
+                _react2.default.createElement('img', { src: p.gallery[img].path, alt: '' })
+              );
+            }, this)
+          )
         )
       );
     }

@@ -27,6 +27,7 @@
     "react-addons-transition-group": "^0.14.6",
     "react-catalyst": "^0.3.0",
     "react-dom": "^0.14.6",
+    "react-element-query": "^2.0.1",
     "react-mixin": "^3.0.3",
     "react-router": "^1.0.3",
     "react-showdown": "^1.0.0",
