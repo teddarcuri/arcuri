@@ -212,23 +212,18 @@
 	      });
 
 	      // // Images Loaded
-	      // var imgLoad = imagesLoaded( this.refs.appWindow, function( instance ) {
-	      //   //console.log(instance);
-	      // });
-
-	      // imgLoad.on('progress', function(imgLoad, image) {
-	      //   var result = image.isLoaded ? 'loaded' : 'broken';
-	      //   //console.log( 'image is ' + result + ' for ' + image.img.src );
-	      // })
-
-	      // imgLoad.on( 'done', function( instance ) {
-	      // });
+	      this.imagesLoaded();
 	    }
 	  }, {
 	    key: 'componentWillReceiveProps',
 	    value: function componentWillReceiveProps(nextProps) {
 	      // Check to see if the next route will be a project component
 	      this.checkIfProjectPage(nextProps);
+	    }
+	  }, {
+	    key: 'componentDidUpdate',
+	    value: function componentDidUpdate() {
+	      this.imagesLoaded();
 	    }
 
 	    /* 
@@ -261,6 +256,22 @@
 	      } else {
 	        this.setState({ projectMode: "EDIT" });
 	      }
+	    }
+	  }, {
+	    key: 'imagesLoaded',
+	    value: function imagesLoaded() {
+	      // // Images Loaded
+	      var imgLoad = (0, _imagesloaded2.default)(this.refs.appWindow, { background: true });
+
+	      imgLoad.on('progress', function (imgLoad, image) {
+	        var result = image.isLoaded ? 'loaded' : 'broken';
+	        setTimeout(function () {
+	          image.img.classList.remove("is-loading");
+	          image.img.classList.add(result);
+	        }, 2000);
+	      });
+
+	      imgLoad.on('done', function (instance) {});
 	    }
 
 	    /*
@@ -61985,6 +61996,7 @@
 															_react2.default.createElement(
 																	'h3',
 																	null,
+																	_react2.default.createElement('img', { src: 'https://lh4.googleusercontent.com/-2qeuQQr-24c/AAAAAAAAAAI/AAAAAAAAAAA/I3aLsM6bU2o/s128-c-k/photo.jpg', alt: '' }),
 																	'Hello, My Name is ',
 																	_react2.default.createElement(
 																			'span',
@@ -62055,15 +62067,6 @@
 															)
 													)
 											)
-									),
-									_react2.default.createElement(
-											_reactAddonsCssTransitionGroup2.default,
-											{ transitionAppear: true,
-													transitionAppearTimeout: 2000,
-													transitionName: 'fadeIn',
-													transitionEnterTimeout: 2000,
-													transitionLeaveTimeout: 2000 },
-											_react2.default.createElement('img', { id: 'about-image', src: '/src/img/background-scene.png' })
 									)
 							);
 					}
@@ -63360,13 +63363,11 @@
 	    value: function transitionHighlighter() {
 	      var currentThumb = this.refs.currentThumb,
 	          highlighter = this.refs.highlighter,
-	          leftPos = currentThumb.offsetLeft;
-
-	      console.log(leftPos);
-	      console.log(highlighter.style);
+	          leftPos = currentThumb.offsetLeft,
+	          topPos = currentThumb.offsetTop;
 
 	      highlighter.style.left = leftPos + "px";
-	      highlighter.innerHtml = leftPos;
+	      highlighter.style.top = topPos + "px";
 	    }
 	  }, {
 	    key: 'renderGalleryTrack',

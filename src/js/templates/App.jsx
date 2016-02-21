@@ -79,22 +79,16 @@ class App extends React.Component {
     });
 
     // // Images Loaded
-    // var imgLoad = imagesLoaded( this.refs.appWindow, function( instance ) {
-    //   //console.log(instance);
-    // });
-
-    // imgLoad.on('progress', function(imgLoad, image) {
-    //   var result = image.isLoaded ? 'loaded' : 'broken';
-    //   //console.log( 'image is ' + result + ' for ' + image.img.src );
-    // }) 
-
-    // imgLoad.on( 'done', function( instance ) {
-    // });
+    this.imagesLoaded();
   }
 
   componentWillReceiveProps(nextProps) {
     // Check to see if the next route will be a project component
     this.checkIfProjectPage(nextProps);
+  }
+
+  componentDidUpdate() {
+    this.imagesLoaded();
   }
 
   /* 
@@ -125,6 +119,20 @@ class App extends React.Component {
       this.setState({projectMode: "EDIT"});
     }
   } 
+
+  imagesLoaded() {
+    // // Images Loaded
+    var imgLoad = imagesLoaded( this.refs.appWindow, {background: true});
+
+    imgLoad.on('progress', function(imgLoad, image) {
+      var result = image.isLoaded ? 'loaded' : 'broken';
+      image.img.classList.remove("is-loading")
+      image.img.classList.add(result)
+    }) 
+
+    imgLoad.on( 'done', function( instance ) {
+    });
+  }
 
   /*
     CRUD 

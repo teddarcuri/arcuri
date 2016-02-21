@@ -49,13 +49,11 @@ class ProjectGallery extends React.Component {
   transitionHighlighter() {
     var currentThumb = this.refs.currentThumb,
         highlighter = this.refs.highlighter,
-        leftPos = currentThumb.offsetLeft;
-
-        console.log(leftPos);
-        console.log(highlighter.style);
+        leftPos = currentThumb.offsetLeft,
+        topPos = currentThumb.offsetTop;
 
         highlighter.style.left = leftPos + "px";
-        highlighter.innerHtml = leftPos;
+        highlighter.style.top = topPos + "px";
   }
 
   renderGalleryTrack() {

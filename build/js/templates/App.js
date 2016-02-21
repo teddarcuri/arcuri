@@ -166,23 +166,18 @@ var App = function (_React$Component) {
       });
 
       // // Images Loaded
-      // var imgLoad = imagesLoaded( this.refs.appWindow, function( instance ) {
-      //   //console.log(instance);
-      // });
-
-      // imgLoad.on('progress', function(imgLoad, image) {
-      //   var result = image.isLoaded ? 'loaded' : 'broken';
-      //   //console.log( 'image is ' + result + ' for ' + image.img.src );
-      // })
-
-      // imgLoad.on( 'done', function( instance ) {
-      // });
+      this.imagesLoaded();
     }
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       // Check to see if the next route will be a project component
       this.checkIfProjectPage(nextProps);
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      this.imagesLoaded();
     }
 
     /* 
@@ -215,6 +210,20 @@ var App = function (_React$Component) {
       } else {
         this.setState({ projectMode: "EDIT" });
       }
+    }
+  }, {
+    key: 'imagesLoaded',
+    value: function imagesLoaded() {
+      // // Images Loaded
+      var imgLoad = (0, _imagesloaded2.default)(this.refs.appWindow, { background: true });
+
+      imgLoad.on('progress', function (imgLoad, image) {
+        var result = image.isLoaded ? 'loaded' : 'broken';
+        image.img.classList.remove("is-loading");
+        image.img.classList.add(result);
+      });
+
+      imgLoad.on('done', function (instance) {});
     }
 
     /*

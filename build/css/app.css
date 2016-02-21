@@ -1796,6 +1796,18 @@ section.split {
     section.split aside:first-child {
       border-right: 2px solid #222; }
 
+img {
+  background: #222 url("http://desandro.github.io/imagesloaded/assets/loading.gif") no-repeat center center; }
+
+.loaded {
+  padding: 0px;
+  border: none;
+  background: none; }
+
+.broken {
+  padding: 20px;
+  background: #AC4040 url("http://desandro.github.io/imagesloaded/assets/broken.png") no-repeat center center; }
+
 .svg-fill {
   -webkit-transition: all ease 0.7s;
   -moz-transition: all ease 0.7s;

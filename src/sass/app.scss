@@ -41,6 +41,22 @@ section.split {
   }
 }
 
+// Images loaded 
+img {
+  background: #222 url("http://desandro.github.io/imagesloaded/assets/loading.gif") no-repeat center center;
+}
+
+.loaded {
+  padding: 0px;
+  border: none;
+  background: none;
+}
+
+.broken {
+  padding: 20px;
+  background: $red url("http://desandro.github.io/imagesloaded/assets/broken.png") no-repeat center center;
+}
+
 // T Svg
 .svg-fill {
    @include transition(all ease 0.7s);

@@ -60,6 +60,7 @@ var About = function (_React$Component) {
 														_react2.default.createElement(
 																'h3',
 																null,
+																_react2.default.createElement('img', { src: 'https://lh4.googleusercontent.com/-2qeuQQr-24c/AAAAAAAAAAI/AAAAAAAAAAA/I3aLsM6bU2o/s128-c-k/photo.jpg', alt: '' }),
 																'Hello, My Name is ',
 																_react2.default.createElement(
 																		'span',
@@ -130,15 +131,6 @@ var About = function (_React$Component) {
 														)
 												)
 										)
-								),
-								_react2.default.createElement(
-										_reactAddonsCssTransitionGroup2.default,
-										{ transitionAppear: true,
-												transitionAppearTimeout: 2000,
-												transitionName: 'fadeIn',
-												transitionEnterTimeout: 2000,
-												transitionLeaveTimeout: 2000 },
-										_react2.default.createElement('img', { id: 'about-image', src: '/src/img/background-scene.png' })
 								)
 						);
 				}

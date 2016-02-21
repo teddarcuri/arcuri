@@ -19,6 +19,7 @@ class About extends React.Component {
 						transitionEnterTimeout={2000}
 						transitionLeaveTimeout={2000}>
 					  <h3>
+					  	<img src="https://lh4.googleusercontent.com/-2qeuQQr-24c/AAAAAAAAAAI/AAAAAAAAAAA/I3aLsM6bU2o/s128-c-k/photo.jpg" alt=""/>
 				          Hello, My Name is <span className="highlight light">Tedd Arcuri</span>.<br />
 				          I am a software designer + developer.<br />
 				          Currently living in Denver, CO.<br /><br />
@@ -34,13 +35,13 @@ class About extends React.Component {
 			        </div>
 			     </div>
 	    	</div>
-	    	<CSSTransitionGroup transitionAppear={true}
+	    	{/*<CSSTransitionGroup transitionAppear={true}
 							transitionAppearTimeout={2000}
 							transitionName="fadeIn"
 							transitionEnterTimeout={2000}
 							transitionLeaveTimeout={2000}>
 	    	<img id="about-image" src="/src/img/background-scene.png" />
-	    	</CSSTransitionGroup>	
+	    	</CSSTransitionGroup>	*/}
 	  	</CSSTransitionGroup>
     )
   }
