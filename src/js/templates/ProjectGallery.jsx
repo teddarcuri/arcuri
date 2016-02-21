@@ -1,6 +1,7 @@
 import React from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import ElementQuery from 'react-element-query';
+import Radium from 'radium';
 
 
 class ProjectGallery extends React.Component {
@@ -51,8 +52,8 @@ class ProjectGallery extends React.Component {
     if (imageCount > 1) {
       return (
         <ul style={this.getStyles().arrows}>
-          <div onClick={this.nextImg.bind(this)} style={this.getStyles().arrows.next}>NEXT</div>
-          <div onClick={this.prevImg.bind(this)} style={this.getStyles().arrows.prev}>PREV</div>
+          <div key="NEXT" onClick={this.nextImg.bind(this)} style={this.getStyles().arrows.next}>NEXT</div>
+          <div key="PREV" onClick={this.prevImg.bind(this)} style={this.getStyles().arrows.prev}>PREV</div>
         </ul>
       )
     }
@@ -68,12 +69,18 @@ class ProjectGallery extends React.Component {
         next: {
           fontSize: "0.66em",
           background: "rgba(0,0,0,0.6)",
-          padding: 10
+          padding: 10,
+          ":hover" : {
+            background: "rgba(0,0,0,0.3)"
+          }
         },
         prev: {
           fontSize: "0.66em",
           background: "rgba(0,0,0,0.6)",
-          padding: 10
+          padding: 10,
+          ":hover" : {
+            background: "rgba(0,0,0,0.3)"
+          }
         }
       }
     }
@@ -134,4 +141,4 @@ class ProjectGallery extends React.Component {
   }
 }
 
-export default ProjectGallery
+export default Radium(ProjectGallery)

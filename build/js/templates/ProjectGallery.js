@@ -18,6 +18,10 @@ var _reactElementQuery = require('react-element-query');
 
 var _reactElementQuery2 = _interopRequireDefault(_reactElementQuery);
 
+var _radium = require('radium');
+
+var _radium2 = _interopRequireDefault(_radium);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84,12 +88,12 @@ var ProjectGallery = function (_React$Component) {
           { style: this.getStyles().arrows },
           _react2.default.createElement(
             'div',
-            { onClick: this.nextImg.bind(this), style: this.getStyles().arrows.next },
+            { key: 'NEXT', onClick: this.nextImg.bind(this), style: this.getStyles().arrows.next },
             'NEXT'
           ),
           _react2.default.createElement(
             'div',
-            { onClick: this.prevImg.bind(this), style: this.getStyles().arrows.prev },
+            { key: 'PREV', onClick: this.prevImg.bind(this), style: this.getStyles().arrows.prev },
             'PREV'
           )
         );
@@ -107,12 +111,18 @@ var ProjectGallery = function (_React$Component) {
           next: {
             fontSize: "0.66em",
             background: "rgba(0,0,0,0.6)",
-            padding: 10
+            padding: 10,
+            ":hover": {
+              background: "rgba(0,0,0,0.3)"
+            }
           },
           prev: {
             fontSize: "0.66em",
             background: "rgba(0,0,0,0.6)",
-            padding: 10
+            padding: 10,
+            ":hover": {
+              background: "rgba(0,0,0,0.3)"
+            }
           }
         }
       };
@@ -182,4 +192,4 @@ var ProjectGallery = function (_React$Component) {
   return ProjectGallery;
 }(_react2.default.Component);
 
-exports.default = ProjectGallery;
+exports.default = (0, _radium2.default)(ProjectGallery);
