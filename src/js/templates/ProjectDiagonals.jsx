@@ -1,7 +1,6 @@
 import React from 'react';
 import {browserHistory, Router, Route, IndexRoute, Link} from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import ProjectBubble from './ProjectBubble';
 import ProjectDiagonal from './ProjectDiagonal';
 
 

@@ -16,10 +16,6 @@ var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group'
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-var _ProjectBubble = require('./ProjectBubble');
-
-var _ProjectBubble2 = _interopRequireDefault(_ProjectBubble);
-
 var _ProjectDiagonal = require('./ProjectDiagonal');
 
 var _ProjectDiagonal2 = _interopRequireDefault(_ProjectDiagonal);

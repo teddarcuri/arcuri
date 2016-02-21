@@ -4,6 +4,7 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import ProjectBubble from './ProjectBubble';
 import ProjectDiagonal from './ProjectDiagonal';
 
+import _ from 'lodash';
 
 class ProjectIndex extends React.Component {
 
@@ -88,6 +89,11 @@ class ProjectIndex extends React.Component {
 
 	render() {
 		var projects = this.props.projects;
+
+		if (this.props.filter === "WEB") {
+			projects = _.filter(projects, {"id": 2});
+		}
+
 		if (this.props.type === "BUBBLES") {
 			return this.renderBubbles(projects);
 		} else {

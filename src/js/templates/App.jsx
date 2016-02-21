@@ -202,7 +202,7 @@ class App extends React.Component {
     return (
       <ProjectIndex projects={this.state.projects}
                     currentProject={this.state.currentProject}
-                     />
+                     type="BUBBLES"/>
     )
   }
 

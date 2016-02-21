@@ -441,12 +441,18 @@
   opacity: 1;
   margin: 0px;
   padding: 0px;
+  max-width: 1200px;
+  background: red;
   @include display(flex);
+  @include align-items(flex-start);
+  @include justify-content(flex-start);
   @include flex-flow(row wrap);
 }
 
 .project-bubble-wrap {
-  @include flex(1 0 33%);
+  height: 50px;
+  width: 50px;
+  @include flex(1 0 auto);
 }
 
 .project-bubble {

@@ -24,6 +24,10 @@ var _ProjectDiagonal = require('./ProjectDiagonal');
 
 var _ProjectDiagonal2 = _interopRequireDefault(_ProjectDiagonal);
 
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -117,6 +121,11 @@ var ProjectIndex = function (_React$Component) {
 		key: 'render',
 		value: function render() {
 			var projects = this.props.projects;
+
+			if (this.props.filter === "WEB") {
+				projects = _lodash2.default.filter(projects, { "id": 2 });
+			}
+
 			if (this.props.type === "BUBBLES") {
 				return this.renderBubbles(projects);
 			} else {

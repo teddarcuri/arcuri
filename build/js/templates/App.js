@@ -302,8 +302,8 @@ var App = function (_React$Component) {
     key: 'renderProjectBubbles',
     value: function renderProjectBubbles() {
       return _react2.default.createElement(_ProjectIndex2.default, { projects: this.state.projects,
-        currentProject: this.state.currentProject
-      });
+        currentProject: this.state.currentProject,
+        type: 'BUBBLES' });
     }
   }, {
     key: 'render',
