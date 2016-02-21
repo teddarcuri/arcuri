@@ -110,6 +110,7 @@ class Project extends React.Component {
           </div>
 
          <ProjectPage currentProject={p}
+                      isAuthenticated={false}
                       projects={this.props.projects}
                       mode={this.props.projectMode}
                       isEditing={this.state.isEditing}

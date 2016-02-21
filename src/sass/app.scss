@@ -93,8 +93,27 @@ section.split {
 }
 
 .project-infobar {
-  background: rgba(#000, 0.8);
+  background: rgba(#000, 1);
   width: 100%;
+  border-radius: 5px 5px 0px 0px;
+
+  .view-site-btn {
+    a {
+      text-decoration: none;
+      border-radius: 3px;
+      padding: 12px 15px;
+      margin: 0px 10px;
+      &:hover {
+        background: rgba(#fff, 0.1);
+      }
+      i{
+        font-size: 1.5em;
+        vertical-align: middle;
+        margin-right: 12px;
+      }
+    }
+  }
+  
   span {
     color: #aaa;
     a {
@@ -108,7 +127,7 @@ section.split {
     padding: 20px 30px;
     display: inline-block;
     li {
-        background: #222;
+        background: #000;
         color: #ccc;
         display: inline-block;
         margin-right: 10px;
@@ -119,12 +138,31 @@ section.split {
         font-size: 0.9em;
         position: relative;
         text-transform: uppercase;
+        &:hover {
+          background: #222;
+          color: #fff;
+          .project-bubbles {
+            display: flex;
+          }
+          .project-bars {
+            display: block;
+          }
+        }
+        .project-bars {
+          display: none;
+          position: absolute;
+          padding: 20px;
+          background: #222;
+          left: 0; top: 30px;
+          z-index: 9;
+        }
         .project-bubbles {
-          width: 300px;
+          width: 150px;
           background: #222;
           position: absolute;
-          left: 0; top: 40px;
+          left: 0; top: 30px;
           z-index: 9;
+          display: none;
            .project-bubble-wrap {
               padding: 20px 20px;
               @include flex(1 0 50%);
@@ -155,10 +193,6 @@ section.split {
                   height: 100%;
                 } 
               }
-        }
-        &:hover {
-          background: #000;
-          color: #fff;
         }
     }
 }

@@ -45,6 +45,11 @@ var ProjectGallery = function (_React$Component) {
   }
 
   _createClass(ProjectGallery, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.transitionHighlighter();
+    }
+  }, {
     key: 'nextImg',
     value: function nextImg() {
       var key = this.state.currentImage + 1;
@@ -71,7 +76,22 @@ var ProjectGallery = function (_React$Component) {
         key = length;
       }
 
-      this.setState({ currentImage: key });
+      this.setState({ currentImage: key }, function () {
+        this.transitionHighlighter();
+      });
+    }
+  }, {
+    key: 'transitionHighlighter',
+    value: function transitionHighlighter() {
+      var currentThumb = this.refs.currentThumb,
+          highlighter = this.refs.highlighter,
+          leftPos = currentThumb.offsetLeft;
+
+      console.log(leftPos);
+      console.log(highlighter.style);
+
+      highlighter.style.left = leftPos + "px";
+      highlighter.innerHtml = leftPos;
     }
   }, {
     key: 'renderGalleryTrack',
@@ -102,12 +122,12 @@ var ProjectGallery = function (_React$Component) {
           { style: this.getStyles().arrows },
           _react2.default.createElement(
             'div',
-            { key: 'NEXT', onClick: this.nextImg.bind(this), style: this.getStyles().arrows.next },
+            { key: 'PREV', onClick: this.prevImg.bind(this), style: this.getStyles().arrows.prev },
             _react2.default.createElement('i', { style: this.getStyles().icon, className: 'fa fa-chevron-left' })
           ),
           _react2.default.createElement(
             'div',
-            { key: 'PREV', onClick: this.prevImg.bind(this), style: this.getStyles().arrows.prev },
+            { key: 'NEXT', onClick: this.nextImg.bind(this), style: this.getStyles().arrows.next },
             _react2.default.createElement('i', { style: this.getStyles().icon, className: 'fa fa-chevron-right' })
           )
         );
@@ -175,10 +195,12 @@ var ProjectGallery = function (_React$Component) {
         _react2.default.createElement(
           'ul',
           { className: 'gallery-image-thumbs' },
+          _react2.default.createElement('div', { ref: 'highlighter', className: 'current-image-highlighter' }),
           Object.keys(p.gallery).map(function (img, key) {
+            var ref = key == this.state.currentImage ? "currentThumb" : "thumb" + key;
             return _react2.default.createElement(
               'li',
-              { className: 'gallery-image', key: key, onClick: this.setCurrentImage.bind(this, key) },
+              { ref: ref, className: 'gallery-image', key: key, onClick: this.setCurrentImage.bind(this, key) },
               _react2.default.createElement('img', { src: p.gallery[img].path, alt: '' })
             );
           }, this)

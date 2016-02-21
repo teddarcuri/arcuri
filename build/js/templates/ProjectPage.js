@@ -230,10 +230,11 @@ var ProjectPage = function (_React$Component) {
               ),
               _react2.default.createElement(
                 'span',
-                null,
+                { className: 'view-site-btn' },
                 _react2.default.createElement(
                   'a',
                   { href: 'google.com' },
+                  _react2.default.createElement('i', { className: 'fa fa-eye' }),
                   'View Site'
                 )
               ),

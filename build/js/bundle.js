@@ -63114,10 +63114,11 @@
 	              ),
 	              _react2.default.createElement(
 	                'span',
-	                null,
+	                { className: 'view-site-btn' },
 	                _react2.default.createElement(
 	                  'a',
 	                  { href: 'google.com' },
+	                  _react2.default.createElement('i', { className: 'fa fa-eye' }),
 	                  'View Site'
 	                )
 	              ),
@@ -63198,6 +63199,11 @@
 	  }
 
 	  _createClass(ProjectGallery, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.transitionHighlighter();
+	    }
+	  }, {
 	    key: 'nextImg',
 	    value: function nextImg() {
 	      var key = this.state.currentImage + 1;
@@ -63224,7 +63230,22 @@
 	        key = length;
 	      }
 
-	      this.setState({ currentImage: key });
+	      this.setState({ currentImage: key }, function () {
+	        this.transitionHighlighter();
+	      });
+	    }
+	  }, {
+	    key: 'transitionHighlighter',
+	    value: function transitionHighlighter() {
+	      var currentThumb = this.refs.currentThumb,
+	          highlighter = this.refs.highlighter,
+	          leftPos = currentThumb.offsetLeft;
+
+	      console.log(leftPos);
+	      console.log(highlighter.style);
+
+	      highlighter.style.left = leftPos + "px";
+	      highlighter.innerHtml = leftPos;
 	    }
 	  }, {
 	    key: 'renderGalleryTrack',
@@ -63255,12 +63276,12 @@
 	          { style: this.getStyles().arrows },
 	          _react2.default.createElement(
 	            'div',
-	            { key: 'NEXT', onClick: this.nextImg.bind(this), style: this.getStyles().arrows.next },
+	            { key: 'PREV', onClick: this.prevImg.bind(this), style: this.getStyles().arrows.prev },
 	            _react2.default.createElement('i', { style: this.getStyles().icon, className: 'fa fa-chevron-left' })
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { key: 'PREV', onClick: this.prevImg.bind(this), style: this.getStyles().arrows.prev },
+	            { key: 'NEXT', onClick: this.nextImg.bind(this), style: this.getStyles().arrows.next },
 	            _react2.default.createElement('i', { style: this.getStyles().icon, className: 'fa fa-chevron-right' })
 	          )
 	        );
@@ -63328,10 +63349,12 @@
 	        _react2.default.createElement(
 	          'ul',
 	          { className: 'gallery-image-thumbs' },
+	          _react2.default.createElement('div', { ref: 'highlighter', className: 'current-image-highlighter' }),
 	          Object.keys(p.gallery).map(function (img, key) {
+	            var ref = key == this.state.currentImage ? "currentThumb" : "thumb" + key;
 	            return _react2.default.createElement(
 	              'li',
-	              { className: 'gallery-image', key: key, onClick: this.setCurrentImage.bind(this, key) },
+	              { ref: ref, className: 'gallery-image', key: key, onClick: this.setCurrentImage.bind(this, key) },
 	              _react2.default.createElement('img', { src: p.gallery[img].path, alt: '' })
 	            );
 	          }, this)
@@ -71846,6 +71869,7 @@
 	          this.renderSidebar()
 	        ),
 	        _react2.default.createElement(_ProjectPage2.default, { currentProject: p,
+	          isAuthenticated: false,
 	          projects: this.props.projects,
 	          mode: this.props.projectMode,
 	          isEditing: this.state.isEditing,

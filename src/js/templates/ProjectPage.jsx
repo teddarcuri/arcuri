@@ -161,8 +161,9 @@ class ProjectPage extends React.Component {
                   </li>
                 </ul>
 
-                <span>
+                <span className="view-site-btn">
                   <a href="google.com">
+                    <i className="fa fa-eye"></i>
                     View Site
                   </a>
                 </span>
@@ -183,7 +184,6 @@ class ProjectPage extends React.Component {
             </main>
         
           </div>
-
 
           {/* Background Image */}
           <div className="project-bg" >

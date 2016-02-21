@@ -14,6 +14,10 @@ class ProjectGallery extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.transitionHighlighter();
+  }
+
   nextImg() {
     var key = this.state.currentImage + 1;
     this.setCurrentImage(key);
@@ -37,7 +41,21 @@ class ProjectGallery extends React.Component {
       key = length
     }
 
-    this.setState({ currentImage : key });
+    this.setState({ currentImage : key }, function() {
+          this.transitionHighlighter();
+    });
+  }
+
+  transitionHighlighter() {
+    var currentThumb = this.refs.currentThumb,
+        highlighter = this.refs.highlighter,
+        leftPos = currentThumb.offsetLeft;
+
+        console.log(leftPos);
+        console.log(highlighter.style);
+
+        highlighter.style.left = leftPos + "px";
+        highlighter.innerHtml = leftPos;
   }
 
   renderGalleryTrack() {
@@ -61,10 +79,10 @@ class ProjectGallery extends React.Component {
     if (imageCount > 1) {
       return (
         <ul style={this.getStyles().arrows}>
-          <div key="NEXT" onClick={this.nextImg.bind(this)} style={this.getStyles().arrows.next}>
+          <div key="PREV" onClick={this.prevImg.bind(this)} style={this.getStyles().arrows.prev}>
             <i style={this.getStyles().icon}className="fa fa-chevron-left"></i>
           </div>
-          <div key="PREV" onClick={this.prevImg.bind(this)} style={this.getStyles().arrows.prev}>
+          <div key="NEXT" onClick={this.nextImg.bind(this)} style={this.getStyles().arrows.next}>
             <i style={this.getStyles().icon}className="fa fa-chevron-right"></i>
           </div>
         </ul>
@@ -113,7 +131,9 @@ class ProjectGallery extends React.Component {
     var p = this.props.project,
         currentImage = this.props.project.gallery[Object.keys(this.props.project.gallery)[this.state.currentImage]];
 
+
     return (
+
       <CSSTransitionGroup component={"div"}
                           className="gallery"
                           transitionName="fadeIn"
@@ -122,6 +142,7 @@ class ProjectGallery extends React.Component {
                           transitionEnterTimeout={1000}
                           transitionLeaveTimeout={1000}>
 
+          
           <div className="gallery-image-viewer">
               {this.renderGalleryTrack()}
               {this.renderArrows()}
@@ -137,17 +158,22 @@ class ProjectGallery extends React.Component {
                 }
               </ul> */}
           </div>
-          <ul className="gallery-image-thumbs">
-           {
-              Object.keys(p.gallery).map(function(img, key) {
-                return (
-                  <li className="gallery-image" key={key} onClick={this.setCurrentImage.bind(this, key)}>
-                    <img src={p.gallery[img].path} alt=""/>
-                  </li>
-                )
-              }, this)
-           }
+
+            <ul className="gallery-image-thumbs">
+              <div ref="highlighter" className="current-image-highlighter"></div>
+             {
+                Object.keys(p.gallery).map(function(img, key) {
+                  var ref = key == this.state.currentImage ? "currentThumb" : "thumb" + key;
+                  return (
+                    <li ref={ref} className="gallery-image" key={key} onClick={this.setCurrentImage.bind(this, key)}>
+                      <img src={p.gallery[img].path} alt=""/>
+                    </li>
+                  )
+                }, this)
+             }
           </ul>
+
+        
       </CSSTransitionGroup>
     )
   }

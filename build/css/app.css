@@ -1036,6 +1036,7 @@ header#main {
         font-size: 1.5em;
         font-weight: 300;
         letter-spacing: 4px;
+        margin: 10px 0px;
         text-shadow: 0px 2px 7px rgba(0, 0, 0, 0.5); }
     .project-page .project-overview main {
       display: -webkit-box;
@@ -1077,8 +1078,8 @@ header#main {
         -ms-flex: 3;
         flex: 3;
         position: relative;
-        background: rgba(17, 17, 17, 0.85);
-        padding: 40px; }
+        background: #111111;
+        padding: 66px; }
         .project-page .project-overview main section h1 {
           color: #ccc; }
         .project-page .project-overview main section p {
@@ -1285,7 +1286,7 @@ header#main {
 
 .gallery {
   width: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(17, 17, 17, 0.7);
   display: block;
   position: relative;
   overflow: hidden;
@@ -1419,7 +1420,9 @@ header#main {
           background: #111; }
   .gallery .gallery-image-thumbs {
     margin: 0px;
-    background: rgba(0, 0, 0, 0.33);
+    background: #333333;
+    padding: 0px;
+    position: relative;
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     box-flex: 1;
@@ -1459,11 +1462,23 @@ header#main {
     -webkit-flex-flow: row wrap;
     -moz-flex-flow: row wrap;
     flex-flow: row wrap; }
+    .gallery .gallery-image-thumbs .current-image-highlighter {
+      border: solid rgba(255, 255, 255, 0.66) 2px;
+      position: absolute;
+      top: 0;
+      left: 0px;
+      height: 33px;
+      width: 100px;
+      box-shadow: 0px 0px 60px rgba(255, 255, 255, 0.5);
+      z-index: 20;
+      -webkit-transition: all ease 1s;
+      -moz-transition: all ease 1s;
+      transition: all ease 1s; }
     .gallery .gallery-image-thumbs .gallery-image {
       overflow: hidden;
-      height: 80px;
+      height: 33px;
       width: 100px;
-      padding: 10px;
+      margin-right: 0px;
       -webkit-align-self: flex-start;
       -moz-align-self: flex-start;
       align-self: flex-start;
@@ -1492,12 +1507,7 @@ header#main {
       -ms-justify-content: center;
       -o-justify-content: center;
       justify-content: center;
-      -ms-flex-pack: center;
-      margin-right: 12px; }
-      .gallery .gallery-image-thumbs .gallery-image:first-child {
-        border: solid rgba(255, 255, 255, 0.666) 2px; }
-      .gallery .gallery-image-thumbs .gallery-image:nth-child(3n) {
-        margin-right: 0; }
+      -ms-flex-pack: center; }
       .gallery .gallery-image-thumbs .gallery-image img {
         width: 100%; }
       .gallery .gallery-image-thumbs .gallery-image:hover {
@@ -1873,8 +1883,20 @@ section.split {
   width: 100%; }
 
 .project-infobar {
-  background: rgba(0, 0, 0, 0.8);
-  width: 100%; }
+  background: black;
+  width: 100%;
+  border-radius: 5px 5px 0px 0px; }
+  .project-infobar .view-site-btn a {
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 12px 15px;
+    margin: 0px 10px; }
+    .project-infobar .view-site-btn a:hover {
+      background: rgba(255, 255, 255, 0.1); }
+    .project-infobar .view-site-btn a i {
+      font-size: 1.5em;
+      vertical-align: middle;
+      margin-right: 12px; }
   .project-infobar span {
     color: #aaa; }
     .project-infobar span a {
@@ -1885,7 +1907,7 @@ section.split {
   padding: 20px 30px;
   display: inline-block; }
   .tags li {
-    background: #222;
+    background: #000;
     color: #ccc;
     display: inline-block;
     margin-right: 10px;
@@ -1896,13 +1918,29 @@ section.split {
     font-size: 0.9em;
     position: relative;
     text-transform: uppercase; }
+    .tags li:hover {
+      background: #222;
+      color: #fff; }
+      .tags li:hover .project-bubbles {
+        display: flex; }
+      .tags li:hover .project-bars {
+        display: block; }
+    .tags li .project-bars {
+      display: none;
+      position: absolute;
+      padding: 20px;
+      background: #222;
+      left: 0;
+      top: 30px;
+      z-index: 9; }
     .tags li .project-bubbles {
-      width: 300px;
+      width: 150px;
       background: #222;
       position: absolute;
       left: 0;
-      top: 40px;
-      z-index: 9; }
+      top: 30px;
+      z-index: 9;
+      display: none; }
       .tags li .project-bubbles .project-bubble-wrap {
         padding: 20px 20px;
         -webkit-box-flex: 1;
@@ -1983,9 +2021,6 @@ section.split {
         .tags li .project-bubbles .project-bubble img.bg {
           width: 100%;
           height: 100%; }
-    .tags li:hover {
-      background: #000;
-      color: #fff; }
 
 .half {
   width: 50%;
