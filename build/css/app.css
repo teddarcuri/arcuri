@@ -1876,16 +1876,9 @@ section.split {
   background: rgba(0, 0, 0, 0.8);
   width: 100%; }
   .project-infobar span {
-    margin-right: 30px;
     color: #aaa; }
     .project-infobar span a {
       color: #aaa; }
-    .project-infobar span:after {
-      content: "|";
-      padding-left: 30px; }
-    .project-infobar span:last-child:after {
-      content: "";
-      padding-left: 0px; }
 
 .tags {
   margin: 0px;
@@ -2119,7 +2112,45 @@ section.split {
       background: #AC4040; }
 
 .project-bars a {
-  padding: 0px; }
+  width: 100%;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+  font-size: 0.8em !important;
+  letter-spacing: 4px;
+  padding: 10px !important;
+  padding-left: 40px !important;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.66);
+  -webkit-transition: all ease 0.5s;
+  -moz-transition: all ease 0.5s;
+  transition: all ease 0.5s; }
+  .project-bars a span {
+    color: #fff !important;
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%); }
+  .project-bars a .background {
+    z-index: -1;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    transition: all ease 0.5s; }
+  .project-bars a:hover {
+    color: #fff !important; }
+    .project-bars a:hover span {
+      -webkit-transform: translateX(0);
+      -moz-transform: translateX(0);
+      -ms-transform: translateX(0);
+      -o-transform: translateX(0);
+      transform: translateX(0); }
+    .project-bars a:hover .background {
+      opacity: 0.33 !important;
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      -o-transform: scale(1.2);
+      transform: scale(1.2); }
 
 .project-edit-tools {
   display: inline-block; }

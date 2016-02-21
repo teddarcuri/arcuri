@@ -62566,8 +62566,12 @@
 						return _react2.default.createElement(
 							_reactRouter.Link,
 							{ to: path, style: styles.link },
-							p.name,
-							_react2.default.createElement('div', { style: styles.background })
+							_react2.default.createElement(
+								'span',
+								null,
+								p.name
+							),
+							_react2.default.createElement('div', { className: 'background', style: styles.background })
 						);
 					})
 				);

@@ -95,25 +95,14 @@ section.split {
 .project-infobar {
   background: rgba(#000, 0.8);
   width: 100%;
-
   span {
-    margin-right: 30px;
     color: #aaa;
     a {
       color: #aaa;
     }
-    &:after {
-      content: "|";
-      padding-left: 30px;
-    }
-     &:last-child {
-      &:after {
-        content: "";
-        padding-left: 0px;
-      }
-    }
   }
 }
+
 .tags {
     margin: 0px;
     padding: 20px 30px;
@@ -267,7 +256,34 @@ section.split {
 
 .project-bars {
   a {
-    padding: 0px;
+    width: 100%;
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+    font-size: 0.8em !important;
+    letter-spacing: 4px;
+    padding: 10px !important;
+    padding-left: 40px !important;
+    text-shadow: 1px 1px 3px rgba(#000, 0.66);
+    @include transition(all ease 0.5s);
+    span {
+      color: #fff !important;
+      @include transform(translateX(-100%));
+    }
+    .background {
+      z-index: -1;
+      @include transition(all ease 0.5s);
+    }
+    &:hover {
+      span {
+        @include transform(translateX(0));
+      }
+      color: #fff !important;
+      .background {
+        opacity: 0.33 !important;
+        @include transform(scale(1.2));
+      }
+    }
   }
 }
 

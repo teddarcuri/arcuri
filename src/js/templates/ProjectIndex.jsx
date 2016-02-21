@@ -74,8 +74,10 @@ class ProjectIndex extends React.Component {
 		  					 };
 		  				return (
 							<Link to={path} style={styles.link}>
-								{p.name}
-								<div style={styles.background}></div>
+								<span>
+									{p.name}
+								</span>
+								<div className="background" style={styles.background}></div>
 							</Link>
 		  				)
 		  			})
