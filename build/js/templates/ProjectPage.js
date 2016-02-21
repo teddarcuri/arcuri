@@ -146,7 +146,7 @@ var ProjectPage = function (_React$Component) {
   }, {
     key: 'renderEditTools',
     value: function renderEditTools() {
-      if (this.props.mode === "EDIT" && this.props.isAuthenticated) {
+      if (this.props.mode === "EDIT" && this.props.uid) {
         return _react2.default.createElement(
           'ul',
           { className: 'project-edit-tools' },

@@ -74,7 +74,6 @@ var Tabs = function (_React$Component) {
             name: 'name',
             type: 'text',
             placeholder: 'name',
-            name: 'name',
             valueLink: this.props.mode === "CREATE" ? this.props.linkState('newProject.name') : this.props.linkState('currentProject.name') })
         ),
         _react2.default.createElement(

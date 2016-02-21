@@ -68,9 +68,13 @@ var _contact = require('./contact');
 
 var _contact2 = _interopRequireDefault(_contact);
 
-var _LoginPage = require('./LoginPage');
+var _Dashboard = require('./Dashboard');
 
-var _LoginPage2 = _interopRequireDefault(_LoginPage);
+var _Dashboard2 = _interopRequireDefault(_Dashboard);
+
+var _firebase = require('firebase');
+
+var _firebase2 = _interopRequireDefault(_firebase);
 
 var _reBase = require('re-base');
 
@@ -105,6 +109,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // Routes
 
 // Firebase
+
+var ref = new _firebase2.default("https://tedd-arcuri.firebaseio.com/");
 
 var base = _reBase2.default.createClass('https://tedd-arcuri.firebaseio.com/');
 
@@ -155,6 +161,9 @@ var App = function (_React$Component) {
   _createClass(App, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
+      // Check to see if user is authenticated
+      this.checkIfAuthenticated();
+
       // Check to see if the loaded route will be a project component
       this.checkIfProjectPage(this.props);
 
@@ -165,7 +174,7 @@ var App = function (_React$Component) {
         asArray: true
       });
 
-      // // Images Loaded
+      // Images Loaded
       this.imagesLoaded();
     }
   }, {
@@ -214,7 +223,7 @@ var App = function (_React$Component) {
   }, {
     key: 'imagesLoaded',
     value: function imagesLoaded() {
-      // // Images Loaded
+      // Images Loaded
       var imgLoad = (0, _imagesloaded2.default)(this.refs.appWindow, { background: true });
 
       imgLoad.on('progress', function (imgLoad, image) {
@@ -224,6 +233,43 @@ var App = function (_React$Component) {
       });
 
       imgLoad.on('done', function (instance) {});
+    }
+
+    /* 
+      Auth
+    */
+
+  }, {
+    key: 'authenticate',
+    value: function authenticate(credentials) {
+      var _this2 = this;
+
+      ref.authWithPassword({
+        email: credentials.email,
+        password: credentials.password
+      }, function (error, authData) {
+        if (error) {
+          console.log("failed", error);
+        } else {
+          _this2.setState({ uid: authData.uid });
+          console.log("success", authData);
+        }
+      });
+    }
+  }, {
+    key: 'unauthenticate',
+    value: function unauthenticate() {
+      ref.unauth();
+      this.setState({ uid: "" });
+    }
+  }, {
+    key: 'checkIfAuthenticated',
+    value: function checkIfAuthenticated() {
+      if (localStorage.getItem("firebase:session::tedd-arcuri")) {
+        var session = localStorage.getItem("firebase:session::tedd-arcuri");
+        session = JSON.parse(session);
+        this.setState({ uid: session.uid });
+      }
     }
 
     /*
@@ -427,7 +473,7 @@ var App = function (_React$Component) {
           ),
           _react2.default.createElement(
             _reactRouter.Link,
-            { to: '/login' },
+            { to: '/dashboard' },
             _react2.default.createElement(
               'svg',
               { className: 'letter', version: '1.1', id: 'D-2', x: '0px', y: '0px',
@@ -461,13 +507,18 @@ var App = function (_React$Component) {
               addGalleryImage: this.addGalleryImage.bind(this),
               removeGalleryImage: this.removeGalleryImage.bind(this),
               projectMode: this.state.projectMode,
-              setProjectMode: this.setProjectMode.bind(this)
+              setProjectMode: this.setProjectMode.bind(this),
+              //Auth
+              authenticate: this.authenticate.bind(this),
+              unauthenticate: this.unauthenticate.bind(this),
+              uid: this.state.uid
             })
           )
         ),
         _react2.default.createElement('div', { id: 'background-smoke' }),
         _react2.default.createElement(_ProjectBar2.default, { projects: this.state.projects,
-          currentProject: this.state.currentProject })
+          currentProject: this.state.currentProject,
+          uid: this.state.uid })
       );
     }
   }]);
@@ -500,7 +551,7 @@ _reactDom2.default.render(_react2.default.createElement(
       _react2.default.createElement(_reactRouter.Route, { path: 'new', component: _project2.default }),
       _react2.default.createElement(_reactRouter.Route, { path: ':name', component: _project2.default })
     ),
-    _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _LoginPage2.default })
+    _react2.default.createElement(_reactRouter.Route, { path: 'dashboard', component: _Dashboard2.default })
   )
 ), document.getElementById('app'));
 

@@ -12,6 +12,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
 
+var _ProjectIndex = require('./ProjectIndex');
+
+var _ProjectIndex2 = _interopRequireDefault(_ProjectIndex);
+
 var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
@@ -46,16 +50,36 @@ var Dashboard = function (_React$Component) {
       this.props.authenticate(loginCredentials);
     }
   }, {
-    key: 'render',
-    value: function render() {
-      var styles = {
-        button: {
-          background: "#111"
-        }
-      };
+    key: 'logout',
+    value: function logout() {
+      this.props.unauthenticate();
+    }
+  }, {
+    key: 'renderAuth',
+    value: function renderAuth() {
+      return _react2.default.createElement(
+        'div',
+        { key: 'dashboard' },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Dashboard'
+        ),
+        _react2.default.createElement(_ProjectIndex2.default, { projects: this.props.projects }),
+        _react2.default.createElement(
+          'a',
+          { onClick: this.logout.bind(this) },
+          'Logout'
+        )
+      );
+    }
+  }, {
+    key: 'renderUnAuth',
+    value: function renderUnAuth() {
       return _react2.default.createElement(
         _reactAddonsCssTransitionGroup2.default,
         { component: "form",
+          key: 'login-form',
           onSubmit: this.handleSubmit.bind(this),
           transitionAppear: true,
           transitionAppearTimeout: 2000,
@@ -65,15 +89,45 @@ var Dashboard = function (_React$Component) {
         _react2.default.createElement(
           'h3',
           null,
-          'Hi! Are you me?'
+          'Hi! Are you me?',
+          _react2.default.createElement(
+            'span',
+            null,
+            'Let\'s find out.'
+          )
         ),
         _react2.default.createElement('input', { ref: 'email', type: 'text' }),
         _react2.default.createElement('input', { ref: 'password', type: 'password' }),
         _react2.default.createElement(
           'button',
-          { style: styles.button, type: 'submit' },
+          { style: this.getStyles().button, type: 'submit' },
           'Login'
         )
+      );
+    }
+  }, {
+    key: 'getStyles',
+    value: function getStyles() {
+      return {
+        button: {
+          background: "#111"
+        }
+      };
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var pageContent = this.props.uid ? this.renderAuth() : this.renderUnAuth();
+      return _react2.default.createElement(
+        _reactAddonsCssTransitionGroup2.default,
+        { component: "div",
+          transitionAppear: true,
+          style: { width: "100%" },
+          transitionAppearTimeout: 2000,
+          transitionName: 'bubbleUp',
+          transitionEnterTimeout: 2000,
+          transitionLeaveTimeout: 2000 },
+        pageContent
       );
     }
   }]);

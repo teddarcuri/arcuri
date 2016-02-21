@@ -95,7 +95,7 @@ class ProjectPage extends React.Component {
   }
 
   renderEditTools() {
-    if (this.props.mode === "EDIT" && this.props.isAuthenticated) {
+    if (this.props.mode === "EDIT" && this.props.uid) {
       return (
         <ul className="project-edit-tools">
           <li onClick={this.props.edit}>

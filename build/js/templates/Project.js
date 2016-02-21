@@ -139,7 +139,7 @@ var Project = function (_React$Component) {
           this.renderSidebar()
         ),
         _react2.default.createElement(_ProjectPage2.default, { currentProject: p,
-          isAuthenticated: false,
+          uid: this.props.uid,
           projects: this.props.projects,
           mode: this.props.projectMode,
           isEditing: this.state.isEditing,

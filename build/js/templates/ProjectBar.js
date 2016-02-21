@@ -34,10 +34,24 @@ var ProjectBar = function (_React$Component) {
   }
 
   _createClass(ProjectBar, [{
+    key: 'renderNewProjectTab',
+    value: function renderNewProjectTab() {
+      return _react2.default.createElement(
+        'li',
+        null,
+        _react2.default.createElement(
+          _reactRouter.Link,
+          { to: '/work/new' },
+          _react2.default.createElement('img', { src: '/src/img/new-project-btn.jpg' })
+        )
+      );
+    }
+  }, {
     key: 'render',
     value: function render() {
       var p = this.props.currentProject,
-          projects = this.props.projects;
+          projects = this.props.projects,
+          newProjectTab = this.props.uid ? this.renderNewProjectTab() : null;
       return _react2.default.createElement(
         'ul',
         { className: 'project-bar' },
@@ -59,15 +73,7 @@ var ProjectBar = function (_React$Component) {
             )
           );
         }),
-        _react2.default.createElement(
-          'li',
-          null,
-          _react2.default.createElement(
-            _reactRouter.Link,
-            { to: '/work/new' },
-            _react2.default.createElement('img', { src: '/src/img/new-project-btn.jpg' })
-          )
-        )
+        newProjectTab
       );
     }
   }]);

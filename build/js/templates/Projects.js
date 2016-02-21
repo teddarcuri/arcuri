@@ -50,7 +50,8 @@ var Projects = function (_React$Component) {
           addGalleryImage: this.props.addGalleryImage,
           removeGalleryImage: this.props.removeGalleryImage,
           projectMode: this.props.projectMode,
-          setProjectMode: this.props.setProjectMode
+          setProjectMode: this.props.setProjectMode,
+          uid: this.props.uid
         })
       );
     }

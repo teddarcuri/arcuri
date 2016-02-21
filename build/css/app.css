@@ -48,6 +48,7 @@ html {
 
 .bubbleUp-appear {
   opacity: 0.01;
+  transition-delay: 3s;
   -webkit-transform: translateY(100%);
   -moz-transform: translateY(100%);
   -ms-transform: translateY(100%);
@@ -98,6 +99,77 @@ html {
     -webkit-transition-delay: 1.8s;
     -moz-transition-delay: 1.8s;
     transition-delay: 1.8s; }
+
+.bubbleUp-enter {
+  opacity: 0.01;
+  transition-delay: 3s;
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%); }
+
+.bubbleUp-enter.bubbleUp-enter-active {
+  opacity: 1;
+  transition: all 1s ease;
+  -webkit-transform: translateY(0%);
+  -moz-transform: translateY(0%);
+  -ms-transform: translateY(0%);
+  -o-transform: translateY(0%);
+  transform: translateY(0%); }
+  .bubbleUp-enter.bubbleUp-enter-active:nth-child(1) {
+    -webkit-transition-delay: 0.2s;
+    -moz-transition-delay: 0.2s;
+    transition-delay: 0.2s; }
+  .bubbleUp-enter.bubbleUp-enter-active:nth-child(2) {
+    -webkit-transition-delay: 0.4s;
+    -moz-transition-delay: 0.4s;
+    transition-delay: 0.4s; }
+  .bubbleUp-enter.bubbleUp-enter-active:nth-child(3) {
+    -webkit-transition-delay: 0.6s;
+    -moz-transition-delay: 0.6s;
+    transition-delay: 0.6s; }
+  .bubbleUp-enter.bubbleUp-enter-active:nth-child(4) {
+    -webkit-transition-delay: 0.8s;
+    -moz-transition-delay: 0.8s;
+    transition-delay: 0.8s; }
+  .bubbleUp-enter.bubbleUp-enter-active:nth-child(5) {
+    -webkit-transition-delay: 1s;
+    -moz-transition-delay: 1s;
+    transition-delay: 1s; }
+  .bubbleUp-enter.bubbleUp-enter-active:nth-child(6) {
+    -webkit-transition-delay: 1.2s;
+    -moz-transition-delay: 1.2s;
+    transition-delay: 1.2s; }
+  .bubbleUp-enter.bubbleUp-enter-active:nth-child(7) {
+    -webkit-transition-delay: 1.4s;
+    -moz-transition-delay: 1.4s;
+    transition-delay: 1.4s; }
+  .bubbleUp-enter.bubbleUp-enter-active:nth-child(8) {
+    -webkit-transition-delay: 1.6s;
+    -moz-transition-delay: 1.6s;
+    transition-delay: 1.6s; }
+  .bubbleUp-enter.bubbleUp-enter-active:nth-child(9) {
+    -webkit-transition-delay: 1.8s;
+    -moz-transition-delay: 1.8s;
+    transition-delay: 1.8s; }
+
+.bubbleUp-leave {
+  opacity: 1;
+  -webkit-transform: translateY(0%);
+  -moz-transform: translateY(0%);
+  -ms-transform: translateY(0%);
+  -o-transform: translateY(0%);
+  transform: translateY(0%); }
+
+.bubbleUp-leave.bubbleUp-leave-active {
+  opacity: 0.01;
+  transition: all 1s ease;
+  -webkit-transform: translateY(-500%);
+  -moz-transform: translateY(-500%);
+  -ms-transform: translateY(-500%);
+  -o-transform: translateY(-500%);
+  transform: translateY(-500%); }
 
 .slideLeft-appear {
   opacity: 0.01;

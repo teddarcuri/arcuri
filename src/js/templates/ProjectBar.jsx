@@ -9,9 +9,20 @@ class ProjectBar extends React.Component {
   	super(props);
   }
 
+  renderNewProjectTab() {
+    return (
+      <li>
+        <Link to="/work/new">
+          <img src="/src/img/new-project-btn.jpg" />
+        </Link>
+      </li>
+    ) 
+  }
+
   render() {
   	var p = this.props.currentProject,
-        projects = this.props.projects;
+        projects = this.props.projects,
+        newProjectTab = this.props.uid ? this.renderNewProjectTab() : null;
     return (
       <ul className="project-bar">
         {
@@ -32,11 +43,7 @@ class ProjectBar extends React.Component {
             )
           })
         }
-        <li>
-          <Link to="/work/new">
-            <img src="/src/img/new-project-btn.jpg" />
-          </Link>
-        </li>
+        {newProjectTab}
       </ul>
     );
   }

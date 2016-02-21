@@ -17,9 +17,11 @@ import ProjectIndex from './ProjectIndex';
 import NewProjectForm from './NewProjectForm';
 import Project from './project';
 import Contact from './contact';
-import LoginPage from './LoginPage';
+import Dashboard from './Dashboard';
 
 // Firebase
+import Firebase from 'firebase';
+const ref = new Firebase("https://tedd-arcuri.firebaseio.com/");
 import Rebase from 're-base';
 var base = Rebase.createClass('https://tedd-arcuri.firebaseio.com/');
 
@@ -68,6 +70,9 @@ class App extends React.Component {
   */
 
   componentDidMount() {
+    // Check to see if user is authenticated
+    this.checkIfAuthenticated();
+
     // Check to see if the loaded route will be a project component
     this.checkIfProjectPage(this.props);
 
@@ -78,7 +83,7 @@ class App extends React.Component {
       asArray: true
     });
 
-    // // Images Loaded
+    // Images Loaded
     this.imagesLoaded();
   }
 
@@ -121,7 +126,7 @@ class App extends React.Component {
   } 
 
   imagesLoaded() {
-    // // Images Loaded
+    // Images Loaded
     var imgLoad = imagesLoaded( this.refs.appWindow, {background: true});
 
     imgLoad.on('progress', function(imgLoad, image) {
@@ -132,6 +137,36 @@ class App extends React.Component {
 
     imgLoad.on( 'done', function( instance ) {
     });
+  }
+
+  /* 
+    Auth
+  */
+  authenticate(credentials) {
+    ref.authWithPassword({
+      email: credentials.email,
+      password: credentials.password
+    }, (error, authData) => {
+      if (error) {
+        console.log("failed", error);
+      } else {
+        this.setState({uid: authData.uid});
+        console.log("success", authData);
+      }
+    });
+  }
+
+  unauthenticate() {
+    ref.unauth();
+    this.setState({uid: ""});
+  }
+
+  checkIfAuthenticated() {
+    if (localStorage.getItem("firebase:session::tedd-arcuri")) {
+      let session = localStorage.getItem("firebase:session::tedd-arcuri");
+          session = JSON.parse(session);
+      this.setState({uid: session.uid});
+    } 
   }
 
   /*
@@ -214,8 +249,7 @@ class App extends React.Component {
     <div className="app-window"
           ref="appWindow">
     
-        <header id="main" className={logoClasses}>
-  
+        <header id="main" className={logoClasses}>  
            <Link to="/">
               <div id="logo" >   
                   <svg className="letter" width="614px" height="619px" viewBox="0 0 614 619" version="1.1">
@@ -274,7 +308,7 @@ class App extends React.Component {
                     c16.4,0,25.1,10.9,25.1,25.1c0,13.6-9.2,24.9-25.1,24.9H-328V-72z"/>
                 </g>
               </svg>
-              <Link to="/login">
+              <Link to="/dashboard">
               <svg className="letter" version="1.1" id="D-2" x="0px" y="0px"
                  viewBox="-355.2 -98 94.4 102" enable-background="new -355.2 -98 94.4 102" >
                 <g className="svg-fill" >
@@ -303,7 +337,11 @@ class App extends React.Component {
                 addGalleryImage: this.addGalleryImage.bind(this),
                 removeGalleryImage: this.removeGalleryImage.bind(this),
                 projectMode: this.state.projectMode,
-                setProjectMode: this.setProjectMode.bind(this)
+                setProjectMode: this.setProjectMode.bind(this),
+                //Auth
+                authenticate: this.authenticate.bind(this),
+                unauthenticate: this.unauthenticate.bind(this),
+                uid: this.state.uid
               })}
            </ReactTransitionGroup>
 	     </div>
@@ -312,7 +350,8 @@ class App extends React.Component {
        </div>
 
        <ProjectBar projects={this.state.projects}
-                   currentProject={this.state.currentProject} />
+                   currentProject={this.state.currentProject}
+                   uid={this.state.uid} />
 
       </div>       
     )
@@ -338,7 +377,7 @@ ReactDOM.render((
         <Route path="new" component={Project} />
         <Route path=":name" component={Project} />
       </Route>
-      <Route path="login" component={LoginPage}></Route>
+      <Route path="dashboard" component={Dashboard}></Route>
     </Route>
   </Router>
 ), document.getElementById('app'));
