@@ -22,6 +22,10 @@ var _ProjectGallery = require('./ProjectGallery');
 
 var _ProjectGallery2 = _interopRequireDefault(_ProjectGallery);
 
+var _ProjectIndex = require('./ProjectIndex');
+
+var _ProjectIndex2 = _interopRequireDefault(_ProjectIndex);
+
 var _ProjectActionBar = require('./ProjectActionBar');
 
 var _ProjectActionBar2 = _interopRequireDefault(_ProjectActionBar);
@@ -142,7 +146,7 @@ var ProjectPage = function (_React$Component) {
   }, {
     key: 'renderEditTools',
     value: function renderEditTools() {
-      if (this.props.mode === "EDIT") {
+      if (this.props.mode === "EDIT" && this.props.isAuthenticated) {
         return _react2.default.createElement(
           'ul',
           { className: 'project-edit-tools' },
@@ -197,46 +201,52 @@ var ProjectPage = function (_React$Component) {
               logo,
               p.name,
               this.renderEditTools()
-            ),
-            _react2.default.createElement(
-              'ul',
-              { className: 'tags' },
-              _react2.default.createElement(
-                'li',
-                null,
-                'Web'
-              ),
-              _react2.default.createElement(
-                'li',
-                null,
-                'Print'
-              )
             )
           ),
           this.renderProjectActionBar(),
           _react2.default.createElement(
             'main',
             null,
+            _react2.default.createElement(
+              'div',
+              { className: 'project-infobar' },
+              _react2.default.createElement(
+                'ul',
+                { className: 'tags' },
+                _react2.default.createElement(
+                  'li',
+                  null,
+                  'Web',
+                  _react2.default.createElement(_ProjectIndex2.default, { projects: this.props.projects,
+                    type: 'BARS' })
+                ),
+                _react2.default.createElement(
+                  'li',
+                  null,
+                  'Print',
+                  _react2.default.createElement(_ProjectIndex2.default, { projects: this.props.projects,
+                    type: 'BUBBLES' })
+                )
+              ),
+              _react2.default.createElement(
+                'span',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: 'google.com' },
+                  'View Site'
+                )
+              ),
+              _react2.default.createElement(
+                'span',
+                null,
+                'May 2015'
+              )
+            ),
             this.renderGallery(),
             _react2.default.createElement('section', { ref: 'details',
               'data-section': 'details',
-              dangerouslySetInnerHTML: this.renderOverview() }),
-            _react2.default.createElement(
-              'aside',
-              { ref: 'role' },
-              _react2.default.createElement(
-                'h3',
-                null,
-                'My Role'
-              ),
-              _react2.default.createElement('p', { dangerouslySetInnerHTML: this.renderOverview() }),
-              _react2.default.createElement(
-                'h3',
-                null,
-                'Tech Used'
-              ),
-              _react2.default.createElement('p', { dangerouslySetInnerHTML: this.renderOverview() })
-            )
+              dangerouslySetInnerHTML: this.renderOverview() })
           )
         ),
         _react2.default.createElement(

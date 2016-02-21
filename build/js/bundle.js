@@ -413,6 +413,15 @@
 	                null,
 	                _react2.default.createElement(
 	                  _reactRouter.Link,
+	                  { to: '/about' },
+	                  'Experience + Knowledge'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
 	                  { to: '/work' },
 	                  'My Work'
 	                )
@@ -62496,9 +62505,8 @@
 		}
 
 		_createClass(ProjectIndex, [{
-			key: 'render',
-			value: function render() {
-				var projects = this.props.projects;
+			key: 'renderBubbles',
+			value: function renderBubbles(projects) {
 				return _react2.default.createElement(
 					_reactAddonsCssTransitionGroup2.default,
 					{ className: 'project-bubbles',
@@ -62525,6 +62533,54 @@
 							styles: styles });
 					})
 				);
+			}
+		}, {
+			key: 'renderBars',
+			value: function renderBars(projects) {
+				return _react2.default.createElement(
+					'div',
+					{ className: 'project-bars' },
+					projects.map(function (p, key) {
+						var path = "/work/" + p.name,
+						    logoPath = p.logo,
+						    bgImgPath = p.background,
+						    styles = {
+							link: {
+								position: "relative",
+								zIndex: 9,
+								width: "100%",
+								padding: 10
+							},
+							background: {
+								backgroundImage: 'url(' + p.background + ')',
+								backgroundSize: 'cover',
+								position: "absolute",
+								top: 0,
+								left: 0,
+								opacity: "0.666",
+								height: "100%",
+								width: "100%",
+								display: "block"
+							}
+						};
+						return _react2.default.createElement(
+							_reactRouter.Link,
+							{ to: path, style: styles.link },
+							p.name,
+							_react2.default.createElement('div', { style: styles.background })
+						);
+					})
+				);
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var projects = this.props.projects;
+				if (this.props.type === "BUBBLES") {
+					return this.renderBubbles(projects);
+				} else {
+					return this.renderBars(projects);
+				}
 			}
 		}]);
 
@@ -62846,6 +62902,10 @@
 
 	var _ProjectGallery2 = _interopRequireDefault(_ProjectGallery);
 
+	var _ProjectIndex = __webpack_require__(225);
+
+	var _ProjectIndex2 = _interopRequireDefault(_ProjectIndex);
+
 	var _ProjectActionBar = __webpack_require__(334);
 
 	var _ProjectActionBar2 = _interopRequireDefault(_ProjectActionBar);
@@ -62966,7 +63026,7 @@
 	  }, {
 	    key: 'renderEditTools',
 	    value: function renderEditTools() {
-	      if (this.props.mode === "EDIT") {
+	      if (this.props.mode === "EDIT" && this.props.isAuthenticated) {
 	        return _react2.default.createElement(
 	          'ul',
 	          { className: 'project-edit-tools' },
@@ -63021,46 +63081,52 @@
 	              logo,
 	              p.name,
 	              this.renderEditTools()
-	            ),
-	            _react2.default.createElement(
-	              'ul',
-	              { className: 'tags' },
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Web'
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Print'
-	              )
 	            )
 	          ),
 	          this.renderProjectActionBar(),
 	          _react2.default.createElement(
 	            'main',
 	            null,
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'project-infobar' },
+	              _react2.default.createElement(
+	                'ul',
+	                { className: 'tags' },
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  'Web',
+	                  _react2.default.createElement(_ProjectIndex2.default, { projects: this.props.projects,
+	                    type: 'BARS' })
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  'Print',
+	                  _react2.default.createElement(_ProjectIndex2.default, { projects: this.props.projects,
+	                    type: 'BUBBLES' })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'span',
+	                null,
+	                _react2.default.createElement(
+	                  'a',
+	                  { href: 'google.com' },
+	                  'View Site'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'span',
+	                null,
+	                'May 2015'
+	              )
+	            ),
 	            this.renderGallery(),
 	            _react2.default.createElement('section', { ref: 'details',
 	              'data-section': 'details',
-	              dangerouslySetInnerHTML: this.renderOverview() }),
-	            _react2.default.createElement(
-	              'aside',
-	              { ref: 'role' },
-	              _react2.default.createElement(
-	                'h3',
-	                null,
-	                'My Role'
-	              ),
-	              _react2.default.createElement('p', { dangerouslySetInnerHTML: this.renderOverview() }),
-	              _react2.default.createElement(
-	                'h3',
-	                null,
-	                'Tech Used'
-	              ),
-	              _react2.default.createElement('p', { dangerouslySetInnerHTML: this.renderOverview() })
-	            )
+	              dangerouslySetInnerHTML: this.renderOverview() })
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -63157,9 +63223,23 @@
 	      this.setState({ currentImage: key });
 	    }
 	  }, {
-	    key: 'renderCurrentImage',
-	    value: function renderCurrentImage() {
-	      return _react2.default.createElement('img', { src: this.props.project.gallery[Object.keys(this.props.project.gallery)[this.state.currentImage]].path, alt: '', key: 'currentImage' });
+	    key: 'renderGalleryTrack',
+	    value: function renderGalleryTrack() {
+	      return _react2.default.createElement(
+	        _reactAddonsCssTransitionGroup2.default,
+	        { component: "div",
+	          className: 'gallery-image-track',
+	          transitionName: 'gallerySlide',
+	          transitionAppear: true,
+	          transitionAppearTimeout: 1000,
+	          transitionEnterTimeout: 700,
+	          transitionLeaveTimeout: 700 },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'gallery-image', key: this.state.currentImage },
+	          _react2.default.createElement('img', { src: this.props.project.gallery[Object.keys(this.props.project.gallery)[this.state.currentImage]].path, alt: '' })
+	        )
+	      );
 	    }
 	  }, {
 	    key: 'renderArrows',
@@ -63172,12 +63252,12 @@
 	          _react2.default.createElement(
 	            'div',
 	            { key: 'NEXT', onClick: this.nextImg.bind(this), style: this.getStyles().arrows.next },
-	            'NEXT'
+	            _react2.default.createElement('i', { style: this.getStyles().icon, className: 'fa fa-chevron-left' })
 	          ),
 	          _react2.default.createElement(
 	            'div',
 	            { key: 'PREV', onClick: this.prevImg.bind(this), style: this.getStyles().arrows.prev },
-	            'PREV'
+	            _react2.default.createElement('i', { style: this.getStyles().icon, className: 'fa fa-chevron-right' })
 	          )
 	        );
 	      }
@@ -63186,25 +63266,35 @@
 	    key: 'getStyles',
 	    value: function getStyles() {
 	      return {
+	        icon: {
+	          color: "#fff",
+	          padding: 10
+	        },
 	        arrows: {
 	          color: "#fff",
 	          position: "absolute",
-	          right: 10,
+	          right: 0,
 	          top: 0,
+	          padding: 0,
+	          margin: 0,
 	          next: {
 	            fontSize: "0.66em",
 	            background: "rgba(0,0,0,0.6)",
 	            padding: 10,
+	            display: "inline-block",
 	            ":hover": {
-	              background: "rgba(0,0,0,0.3)"
+	              cursor: "pointer",
+	              background: "rgba(255,255,255,0.1)"
 	            }
 	          },
 	          prev: {
 	            fontSize: "0.66em",
 	            background: "rgba(0,0,0,0.6)",
 	            padding: 10,
+	            display: "inline-block",
 	            ":hover": {
-	              background: "rgba(0,0,0,0.3)"
+	              cursor: "pointer",
+	              background: "rgba(255,255,255,0.1)"
 	            }
 	          }
 	        }
@@ -63222,51 +63312,25 @@
 	          className: 'gallery',
 	          transitionName: 'fadeIn',
 	          transitionAppear: true,
-	          transitionAppearTimeout: 0,
+	          transitionAppearTimeout: 1000,
 	          transitionEnterTimeout: 1000,
 	          transitionLeaveTimeout: 1000 },
 	        _react2.default.createElement(
-	          _reactAddonsCssTransitionGroup2.default,
-	          { component: "div",
-	            className: 'current-img',
-	            transitionName: 'fadeIn',
-	            transitionAppear: true,
-	            transitionAppearTimeout: 0,
-	            transitionEnterTimeout: 1000,
-	            transitionLeaveTimeout: 1000 },
-	          this.renderCurrentImage(),
-	          this.renderArrows(),
-	          _react2.default.createElement(
-	            'ul',
-	            { className: 'dots' },
-	            Object.keys(p.gallery).map(function (img, key) {
-	              return _react2.default.createElement(
-	                'li',
-	                { key: key, onClick: this.setCurrentImage.bind(this, key) },
-	                '•'
-	              );
-	            }, this)
-	          )
+	          'div',
+	          { className: 'gallery-image-viewer' },
+	          this.renderGalleryTrack(),
+	          this.renderArrows()
 	        ),
 	        _react2.default.createElement(
-	          _reactElementQuery2.default,
-	          { sizes: [{ name: 'large', width: 300 }, { name: 'small', width: 150 }] },
-	          _react2.default.createElement(
-	            'ul',
-	            { className: 'gallery-image-thumbs' },
-	            _react2.default.createElement(
-	              'h3',
-	              null,
-	              'Gallery'
-	            ),
-	            Object.keys(p.gallery).map(function (img, key) {
-	              return _react2.default.createElement(
-	                'li',
-	                { className: 'gallery-image', key: key, onClick: this.setCurrentImage.bind(this, key) },
-	                _react2.default.createElement('img', { src: p.gallery[img].path, alt: '' })
-	              );
-	            }, this)
-	          )
+	          'ul',
+	          { className: 'gallery-image-thumbs' },
+	          Object.keys(p.gallery).map(function (img, key) {
+	            return _react2.default.createElement(
+	              'li',
+	              { className: 'gallery-image', key: key, onClick: this.setCurrentImage.bind(this, key) },
+	              _react2.default.createElement('img', { src: p.gallery[img].path, alt: '' })
+	            );
+	          }, this)
 	        )
 	      );
 	    }
@@ -71778,6 +71842,7 @@
 	          this.renderSidebar()
 	        ),
 	        _react2.default.createElement(_ProjectPage2.default, { currentProject: p,
+	          projects: this.props.projects,
 	          mode: this.props.projectMode,
 	          isEditing: this.state.isEditing,
 	          edit: this.isEditing.bind(this),

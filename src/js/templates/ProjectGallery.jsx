@@ -17,7 +17,6 @@ class ProjectGallery extends React.Component {
   nextImg() {
     var key = this.state.currentImage + 1;
     this.setCurrentImage(key);
-
   }
 
   prevImg() {
@@ -41,9 +40,19 @@ class ProjectGallery extends React.Component {
     this.setState({ currentImage : key });
   }
 
-  renderCurrentImage() {
+  renderGalleryTrack() {
     return (
-      <img src={this.props.project.gallery[Object.keys(this.props.project.gallery)[this.state.currentImage]].path} alt="" key="currentImage"/>
+       <CSSTransitionGroup component={"div"}
+                          className="gallery-image-track"
+                          transitionName="gallerySlide"
+                          transitionAppear={true}
+                          transitionAppearTimeout={1000}
+                          transitionEnterTimeout={700}
+                          transitionLeaveTimeout={700}>
+          <div className="gallery-image" key={this.state.currentImage}>
+            <img src={this.props.project.gallery[Object.keys(this.props.project.gallery)[this.state.currentImage]].path} alt=""/>
+          </div>
+      </CSSTransitionGroup>
     )
   }
 
@@ -52,8 +61,12 @@ class ProjectGallery extends React.Component {
     if (imageCount > 1) {
       return (
         <ul style={this.getStyles().arrows}>
-          <div key="NEXT" onClick={this.nextImg.bind(this)} style={this.getStyles().arrows.next}>NEXT</div>
-          <div key="PREV" onClick={this.prevImg.bind(this)} style={this.getStyles().arrows.prev}>PREV</div>
+          <div key="NEXT" onClick={this.nextImg.bind(this)} style={this.getStyles().arrows.next}>
+            <i style={this.getStyles().icon}className="fa fa-chevron-left"></i>
+          </div>
+          <div key="PREV" onClick={this.prevImg.bind(this)} style={this.getStyles().arrows.prev}>
+            <i style={this.getStyles().icon}className="fa fa-chevron-right"></i>
+          </div>
         </ul>
       )
     }
@@ -61,25 +74,35 @@ class ProjectGallery extends React.Component {
 
   getStyles() {
     return {
+       icon: {
+          color: "#fff",
+          padding: 10
+       },
        arrows: {
         color: "#fff",
         position: "absolute",
-        right: 10,
+        right: 0,
         top: 0, 
+        padding: 0,
+        margin: 0,
         next: {
           fontSize: "0.66em",
           background: "rgba(0,0,0,0.6)",
           padding: 10,
+          display: "inline-block",
           ":hover" : {
-            background: "rgba(0,0,0,0.3)"
+            cursor: "pointer",
+            background: "rgba(255,255,255,0.1)"
           }
         },
         prev: {
           fontSize: "0.66em",
           background: "rgba(0,0,0,0.6)",
           padding: 10,
+          display: "inline-block",
           ":hover" : {
-            background: "rgba(0,0,0,0.3)"
+            cursor: "pointer",
+            background: "rgba(255,255,255,0.1)"
           }
         }
       }
@@ -90,26 +113,19 @@ class ProjectGallery extends React.Component {
     var p = this.props.project,
         currentImage = this.props.project.gallery[Object.keys(this.props.project.gallery)[this.state.currentImage]];
 
-
     return (
       <CSSTransitionGroup component={"div"}
                           className="gallery"
                           transitionName="fadeIn"
                           transitionAppear={true}
-                          transitionAppearTimeout={0}
+                          transitionAppearTimeout={1000}
                           transitionEnterTimeout={1000}
                           transitionLeaveTimeout={1000}>
 
-          <CSSTransitionGroup component={"div"}
-                          className="current-img"
-                          transitionName="fadeIn"
-                          transitionAppear={true}
-                          transitionAppearTimeout={0}
-                          transitionEnterTimeout={1000}
-                          transitionLeaveTimeout={1000}>
-              {this.renderCurrentImage()}
+          <div className="gallery-image-viewer">
+              {this.renderGalleryTrack()}
               {this.renderArrows()}
-              <ul className="dots">
+              {/*<ul className="dots">
                 {
                   Object.keys(p.gallery).map(function(img, key) {
                     return (
@@ -119,23 +135,19 @@ class ProjectGallery extends React.Component {
                     )
                   }, this)
                 }
-              </ul>
-          </CSSTransitionGroup>
-
-          <ElementQuery sizes={[{name: 'large', width: 300}, {name: 'small', width: 150}]}>
-            <ul className="gallery-image-thumbs">
-              <h3>Gallery</h3>
-             {
-                Object.keys(p.gallery).map(function(img, key) {
-                  return (
-                    <li className="gallery-image" key={key} onClick={this.setCurrentImage.bind(this, key)}>
-                      <img src={p.gallery[img].path} alt=""/>
-                    </li>
-                  )
-                }, this)
-             }
-            </ul>
-          </ElementQuery>
+              </ul> */}
+          </div>
+          <ul className="gallery-image-thumbs">
+           {
+              Object.keys(p.gallery).map(function(img, key) {
+                return (
+                  <li className="gallery-image" key={key} onClick={this.setCurrentImage.bind(this, key)}>
+                    <img src={p.gallery[img].path} alt=""/>
+                  </li>
+                )
+              }, this)
+           }
+          </ul>
       </CSSTransitionGroup>
     )
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import ProjectGallery from './ProjectGallery';
+import ProjectIndex from './ProjectIndex';
 import ProjectActionBar from './ProjectActionBar';
 import showdown from 'showdown';
 
@@ -94,7 +95,7 @@ class ProjectPage extends React.Component {
   }
 
   renderEditTools() {
-    if (this.props.mode === "EDIT") {
+    if (this.props.mode === "EDIT" && this.props.isAuthenticated) {
       return (
         <ul className="project-edit-tools">
           <li onClick={this.props.edit}>
@@ -140,16 +141,37 @@ class ProjectPage extends React.Component {
                 {p.name}
                 {this.renderEditTools()}
               </h1>
-
-              <ul className="tags">
-                <li>Web</li>
-                <li>Print</li>
-              </ul>
             </header>
 
             {this.renderProjectActionBar()}
 
             <main>
+
+              <div className="project-infobar">
+                 <ul className="tags">
+                  <li>
+                    Web
+                    <ProjectIndex projects={this.props.projects}
+                                  type="BARS"></ProjectIndex>
+                  </li>
+                  <li>
+                    Print
+                    <ProjectIndex projects={this.props.projects}
+                                  type="BUBBLES"></ProjectIndex>
+                  </li>
+                </ul>
+
+                <span>
+                  <a href="google.com">
+                    View Site
+                  </a>
+                </span>
+
+                <span>
+                  May 2015
+                </span>
+              </div>
+             
 
               {this.renderGallery()}
 
@@ -157,16 +179,6 @@ class ProjectPage extends React.Component {
                         data-section="details"
                         dangerouslySetInnerHTML={this.renderOverview()}>
               </section>
-
-              <aside ref="role">
-              <h3>My Role</h3>
-              <p dangerouslySetInnerHTML={this.renderOverview()}>
-              </p>
-
-              <h3>Tech Used</h3>
-              <p dangerouslySetInnerHTML={this.renderOverview()}>
-              </p>
-              </aside>
 
             </main>
         

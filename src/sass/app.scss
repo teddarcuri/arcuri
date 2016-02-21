@@ -92,21 +92,85 @@ section.split {
   width: 100%;
 }
 
+.project-infobar {
+  background: rgba(#000, 0.8);
+  width: 100%;
+
+  span {
+    margin-right: 30px;
+    color: #aaa;
+    a {
+      color: #aaa;
+    }
+    &:after {
+      content: "|";
+      padding-left: 30px;
+    }
+     &:last-child {
+      &:after {
+        content: "";
+        padding-left: 0px;
+      }
+    }
+  }
+}
 .tags {
-    text-align: center;
     margin: 0px;
-    padding: 0px;
+    padding: 20px 30px;
+    display: inline-block;
     li {
-        background: #fff;
-        color: #222;
+        background: #222;
+        color: #ccc;
         display: inline-block;
         margin-right: 10px;
-        border-radius: 8px;
-        padding: 8px 15px;
+        border-radius: 3px;
+        padding: 10px 15px;
         letter-spacing: 2px;
         font-weight: 700;
-        font-size: 0.7em;
+        font-size: 0.9em;
+        position: relative;
         text-transform: uppercase;
+        .project-bubbles {
+          width: 300px;
+          background: #222;
+          position: absolute;
+          left: 0; top: 40px;
+          z-index: 9;
+           .project-bubble-wrap {
+              padding: 20px 20px;
+              @include flex(1 0 50%);
+              @include display(flex);
+              @include align-items(center);
+              @include justify-content(center);
+              &:hover {
+                background: rgba(#000, 0.33);
+              }
+            }
+            .project-bubbles {
+              background: rgba(#fff, 0.075);
+              padding: 6px;
+            }
+            .project-bubble {
+              width: 33px;
+              height: 33px;
+              border-radius: 50%;
+              padding: 0px !important;
+              @include display(flex);
+              @include align-items(center);
+              @include justify-content(center);
+                img.logo {
+                  @include flex(25px);
+                } 
+                img.bg {
+                  width: 100%;
+                  height: 100%;
+                } 
+              }
+        }
+        &:hover {
+          background: #000;
+          color: #fff;
+        }
     }
 }
 
@@ -198,6 +262,12 @@ section.split {
       color: #fff;
       background: $red;
     }
+  }
+}
+
+.project-bars {
+  a {
+    padding: 0px;
   }
 }
 

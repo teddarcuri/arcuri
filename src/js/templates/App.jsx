@@ -234,7 +234,16 @@ class App extends React.Component {
                     </svg>
                 </span>
                 <ul className="main">
-                   <li><Link to="/about">About</Link></li>
+                   <li>
+                    <Link to="/about">
+                      About
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/about">
+                      Experience + Knowledge
+                    </Link>
+                  </li>
                    <li>
                     <Link to="/work">
                       My Work

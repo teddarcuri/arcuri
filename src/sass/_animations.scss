@@ -4,6 +4,34 @@
 
 */
 
+// Gallery Slide
+.gallerySlide-appear {
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.gallerySlide-appear.gallerySlide-appear-active {
+  opacity: 1;
+}
+
+.gallerySlide-enter {
+  @include transform(translateX(100%));
+  transition: all 0.7s ease;
+}
+
+.gallerySlide-enter.gallerySlide-enter-active {
+  @include transform(translateX(0%));
+}
+
+.gallerySlide-leave {
+  @include transform(translateX(0%));
+  transition: all 0.7s ease;
+}
+
+.gallerySlide-leave.gallerySlide-leave-active {
+  @include transform(translateX(-100%));
+}
+
 // Bubble Up
 .bubbleUp-appear {
   opacity: 0.01;
@@ -101,6 +129,7 @@
     opacity: 1;
   }
 }
+
 
 
 // Project Element

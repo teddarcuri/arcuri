@@ -74,9 +74,23 @@ var ProjectGallery = function (_React$Component) {
       this.setState({ currentImage: key });
     }
   }, {
-    key: 'renderCurrentImage',
-    value: function renderCurrentImage() {
-      return _react2.default.createElement('img', { src: this.props.project.gallery[Object.keys(this.props.project.gallery)[this.state.currentImage]].path, alt: '', key: 'currentImage' });
+    key: 'renderGalleryTrack',
+    value: function renderGalleryTrack() {
+      return _react2.default.createElement(
+        _reactAddonsCssTransitionGroup2.default,
+        { component: "div",
+          className: 'gallery-image-track',
+          transitionName: 'gallerySlide',
+          transitionAppear: true,
+          transitionAppearTimeout: 1000,
+          transitionEnterTimeout: 700,
+          transitionLeaveTimeout: 700 },
+        _react2.default.createElement(
+          'div',
+          { className: 'gallery-image', key: this.state.currentImage },
+          _react2.default.createElement('img', { src: this.props.project.gallery[Object.keys(this.props.project.gallery)[this.state.currentImage]].path, alt: '' })
+        )
+      );
     }
   }, {
     key: 'renderArrows',
@@ -89,12 +103,12 @@ var ProjectGallery = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { key: 'NEXT', onClick: this.nextImg.bind(this), style: this.getStyles().arrows.next },
-            'NEXT'
+            _react2.default.createElement('i', { style: this.getStyles().icon, className: 'fa fa-chevron-left' })
           ),
           _react2.default.createElement(
             'div',
             { key: 'PREV', onClick: this.prevImg.bind(this), style: this.getStyles().arrows.prev },
-            'PREV'
+            _react2.default.createElement('i', { style: this.getStyles().icon, className: 'fa fa-chevron-right' })
           )
         );
       }
@@ -103,25 +117,35 @@ var ProjectGallery = function (_React$Component) {
     key: 'getStyles',
     value: function getStyles() {
       return {
+        icon: {
+          color: "#fff",
+          padding: 10
+        },
         arrows: {
           color: "#fff",
           position: "absolute",
-          right: 10,
+          right: 0,
           top: 0,
+          padding: 0,
+          margin: 0,
           next: {
             fontSize: "0.66em",
             background: "rgba(0,0,0,0.6)",
             padding: 10,
+            display: "inline-block",
             ":hover": {
-              background: "rgba(0,0,0,0.3)"
+              cursor: "pointer",
+              background: "rgba(255,255,255,0.1)"
             }
           },
           prev: {
             fontSize: "0.66em",
             background: "rgba(0,0,0,0.6)",
             padding: 10,
+            display: "inline-block",
             ":hover": {
-              background: "rgba(0,0,0,0.3)"
+              cursor: "pointer",
+              background: "rgba(255,255,255,0.1)"
             }
           }
         }
@@ -139,51 +163,25 @@ var ProjectGallery = function (_React$Component) {
           className: 'gallery',
           transitionName: 'fadeIn',
           transitionAppear: true,
-          transitionAppearTimeout: 0,
+          transitionAppearTimeout: 1000,
           transitionEnterTimeout: 1000,
           transitionLeaveTimeout: 1000 },
         _react2.default.createElement(
-          _reactAddonsCssTransitionGroup2.default,
-          { component: "div",
-            className: 'current-img',
-            transitionName: 'fadeIn',
-            transitionAppear: true,
-            transitionAppearTimeout: 0,
-            transitionEnterTimeout: 1000,
-            transitionLeaveTimeout: 1000 },
-          this.renderCurrentImage(),
-          this.renderArrows(),
-          _react2.default.createElement(
-            'ul',
-            { className: 'dots' },
-            Object.keys(p.gallery).map(function (img, key) {
-              return _react2.default.createElement(
-                'li',
-                { key: key, onClick: this.setCurrentImage.bind(this, key) },
-                '•'
-              );
-            }, this)
-          )
+          'div',
+          { className: 'gallery-image-viewer' },
+          this.renderGalleryTrack(),
+          this.renderArrows()
         ),
         _react2.default.createElement(
-          _reactElementQuery2.default,
-          { sizes: [{ name: 'large', width: 300 }, { name: 'small', width: 150 }] },
-          _react2.default.createElement(
-            'ul',
-            { className: 'gallery-image-thumbs' },
-            _react2.default.createElement(
-              'h3',
-              null,
-              'Gallery'
-            ),
-            Object.keys(p.gallery).map(function (img, key) {
-              return _react2.default.createElement(
-                'li',
-                { className: 'gallery-image', key: key, onClick: this.setCurrentImage.bind(this, key) },
-                _react2.default.createElement('img', { src: p.gallery[img].path, alt: '' })
-              );
-            }, this)
-          )
+          'ul',
+          { className: 'gallery-image-thumbs' },
+          Object.keys(p.gallery).map(function (img, key) {
+            return _react2.default.createElement(
+              'li',
+              { className: 'gallery-image', key: key, onClick: this.setCurrentImage.bind(this, key) },
+              _react2.default.createElement('img', { src: p.gallery[img].path, alt: '' })
+            );
+          }, this)
         )
       );
     }

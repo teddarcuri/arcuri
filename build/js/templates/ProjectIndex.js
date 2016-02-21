@@ -42,9 +42,8 @@ var ProjectIndex = function (_React$Component) {
 	}
 
 	_createClass(ProjectIndex, [{
-		key: 'render',
-		value: function render() {
-			var projects = this.props.projects;
+		key: 'renderBubbles',
+		value: function renderBubbles(projects) {
 			return _react2.default.createElement(
 				_reactAddonsCssTransitionGroup2.default,
 				{ className: 'project-bubbles',
@@ -71,6 +70,54 @@ var ProjectIndex = function (_React$Component) {
 						styles: styles });
 				})
 			);
+		}
+	}, {
+		key: 'renderBars',
+		value: function renderBars(projects) {
+			return _react2.default.createElement(
+				'div',
+				{ className: 'project-bars' },
+				projects.map(function (p, key) {
+					var path = "/work/" + p.name,
+					    logoPath = p.logo,
+					    bgImgPath = p.background,
+					    styles = {
+						link: {
+							position: "relative",
+							zIndex: 9,
+							width: "100%",
+							padding: 10
+						},
+						background: {
+							backgroundImage: 'url(' + p.background + ')',
+							backgroundSize: 'cover',
+							position: "absolute",
+							top: 0,
+							left: 0,
+							opacity: "0.666",
+							height: "100%",
+							width: "100%",
+							display: "block"
+						}
+					};
+					return _react2.default.createElement(
+						_reactRouter.Link,
+						{ to: path, style: styles.link },
+						p.name,
+						_react2.default.createElement('div', { style: styles.background })
+					);
+				})
+			);
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var projects = this.props.projects;
+			if (this.props.type === "BUBBLES") {
+				return this.renderBubbles(projects);
+			} else {
+				return this.renderBars(projects);
+			}
 		}
 	}]);
 
