@@ -23,13 +23,7 @@ class Project extends React.Component {
           title: "Gallery"        
         },
         {
-          title: "Details"
-        },
-        {
-          title: "Role"
-        },
-        {
-          title: "Tech"
+          title: "Overview"
         }
       ]
     }

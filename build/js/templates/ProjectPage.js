@@ -218,14 +218,16 @@ var ProjectPage = function (_React$Component) {
                   null,
                   'Web',
                   _react2.default.createElement(_ProjectIndex2.default, { projects: this.props.projects,
-                    type: 'BARS' })
+                    type: 'BARS',
+                    filter: 'WEB' })
                 ),
                 _react2.default.createElement(
                   'li',
                   null,
                   'Print',
                   _react2.default.createElement(_ProjectIndex2.default, { projects: this.props.projects,
-                    type: 'BUBBLES' })
+                    type: 'BUBBLES',
+                    filter: 'PRINT' })
                 )
               ),
               _react2.default.createElement(

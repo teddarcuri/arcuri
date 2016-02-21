@@ -60,14 +60,9 @@ class Tabs extends React.Component {
   	) 
   }
 
-  showDetailsTab() {
+  showOverviewTab() {
   	return (
   		<div className="details">
-	    	<label htmlFor="types">Types</label>
-	    	<input ref="types" 
-				   type="types" 
-				   placeholder="types"/>
-
 			<label htmlFor="description">Description</label>
 	    	<textarea name="description" 
 					  ref="description"
@@ -144,7 +139,7 @@ class Tabs extends React.Component {
   			return this.showGalleryTab(this.props.project.gallery);
   			break;
   		case 2:
-  			return this.showDetailsTab();
+  			return this.showOverviewTab();
   			break;
   		default:
   			return this.showHeaderTab();

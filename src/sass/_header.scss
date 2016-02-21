@@ -9,7 +9,7 @@ header#main {
     z-index: 999;
     @include display(flex);
     @include bp(600px) {
-      display: none;
+      padding: 10px;
     }
     svg {
         height: 40px;

@@ -42,6 +42,9 @@
   @include align-items(center);
   @include align-self(flex-start);
   @include flex-flow(row no-wrap);
+  @include bp(600px) {
+    padding: 0px 0px;
+  }
 
   h3 {
     color: #fff;
@@ -221,7 +224,7 @@
 
 .project-bar {
   @include display(flex);
-  height: 200px;
+  height: 120px;
   bottom: 0px;
   left: 0px;
   width: 100%;
@@ -333,8 +336,14 @@
 
   .gallery-image-track {
     width: 100%;
-    height: 666px;
+    height: 660px;
     overflow: hidden;
+    @include bp(1300px) {
+      height: 475px;
+    }
+    @include bp(666px) {
+      height: 300px;
+    }
     .gallery-image {
       width: 100%;
       height: 100%;
@@ -342,7 +351,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      padding:40px;
+      padding:0px 40px;
 
       @include display(flex);
       @include flex-flow(row wrap);
@@ -364,27 +373,6 @@
     @include align-items(center);
     @include justify-content(center);
     @include flex-flow(row no-wrap);
-  
-    .dots {
-      display: block;
-      width: 100%;
-      margin: 0px;
-      background: rgba(#111, 1);
-      li {
-        color: #fff;
-        display: inline-block;
-        padding: 15px 25px;
-        position: relative;
-        text-align: center;
-        height: 50px; width: 50px;
-        &:hover {
-          background: #222;
-        }
-        &:first-child {
-          background: #111;
-        }
-      }
-    }
   }
 
   .gallery-image-thumbs {
@@ -392,12 +380,16 @@
     background: rgba(#333, 1);
     padding: 0px;
     position: relative;
+
     @include flex(1 0 100%);
     @include display(flex);
     @include align-items(flex-start);
     @include align-content(flex-start);
     @include justify-content(flex-start);
     @include flex-flow(row wrap);
+    @include bp(900px) {
+      @include order(2);
+    }
 
     .current-image-highlighter {
         border: solid rgba(#fff, 0.8) 3px;
@@ -406,7 +398,13 @@
         height: 33px; width: 100px;
         box-shadow: 0px 0px 60px rgba(#fff, 0.5);
         z-index: 20;
-        @include transition(all ease 1s);
+        @include transition(all ease 0.5s);
+         @include bp(600px) {
+          width: 25%;
+        }
+        @include bp(450px) {
+          width: 10%;
+        }
     }
 
     .gallery-image {
@@ -420,7 +418,14 @@
       @include align-items(center);
       @include justify-content(center);
       @include transition(all ease 0.2s);
+      @include bp(600px) {
+          @include flex(1 0 25%);
+      }
+      @include bp(450px) {
+         @include flex(0 0 10%);
+      }
       img {
+        opacity: 0.33;
         width: 100%;
       }
       &:hover {

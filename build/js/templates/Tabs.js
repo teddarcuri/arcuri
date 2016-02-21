@@ -110,19 +110,11 @@ var Tabs = function (_React$Component) {
       );
     }
   }, {
-    key: 'showDetailsTab',
-    value: function showDetailsTab() {
+    key: 'showOverviewTab',
+    value: function showOverviewTab() {
       return _react2.default.createElement(
         'div',
         { className: 'details' },
-        _react2.default.createElement(
-          'label',
-          { htmlFor: 'types' },
-          'Types'
-        ),
-        _react2.default.createElement('input', { ref: 'types',
-          type: 'types',
-          placeholder: 'types' }),
         _react2.default.createElement(
           'label',
           { htmlFor: 'description' },
@@ -219,7 +211,7 @@ var Tabs = function (_React$Component) {
           return this.showGalleryTab(this.props.project.gallery);
           break;
         case 2:
-          return this.showDetailsTab();
+          return this.showOverviewTab();
           break;
         default:
           return this.showHeaderTab();

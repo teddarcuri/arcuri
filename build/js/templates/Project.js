@@ -53,11 +53,7 @@ var Project = function (_React$Component) {
       }, {
         title: "Gallery"
       }, {
-        title: "Details"
-      }, {
-        title: "Role"
-      }, {
-        title: "Tech"
+        title: "Overview"
       }]
     };
     return _this;

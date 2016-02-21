@@ -265,10 +265,8 @@
 
 	      imgLoad.on('progress', function (imgLoad, image) {
 	        var result = image.isLoaded ? 'loaded' : 'broken';
-	        setTimeout(function () {
-	          image.img.classList.remove("is-loading");
-	          image.img.classList.add(result);
-	        }, 2000);
+	        image.img.classList.remove("is-loading");
+	        image.img.classList.add(result);
 	      });
 
 	      imgLoad.on('done', function (instance) {});
@@ -63226,14 +63224,16 @@
 	                  null,
 	                  'Web',
 	                  _react2.default.createElement(_ProjectIndex2.default, { projects: this.props.projects,
-	                    type: 'BARS' })
+	                    type: 'BARS',
+	                    filter: 'WEB' })
 	                ),
 	                _react2.default.createElement(
 	                  'li',
 	                  null,
 	                  'Print',
 	                  _react2.default.createElement(_ProjectIndex2.default, { projects: this.props.projects,
-	                    type: 'BUBBLES' })
+	                    type: 'BUBBLES',
+	                    filter: 'PRINT' })
 	                )
 	              ),
 	              _react2.default.createElement(
@@ -63424,6 +63424,7 @@
 	          top: 0,
 	          padding: 0,
 	          margin: 0,
+	          transition: "all ease 0.7s",
 	          next: {
 	            fontSize: "0.66em",
 	            background: "rgba(0,0,0,0.6)",
@@ -63431,7 +63432,8 @@
 	            display: "inline-block",
 	            ":hover": {
 	              cursor: "pointer",
-	              background: "rgba(255,255,255,0.1)"
+	              fontSize: "0.8em",
+	              background: "rgba(0,0,0,1)"
 	            }
 	          },
 	          prev: {
@@ -63441,7 +63443,8 @@
 	            display: "inline-block",
 	            ":hover": {
 	              cursor: "pointer",
-	              background: "rgba(255,255,255,0.1)"
+	              fontSize: "0.8em",
+	              background: "rgba(0,0,0,1)"
 	            }
 	          }
 	        }
@@ -63467,11 +63470,12 @@
 	          { className: 'gallery-image-thumbs' },
 	          _react2.default.createElement('div', { ref: 'highlighter', className: 'current-image-highlighter' }),
 	          Object.keys(p.gallery).map(function (img, key) {
-	            var ref = key == this.state.currentImage ? "currentThumb" : "thumb" + key;
+	            var ref = key == this.state.currentImage ? "currentThumb" : "thumb" + key,
+	                activeStyles = key == this.state.currentImage ? { opacity: 1 } : null;
 	            return _react2.default.createElement(
 	              'li',
 	              { ref: ref, className: 'gallery-image', key: key, onClick: this.setCurrentImage.bind(this, key) },
-	              _react2.default.createElement('img', { src: p.gallery[img].path, alt: '' })
+	              _react2.default.createElement('img', { style: activeStyles, src: p.gallery[img].path, alt: '' })
 	            );
 	          }, this)
 	        ),
@@ -71901,11 +71905,7 @@
 	      }, {
 	        title: "Gallery"
 	      }, {
-	        title: "Details"
-	      }, {
-	        title: "Role"
-	      }, {
-	        title: "Tech"
+	        title: "Overview"
 	      }]
 	    };
 	    return _this;
@@ -72126,19 +72126,11 @@
 	      );
 	    }
 	  }, {
-	    key: 'showDetailsTab',
-	    value: function showDetailsTab() {
+	    key: 'showOverviewTab',
+	    value: function showOverviewTab() {
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'details' },
-	        _react2.default.createElement(
-	          'label',
-	          { htmlFor: 'types' },
-	          'Types'
-	        ),
-	        _react2.default.createElement('input', { ref: 'types',
-	          type: 'types',
-	          placeholder: 'types' }),
 	        _react2.default.createElement(
 	          'label',
 	          { htmlFor: 'description' },
@@ -72235,7 +72227,7 @@
 	          return this.showGalleryTab(this.props.project.gallery);
 	          break;
 	        case 2:
-	          return this.showDetailsTab();
+	          return this.showOverviewTab();
 	          break;
 	        default:
 	          return this.showHeaderTab();

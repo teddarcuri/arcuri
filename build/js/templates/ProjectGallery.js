@@ -146,6 +146,7 @@ var ProjectGallery = function (_React$Component) {
           top: 0,
           padding: 0,
           margin: 0,
+          transition: "all ease 0.7s",
           next: {
             fontSize: "0.66em",
             background: "rgba(0,0,0,0.6)",
@@ -153,7 +154,8 @@ var ProjectGallery = function (_React$Component) {
             display: "inline-block",
             ":hover": {
               cursor: "pointer",
-              background: "rgba(255,255,255,0.1)"
+              fontSize: "0.8em",
+              background: "rgba(0,0,0,1)"
             }
           },
           prev: {
@@ -163,7 +165,8 @@ var ProjectGallery = function (_React$Component) {
             display: "inline-block",
             ":hover": {
               cursor: "pointer",
-              background: "rgba(255,255,255,0.1)"
+              fontSize: "0.8em",
+              background: "rgba(0,0,0,1)"
             }
           }
         }
@@ -189,11 +192,12 @@ var ProjectGallery = function (_React$Component) {
           { className: 'gallery-image-thumbs' },
           _react2.default.createElement('div', { ref: 'highlighter', className: 'current-image-highlighter' }),
           Object.keys(p.gallery).map(function (img, key) {
-            var ref = key == this.state.currentImage ? "currentThumb" : "thumb" + key;
+            var ref = key == this.state.currentImage ? "currentThumb" : "thumb" + key,
+                activeStyles = key == this.state.currentImage ? { opacity: 1 } : null;
             return _react2.default.createElement(
               'li',
               { ref: ref, className: 'gallery-image', key: key, onClick: this.setCurrentImage.bind(this, key) },
-              _react2.default.createElement('img', { src: p.gallery[img].path, alt: '' })
+              _react2.default.createElement('img', { style: activeStyles, src: p.gallery[img].path, alt: '' })
             );
           }, this)
         ),

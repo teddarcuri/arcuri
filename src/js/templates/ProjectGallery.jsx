@@ -101,6 +101,7 @@ class ProjectGallery extends React.Component {
         top: 0, 
         padding: 0,
         margin: 0,
+        transition: "all ease 0.7s",
         next: {
           fontSize: "0.66em",
           background: "rgba(0,0,0,0.6)",
@@ -108,7 +109,8 @@ class ProjectGallery extends React.Component {
           display: "inline-block",
           ":hover" : {
             cursor: "pointer",
-            background: "rgba(255,255,255,0.1)"
+            fontSize: "0.8em",
+            background: "rgba(0,0,0,1)"
           }
         },
         prev: {
@@ -118,7 +120,8 @@ class ProjectGallery extends React.Component {
           display: "inline-block",
           ":hover" : {
             cursor: "pointer",
-            background: "rgba(255,255,255,0.1)"
+            fontSize: "0.8em",
+            background: "rgba(0,0,0,1)"
           }
         }
       }
@@ -140,19 +143,21 @@ class ProjectGallery extends React.Component {
                           transitionEnterTimeout={1000}
                           transitionLeaveTimeout={1000}>
 
-          <ul className="gallery-image-thumbs">
+            <ul className="gallery-image-thumbs">
               <div ref="highlighter" className="current-image-highlighter"></div>
              {
                 Object.keys(p.gallery).map(function(img, key) {
-                  var ref = key == this.state.currentImage ? "currentThumb" : "thumb" + key;
+                  var ref = key == this.state.currentImage ? "currentThumb" : "thumb" + key,
+                      activeStyles =  key == this.state.currentImage ? {opacity: 1} : null;
                   return (
                     <li ref={ref} className="gallery-image" key={key} onClick={this.setCurrentImage.bind(this, key)}>
-                      <img src={p.gallery[img].path} alt=""/>
+                      <img style={activeStyles} src={p.gallery[img].path} alt=""/>
                     </li>
                   )
                 }, this)
              }
           </ul>
+          
           <div className="gallery-image-viewer">
               {this.renderGalleryTrack()}
               {this.renderArrows()}
