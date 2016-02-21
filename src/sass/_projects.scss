@@ -221,7 +221,7 @@
 
 .project-bar {
   @include display(flex);
-  height: 130px;
+  height: 200px;
   bottom: 0px;
   left: 0px;
   width: 100%;
@@ -321,7 +321,7 @@
 // Gallery
 .gallery {
   width: 100%;
-  background: rgba(#111, 0.7);
+  background: rgba(#000, 0.5);
   display: block;
   position: relative;
   overflow: hidden;
@@ -400,7 +400,7 @@
     @include flex-flow(row wrap);
 
     .current-image-highlighter {
-        border: solid rgba(#fff, 0.66) 2px;
+        border: solid rgba(#fff, 0.8) 3px;
         position: absolute;
         top: 0; left: 0px;
         height: 33px; width: 100px;
@@ -414,10 +414,12 @@
       height: 33px;
       width: 100px;
       margin-right: 0px;
+      cursor: pointer;
       @include align-self(flex-start);
       @include display(flex);
       @include align-items(center);
       @include justify-content(center);
+      @include transition(all ease 0.2s);
       img {
         width: 100%;
       }

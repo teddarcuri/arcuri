@@ -36,6 +36,10 @@ var _about = require('./about');
 
 var _about2 = _interopRequireDefault(_about);
 
+var _experience = require('./experience');
+
+var _experience2 = _interopRequireDefault(_experience);
+
 var _projects = require('./projects');
 
 var _projects2 = _interopRequireDefault(_projects);
@@ -285,7 +289,8 @@ var App = function (_React$Component) {
     key: 'renderProjectBubbles',
     value: function renderProjectBubbles() {
       return _react2.default.createElement(_ProjectIndex2.default, { projects: this.state.projects,
-        currentProject: this.state.currentProject });
+        currentProject: this.state.currentProject
+      });
     }
   }, {
     key: 'render',
@@ -367,7 +372,7 @@ var App = function (_React$Component) {
                 null,
                 _react2.default.createElement(
                   _reactRouter.Link,
-                  { to: '/about' },
+                  { to: '/experience' },
                   'Experience + Knowledge'
                 )
               ),
@@ -470,6 +475,7 @@ _reactDom2.default.render(_react2.default.createElement(
     _react2.default.createElement(_reactRouter.IndexRoute, { component: _index2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _about2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: 'contact', component: _contact2.default }),
+    _react2.default.createElement(_reactRouter.Route, { path: 'experience', component: _experience2.default }),
     _react2.default.createElement(
       _reactRouter.Route,
       { path: 'work', component: _projects2.default },

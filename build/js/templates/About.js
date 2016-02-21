@@ -54,7 +54,7 @@ var About = function (_React$Component) {
 														{
 																transitionAppear: true,
 																transitionAppearTimeout: 2000,
-																transitionName: 'bubbleUp',
+																transitionName: 'fadeIn',
 																transitionEnterTimeout: 2000,
 																transitionLeaveTimeout: 2000 },
 														_react2.default.createElement(
@@ -66,33 +66,12 @@ var About = function (_React$Component) {
 																		{ className: 'highlight light' },
 																		'Tedd Arcuri'
 																),
-																'. I am designer + software developer Currently living in Denver, CO.',
-																_react2.default.createElement('br', null),
-																'I am seriously ',
-																_react2.default.createElement(
-																		'span',
-																		{ className: 'highlight' },
-																		'passionate'
-																),
-																' about delivering high ',
-																_react2.default.createElement(
-																		'span',
-																		{ className: 'highlight' },
-																		'quality products'
-																),
-																' that emphasize ',
-																_react2.default.createElement(
-																		'span',
-																		{ className: 'highlight' },
-																		'great user experience'
-																),
-																' and ',
-																_react2.default.createElement(
-																		'span',
-																		{ className: 'highlight' },
-																		'rich, interactive features'
-																),
 																'.',
+																_react2.default.createElement('br', null),
+																'I am a software designer + developer.',
+																_react2.default.createElement('br', null),
+																'Currently living in Denver, CO.',
+																_react2.default.createElement('br', null),
 																_react2.default.createElement('br', null),
 																'Checkout some of ',
 																_react2.default.createElement(
@@ -112,7 +91,7 @@ var About = function (_React$Component) {
 																		{ className: 'highlight' },
 																		_react2.default.createElement(
 																				_reactRouter.Link,
-																				{ to: 'contact' },
+																				{ to: 'experience' },
 																				' Experience + Knowledge'
 																		)
 																),

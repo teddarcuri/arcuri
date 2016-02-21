@@ -9,6 +9,7 @@ import projectList from '../utilities/project-list';
 // Routes 
 import Index from './index';
 import About from './about';
+import Experience from './experience';
 import Projects from './projects';
 import ProjectDiagonals from './ProjectDiagonals';
 import ProjectBar from './ProjectBar';
@@ -191,7 +192,8 @@ class App extends React.Component {
   renderProjectBubbles() {
     return (
       <ProjectIndex projects={this.state.projects}
-                    currentProject={this.state.currentProject} />
+                    currentProject={this.state.currentProject}
+                     />
     )
   }
 
@@ -240,7 +242,7 @@ class App extends React.Component {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/about">
+                    <Link to="/experience">
                       Experience + Knowledge
                     </Link>
                   </li>
@@ -319,6 +321,7 @@ ReactDOM.render((
     	<IndexRoute component={Index}/>
       <Route path="about" component={About}/>
       <Route path="contact" component={Contact}/>
+      <Route path="experience" component={Experience}/>
       <Route path="work" component={Projects} >
         <IndexRoute component={ProjectDiagonals} />
         <Route path="new" component={Project} />

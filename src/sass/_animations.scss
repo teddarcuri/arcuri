@@ -81,10 +81,9 @@
 // Fade In
 .fadeIn-appear {
   opacity: 0.01;
-  transition: all 2s ease;
+  transition: all 0.5s ease;
   img {
     opacity: 0.01;
-    transition: all 2s ease;
   }
 }
 
@@ -101,7 +100,6 @@
   transition: all 0.5s ease;
   img {
     opacity: 0.01;
-    transition: all 2s ease;
   }
 }
 
@@ -114,19 +112,17 @@
 }
 
 .fadeIn-leave {
-  opacity: 0.01;
-  transition: all 0.5s ease;
-  img {
-    opacity: 0.01;
-    transition: all 2s ease;
-  }
-}
-
-.fadeIn-leave.fadeIn-leave-active {
   opacity: 1;
   transition: all 0.5s ease;
   img {
     opacity: 1;
+  }
+}
+
+.fadeIn-leave.fadeIn-leave-active {
+  opacity: 0;
+  img {
+    opacity: 0;
   }
 }
 

@@ -185,10 +185,9 @@ html {
 
 .fadeIn-appear {
   opacity: 0.01;
-  transition: all 2s ease; }
+  transition: all 0.5s ease; }
   .fadeIn-appear img {
-    opacity: 0.01;
-    transition: all 2s ease; }
+    opacity: 0.01; }
 
 .fadeIn-appear.fadeIn-appear-active {
   opacity: 1;
@@ -200,8 +199,7 @@ html {
   opacity: 0.01;
   transition: all 0.5s ease; }
   .fadeIn-enter img {
-    opacity: 0.01;
-    transition: all 2s ease; }
+    opacity: 0.01; }
 
 .fadeIn-enter.fadeIn-enter-active {
   opacity: 1;
@@ -210,17 +208,15 @@ html {
     opacity: 1; }
 
 .fadeIn-leave {
-  opacity: 0.01;
-  transition: all 0.5s ease; }
-  .fadeIn-leave img {
-    opacity: 0.01;
-    transition: all 2s ease; }
-
-.fadeIn-leave.fadeIn-leave-active {
   opacity: 1;
   transition: all 0.5s ease; }
-  .fadeIn-leave.fadeIn-leave-active img {
+  .fadeIn-leave img {
     opacity: 1; }
+
+.fadeIn-leave.fadeIn-leave-active {
+  opacity: 0; }
+  .fadeIn-leave.fadeIn-leave-active img {
+    opacity: 0; }
 
 .project-element-appear {
   opacity: 0.01;
@@ -1167,7 +1163,7 @@ header#main {
   display: -moz-flex;
   display: -ms-flexbox;
   display: flex;
-  height: 130px;
+  height: 200px;
   bottom: 0px;
   left: 0px;
   width: 100%;
@@ -1286,7 +1282,7 @@ header#main {
 
 .gallery {
   width: 100%;
-  background: rgba(17, 17, 17, 0.7);
+  background: rgba(0, 0, 0, 0.5);
   display: block;
   position: relative;
   overflow: hidden;
@@ -1463,7 +1459,7 @@ header#main {
     -moz-flex-flow: row wrap;
     flex-flow: row wrap; }
     .gallery .gallery-image-thumbs .current-image-highlighter {
-      border: solid rgba(255, 255, 255, 0.66) 2px;
+      border: solid rgba(255, 255, 255, 0.8) 3px;
       position: absolute;
       top: 0;
       left: 0px;
@@ -1479,6 +1475,7 @@ header#main {
       height: 33px;
       width: 100px;
       margin-right: 0px;
+      cursor: pointer;
       -webkit-align-self: flex-start;
       -moz-align-self: flex-start;
       align-self: flex-start;
@@ -1507,7 +1504,10 @@ header#main {
       -ms-justify-content: center;
       -o-justify-content: center;
       justify-content: center;
-      -ms-flex-pack: center; }
+      -ms-flex-pack: center;
+      -webkit-transition: all ease 0.2s;
+      -moz-transition: all ease 0.2s;
+      transition: all ease 0.2s; }
       .gallery .gallery-image-thumbs .gallery-image img {
         width: 100%; }
       .gallery .gallery-image-thumbs .gallery-image:hover {
@@ -1884,8 +1884,7 @@ section.split {
 
 .project-infobar {
   background: black;
-  width: 100%;
-  border-radius: 5px 5px 0px 0px; }
+  width: 100%; }
   .project-infobar .view-site-btn a {
     text-decoration: none;
     border-radius: 3px;
@@ -1904,7 +1903,7 @@ section.split {
 
 .tags {
   margin: 0px;
-  padding: 20px 30px;
+  padding: 20px;
   display: inline-block; }
   .tags li {
     background: #000;

@@ -100,7 +100,7 @@ var ProjectGallery = function (_React$Component) {
         _reactAddonsCssTransitionGroup2.default,
         { component: "div",
           className: 'gallery-image-track',
-          transitionName: 'gallerySlide',
+          transitionName: 'fadeIn',
           transitionAppear: true,
           transitionAppearTimeout: 1000,
           transitionEnterTimeout: 700,
@@ -187,12 +187,6 @@ var ProjectGallery = function (_React$Component) {
           transitionEnterTimeout: 1000,
           transitionLeaveTimeout: 1000 },
         _react2.default.createElement(
-          'div',
-          { className: 'gallery-image-viewer' },
-          this.renderGalleryTrack(),
-          this.renderArrows()
-        ),
-        _react2.default.createElement(
           'ul',
           { className: 'gallery-image-thumbs' },
           _react2.default.createElement('div', { ref: 'highlighter', className: 'current-image-highlighter' }),
@@ -204,6 +198,12 @@ var ProjectGallery = function (_React$Component) {
               _react2.default.createElement('img', { src: p.gallery[img].path, alt: '' })
             );
           }, this)
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'gallery-image-viewer' },
+          this.renderGalleryTrack(),
+          this.renderArrows()
         )
       );
     }

@@ -15,16 +15,15 @@ class About extends React.Component {
 		        	<CSSTransitionGroup 
 	        			transitionAppear={true}
 						transitionAppearTimeout={2000}
-						transitionName="bubbleUp"
+						transitionName="fadeIn"
 						transitionEnterTimeout={2000}
 						transitionLeaveTimeout={2000}>
 					  <h3>
-				          Hello, My Name is <span className="highlight light">Tedd Arcuri</span>. 
-				          I am designer + software developer
-				          Currently living in Denver, CO.<br />
-				          I am seriously <span className="highlight">passionate</span> about delivering high <span className="highlight">quality products</span> that emphasize <span className="highlight">great user experience</span> and <span className="highlight">rich, interactive features</span>.<br />
+				          Hello, My Name is <span className="highlight light">Tedd Arcuri</span>.<br />
+				          I am a software designer + developer.<br />
+				          Currently living in Denver, CO.<br /><br />
 				          Checkout some of <span className="highlight"><Link to="work"> My Work</Link></span>.<br />
-				          View my <span className="highlight"><Link to="contact"> Experience + Knowledge</Link></span>.<br />
+				          View my <span className="highlight"><Link to="experience"> Experience + Knowledge</Link></span>.<br />
 				          Like what you see? <span className="highlight"><Link to="contact"> Hire Me</Link></span>.
 			          </h3>
  					</CSSTransitionGroup>		        	

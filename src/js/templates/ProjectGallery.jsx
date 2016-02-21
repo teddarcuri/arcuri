@@ -62,7 +62,7 @@ class ProjectGallery extends React.Component {
     return (
        <CSSTransitionGroup component={"div"}
                           className="gallery-image-track"
-                          transitionName="gallerySlide"
+                          transitionName="fadeIn"
                           transitionAppear={true}
                           transitionAppearTimeout={1000}
                           transitionEnterTimeout={700}
@@ -142,24 +142,7 @@ class ProjectGallery extends React.Component {
                           transitionEnterTimeout={1000}
                           transitionLeaveTimeout={1000}>
 
-          
-          <div className="gallery-image-viewer">
-              {this.renderGalleryTrack()}
-              {this.renderArrows()}
-              {/*<ul className="dots">
-                {
-                  Object.keys(p.gallery).map(function(img, key) {
-                    return (
-                      <li key={key} onClick={this.setCurrentImage.bind(this, key)}>
-                        •
-                      </li>
-                    )
-                  }, this)
-                }
-              </ul> */}
-          </div>
-
-            <ul className="gallery-image-thumbs">
+          <ul className="gallery-image-thumbs">
               <div ref="highlighter" className="current-image-highlighter"></div>
              {
                 Object.keys(p.gallery).map(function(img, key) {
@@ -172,8 +155,10 @@ class ProjectGallery extends React.Component {
                 }, this)
              }
           </ul>
-
-        
+          <div className="gallery-image-viewer">
+              {this.renderGalleryTrack()}
+              {this.renderArrows()}
+          </div>
       </CSSTransitionGroup>
     )
   }
