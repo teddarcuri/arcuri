@@ -5,6 +5,7 @@ import ProjectBubble from './ProjectBubble';
 import ProjectDiagonal from './ProjectDiagonal';
 
 import _ from 'lodash';
+import h from '../utilities/helpers';
 
 class ProjectIndex extends React.Component {
 
@@ -13,6 +14,7 @@ class ProjectIndex extends React.Component {
 	}
 
 	renderBubbles(projects) {
+		var related = this.props.filter ? <h3>Other Web Projects</h3> : null;
 		return (
 		<CSSTransitionGroup className="project-bubbles" 
 							component="div"
@@ -21,6 +23,7 @@ class ProjectIndex extends React.Component {
 							transitionName="slideLeftIn"
 							transitionEnterTimeout={1000}
 							transitionLeaveTimeout={1000}>
+			{related}
 	  		{
 	  			projects.map(function(p, key) {
 	  				let path = "/work/" + p.name,
@@ -47,8 +50,10 @@ class ProjectIndex extends React.Component {
 	}
 
 	renderBars(projects) {
+		var related = this.props.filter ? <h3>Other Web Projects</h3> : null;
 		return (
 			<div className="project-bars">
+				{related}
 				{
 		  			projects.map(function(p, key) {
 		  				let path = "/work/" + p.name,
@@ -91,7 +96,13 @@ class ProjectIndex extends React.Component {
 		var projects = this.props.projects;
 
 		if (this.props.filter === "WEB") {
-			projects = _.filter(projects, {"id": 2});
+			projects = _.filter(projects, function(p){
+				return _.find(p.tags, {name: "Web"})
+			})
+		} else if (this.props.filter === "PRINT") {
+			projects = _.filter(projects, function(p){
+				return _.find(p.tags, {name: "Print"})
+			})
 		}
 
 		if (this.props.type === "BUBBLES") {

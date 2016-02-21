@@ -28,6 +28,10 @@ var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
+var _helpers = require('../utilities/helpers');
+
+var _helpers2 = _interopRequireDefault(_helpers);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -48,6 +52,11 @@ var ProjectIndex = function (_React$Component) {
 	_createClass(ProjectIndex, [{
 		key: 'renderBubbles',
 		value: function renderBubbles(projects) {
+			var related = this.props.filter ? _react2.default.createElement(
+				'h3',
+				null,
+				'Other Web Projects'
+			) : null;
 			return _react2.default.createElement(
 				_reactAddonsCssTransitionGroup2.default,
 				{ className: 'project-bubbles',
@@ -57,6 +66,7 @@ var ProjectIndex = function (_React$Component) {
 					transitionName: 'slideLeftIn',
 					transitionEnterTimeout: 1000,
 					transitionLeaveTimeout: 1000 },
+				related,
 				projects.map(function (p, key) {
 					var path = "/work/" + p.name,
 					    logoPath = p.logo,
@@ -78,9 +88,15 @@ var ProjectIndex = function (_React$Component) {
 	}, {
 		key: 'renderBars',
 		value: function renderBars(projects) {
+			var related = this.props.filter ? _react2.default.createElement(
+				'h3',
+				null,
+				'Other Web Projects'
+			) : null;
 			return _react2.default.createElement(
 				'div',
 				{ className: 'project-bars' },
+				related,
 				projects.map(function (p, key) {
 					var path = "/work/" + p.name,
 					    logoPath = p.logo,
@@ -123,7 +139,13 @@ var ProjectIndex = function (_React$Component) {
 			var projects = this.props.projects;
 
 			if (this.props.filter === "WEB") {
-				projects = _lodash2.default.filter(projects, { "id": 2 });
+				projects = _lodash2.default.filter(projects, function (p) {
+					return _lodash2.default.find(p.tags, { name: "Web" });
+				});
+			} else if (this.props.filter === "PRINT") {
+				projects = _lodash2.default.filter(projects, function (p) {
+					return _lodash2.default.find(p.tags, { name: "Print" });
+				});
 			}
 
 			if (this.props.type === "BUBBLES") {

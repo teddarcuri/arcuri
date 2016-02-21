@@ -338,7 +338,7 @@
     width: 100%;
     height: 660px;
     overflow: hidden;
-    @include bp(1300px) {
+    @include bp(1400px) {
       height: 475px;
     }
     @include bp(666px) {
