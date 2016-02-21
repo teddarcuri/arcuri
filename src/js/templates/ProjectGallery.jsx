@@ -9,29 +9,80 @@ class ProjectGallery extends React.Component {
   	super(props);
 
     this.state = {
-      currentImg : this.props.project.gallery[Object.keys(this.props.project.gallery)[0]]
+      currentImage : 0
     }
   }
 
-  setCurrentImg(key) {
-    console.log(key);
+  nextImg() {
+    var key = this.state.currentImage + 1;
+    this.setCurrentImage(key);
 
-    this.setState({ currentImg : this.props.project.gallery[Object.keys(this.props.project.gallery)[key]] });
+  }
+
+  prevImg() {
+    var key = this.state.currentImage - 1;
+    this.setCurrentImage(key);
+  }
+
+  setCurrentImage(key) {
+
+    var images = Object.keys(this.props.project.gallery),
+        length = images.length - 1; // Off by one 
+
+    if (key  > length) {
+      // set first
+      key = 0;
+    } else if (key < 0) {
+      // set last
+      key = length
+    }
+
+    this.setState({ currentImage : key });
   }
 
   renderCurrentImage() {
     return (
-      <img src={this.state.currentImg.path} alt="" key="currentImg"/>
+      <img src={this.props.project.gallery[Object.keys(this.props.project.gallery)[this.state.currentImage]].path} alt="" key="currentImage"/>
     )
   }
 
-  incrementImg() {
-    this.setState({ currentImg : this.props.project.gallery[Object.keys(this.props.project.gallery)[key]] });
+  renderArrows() {
+    var imageCount = Object.keys(this.props.project.gallery).length;
+    if (imageCount > 1) {
+      return (
+        <ul style={this.getStyles().arrows}>
+          <div onClick={this.nextImg.bind(this)} style={this.getStyles().arrows.next}>NEXT</div>
+          <div onClick={this.prevImg.bind(this)} style={this.getStyles().arrows.prev}>PREV</div>
+        </ul>
+      )
+    }
   }
 
+  getStyles() {
+    return {
+       arrows: {
+        color: "#fff",
+        position: "absolute",
+        right: 10,
+        top: 0, 
+        next: {
+          fontSize: "0.66em",
+          background: "rgba(0,0,0,0.6)",
+          padding: 10
+        },
+        prev: {
+          fontSize: "0.66em",
+          background: "rgba(0,0,0,0.6)",
+          padding: 10
+        }
+      }
+    }
+  }
+ 
   render() {
     var p = this.props.project,
-        currentImg = this.state.currentImg;
+        currentImage = this.props.project.gallery[Object.keys(this.props.project.gallery)[this.state.currentImage]];
+
 
     return (
       <CSSTransitionGroup component={"div"}
@@ -50,11 +101,12 @@ class ProjectGallery extends React.Component {
                           transitionEnterTimeout={1000}
                           transitionLeaveTimeout={1000}>
               {this.renderCurrentImage()}
+              {this.renderArrows()}
               <ul className="dots">
                 {
                   Object.keys(p.gallery).map(function(img, key) {
                     return (
-                      <li key={key} onClick={this.setCurrentImg.bind(this, key)}>
+                      <li key={key} onClick={this.setCurrentImage.bind(this, key)}>
                         •
                       </li>
                     )
@@ -69,7 +121,7 @@ class ProjectGallery extends React.Component {
              {
                 Object.keys(p.gallery).map(function(img, key) {
                   return (
-                    <li className="gallery-image" key={key} onClick={this.setCurrentImg.bind(this, key)}>
+                    <li className="gallery-image" key={key} onClick={this.setCurrentImage.bind(this, key)}>
                       <img src={p.gallery[img].path} alt=""/>
                     </li>
                   )

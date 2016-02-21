@@ -35,33 +35,93 @@ var ProjectGallery = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectGallery).call(this, props));
 
     _this.state = {
-      currentImg: _this.props.project.gallery[Object.keys(_this.props.project.gallery)[0]]
+      currentImage: 0
     };
     return _this;
   }
 
   _createClass(ProjectGallery, [{
-    key: 'setCurrentImg',
-    value: function setCurrentImg(key) {
-      console.log(key);
+    key: 'nextImg',
+    value: function nextImg() {
+      var key = this.state.currentImage + 1;
+      this.setCurrentImage(key);
+    }
+  }, {
+    key: 'prevImg',
+    value: function prevImg() {
+      var key = this.state.currentImage - 1;
+      this.setCurrentImage(key);
+    }
+  }, {
+    key: 'setCurrentImage',
+    value: function setCurrentImage(key) {
 
-      this.setState({ currentImg: this.props.project.gallery[Object.keys(this.props.project.gallery)[key]] });
+      var images = Object.keys(this.props.project.gallery),
+          length = images.length - 1; // Off by one
+
+      if (key > length) {
+        // set first
+        key = 0;
+      } else if (key < 0) {
+        // set last
+        key = length;
+      }
+
+      this.setState({ currentImage: key });
     }
   }, {
     key: 'renderCurrentImage',
     value: function renderCurrentImage() {
-      return _react2.default.createElement('img', { src: this.state.currentImg.path, alt: '', key: 'currentImg' });
+      return _react2.default.createElement('img', { src: this.props.project.gallery[Object.keys(this.props.project.gallery)[this.state.currentImage]].path, alt: '', key: 'currentImage' });
     }
   }, {
-    key: 'incrementImg',
-    value: function incrementImg() {
-      this.setState({ currentImg: this.props.project.gallery[Object.keys(this.props.project.gallery)[key]] });
+    key: 'renderArrows',
+    value: function renderArrows() {
+      var imageCount = Object.keys(this.props.project.gallery).length;
+      if (imageCount > 1) {
+        return _react2.default.createElement(
+          'ul',
+          { style: this.getStyles().arrows },
+          _react2.default.createElement(
+            'div',
+            { onClick: this.nextImg.bind(this), style: this.getStyles().arrows.next },
+            'NEXT'
+          ),
+          _react2.default.createElement(
+            'div',
+            { onClick: this.prevImg.bind(this), style: this.getStyles().arrows.prev },
+            'PREV'
+          )
+        );
+      }
+    }
+  }, {
+    key: 'getStyles',
+    value: function getStyles() {
+      return {
+        arrows: {
+          color: "#fff",
+          position: "absolute",
+          right: 10,
+          top: 0,
+          next: {
+            fontSize: "0.66em",
+            background: "rgba(0,0,0,0.6)",
+            padding: 10
+          },
+          prev: {
+            fontSize: "0.66em",
+            background: "rgba(0,0,0,0.6)",
+            padding: 10
+          }
+        }
+      };
     }
   }, {
     key: 'render',
     value: function render() {
       var p = this.props.project,
-          currentImg = this.state.currentImg;
+          currentImage = this.props.project.gallery[Object.keys(this.props.project.gallery)[this.state.currentImage]];
 
       return _react2.default.createElement(
         _reactAddonsCssTransitionGroup2.default,
@@ -82,13 +142,14 @@ var ProjectGallery = function (_React$Component) {
             transitionEnterTimeout: 1000,
             transitionLeaveTimeout: 1000 },
           this.renderCurrentImage(),
+          this.renderArrows(),
           _react2.default.createElement(
             'ul',
             { className: 'dots' },
             Object.keys(p.gallery).map(function (img, key) {
               return _react2.default.createElement(
                 'li',
-                { key: key, onClick: this.setCurrentImg.bind(this, key) },
+                { key: key, onClick: this.setCurrentImage.bind(this, key) },
                 '•'
               );
             }, this)
@@ -108,7 +169,7 @@ var ProjectGallery = function (_React$Component) {
             Object.keys(p.gallery).map(function (img, key) {
               return _react2.default.createElement(
                 'li',
-                { className: 'gallery-image', key: key, onClick: this.setCurrentImg.bind(this, key) },
+                { className: 'gallery-image', key: key, onClick: this.setCurrentImage.bind(this, key) },
                 _react2.default.createElement('img', { src: p.gallery[img].path, alt: '' })
               );
             }, this)

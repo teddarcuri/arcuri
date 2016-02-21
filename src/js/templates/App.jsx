@@ -26,6 +26,7 @@ import h from '../utilities/helpers';
 import imagesLoaded from 'imagesloaded';
 import Catalyst from 'react-catalyst';
 import reactMixin from 'react-mixin';
+import {Motion, spring, presets} from 'react-motion';
 
 /*
   Application
@@ -264,6 +265,7 @@ class App extends React.Component {
         </header>
 
         <div id="app-window" className="center">
+
           <ReactTransitionGroup component='div'
                                 className='f-center'>
     	       {React.cloneElement(this.props.children, {

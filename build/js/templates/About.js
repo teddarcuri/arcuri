@@ -66,7 +66,9 @@ var About = function (_React$Component) {
 																		{ className: 'highlight light' },
 																		'Tedd Arcuri'
 																),
-																'. I am designer + software developer Currently living in Denver, CO. I am seriously ',
+																'. I am designer + software developer Currently living in Denver, CO.',
+																_react2.default.createElement('br', null),
+																'I am seriously ',
 																_react2.default.createElement(
 																		'span',
 																		{ className: 'highlight' },
@@ -90,7 +92,9 @@ var About = function (_React$Component) {
 																		{ className: 'highlight' },
 																		'rich, interactive features'
 																),
-																'. Checkout some of ',
+																'.',
+																_react2.default.createElement('br', null),
+																'Checkout some of ',
 																_react2.default.createElement(
 																		'span',
 																		{ className: 'highlight' },
@@ -100,7 +104,9 @@ var About = function (_React$Component) {
 																				' My Work'
 																		)
 																),
-																'. View my ',
+																'.',
+																_react2.default.createElement('br', null),
+																'View my ',
 																_react2.default.createElement(
 																		'span',
 																		{ className: 'highlight' },
@@ -110,7 +116,9 @@ var About = function (_React$Component) {
 																				' Experience + Knowledge'
 																		)
 																),
-																'. Like what you see? ',
+																'.',
+																_react2.default.createElement('br', null),
+																'Like what you see? ',
 																_react2.default.createElement(
 																		'span',
 																		{ className: 'highlight' },
@@ -144,7 +152,15 @@ var About = function (_React$Component) {
 												)
 										)
 								),
-								_react2.default.createElement('img', { id: 'about-image', src: '/src/img/background-scene.png' })
+								_react2.default.createElement(
+										_reactAddonsCssTransitionGroup2.default,
+										{ transitionAppear: true,
+												transitionAppearTimeout: 2000,
+												transitionName: 'fadeIn',
+												transitionEnterTimeout: 2000,
+												transitionLeaveTimeout: 2000 },
+										_react2.default.createElement('img', { id: 'about-image', src: '/src/img/background-scene.png' })
+								)
 						);
 				}
 		}]);

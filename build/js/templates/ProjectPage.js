@@ -185,14 +185,8 @@ var ProjectPage = function (_React$Component) {
         'div',
         { className: 'project-page' },
         _react2.default.createElement(
-          _reactAddonsCssTransitionGroup2.default,
-          { component: "div",
-            className: 'project-overview',
-            transitionName: 'project-element',
-            transitionAppear: true,
-            transitionAppearTimeout: 0,
-            transitionEnterTimeout: 1000,
-            transitionLeaveTimeout: 0 },
+          'div',
+          { className: 'project-overview' },
           _react2.default.createElement(
             'header',
             { ref: 'header',
@@ -246,14 +240,8 @@ var ProjectPage = function (_React$Component) {
           )
         ),
         _react2.default.createElement(
-          _reactAddonsCssTransitionGroup2.default,
-          { component: "div",
-            className: 'project-bg',
-            transitionName: 'fadeIn',
-            transitionAppear: true,
-            transitionAppearTimeout: 0,
-            transitionEnterTimeout: 1000,
-            transitionLeaveTimeout: 1000 },
+          'div',
+          { className: 'project-bg' },
           _react2.default.createElement('img', { src: p.background })
         )
       );

@@ -3,6 +3,8 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import ProjectGallery from './ProjectGallery';
 import ProjectPage from './ProjectPage';
 import Tabs from './tabs';
+import {Motion, spring, presets} from 'react-motion';
+
 
 class Project extends React.Component {
 
@@ -103,14 +105,9 @@ class Project extends React.Component {
 
       <div className="project">
 
-          <CSSTransitionGroup className={sidebarClasses}
-                              transitionAppear={true}
-                              transitionAppearTimeout={0}
-                              transitionName="fadeIn"
-                              transitionEnterTimeout={1000}
-                              transitionLeaveTimeout={1000}>
+          <div className={sidebarClasses}>
             {this.renderSidebar()}
-          </CSSTransitionGroup>
+          </div>
 
          <ProjectPage currentProject={p}
                       mode={this.props.projectMode}

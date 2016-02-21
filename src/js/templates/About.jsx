@@ -13,18 +13,18 @@ class About extends React.Component {
 		  	<div className="container mw">
 	    		<div>
 		        	<CSSTransitionGroup 
-					        			transitionAppear={true}
-										transitionAppearTimeout={2000}
-										transitionName="bubbleUp"
-										transitionEnterTimeout={2000}
-										transitionLeaveTimeout={2000}>
+	        			transitionAppear={true}
+						transitionAppearTimeout={2000}
+						transitionName="bubbleUp"
+						transitionEnterTimeout={2000}
+						transitionLeaveTimeout={2000}>
 					  <h3>
 				          Hello, My Name is <span className="highlight light">Tedd Arcuri</span>. 
 				          I am designer + software developer
-				          Currently living in Denver, CO.
-				          I am seriously <span className="highlight">passionate</span> about delivering high <span className="highlight">quality products</span> that emphasize <span className="highlight">great user experience</span> and <span className="highlight">rich, interactive features</span>.
-				          Checkout some of <span className="highlight"><Link to="work"> My Work</Link></span>.
-				          View my <span className="highlight"><Link to="contact"> Experience + Knowledge</Link></span>.
+				          Currently living in Denver, CO.<br />
+				          I am seriously <span className="highlight">passionate</span> about delivering high <span className="highlight">quality products</span> that emphasize <span className="highlight">great user experience</span> and <span className="highlight">rich, interactive features</span>.<br />
+				          Checkout some of <span className="highlight"><Link to="work"> My Work</Link></span>.<br />
+				          View my <span className="highlight"><Link to="contact"> Experience + Knowledge</Link></span>.<br />
 				          Like what you see? <span className="highlight"><Link to="contact"> Hire Me</Link></span>.
 			          </h3>
  					</CSSTransitionGroup>		        	
@@ -35,8 +35,13 @@ class About extends React.Component {
 			        </div>
 			     </div>
 	    	</div>
-
+	    	<CSSTransitionGroup transitionAppear={true}
+							transitionAppearTimeout={2000}
+							transitionName="fadeIn"
+							transitionEnterTimeout={2000}
+							transitionLeaveTimeout={2000}>
 	    	<img id="about-image" src="/src/img/background-scene.png" />
+	    	</CSSTransitionGroup>	
 	  	</CSSTransitionGroup>
     )
   }

@@ -26,6 +26,8 @@ var _tabs = require('./tabs');
 
 var _tabs2 = _interopRequireDefault(_tabs);
 
+var _reactMotion = require('react-motion');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -136,13 +138,8 @@ var Project = function (_React$Component) {
         'div',
         { className: 'project' },
         _react2.default.createElement(
-          _reactAddonsCssTransitionGroup2.default,
-          { className: sidebarClasses,
-            transitionAppear: true,
-            transitionAppearTimeout: 0,
-            transitionName: 'fadeIn',
-            transitionEnterTimeout: 1000,
-            transitionLeaveTimeout: 1000 },
+          'div',
+          { className: sidebarClasses },
           this.renderSidebar()
         ),
         _react2.default.createElement(_ProjectPage2.default, { currentProject: p,

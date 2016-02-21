@@ -1329,7 +1329,7 @@ header#main {
     .gallery .current-img img {
       margin: 0px auto;
       max-width: 100%;
-      max-height: 700px;
+      max-height: 500px;
       padding: 50px;
       position: relative; }
     .gallery .current-img .dots {
@@ -1385,10 +1385,6 @@ header#main {
     -webkit-flex-flow: row wrap;
     -moz-flex-flow: row wrap;
     flex-flow: row wrap; }
-    .gallery .gallery-image-thumbs.small {
-      border: solid red 2px; }
-    .gallery .gallery-image-thumbs.large {
-      border: solid blue 3px; }
     .gallery .gallery-image-thumbs .gallery-image {
       overflow: hidden;
       height: 100px;
@@ -1723,7 +1719,7 @@ section.split {
   transition: all ease 0.7s; }
 
 .light .svg-fill {
-  fill: #ccc !important; }
+  fill: #eee !important; }
 
 .light .letter {
   opacity: 1; }
