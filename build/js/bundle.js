@@ -114,23 +114,27 @@
 
 	var _contact2 = _interopRequireDefault(_contact);
 
-	var _reBase = __webpack_require__(352);
+	var _LoginPage = __webpack_require__(352);
+
+	var _LoginPage2 = _interopRequireDefault(_LoginPage);
+
+	var _reBase = __webpack_require__(353);
 
 	var _reBase2 = _interopRequireDefault(_reBase);
 
-	var _helpers = __webpack_require__(355);
+	var _helpers = __webpack_require__(356);
 
 	var _helpers2 = _interopRequireDefault(_helpers);
 
-	var _imagesloaded = __webpack_require__(356);
+	var _imagesloaded = __webpack_require__(357);
 
 	var _imagesloaded2 = _interopRequireDefault(_imagesloaded);
 
-	var _reactCatalyst = __webpack_require__(358);
+	var _reactCatalyst = __webpack_require__(359);
 
 	var _reactCatalyst2 = _interopRequireDefault(_reactCatalyst);
 
-	var _reactMixin = __webpack_require__(360);
+	var _reactMixin = __webpack_require__(361);
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
@@ -459,14 +463,18 @@
 	            )
 	          ),
 	          _react2.default.createElement(
-	            'svg',
-	            { className: 'letter', version: '1.1', id: 'D-2', x: '0px', y: '0px',
-	              viewBox: '-355.2 -98 94.4 102', 'enable-background': 'new -355.2 -98 94.4 102' },
+	            _reactRouter.Link,
+	            { to: '/login' },
 	            _react2.default.createElement(
-	              'g',
-	              { className: 'svg-fill' },
-	              _react2.default.createElement('path', { fill: 'none', d: 'M-288.4-46.9c0-14.2-8.6-25.1-25.1-25.1H-328v50h14.5C-297.6-22-288.4-33.4-288.4-46.9z' }),
-	              _react2.default.createElement('path', { className: 'svg-fill', d: 'M-315-98h-40.2V4h40.2c32,0,54.1-20.2,54.1-50.9C-260.8-77.7-283-98-315-98z M-328-72h14.5 c16.4,0,25.1,10.9,25.1,25.1c0,13.6-9.2,24.9-25.1,24.9H-328V-72z' })
+	              'svg',
+	              { className: 'letter', version: '1.1', id: 'D-2', x: '0px', y: '0px',
+	                viewBox: '-355.2 -98 94.4 102', 'enable-background': 'new -355.2 -98 94.4 102' },
+	              _react2.default.createElement(
+	                'g',
+	                { className: 'svg-fill' },
+	                _react2.default.createElement('path', { fill: 'none', d: 'M-288.4-46.9c0-14.2-8.6-25.1-25.1-25.1H-328v50h14.5C-297.6-22-288.4-33.4-288.4-46.9z' }),
+	                _react2.default.createElement('path', { className: 'svg-fill', d: 'M-315-98h-40.2V4h40.2c32,0,54.1-20.2,54.1-50.9C-260.8-77.7-283-98-315-98z M-328-72h14.5 c16.4,0,25.1,10.9,25.1,25.1c0,13.6-9.2,24.9-25.1,24.9H-328V-72z' })
+	              )
 	            )
 	          )
 	        ),
@@ -528,7 +536,8 @@
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _ProjectDiagonals2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'new', component: _project2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: ':name', component: _project2.default })
-	    )
+	    ),
+	    _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _LoginPage2.default })
 	  )
 	), document.getElementById('app'));
 
@@ -73708,17 +73717,93 @@
 /* 352 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(353);
+	'use strict';
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(159);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var LoginPage = function (_React$Component) {
+	  _inherits(LoginPage, _React$Component);
+
+	  function LoginPage(props) {
+	    _classCallCheck(this, LoginPage);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(LoginPage).call(this, props));
+	  }
+
+	  _createClass(LoginPage, [{
+	    key: 'render',
+	    value: function render() {
+	      var styles = {
+	        button: {
+	          background: "#111"
+	        }
+	      };
+	      return _react2.default.createElement(
+	        _reactAddonsCssTransitionGroup2.default,
+	        { component: "form",
+	          transitionAppear: true,
+	          transitionAppearTimeout: 2000,
+	          transitionName: 'bubbleUp',
+	          transitionEnterTimeout: 2000,
+	          transitionLeaveTimeout: 2000 },
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'Hi! Are you me?'
+	        ),
+	        _react2.default.createElement('input', { type: 'text' }),
+	        _react2.default.createElement('input', { type: 'text' }),
+	        _react2.default.createElement(
+	          'button',
+	          { style: styles.button, type: 'submit' },
+	          'Login'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return LoginPage;
+	}(_react2.default.Component);
+
+	exports.default = LoginPage;
 
 /***/ },
 /* 353 */
 /***/ function(module, exports, __webpack_require__) {
 
+	module.exports = __webpack_require__(354);
+
+
+
+/***/ },
+/* 354 */
+/***/ function(module, exports, __webpack_require__) {
+
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
-			module.exports = factory(__webpack_require__(354));
+			module.exports = factory(__webpack_require__(355));
 		else if(typeof define === 'function' && define.amd)
 			define(["firebase"], factory);
 		else {
@@ -74248,7 +74333,7 @@
 	;
 
 /***/ },
-/* 354 */
+/* 355 */
 /***/ function(module, exports) {
 
 	/*! @license Firebase v2.4.0
@@ -74532,7 +74617,7 @@
 
 
 /***/ },
-/* 355 */
+/* 356 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -74555,7 +74640,7 @@
 	exports.default = helpers;
 
 /***/ },
-/* 356 */
+/* 357 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -74572,7 +74657,7 @@
 	  if ( true ) {
 	    // AMD
 	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-	      __webpack_require__(357)
+	      __webpack_require__(358)
 	    ], __WEBPACK_AMD_DEFINE_RESULT__ = function( EvEmitter ) {
 	      return factory( window, EvEmitter );
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -74931,7 +75016,7 @@
 
 
 /***/ },
-/* 357 */
+/* 358 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -75046,15 +75131,15 @@
 
 
 /***/ },
-/* 358 */
+/* 359 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	exports.LinkedStateMixin = __webpack_require__(359);
+	exports.LinkedStateMixin = __webpack_require__(360);
 
 
 /***/ },
-/* 359 */
+/* 360 */
 /***/ function(module, exports) {
 
 	
@@ -75089,11 +75174,11 @@
 
 
 /***/ },
-/* 360 */
+/* 361 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var mixin = __webpack_require__(361);
-	var assign = __webpack_require__(362);
+	var mixin = __webpack_require__(362);
+	var assign = __webpack_require__(363);
 
 	var mixinProto = mixin({
 	  // lifecycle stuff is as you'd expect
@@ -75246,7 +75331,7 @@
 
 
 /***/ },
-/* 361 */
+/* 362 */
 /***/ function(module, exports) {
 
 	var objToStr = function(x){ return Object.prototype.toString.call(x); };
@@ -75429,7 +75514,7 @@
 
 
 /***/ },
-/* 362 */
+/* 363 */
 /***/ function(module, exports) {
 
 	/* eslint-disable no-unused-vars */

@@ -294,10 +294,10 @@ section.split {
     display: block;
     text-decoration: none;
     font-size: 0.8em !important;
-    letter-spacing: 4px;
-    padding: 10px !important;
+    letter-spacing: 3px;
+    padding: 3px 10px !important;
     padding-left: 40px !important;
-    text-shadow: 1px 1px 3px rgba(#000, 0.66);
+    text-shadow: 2px 2px 2px rgba(#000, 1);
     @include transition(all ease 0.5s);
     span {
       color: #fff !important;

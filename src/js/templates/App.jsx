@@ -17,6 +17,7 @@ import ProjectIndex from './ProjectIndex';
 import NewProjectForm from './NewProjectForm';
 import Project from './project';
 import Contact from './contact';
+import LoginPage from './LoginPage';
 
 // Firebase
 import Rebase from 're-base';
@@ -265,6 +266,7 @@ class App extends React.Component {
                     c16.4,0,25.1,10.9,25.1,25.1c0,13.6-9.2,24.9-25.1,24.9H-328V-72z"/>
                 </g>
               </svg>
+              <Link to="/login">
               <svg className="letter" version="1.1" id="D-2" x="0px" y="0px"
                  viewBox="-355.2 -98 94.4 102" enable-background="new -355.2 -98 94.4 102" >
                 <g className="svg-fill" >
@@ -273,6 +275,7 @@ class App extends React.Component {
                     c16.4,0,25.1,10.9,25.1,25.1c0,13.6-9.2,24.9-25.1,24.9H-328V-72z"/>
                 </g>
               </svg>
+              </Link>
         </header>
 
         <div id="app-window" className="center">
@@ -327,6 +330,7 @@ ReactDOM.render((
         <Route path="new" component={Project} />
         <Route path=":name" component={Project} />
       </Route>
+      <Route path="login" component={LoginPage}></Route>
     </Route>
   </Router>
 ), document.getElementById('app'));

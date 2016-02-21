@@ -514,7 +514,9 @@ html {
   padding-top: 120px; }
 
 form {
+  background: #222;
   padding: 20px 40px;
+  color: #fff;
   box-shadow: 3px 3px 15px 0px rgba(0, 0, 0, 0.2);
   display: -webkit-box;
   display: -moz-box;
@@ -542,9 +544,8 @@ form {
     left: 0;
     top: 0;
     z-index: 999; }
-  form h3 {
+  form h1, form h3 {
     color: #fff;
-    opacity: 0.85;
     width: 100%;
     margin: 10px 0px 30px; }
   form label {
@@ -2151,10 +2152,10 @@ section.split {
   display: block;
   text-decoration: none;
   font-size: 0.8em !important;
-  letter-spacing: 4px;
-  padding: 10px !important;
+  letter-spacing: 3px;
+  padding: 3px 10px !important;
   padding-left: 40px !important;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.66);
+  text-shadow: 2px 2px 2px black;
   -webkit-transition: all ease 0.5s;
   -moz-transition: all ease 0.5s;
   transition: all ease 0.5s; }

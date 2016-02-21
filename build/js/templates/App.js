@@ -68,6 +68,10 @@ var _contact = require('./contact');
 
 var _contact2 = _interopRequireDefault(_contact);
 
+var _LoginPage = require('./LoginPage');
+
+var _LoginPage2 = _interopRequireDefault(_LoginPage);
+
 var _reBase = require('re-base');
 
 var _reBase2 = _interopRequireDefault(_reBase);
@@ -413,14 +417,18 @@ var App = function (_React$Component) {
             )
           ),
           _react2.default.createElement(
-            'svg',
-            { className: 'letter', version: '1.1', id: 'D-2', x: '0px', y: '0px',
-              viewBox: '-355.2 -98 94.4 102', 'enable-background': 'new -355.2 -98 94.4 102' },
+            _reactRouter.Link,
+            { to: '/login' },
             _react2.default.createElement(
-              'g',
-              { className: 'svg-fill' },
-              _react2.default.createElement('path', { fill: 'none', d: 'M-288.4-46.9c0-14.2-8.6-25.1-25.1-25.1H-328v50h14.5C-297.6-22-288.4-33.4-288.4-46.9z' }),
-              _react2.default.createElement('path', { className: 'svg-fill', d: 'M-315-98h-40.2V4h40.2c32,0,54.1-20.2,54.1-50.9C-260.8-77.7-283-98-315-98z M-328-72h14.5 c16.4,0,25.1,10.9,25.1,25.1c0,13.6-9.2,24.9-25.1,24.9H-328V-72z' })
+              'svg',
+              { className: 'letter', version: '1.1', id: 'D-2', x: '0px', y: '0px',
+                viewBox: '-355.2 -98 94.4 102', 'enable-background': 'new -355.2 -98 94.4 102' },
+              _react2.default.createElement(
+                'g',
+                { className: 'svg-fill' },
+                _react2.default.createElement('path', { fill: 'none', d: 'M-288.4-46.9c0-14.2-8.6-25.1-25.1-25.1H-328v50h14.5C-297.6-22-288.4-33.4-288.4-46.9z' }),
+                _react2.default.createElement('path', { className: 'svg-fill', d: 'M-315-98h-40.2V4h40.2c32,0,54.1-20.2,54.1-50.9C-260.8-77.7-283-98-315-98z M-328-72h14.5 c16.4,0,25.1,10.9,25.1,25.1c0,13.6-9.2,24.9-25.1,24.9H-328V-72z' })
+              )
             )
           )
         ),
@@ -482,7 +490,8 @@ _reactDom2.default.render(_react2.default.createElement(
       _react2.default.createElement(_reactRouter.IndexRoute, { component: _ProjectDiagonals2.default }),
       _react2.default.createElement(_reactRouter.Route, { path: 'new', component: _project2.default }),
       _react2.default.createElement(_reactRouter.Route, { path: ':name', component: _project2.default })
-    )
+    ),
+    _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _LoginPage2.default })
   )
 ), document.getElementById('app'));
 

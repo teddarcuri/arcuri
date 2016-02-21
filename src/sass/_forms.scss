@@ -5,7 +5,9 @@
 }
 
 form {
+	background: #222;
 	padding:  20px 40px;
+	color: #fff;
 	box-shadow: 3px 3px 15px 0px rgba(#000, 0.2);
 	@include display(flex);
 	@include justify-content(space-between);
@@ -19,9 +21,8 @@ form {
 		z-index: 999;
 	}
 
-	h3 {
+	h1, h3 {
 		color: #fff;
-		opacity: 0.85;
 		width: 100%;
 		margin: 10px 0px 30px;
 	}
