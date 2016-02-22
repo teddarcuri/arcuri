@@ -16,6 +16,14 @@ var _ProjectIndex = require('./ProjectIndex');
 
 var _ProjectIndex2 = _interopRequireDefault(_ProjectIndex);
 
+var _radium = require('radium');
+
+var _radium2 = _interopRequireDefault(_radium);
+
+var _LoadingOverlay = require('./LoadingOverlay');
+
+var _LoadingOverlay2 = _interopRequireDefault(_LoadingOverlay);
+
 var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
@@ -42,6 +50,8 @@ var Dashboard = function (_React$Component) {
     value: function handleSubmit(ev) {
       ev.preventDefault();
 
+      this.setState({ isLoading: true });
+
       var loginCredentials = {
         email: this.refs.email.value,
         password: this.refs.password.value
@@ -65,15 +75,23 @@ var Dashboard = function (_React$Component) {
           null,
           'Dashboard'
         ),
+        _react2.default.createElement(
+          'h3',
+          null,
+          this.props.projects.length,
+          ' Projects'
+        ),
         _react2.default.createElement(_ProjectIndex2.default, { projects: this.props.projects })
       );
     }
   }, {
     key: 'renderUnAuth',
     value: function renderUnAuth() {
+      var loadingOverlay = this.state.isLoading ? _react2.default.createElement(_LoadingOverlay2.default, null) : null;
       return _react2.default.createElement(
         _reactAddonsCssTransitionGroup2.default,
         { component: "form",
+          style: { position: "relative" },
           key: 'login-form',
           onSubmit: this.handleSubmit.bind(this),
           transitionAppear: true,
@@ -81,6 +99,7 @@ var Dashboard = function (_React$Component) {
           transitionName: 'bubbleUp',
           transitionEnterTimeout: 2000,
           transitionLeaveTimeout: 2000 },
+        loadingOverlay,
         _react2.default.createElement(
           'h3',
           null,
@@ -106,9 +125,11 @@ var Dashboard = function (_React$Component) {
       return {
         button: {
           border: "solid #000 2px",
-          color: "#111",
           padding: 10,
-          margin: "20px 0px"
+          margin: "20px 0px",
+          ":hover": {
+            background: "#222"
+          }
         }
       };
     }
@@ -133,4 +154,4 @@ var Dashboard = function (_React$Component) {
   return Dashboard;
 }(_react2.default.Component);
 
-exports.default = Dashboard;
+exports.default = (0, _radium2.default)(Dashboard);

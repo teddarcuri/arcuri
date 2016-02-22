@@ -76,6 +76,14 @@ var _Dashboard = require('./Dashboard');
 
 var _Dashboard2 = _interopRequireDefault(_Dashboard);
 
+var _NotFound = require('./NotFound');
+
+var _NotFound2 = _interopRequireDefault(_NotFound);
+
+var _LoadingOverlay = require('./LoadingOverlay');
+
+var _LoadingOverlay2 = _interopRequireDefault(_LoadingOverlay);
+
 var _firebase = require('firebase');
 
 var _firebase2 = _interopRequireDefault(_firebase);
@@ -425,8 +433,7 @@ var App = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'app-window',
-          ref: 'appWindow' },
+        { className: 'app-window', ref: 'appWindow' },
         _react2.default.createElement(_AlertBar2.default, { config: this.state.alertConfig,
           hideAlertBar: this.hideAlertBar.bind(this) }),
         this.renderLogoutButton(),
@@ -584,7 +591,6 @@ var App = function (_React$Component) {
             })
           )
         ),
-        _react2.default.createElement('div', { id: 'background-smoke' }),
         _react2.default.createElement(_ProjectBar2.default, { projects: this.state.projects,
           currentProject: this.state.currentProject,
           uid: this.state.uid })
@@ -612,6 +618,7 @@ _reactDom2.default.render(_react2.default.createElement(
     _react2.default.createElement(_reactRouter.IndexRoute, { component: _index2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _about2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: 'contact', component: _contact2.default }),
+    _react2.default.createElement(_reactRouter.Route, { path: 'dashboard', component: _Dashboard2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: 'experience', component: _experience2.default }),
     _react2.default.createElement(
       _reactRouter.Route,
@@ -620,7 +627,7 @@ _reactDom2.default.render(_react2.default.createElement(
       _react2.default.createElement(_reactRouter.Route, { path: 'new', component: _project2.default }),
       _react2.default.createElement(_reactRouter.Route, { path: ':name', component: _project2.default })
     ),
-    _react2.default.createElement(_reactRouter.Route, { path: 'dashboard', component: _Dashboard2.default })
+    _react2.default.createElement(_reactRouter.Route, { path: '*', component: _NotFound2.default })
   )
 ), document.getElementById('app'));
 

@@ -676,17 +676,19 @@ form {
       box-shadow: none;
       outline: none; }
   form button {
-    color: #fff;
+    color: #222;
     border: solid 2px #333;
     background: rgba(255, 255, 255, 0.01);
     padding: 12px;
     border-radius: 8px;
     font-size: 0.8em;
     letter-spacing: 1px;
-    margin: 30px 0px 10px 0px; }
+    margin: 30px 0px 10px 0px;
+    cursor: pointer; }
     form button:hover {
       border: transparent solid 2px;
-      background: #54787D; }
+      background: #222;
+      color: #fff; }
 
 * {
   box-sizing: border-box;
@@ -957,6 +959,7 @@ header#main {
     transition: all ease 0.7s; }
     .project .sidebar form {
       background: #111;
+      border: none;
       padding: 100px 55px; }
     .project .sidebar.active {
       width: 500px;
@@ -2349,3 +2352,44 @@ img {
     .project-edit-tools li img {
       width: 17px;
       height: 17px; }
+
+.spinner {
+  margin: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  text-align: center;
+  -webkit-animation: sk-rotate 2.0s infinite linear;
+  animation: sk-rotate 2.0s infinite linear; }
+
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #333;
+  border-radius: 100%;
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out; }
+
+.dot2 {
+  top: auto;
+  bottom: 0;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s; }
+
+@-webkit-keyframes sk-rotate {
+  100% {
+    -webkit-transform: rotate(360deg); } }
+
+@keyframes sk-rotate {
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg); } }
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% {
+    -webkit-transform: scale(0); }
+  50% {
+    -webkit-transform: scale(1); } }

@@ -122,11 +122,19 @@
 
 	var _Dashboard2 = _interopRequireDefault(_Dashboard);
 
-	var _firebase = __webpack_require__(357);
+	var _NotFound = __webpack_require__(358);
+
+	var _NotFound2 = _interopRequireDefault(_NotFound);
+
+	var _LoadingOverlay = __webpack_require__(357);
+
+	var _LoadingOverlay2 = _interopRequireDefault(_LoadingOverlay);
+
+	var _firebase = __webpack_require__(359);
 
 	var _firebase2 = _interopRequireDefault(_firebase);
 
-	var _reBase = __webpack_require__(358);
+	var _reBase = __webpack_require__(360);
 
 	var _reBase2 = _interopRequireDefault(_reBase);
 
@@ -134,15 +142,15 @@
 
 	var _helpers2 = _interopRequireDefault(_helpers);
 
-	var _imagesloaded = __webpack_require__(360);
+	var _imagesloaded = __webpack_require__(362);
 
 	var _imagesloaded2 = _interopRequireDefault(_imagesloaded);
 
-	var _reactCatalyst = __webpack_require__(362);
+	var _reactCatalyst = __webpack_require__(364);
 
 	var _reactCatalyst2 = _interopRequireDefault(_reactCatalyst);
 
-	var _reactMixin = __webpack_require__(364);
+	var _reactMixin = __webpack_require__(366);
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
@@ -471,8 +479,7 @@
 
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'app-window',
-	          ref: 'appWindow' },
+	        { className: 'app-window', ref: 'appWindow' },
 	        _react2.default.createElement(_AlertBar2.default, { config: this.state.alertConfig,
 	          hideAlertBar: this.hideAlertBar.bind(this) }),
 	        this.renderLogoutButton(),
@@ -630,7 +637,6 @@
 	            })
 	          )
 	        ),
-	        _react2.default.createElement('div', { id: 'background-smoke' }),
 	        _react2.default.createElement(_ProjectBar2.default, { projects: this.state.projects,
 	          currentProject: this.state.currentProject,
 	          uid: this.state.uid })
@@ -658,6 +664,7 @@
 	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _index2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _about2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: 'contact', component: _contact2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: 'dashboard', component: _Dashboard2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: 'experience', component: _experience2.default }),
 	    _react2.default.createElement(
 	      _reactRouter.Route,
@@ -666,7 +673,7 @@
 	      _react2.default.createElement(_reactRouter.Route, { path: 'new', component: _project2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: ':name', component: _project2.default })
 	    ),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'dashboard', component: _Dashboard2.default })
+	    _react2.default.createElement(_reactRouter.Route, { path: '*', component: _NotFound2.default })
 	  )
 	), document.getElementById('app'));
 
@@ -89125,6 +89132,14 @@
 
 	var _ProjectIndex2 = _interopRequireDefault(_ProjectIndex);
 
+	var _radium = __webpack_require__(293);
+
+	var _radium2 = _interopRequireDefault(_radium);
+
+	var _LoadingOverlay = __webpack_require__(357);
+
+	var _LoadingOverlay2 = _interopRequireDefault(_LoadingOverlay);
+
 	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
@@ -89151,6 +89166,8 @@
 	    value: function handleSubmit(ev) {
 	      ev.preventDefault();
 
+	      this.setState({ isLoading: true });
+
 	      var loginCredentials = {
 	        email: this.refs.email.value,
 	        password: this.refs.password.value
@@ -89174,15 +89191,23 @@
 	          null,
 	          'Dashboard'
 	        ),
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          this.props.projects.length,
+	          ' Projects'
+	        ),
 	        _react2.default.createElement(_ProjectIndex2.default, { projects: this.props.projects })
 	      );
 	    }
 	  }, {
 	    key: 'renderUnAuth',
 	    value: function renderUnAuth() {
+	      var loadingOverlay = this.state.isLoading ? _react2.default.createElement(_LoadingOverlay2.default, null) : null;
 	      return _react2.default.createElement(
 	        _reactAddonsCssTransitionGroup2.default,
 	        { component: "form",
+	          style: { position: "relative" },
 	          key: 'login-form',
 	          onSubmit: this.handleSubmit.bind(this),
 	          transitionAppear: true,
@@ -89190,6 +89215,7 @@
 	          transitionName: 'bubbleUp',
 	          transitionEnterTimeout: 2000,
 	          transitionLeaveTimeout: 2000 },
+	        loadingOverlay,
 	        _react2.default.createElement(
 	          'h3',
 	          null,
@@ -89215,9 +89241,11 @@
 	      return {
 	        button: {
 	          border: "solid #000 2px",
-	          color: "#111",
 	          padding: 10,
-	          margin: "20px 0px"
+	          margin: "20px 0px",
+	          ":hover": {
+	            background: "#222"
+	          }
 	        }
 	      };
 	    }
@@ -89242,10 +89270,210 @@
 	  return Dashboard;
 	}(_react2.default.Component);
 
-	exports.default = Dashboard;
+	exports.default = (0, _radium2.default)(Dashboard);
 
 /***/ },
 /* 357 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var LoadingOverlay = function (_React$Component) {
+		_inherits(LoadingOverlay, _React$Component);
+
+		function LoadingOverlay() {
+			_classCallCheck(this, LoadingOverlay);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(LoadingOverlay).apply(this, arguments));
+		}
+
+		_createClass(LoadingOverlay, [{
+			key: 'render',
+			value: function render() {
+				var styles = {
+					overlay: {
+						background: "#eee",
+						width: "100%",
+						height: "100%",
+						position: "absolute",
+						top: 0, left: 0,
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "center"
+					}
+				};
+				return _react2.default.createElement(
+					_reactAddonsCssTransitionGroup2.default,
+					{ transitionAppear: true,
+						transitionAppearTimeout: 2000,
+						transitionName: 'fadeIn',
+						transitionEnterTimeout: 2000,
+						transitionLeaveTimeout: 2000,
+						style: styles.overlay },
+					_react2.default.createElement(
+						'div',
+						{ className: 'spinner' },
+						_react2.default.createElement('div', { className: 'dot1' }),
+						_react2.default.createElement('div', { className: 'dot2' })
+					)
+				);
+			}
+		}]);
+
+		return LoadingOverlay;
+	}(_react2.default.Component);
+
+	exports.default = LoadingOverlay;
+
+/***/ },
+/* 358 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(159);
+
+	var _radium = __webpack_require__(293);
+
+	var _radium2 = _interopRequireDefault(_radium);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var NotFound = function (_React$Component) {
+		_inherits(NotFound, _React$Component);
+
+		function NotFound() {
+			_classCallCheck(this, NotFound);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(NotFound).apply(this, arguments));
+		}
+
+		_createClass(NotFound, [{
+			key: 'render',
+			value: function render() {
+				var styles = {
+					ul: {
+						display: "flex",
+						justifyContent: "space-between",
+						listStyle: "none",
+						padding: 0,
+						margin: 0
+					},
+					a: {
+						color: "#333",
+						textTransform: "uppercase",
+						":hover": {
+							color: "#4682B4"
+						}
+					}
+				};
+				return _react2.default.createElement(
+					_reactAddonsCssTransitionGroup2.default,
+					{ transitionAppear: true,
+						transitionAppearTimeout: 2000,
+						transitionName: 'bubbleUp',
+						transitionEnterTimeout: 2000,
+						transitionLeaveTimeout: 2000,
+						style: { textAlign: "center" } },
+					_react2.default.createElement(
+						'h1',
+						null,
+						'Page Not Found'
+					),
+					_react2.default.createElement(
+						'ul',
+						{ style: styles.ul },
+						_react2.default.createElement(
+							'li',
+							null,
+							_react2.default.createElement(
+								_reactRouter.Link,
+								{ style: styles.a, to: 'about' },
+								'About Me'
+							)
+						),
+						_react2.default.createElement(
+							'li',
+							null,
+							_react2.default.createElement(
+								_reactRouter.Link,
+								{ style: styles.a, to: 'work' },
+								'My Work'
+							)
+						),
+						_react2.default.createElement(
+							'li',
+							null,
+							_react2.default.createElement(
+								_reactRouter.Link,
+								{ style: styles.a, to: 'experience' },
+								' My Experience'
+							)
+						),
+						_react2.default.createElement(
+							'li',
+							null,
+							_react2.default.createElement(
+								_reactRouter.Link,
+								{ style: styles.a, to: 'contact' },
+								'Contact Me'
+							)
+						)
+					),
+					_react2.default.createElement('img', { src: './src/img/confused_travolta.gif', alt: '' })
+				);
+			}
+		}]);
+
+		return NotFound;
+	}(_react2.default.Component);
+
+	exports.default = (0, _radium2.default)(NotFound);
+
+/***/ },
+/* 359 */
 /***/ function(module, exports) {
 
 	/*! @license Firebase v2.4.0
@@ -89529,20 +89757,20 @@
 
 
 /***/ },
-/* 358 */
+/* 360 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(359);
+	module.exports = __webpack_require__(361);
 
 
 
 /***/ },
-/* 359 */
+/* 361 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
-			module.exports = factory(__webpack_require__(357));
+			module.exports = factory(__webpack_require__(359));
 		else if(typeof define === 'function' && define.amd)
 			define(["firebase"], factory);
 		else {
@@ -90072,7 +90300,7 @@
 	;
 
 /***/ },
-/* 360 */
+/* 362 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -90089,7 +90317,7 @@
 	  if ( true ) {
 	    // AMD
 	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-	      __webpack_require__(361)
+	      __webpack_require__(363)
 	    ], __WEBPACK_AMD_DEFINE_RESULT__ = function( EvEmitter ) {
 	      return factory( window, EvEmitter );
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -90448,7 +90676,7 @@
 
 
 /***/ },
-/* 361 */
+/* 363 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -90563,15 +90791,15 @@
 
 
 /***/ },
-/* 362 */
+/* 364 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	exports.LinkedStateMixin = __webpack_require__(363);
+	exports.LinkedStateMixin = __webpack_require__(365);
 
 
 /***/ },
-/* 363 */
+/* 365 */
 /***/ function(module, exports) {
 
 	
@@ -90606,11 +90834,11 @@
 
 
 /***/ },
-/* 364 */
+/* 366 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var mixin = __webpack_require__(365);
-	var assign = __webpack_require__(366);
+	var mixin = __webpack_require__(367);
+	var assign = __webpack_require__(368);
 
 	var mixinProto = mixin({
 	  // lifecycle stuff is as you'd expect
@@ -90763,7 +90991,7 @@
 
 
 /***/ },
-/* 365 */
+/* 367 */
 /***/ function(module, exports) {
 
 	var objToStr = function(x){ return Object.prototype.toString.call(x); };
@@ -90946,7 +91174,7 @@
 
 
 /***/ },
-/* 366 */
+/* 368 */
 /***/ function(module, exports) {
 
 	/* eslint-disable no-unused-vars */

@@ -21,6 +21,7 @@
     @include transition(all ease 0.7s);
     form {
       background: #111;
+      border: none;
       padding: 100px 55px;
     }
     &.active {

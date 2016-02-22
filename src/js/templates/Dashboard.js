@@ -1,6 +1,8 @@
 import React from 'react';
 import {Router, Route, IndexRoute, Link} from 'react-router';
 import ProjectIndex from './ProjectIndex';
+import Radium from 'radium';
+import LoadingOverlay from './LoadingOverlay';
 
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -12,6 +14,8 @@ class Dashboard extends React.Component {
 
   handleSubmit(ev)  {
     ev.preventDefault();
+
+    this.setState({isLoading: true})
 
     var loginCredentials = {
       email : this.refs.email.value,
@@ -29,6 +33,7 @@ class Dashboard extends React.Component {
     return (
       <div key="dashboard">
         <h1>Dashboard</h1>
+        <h3>{this.props.projects.length} Projects</h3>
         <ProjectIndex projects={this.props.projects}>
         </ProjectIndex>
       </div>
@@ -36,8 +41,10 @@ class Dashboard extends React.Component {
   }
 
   renderUnAuth() {
+    var loadingOverlay = this.state.isLoading ? <LoadingOverlay></LoadingOverlay> : null;
     return (
         <CSSTransitionGroup component={"form"}
+              style={{position: "relative"}}
               key="login-form"
               onSubmit={this.handleSubmit.bind(this)}
               transitionAppear={true}
@@ -45,6 +52,7 @@ class Dashboard extends React.Component {
               transitionName="bubbleUp"
               transitionEnterTimeout={2000}
               transitionLeaveTimeout={2000}>
+        {loadingOverlay}
         <h3>
           Are you me?
         </h3>
@@ -62,9 +70,11 @@ class Dashboard extends React.Component {
     return {
       button: {
         border: "solid #000 2px",
-        color: "#111",
         padding: 10,
-        margin: "20px 0px"
+        margin: "20px 0px",
+        ":hover" : {
+          background: "#222",
+        }
       }
     }
   }
@@ -85,4 +95,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+export default Radium(Dashboard);
