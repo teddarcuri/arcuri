@@ -4,6 +4,8 @@ import ProjectIndex from './ProjectIndex';
 import Radium from 'radium';
 import LoadingOverlay from './LoadingOverlay';
 
+import  colors from '../utilities/colors';
+
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Dashboard extends React.Component {
@@ -42,6 +44,32 @@ class Dashboard extends React.Component {
 
   renderUnAuth() {
     var loadingOverlay = this.state.isLoading ? <LoadingOverlay></LoadingOverlay> : null;
+
+    var form = (
+      <div>
+        <h3>
+          Are you me?
+        </h3>
+        <h5>Let's find out.</h5>
+        <input ref="email" type="text"/>
+        <input ref="password" type="password"/>
+        <button style={this.getStyles().button} type="submit">
+          Login
+        </button>
+      </div>
+    )
+
+    var success = (
+      <div style={{textAlign: "center"}}>
+        <span className="fa-lg fa-stack">
+          <i style={{color: colors.successGreen}} className="fa fa-circle fa-stack-2x"></i>
+          <i className="fa fa-check fa-stack-1x"></i>
+        </span> 
+        <h3 style={{color: colors.successGreen}}>Sweet, everything seems to check out.</h3>
+      </div>
+    );
+
+    var content = form;
     return (
         <CSSTransitionGroup component={"form"}
               style={{position: "relative"}}
@@ -53,15 +81,7 @@ class Dashboard extends React.Component {
               transitionEnterTimeout={2000}
               transitionLeaveTimeout={2000}>
         {loadingOverlay}
-        <h3>
-          Are you me?
-        </h3>
-        <h5>Let's find out.</h5>
-        <input ref="email" type="text"/>
-        <input ref="password" type="password"/>
-        <button style={this.getStyles().button} type="submit">
-          Login
-        </button>
+        {content}
       </CSSTransitionGroup>
     )    
   }

@@ -44,6 +44,9 @@ var LoadingOverlay = function (_React$Component) {
 					display: "flex",
 					alignItems: "center",
 					justifyContent: "center"
+				},
+				dot: {
+					background: this.props.color ? this.props.color : "#111"
 				}
 			};
 			return _react2.default.createElement(
@@ -57,8 +60,8 @@ var LoadingOverlay = function (_React$Component) {
 				_react2.default.createElement(
 					'div',
 					{ className: 'spinner' },
-					_react2.default.createElement('div', { className: 'dot1' }),
-					_react2.default.createElement('div', { className: 'dot2' })
+					_react2.default.createElement('div', { style: styles.dot, className: 'dot1' }),
+					_react2.default.createElement('div', { style: styles.dot, className: 'dot2' })
 				)
 			);
 		}

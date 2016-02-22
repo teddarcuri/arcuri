@@ -24,6 +24,10 @@ var _LoadingOverlay = require('./LoadingOverlay');
 
 var _LoadingOverlay2 = _interopRequireDefault(_LoadingOverlay);
 
+var _colors = require('../utilities/colors');
+
+var _colors2 = _interopRequireDefault(_colors);
+
 var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
@@ -88,18 +92,10 @@ var Dashboard = function (_React$Component) {
     key: 'renderUnAuth',
     value: function renderUnAuth() {
       var loadingOverlay = this.state.isLoading ? _react2.default.createElement(_LoadingOverlay2.default, null) : null;
-      return _react2.default.createElement(
-        _reactAddonsCssTransitionGroup2.default,
-        { component: "form",
-          style: { position: "relative" },
-          key: 'login-form',
-          onSubmit: this.handleSubmit.bind(this),
-          transitionAppear: true,
-          transitionAppearTimeout: 2000,
-          transitionName: 'bubbleUp',
-          transitionEnterTimeout: 2000,
-          transitionLeaveTimeout: 2000 },
-        loadingOverlay,
+
+      var form = _react2.default.createElement(
+        'div',
+        null,
         _react2.default.createElement(
           'h3',
           null,
@@ -117,6 +113,38 @@ var Dashboard = function (_React$Component) {
           { style: this.getStyles().button, type: 'submit' },
           'Login'
         )
+      );
+
+      var success = _react2.default.createElement(
+        'div',
+        { style: { textAlign: "center" } },
+        _react2.default.createElement(
+          'span',
+          { className: 'fa-lg fa-stack' },
+          _react2.default.createElement('i', { style: { color: _colors2.default.successGreen }, className: 'fa fa-circle fa-stack-2x' }),
+          _react2.default.createElement('i', { className: 'fa fa-check fa-stack-1x' })
+        ),
+        _react2.default.createElement(
+          'h3',
+          { style: { color: _colors2.default.successGreen } },
+          'Sweet, everything seems to check out.'
+        )
+      );
+
+      var content = form;
+      return _react2.default.createElement(
+        _reactAddonsCssTransitionGroup2.default,
+        { component: "form",
+          style: { position: "relative" },
+          key: 'login-form',
+          onSubmit: this.handleSubmit.bind(this),
+          transitionAppear: true,
+          transitionAppearTimeout: 2000,
+          transitionName: 'bubbleUp',
+          transitionEnterTimeout: 2000,
+          transitionLeaveTimeout: 2000 },
+        loadingOverlay,
+        content
       );
     }
   }, {

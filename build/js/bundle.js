@@ -122,7 +122,7 @@
 
 	var _Dashboard2 = _interopRequireDefault(_Dashboard);
 
-	var _NotFound = __webpack_require__(358);
+	var _NotFound = __webpack_require__(359);
 
 	var _NotFound2 = _interopRequireDefault(_NotFound);
 
@@ -130,11 +130,11 @@
 
 	var _LoadingOverlay2 = _interopRequireDefault(_LoadingOverlay);
 
-	var _firebase = __webpack_require__(359);
+	var _firebase = __webpack_require__(360);
 
 	var _firebase2 = _interopRequireDefault(_firebase);
 
-	var _reBase = __webpack_require__(360);
+	var _reBase = __webpack_require__(361);
 
 	var _reBase2 = _interopRequireDefault(_reBase);
 
@@ -142,15 +142,15 @@
 
 	var _helpers2 = _interopRequireDefault(_helpers);
 
-	var _imagesloaded = __webpack_require__(362);
+	var _imagesloaded = __webpack_require__(363);
 
 	var _imagesloaded2 = _interopRequireDefault(_imagesloaded);
 
-	var _reactCatalyst = __webpack_require__(364);
+	var _reactCatalyst = __webpack_require__(365);
 
 	var _reactCatalyst2 = _interopRequireDefault(_reactCatalyst);
 
-	var _reactMixin = __webpack_require__(366);
+	var _reactMixin = __webpack_require__(367);
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
@@ -89140,6 +89140,10 @@
 
 	var _LoadingOverlay2 = _interopRequireDefault(_LoadingOverlay);
 
+	var _colors = __webpack_require__(358);
+
+	var _colors2 = _interopRequireDefault(_colors);
+
 	var _reactAddonsCssTransitionGroup = __webpack_require__(214);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
@@ -89204,18 +89208,10 @@
 	    key: 'renderUnAuth',
 	    value: function renderUnAuth() {
 	      var loadingOverlay = this.state.isLoading ? _react2.default.createElement(_LoadingOverlay2.default, null) : null;
-	      return _react2.default.createElement(
-	        _reactAddonsCssTransitionGroup2.default,
-	        { component: "form",
-	          style: { position: "relative" },
-	          key: 'login-form',
-	          onSubmit: this.handleSubmit.bind(this),
-	          transitionAppear: true,
-	          transitionAppearTimeout: 2000,
-	          transitionName: 'bubbleUp',
-	          transitionEnterTimeout: 2000,
-	          transitionLeaveTimeout: 2000 },
-	        loadingOverlay,
+
+	      var form = _react2.default.createElement(
+	        'div',
+	        null,
 	        _react2.default.createElement(
 	          'h3',
 	          null,
@@ -89233,6 +89229,37 @@
 	          { style: this.getStyles().button, type: 'submit' },
 	          'Login'
 	        )
+	      );
+
+	      var success = _react2.default.createElement(
+	        'div',
+	        { style: { textAlign: "center" } },
+	        _react2.default.createElement(
+	          'span',
+	          { className: 'fa-lg fa-stack' },
+	          _react2.default.createElement('i', { style: { color: _colors2.default.successGreen }, className: 'fa fa-circle fa-stack-2x' }),
+	          _react2.default.createElement('i', { className: 'fa fa-check fa-stack-1x' })
+	        ),
+	        _react2.default.createElement(
+	          'h3',
+	          { style: { color: _colors2.default.successGreen } },
+	          'Sweet, everything seems to check out.'
+	        )
+	      );
+
+	      return _react2.default.createElement(
+	        _reactAddonsCssTransitionGroup2.default,
+	        { component: "form",
+	          style: { position: "relative" },
+	          key: 'login-form',
+	          onSubmit: this.handleSubmit.bind(this),
+	          transitionAppear: true,
+	          transitionAppearTimeout: 2000,
+	          transitionName: 'bubbleUp',
+	          transitionEnterTimeout: 2000,
+	          transitionLeaveTimeout: 2000 },
+	        loadingOverlay,
+	        success
 	      );
 	    }
 	  }, {
@@ -89322,6 +89349,9 @@
 						display: "flex",
 						alignItems: "center",
 						justifyContent: "center"
+					},
+					dot: {
+						background: this.props.color ? this.props.color : "#111"
 					}
 				};
 				return _react2.default.createElement(
@@ -89335,8 +89365,8 @@
 					_react2.default.createElement(
 						'div',
 						{ className: 'spinner' },
-						_react2.default.createElement('div', { className: 'dot1' }),
-						_react2.default.createElement('div', { className: 'dot2' })
+						_react2.default.createElement('div', { style: styles.dot, className: 'dot1' }),
+						_react2.default.createElement('div', { style: styles.dot, className: 'dot2' })
 					)
 				);
 			}
@@ -89349,6 +89379,21 @@
 
 /***/ },
 /* 358 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	var colors = {
+		successGreen: "#75c43a"
+	};
+
+	exports.default = colors;
+
+/***/ },
+/* 359 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89473,7 +89518,7 @@
 	exports.default = (0, _radium2.default)(NotFound);
 
 /***/ },
-/* 359 */
+/* 360 */
 /***/ function(module, exports) {
 
 	/*! @license Firebase v2.4.0
@@ -89757,20 +89802,20 @@
 
 
 /***/ },
-/* 360 */
+/* 361 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(361);
+	module.exports = __webpack_require__(362);
 
 
 
 /***/ },
-/* 361 */
+/* 362 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
-			module.exports = factory(__webpack_require__(359));
+			module.exports = factory(__webpack_require__(360));
 		else if(typeof define === 'function' && define.amd)
 			define(["firebase"], factory);
 		else {
@@ -90300,7 +90345,7 @@
 	;
 
 /***/ },
-/* 362 */
+/* 363 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -90317,7 +90362,7 @@
 	  if ( true ) {
 	    // AMD
 	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-	      __webpack_require__(363)
+	      __webpack_require__(364)
 	    ], __WEBPACK_AMD_DEFINE_RESULT__ = function( EvEmitter ) {
 	      return factory( window, EvEmitter );
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -90676,7 +90721,7 @@
 
 
 /***/ },
-/* 363 */
+/* 364 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -90791,15 +90836,15 @@
 
 
 /***/ },
-/* 364 */
+/* 365 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	exports.LinkedStateMixin = __webpack_require__(365);
+	exports.LinkedStateMixin = __webpack_require__(366);
 
 
 /***/ },
-/* 365 */
+/* 366 */
 /***/ function(module, exports) {
 
 	
@@ -90834,11 +90879,11 @@
 
 
 /***/ },
-/* 366 */
+/* 367 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var mixin = __webpack_require__(367);
-	var assign = __webpack_require__(368);
+	var mixin = __webpack_require__(368);
+	var assign = __webpack_require__(369);
 
 	var mixinProto = mixin({
 	  // lifecycle stuff is as you'd expect
@@ -90991,7 +91036,7 @@
 
 
 /***/ },
-/* 367 */
+/* 368 */
 /***/ function(module, exports) {
 
 	var objToStr = function(x){ return Object.prototype.toString.call(x); };
@@ -91174,7 +91219,7 @@
 
 
 /***/ },
-/* 368 */
+/* 369 */
 /***/ function(module, exports) {
 
 	/* eslint-disable no-unused-vars */

@@ -13,6 +13,9 @@ class LoadingOverlay extends React.Component {
 				display: "flex",
 				alignItems: "center",
 				justifyContent: "center"
+			},
+			dot: {
+				background: this.props.color ? this.props.color : "#111"
 			}
 		}
 		return(
@@ -23,8 +26,8 @@ class LoadingOverlay extends React.Component {
 							transitionLeaveTimeout={2000}
 							style={styles.overlay}>
 				<div className="spinner">
-				  <div className="dot1"></div>
-				  <div className="dot2"></div>
+				  <div style={styles.dot} className="dot1"></div>
+				  <div style={styles.dot} className="dot2"></div>
 				</div>
 			</CSSTransitionGroup>		
 		);
