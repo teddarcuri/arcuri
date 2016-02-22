@@ -36,6 +36,18 @@ var About = function (_React$Component) {
 		_createClass(About, [{
 				key: 'render',
 				value: function render() {
+						var styles = {
+								headshot: {
+										borderRadius: "50%",
+										display: "block",
+										postion: "relative",
+										margin: "0px auto",
+										marginBottom: 30
+								},
+								container: {
+										textAlign: "center"
+								}
+						};
 						return _react2.default.createElement(
 								_reactAddonsCssTransitionGroup2.default,
 								{ transitionAppear: true,
@@ -45,7 +57,7 @@ var About = function (_React$Component) {
 										transitionLeaveTimeout: 2000 },
 								_react2.default.createElement(
 										'div',
-										{ className: 'container mw' },
+										{ className: 'container mw', style: styles.container },
 										_react2.default.createElement(
 												'div',
 												null,
@@ -57,10 +69,10 @@ var About = function (_React$Component) {
 																transitionName: 'fadeIn',
 																transitionEnterTimeout: 2000,
 																transitionLeaveTimeout: 2000 },
+														_react2.default.createElement('img', { style: styles.headshot, src: 'https://lh4.googleusercontent.com/-2qeuQQr-24c/AAAAAAAAAAI/AAAAAAAAAAA/I3aLsM6bU2o/s128-c-k/photo.jpg', alt: '' }),
 														_react2.default.createElement(
 																'h3',
 																null,
-																_react2.default.createElement('img', { src: 'https://lh4.googleusercontent.com/-2qeuQQr-24c/AAAAAAAAAAI/AAAAAAAAAAA/I3aLsM6bU2o/s128-c-k/photo.jpg', alt: '' }),
 																'Hello, My Name is ',
 																_react2.default.createElement(
 																		'span',

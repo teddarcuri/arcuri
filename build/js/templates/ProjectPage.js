@@ -182,7 +182,7 @@ var ProjectPage = function (_React$Component) {
     key: 'render',
     value: function render() {
       var p = this.props.currentProject,
-          role = this.props.currentProject.role,
+          role = this.props.currentProject.role ? this.props.currentProject.role : null,
           logo = p.logo ? _react2.default.createElement('img', { src: p.logo, alt: p.name, className: 'project-logo' }) : "";
 
       return _react2.default.createElement(

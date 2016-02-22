@@ -4,13 +4,25 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 class About extends React.Component {
   render() {
+  	let styles= {
+  		headshot: {
+  			borderRadius: "50%",
+  			display: "block",
+  			postion: "relative",
+  			margin: "0px auto",
+  			marginBottom: 30
+  		},
+  		container: {
+  			textAlign: "center"
+  		}
+  	}
     return (
     	<CSSTransitionGroup transitionAppear={true}
 							transitionAppearTimeout={2000}
 							transitionName="fadeIn"
 							transitionEnterTimeout={2000}
 							transitionLeaveTimeout={2000}>
-		  	<div className="container mw">
+		  	<div className="container mw" style={styles.container}>
 	    		<div>
 		        	<CSSTransitionGroup 
 	        			transitionAppear={true}
@@ -18,8 +30,8 @@ class About extends React.Component {
 						transitionName="fadeIn"
 						transitionEnterTimeout={2000}
 						transitionLeaveTimeout={2000}>
+					  <img style={styles.headshot} src="https://lh4.googleusercontent.com/-2qeuQQr-24c/AAAAAAAAAAI/AAAAAAAAAAA/I3aLsM6bU2o/s128-c-k/photo.jpg" alt=""/>
 					  <h3>
-					  	<img src="https://lh4.googleusercontent.com/-2qeuQQr-24c/AAAAAAAAAAI/AAAAAAAAAAA/I3aLsM6bU2o/s128-c-k/photo.jpg" alt=""/>
 				          Hello, My Name is <span className="highlight light">Tedd Arcuri</span>.<br />
 				          I am a software designer + developer.<br />
 				          Currently living in Denver, CO.<br /><br />
@@ -41,7 +53,7 @@ class About extends React.Component {
 							transitionEnterTimeout={2000}
 							transitionLeaveTimeout={2000}>
 	    	<img id="about-image" src="/src/img/background-scene.png" />
-	    	</CSSTransitionGroup>	*/}
+	    	</CSSTransitionGroup>*/}
 	  	</CSSTransitionGroup>
     )
   }

@@ -9,6 +9,7 @@ import projectList from '../utilities/project-list';
 // Routes 
 import Index from './index';
 import About from './about';
+import AlertBar from './AlertBar';
 import Experience from './experience';
 import Projects from './projects';
 import ProjectDiagonals from './ProjectDiagonals';
@@ -55,6 +56,14 @@ class App extends React.Component {
         role: "uhh",
         gallery: {}
       },
+      // Alert
+      alertConfig: {
+        active: false,
+        message: "",
+        icon: "",
+        type: "",
+        timeout: 50
+      },
       // Notification Bar
       notificationBar: {
         isActive: false,
@@ -69,10 +78,12 @@ class App extends React.Component {
     Life Cycle 
   */
 
-  componentDidMount() {
+  componentWillMount() {
     // Check to see if user is authenticated
     this.checkIfAuthenticated();
+  }
 
+  componentDidMount() {
     // Check to see if the loaded route will be a project component
     this.checkIfProjectPage(this.props);
 
@@ -149,9 +160,24 @@ class App extends React.Component {
     }, (error, authData) => {
       if (error) {
         console.log("failed", error);
+        var alertConfig = {
+           active: true,
+           message: "Hold onto your butts.",
+           icon: "fa fa-exclamation-triangle",
+           type: "ERROR",
+           timeout: 5000
+        }
+        this.setState({alertConfig: alertConfig});
       } else {
         this.setState({uid: authData.uid});
-        console.log("success", authData);
+        var alertConfig = {
+           active: true,
+           message: "Successfully signed in!",
+           icon: "fa fa-check",
+           type: "SUCCESS",
+           timeout: 5000
+        }
+        this.setState({alertConfig: alertConfig});
       }
     });
   }
@@ -159,6 +185,13 @@ class App extends React.Component {
   unauthenticate() {
     ref.unauth();
     this.setState({uid: ""});
+    var alertConfig = {
+           active: true,
+           message: "Successfully logged out",
+           type: "SUCCESS",
+           timeout: 5000
+        }
+    this.setState({alertConfig: alertConfig});
   }
 
   checkIfAuthenticated() {
@@ -166,6 +199,15 @@ class App extends React.Component {
       let session = localStorage.getItem("firebase:session::tedd-arcuri");
           session = JSON.parse(session);
       this.setState({uid: session.uid});
+
+      var config ={
+        active: true,
+        message: "Logged in",
+        icon: "fa fa-check",
+        type: "SUCCESS",
+        timeout: 5000
+      }
+      this.setState({alertConfig: config});
     } 
   }
 
@@ -233,12 +275,30 @@ class App extends React.Component {
     Render 
   */
 
+  hideAlertBar() {
+    this.state.alertConfig.active = false;
+    this.setState({alertConfig: this.state.alertConfig});
+    console.log(this.state.alertConfig);
+  }
+
   renderProjectBubbles() {
     return (
       <ProjectIndex projects={this.state.projects}
                     currentProject={this.state.currentProject}
                      type="BUBBLES"/>
     )
+  }
+
+  renderLogoutButton() {
+    if (this.state.uid != "") {
+       return (
+        <a id="logout-button"
+              className={ this.state.isProjectPage ? "light" : null }
+              onClick={this.unauthenticate.bind(this)}>
+            Logout
+        </a>
+      )
+    }
   }
 
   render() {
@@ -248,6 +308,11 @@ class App extends React.Component {
     return (
     <div className="app-window"
           ref="appWindow">
+
+        <AlertBar config={this.state.alertConfig}
+                  hideAlertBar={this.hideAlertBar.bind(this)}></AlertBar>
+
+        {this.renderLogoutButton()}   
     
         <header id="main" className={logoClasses}>  
            <Link to="/">
@@ -281,7 +346,7 @@ class App extends React.Component {
                 <ul className="main">
                    <li>
                     <Link to="/about">
-                      About
+                      About Me
                     </Link>
                   </li>
                   <li>
@@ -297,7 +362,7 @@ class App extends React.Component {
                   <li>
                       {renderBubbles} 
                   </li>
-                   <li><Link to="/contact">Contact</Link></li>
+                   <li><Link to="/contact">Contact Me</Link></li>
                 </ul>
             </div>
              <svg className="letter" version="1.1" id="D-1" x="0px" y="0px"

@@ -5,9 +5,10 @@
 }
 
 form {
-	background: #222;
+	border: solid 2px #222;
 	padding:  20px 40px;
 	color: #fff;
+	background: rgba(#fff, 0.5);
 	box-shadow: 3px 3px 15px 0px rgba(#000, 0.2);
 	@include display(flex);
 	@include justify-content(space-between);
@@ -21,10 +22,10 @@ form {
 		z-index: 999;
 	}
 
-	h1, h3 {
-		color: #fff;
+	h1, h3, h5 {
+		color: #333;
 		width: 100%;
-		margin: 10px 0px 30px;
+		text-align: center;
 	}
 
 	label {
@@ -44,12 +45,12 @@ form {
 		padding: 15px;
 		width: 100%;
 		border: solid 2px transparent;
-		background: rgba(#000, 0.2);
-		color: #eee;
+		background: rgba(#000, 0.1);
+		color: #333;
 		@include flex(1 0 100%);
 		@include transition(all ease 0.3s);
 		&:focus {
-			border: solid 2px $color-green;
+			border: solid 2px #333;
 			//background: rgba(#fff, 0.08);	
 			box-shadow: none;
 			outline: none;

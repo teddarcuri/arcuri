@@ -31,9 +31,6 @@ class Dashboard extends React.Component {
         <h1>Dashboard</h1>
         <ProjectIndex projects={this.props.projects}>
         </ProjectIndex>
-        <a onClick={this.logout.bind(this)}>
-          Logout
-        </a>
       </div>
     )
   }
@@ -49,9 +46,9 @@ class Dashboard extends React.Component {
               transitionEnterTimeout={2000}
               transitionLeaveTimeout={2000}>
         <h3>
-          Hi! Are you me?
-          <span>Let's find out.</span>
+          Are you me?
         </h3>
+        <h5>Let's find out.</h5>
         <input ref="email" type="text"/>
         <input ref="password" type="password"/>
         <button style={this.getStyles().button} type="submit">
@@ -64,7 +61,10 @@ class Dashboard extends React.Component {
   getStyles() {
     return {
       button: {
-        background: "#111"
+        border: "solid #000 2px",
+        color: "#111",
+        padding: 10,
+        margin: "20px 0px"
       }
     }
   }
@@ -74,7 +74,7 @@ class Dashboard extends React.Component {
      return (
        <CSSTransitionGroup component={"div"}
               transitionAppear={true}
-              style={{width: "100%"}}
+              style={{maxWidth: "666px", width: "100%"}}
               transitionAppearTimeout={2000}
               transitionName="bubbleUp"
               transitionEnterTimeout={2000}

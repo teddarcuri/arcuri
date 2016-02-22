@@ -65,12 +65,7 @@ var Dashboard = function (_React$Component) {
           null,
           'Dashboard'
         ),
-        _react2.default.createElement(_ProjectIndex2.default, { projects: this.props.projects }),
-        _react2.default.createElement(
-          'a',
-          { onClick: this.logout.bind(this) },
-          'Logout'
-        )
+        _react2.default.createElement(_ProjectIndex2.default, { projects: this.props.projects })
       );
     }
   }, {
@@ -89,12 +84,12 @@ var Dashboard = function (_React$Component) {
         _react2.default.createElement(
           'h3',
           null,
-          'Hi! Are you me?',
-          _react2.default.createElement(
-            'span',
-            null,
-            'Let\'s find out.'
-          )
+          'Are you me?'
+        ),
+        _react2.default.createElement(
+          'h5',
+          null,
+          'Let\'s find out.'
         ),
         _react2.default.createElement('input', { ref: 'email', type: 'text' }),
         _react2.default.createElement('input', { ref: 'password', type: 'password' }),
@@ -110,7 +105,10 @@ var Dashboard = function (_React$Component) {
     value: function getStyles() {
       return {
         button: {
-          background: "#111"
+          border: "solid #000 2px",
+          color: "#111",
+          padding: 10,
+          margin: "20px 0px"
         }
       };
     }
@@ -122,7 +120,7 @@ var Dashboard = function (_React$Component) {
         _reactAddonsCssTransitionGroup2.default,
         { component: "div",
           transitionAppear: true,
-          style: { width: "100%" },
+          style: { maxWidth: "666px", width: "100%" },
           transitionAppearTimeout: 2000,
           transitionName: 'bubbleUp',
           transitionEnterTimeout: 2000,

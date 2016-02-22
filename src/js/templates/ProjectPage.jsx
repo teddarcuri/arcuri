@@ -126,7 +126,7 @@ class ProjectPage extends React.Component {
 
   render() {
   	var p = this.props.currentProject,
-        role = this.props.currentProject.role,
+        role = this.props.currentProject.role ? this.props.currentProject.role : null,
         logo = p.logo ? <img src={p.logo} alt={p.name} className="project-logo"/> : "";
 
     return (

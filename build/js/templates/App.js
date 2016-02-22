@@ -36,6 +36,10 @@ var _about = require('./about');
 
 var _about2 = _interopRequireDefault(_about);
 
+var _AlertBar = require('./AlertBar');
+
+var _AlertBar2 = _interopRequireDefault(_AlertBar);
+
 var _experience = require('./experience');
 
 var _experience2 = _interopRequireDefault(_experience);
@@ -143,6 +147,14 @@ var App = function (_React$Component) {
         role: "uhh",
         gallery: {}
       },
+      // Alert
+      alertConfig: {
+        active: false,
+        message: "",
+        icon: "",
+        type: "",
+        timeout: 50
+      },
       // Notification Bar
       notificationBar: {
         isActive: false,
@@ -159,11 +171,14 @@ var App = function (_React$Component) {
   */
 
   _createClass(App, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
       // Check to see if user is authenticated
       this.checkIfAuthenticated();
-
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
       // Check to see if the loaded route will be a project component
       this.checkIfProjectPage(this.props);
 
@@ -250,9 +265,24 @@ var App = function (_React$Component) {
       }, function (error, authData) {
         if (error) {
           console.log("failed", error);
+          var alertConfig = {
+            active: true,
+            message: "Hold onto your butts.",
+            icon: "fa fa-exclamation-triangle",
+            type: "ERROR",
+            timeout: 5000
+          };
+          _this2.setState({ alertConfig: alertConfig });
         } else {
           _this2.setState({ uid: authData.uid });
-          console.log("success", authData);
+          var alertConfig = {
+            active: true,
+            message: "Successfully signed in!",
+            icon: "fa fa-check",
+            type: "SUCCESS",
+            timeout: 5000
+          };
+          _this2.setState({ alertConfig: alertConfig });
         }
       });
     }
@@ -261,6 +291,13 @@ var App = function (_React$Component) {
     value: function unauthenticate() {
       ref.unauth();
       this.setState({ uid: "" });
+      var alertConfig = {
+        active: true,
+        message: "Successfully logged out",
+        type: "SUCCESS",
+        timeout: 5000
+      };
+      this.setState({ alertConfig: alertConfig });
     }
   }, {
     key: 'checkIfAuthenticated',
@@ -269,6 +306,15 @@ var App = function (_React$Component) {
         var session = localStorage.getItem("firebase:session::tedd-arcuri");
         session = JSON.parse(session);
         this.setState({ uid: session.uid });
+
+        var config = {
+          active: true,
+          message: "Logged in",
+          icon: "fa fa-check",
+          type: "SUCCESS",
+          timeout: 5000
+        };
+        this.setState({ alertConfig: config });
       }
     }
 
@@ -345,11 +391,31 @@ var App = function (_React$Component) {
     */
 
   }, {
+    key: 'hideAlertBar',
+    value: function hideAlertBar() {
+      this.state.alertConfig.active = false;
+      this.setState({ alertConfig: this.state.alertConfig });
+      console.log(this.state.alertConfig);
+    }
+  }, {
     key: 'renderProjectBubbles',
     value: function renderProjectBubbles() {
       return _react2.default.createElement(_ProjectIndex2.default, { projects: this.state.projects,
         currentProject: this.state.currentProject,
         type: 'BUBBLES' });
+    }
+  }, {
+    key: 'renderLogoutButton',
+    value: function renderLogoutButton() {
+      if (this.state.uid != "") {
+        return _react2.default.createElement(
+          'a',
+          { id: 'logout-button',
+            className: this.state.isProjectPage ? "light" : null,
+            onClick: this.unauthenticate.bind(this) },
+          'Logout'
+        );
+      }
     }
   }, {
     key: 'render',
@@ -361,6 +427,9 @@ var App = function (_React$Component) {
         'div',
         { className: 'app-window',
           ref: 'appWindow' },
+        _react2.default.createElement(_AlertBar2.default, { config: this.state.alertConfig,
+          hideAlertBar: this.hideAlertBar.bind(this) }),
+        this.renderLogoutButton(),
         _react2.default.createElement(
           'header',
           { id: 'main', className: logoClasses },
@@ -423,7 +492,7 @@ var App = function (_React$Component) {
                 _react2.default.createElement(
                   _reactRouter.Link,
                   { to: '/about' },
-                  'About'
+                  'About Me'
                 )
               ),
               _react2.default.createElement(
@@ -455,7 +524,7 @@ var App = function (_React$Component) {
                 _react2.default.createElement(
                   _reactRouter.Link,
                   { to: '/contact' },
-                  'Contact'
+                  'Contact Me'
                 )
               )
             )

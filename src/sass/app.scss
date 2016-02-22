@@ -100,6 +100,22 @@ img {
   height: 100%;
 }
 
+#logout-button {
+  position: fixed;
+  top: 40px; right: 20px;
+  border: solid 2px #111;
+  padding: 10px;
+  font-weight: 700;
+  z-index: 9999;
+  &:hover {
+    background: rgba(#fff, 0.5);
+  }
+  &.light {
+    color: #fff;
+    border: solid 2px #fff;
+  }
+}
+
 .f-center {
   @include display(flex);
   @include align-items(center);
@@ -122,7 +138,7 @@ img {
         background: rgba(#fff, 0.1);
       }
       i{
-        font-size: 1.5em;
+        font-size: 1em;
         vertical-align: middle;
         margin-right: 12px;
       }
