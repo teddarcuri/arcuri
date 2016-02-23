@@ -313,7 +313,6 @@ class App extends React.Component {
                 hideAlertBar={this.hideAlertBar.bind(this)}></AlertBar>
 
       {this.renderLogoutButton()}   
-
       <header id="main" className={logoClasses}>  
          <Link to="/">
             <div id="logo" >   
