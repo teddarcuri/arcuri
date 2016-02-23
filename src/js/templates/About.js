@@ -5,6 +5,16 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 class About extends React.Component {
   render() {
   	let styles= {
+  		page: {
+  			width: "100%",
+  			height: "100%",
+  			position: "absolute",
+  			top: "0px", 
+  			left: "0px",
+  			display: "flex",
+  			justifyContent: "center",
+  			alignItems: "center"
+  		},
   		headshot: {
   			borderRadius: "50%",
   			display: "block",
@@ -21,7 +31,8 @@ class About extends React.Component {
 							transitionAppearTimeout={2000}
 							transitionName="fadeIn"
 							transitionEnterTimeout={2000}
-							transitionLeaveTimeout={2000}>
+							transitionLeaveTimeout={2000}
+							style={styles.page}>
 		  	<div className="container mw" style={styles.container}>
 	    		<div>
 		        	<CSSTransitionGroup 

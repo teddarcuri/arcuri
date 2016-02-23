@@ -22,9 +22,15 @@ class ProjectBar extends React.Component {
   render() {
   	var p = this.props.currentProject,
         projects = this.props.projects,
-        newProjectTab = this.props.uid ? this.renderNewProjectTab() : null;
+        newProjectTab = this.props.uid ? this.renderNewProjectTab() : null,
+        styles = {
+          bar: {
+            transform: this.props.location.pathname != "/" ? "translateY(75%)" : "translateY(100%)"
+          }
+        }
     return (
-      <ul className="project-bar">
+      <ul className="project-bar"
+          style={styles.bar}>
         {
           projects.map(function(p, key) {
             let path = "/work/" + p.name,

@@ -4,10 +4,15 @@
 }
 
 html, body {
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   width: 100%;
   padding: 0px;
   margin: 0px;
+}
+
+html {
+  @include linear-gradient(top, #ddd, #fff);
 }
 
 .container {
@@ -19,10 +24,6 @@ html, body {
 p {
   color: #666;
   line-height: 1.5em;
-}
-
-#app {
-  height: 100%;
 }
 
 h1 {
@@ -75,8 +76,4 @@ h4 {
 
 h5 {
   margin: 10px 0px;
-}
-
-body {
-  @include linear-gradient(top, #ddd, #fff);
 }

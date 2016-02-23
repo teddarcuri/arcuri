@@ -10,18 +10,28 @@ class Index extends React.Component {
 	}
 
 	render() {
+		let styles= {
+	  		page: {
+	  			width: "100%",
+	  			height: "100%",
+	  			position: "absolute",
+	  			top: "0px", 
+	  			left: "0px",
+	  			display: "flex",
+	  			justifyContent: "center",
+	  			alignItems: "center"
+	  		}
+  		}
 		return (
 		<CSSTransitionGroup component="div"
 							transitionAppear={true}
 							transitionAppearTimeout={2000}
 							transitionName="fadeIn"
+							style={styles.page}
 							transitionEnterTimeout={2000}
 							transitionLeaveTimeout={2000}>
 			<div id="scene">
 			</div>
-
-			      {/* <img id="about-image" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/166133/someguy.png" /> */}
-
 		</CSSTransitionGroup>
 		)
 	}

@@ -86,6 +86,16 @@ class Dashboard extends React.Component {
 
   getStyles() {
     return {
+      page: {
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        top: "0px", 
+        left: "0px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+      },
       button: {
         border: "solid #000 2px",
         padding: 10,
@@ -103,9 +113,10 @@ class Dashboard extends React.Component {
        <CSSTransitionGroup component={"div"}
               transitionAppear={true}
               transitionAppearTimeout={2000}
-              transitionName="fadeIn"
+              transitionName="bubbleUp"
               transitionEnterTimeout={2000}
-              transitionLeaveTimeout={2000}>
+              transitionLeaveTimeout={2000}
+              style={this.getStyles().page}>
             {pageContent}
       </CSSTransitionGroup>
      )

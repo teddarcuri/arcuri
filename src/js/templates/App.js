@@ -1,7 +1,7 @@
 // React
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, IndexRoute, Link, Navigation, History} from 'react-router';
+import {Router, Route, IndexRoute, Link, Navigation, History, browserHistory} from 'react-router';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 
@@ -109,6 +109,12 @@ class App extends React.Component {
 
   componentDidUpdate() {
     this.imagesLoaded();
+
+    if (this.props.location.pathname == "/") {
+      setTimeout(()=> {
+        this.context.history.push('/about');
+      }, 5000)
+    }
   }
 
   /* 
@@ -299,25 +305,29 @@ class App extends React.Component {
   }
 
   render() {
-    var logoClasses = this.state.isProjectPage ? "light" : "dark";
+    var logoClasses = this.state.isProjectPage ? "light" : "dark",
+        logo = this.props.location.pathname !== "/" ? <Logo projects={this.state.projects} currentProject={this.state.currentProject}/>: null;
 
     let styles = {
       pageContainer: {
-        height: "100%"
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "center",
+        height: "100%",
+        width: "100%"
       }
     }
 
     return (
-    <div id="app-window"ref="appWindow">
+    <div ref="appWindow">
 
       <AlertBar config={this.state.alertConfig}
                 hideAlertBar={this.hideAlertBar.bind(this)}></AlertBar>
 
       {this.renderLogoutButton()} 
-        
+
       <header id="main" className={logoClasses}> 
-        <Logo projects={this.state.projects}
-              currentProject={this.state.currentProject}/>        
+        {logo}       
       </header>
 
       <div style={styles.pageContainer}>
@@ -344,7 +354,8 @@ class App extends React.Component {
 
       <ProjectBar projects={this.state.projects}
                  currentProject={this.state.currentProject}
-                 uid={this.state.uid} />
+                 uid={this.state.uid}
+                 location={this.props.location} />
 
     </div>       
     )

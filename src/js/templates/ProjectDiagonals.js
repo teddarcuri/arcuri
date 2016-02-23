@@ -8,6 +8,15 @@ class ProjectDiagonals extends React.Component {
 
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			width:  window.innerWidth,
+			height: window.innerHeight
+		}
+	}
+
+	componentDidMount() {
+
 	}
 
 	render() {
@@ -15,6 +24,7 @@ class ProjectDiagonals extends React.Component {
 		return (
 		<CSSTransitionGroup className="diagonals" 
 							component="div"
+							style={{width: this.state.width, height: this.state.height}}
 							transitionAppear={true}
 							transitionAppearTimeout={0}
 							transitionName="slideLeft"

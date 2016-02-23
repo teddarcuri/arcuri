@@ -11,6 +11,10 @@ class Experience extends React.Component {
 
   render() {
     let styles = {
+      page: {
+        paddingTop: 120,
+        maxWidth: 768
+      },
       column: {
         width: "33%"
       }
@@ -19,7 +23,7 @@ class Experience extends React.Component {
     <CSSTransitionGroup transitionAppear={true}
               transitionAppearTimeout={2000}
               transitionName="fadeIn"
-              style={{maxWidth: "1000px"}}
+              style={styles.page}
               transitionEnterTimeout={2000}
               transitionLeaveTimeout={2000}>
 
