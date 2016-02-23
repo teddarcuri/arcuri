@@ -96,9 +96,7 @@ class Project extends React.Component {
         sidebarClasses = this.state.isEditing || this.props.projectMode === "CREATE"  ? "sidebar active" : "sidebar";
 
     return (
-
       <div className="project">
-
           <div className={sidebarClasses}>
             {this.renderSidebar()}
           </div>
@@ -114,9 +112,7 @@ class Project extends React.Component {
                       sections={this.state.sections}
                       activeSection={this.state.activeSection}
                       showActiveSection={this.state.showActiveSection} />
-      </div>
-
-      
+      </div>   
     );
   }
 }

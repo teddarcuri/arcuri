@@ -7,3 +7,11 @@
     @include align-items(center);
     @include justify-content(center);
 }
+
+@mixin f-center {
+  @include display(flex);
+  @include align-items(center);
+  @include justify-content(center);
+  height: 100%;
+  width: 100%;
+}

@@ -72,7 +72,6 @@ class Dashboard extends React.Component {
     var content = form;
     return (
         <CSSTransitionGroup component={"form"}
-              style={{position: "relative"}}
               key="login-form"
               onSubmit={this.handleSubmit.bind(this)}
               transitionAppear={true}
@@ -80,7 +79,6 @@ class Dashboard extends React.Component {
               transitionName="bubbleUp"
               transitionEnterTimeout={2000}
               transitionLeaveTimeout={2000}>
-        {loadingOverlay}
         {content}
       </CSSTransitionGroup>
     )    
@@ -104,9 +102,8 @@ class Dashboard extends React.Component {
      return (
        <CSSTransitionGroup component={"div"}
               transitionAppear={true}
-              style={{maxWidth: "666px", width: "100%"}}
               transitionAppearTimeout={2000}
-              transitionName="bubbleUp"
+              transitionName="fadeIn"
               transitionEnterTimeout={2000}
               transitionLeaveTimeout={2000}>
             {pageContent}

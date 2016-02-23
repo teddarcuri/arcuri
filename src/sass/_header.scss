@@ -3,54 +3,46 @@ header#main {
     position: fixed;
     top: 0; left: 0;
     height: 100px; width: 100%;
-    padding: 40px;
     font-family: "Proxima Nova";
     font-weight: 700;
     z-index: 999;
     @include display(flex);
-    @include bp(600px) {
-      padding: 10px;
+
+    #logo {
+      a {
+        padding: 0px;
+        height: 40px;
+      }
     }
+
     svg {
         height: 40px;
         width: 60px;
         padding: 10px;
     }
-
-    #close-btn {
-      svg {
-        height: 60px;
-        width: 60px;
-      }
-    }
     
     #menu {
-        height: 100%; width: auto;
+        height: 40px; width: auto;
         padding: 0px;
-        line-height: 60px;
         color: #666;
         position: relative;
-        @include transition(all ease 1s);
         &:hover {
-          #menu-icon {
-           @include transform(translateY(5px) translateX(-4px));
-          }
+            #menu-icon {
+             @include transform(translateY(5px) translateX(-4px));
+            }
             ul.main {
-                display: block;
-                list-style: none;
-                padding: 0px;
+              display: block;
+              list-style: none;
+              padding: 0px;
             }
             #Rectangle-1 {
-              @include transition(all ease 1s);
-               @include transform(rotate(50deg)  translateX(21px));
+              @include transform(rotate(50deg)  translateX(21px));
             }
             #Rectangle-2 {
-              @include transition(all ease 1s);
-               @include transform(rotate(-50deg) translateX(21px));
+              @include transform(rotate(-50deg) translateX(21px));
             }
             #Rectangle-3 {
-              @include transition(all ease 1s);
-                 @include transform(translateX(300px));
+              @include transform(translateX(300px));
             }
         }
         #menu-icon {
@@ -65,7 +57,7 @@ header#main {
               @include transition(all ease 0.7s);
             }
              #Rectangle-3 {
-                 @include transition(all ease 0.7s);
+              @include transition(all ease 0.7s);
             }
         }
         ul.main {
@@ -73,26 +65,30 @@ header#main {
             width: auto;
             top: 29px; left: 0px;
             text-align: left;
-            background: rgba(#000,0.95);
+            background: rgba(#000,0.85);
             display: none;
             z-index: 100;
+            a {
+              padding: 20px 0px;
+              height: 60px;
+            }
             li {
-                font-weight: 700;
-                line-height: 2.5em;
-                font-size: 14px;
-                white-space: nowrap;
-                text-transform: uppercase;
-                &:hover {
-                    background: rgba(#111, 0.98);
-                }
-                a {
-                  color: #fff;
-                  font-weight: 300;
-                  font-size: 0.95em;
-                  display: block;
-                  padding: 15px 150px 20px 25px;
-                  text-decoration: none;
-                }
+              font-weight: 700;
+              line-height: 2.5em;
+              font-size: 14px;
+              white-space: nowrap;
+              text-transform: uppercase;
+              &:hover {
+                  background: rgba(#000, 0.98);
+              }
+              a {
+                color: #fff;
+                font-weight: 300;
+                font-size: 0.95em;
+                display: block;
+                padding: 15px 150px 20px 25px;
+                text-decoration: none;
+              }
             }
         }
     }
