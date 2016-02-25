@@ -11,16 +11,14 @@ class AlertBar extends React.Component {
     this.hideAlertBar(); 
   }
 
-  componentWillReceiveProps(){
+  componentDidUpdate(){
     this.hideAlertBar();
   }
 
   hideAlertBar() {
-     var hide = setTimeout(function() {
+    var hide = setTimeout(function() {
       this.props.hideAlertBar();
-    }.bind(this), 1000);
-    
-    clearTimeout(hide);
+    }.bind(this), 5000);
   }
 
   render() {

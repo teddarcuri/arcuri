@@ -35,7 +35,11 @@ class Dashboard extends React.Component {
     return (
       <div key="dashboard">
         <h1>Dashboard</h1>
+        <Link to="work/new">Add a new Project</Link>
+        <hr />
         <h3>{this.props.projects.length} Projects</h3>
+        <hr />
+        <h3>Edit Projects</h3>
         <ProjectIndex projects={this.props.projects}>
         </ProjectIndex>
       </div>

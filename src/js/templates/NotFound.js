@@ -11,13 +11,17 @@ class NotFound extends React.Component {
 				justifyContent: "space-between",
 				listStyle: "none",
 				padding: 0,
-				margin: 0
+				margin: "20px 0px"
 			},
 			a: {
-				color: "#333",
+				color: "#777",
 				textTransform: "uppercase",
+				textDecoration: "none",
+				letterSpacing: 2,
+				fontSize: "0.8em",
 				":hover" : {
-					color: "#4682B4"
+					color: "#4682B4",
+					fontSize: "2em"
 				}
 			}
 		}
@@ -43,7 +47,7 @@ class NotFound extends React.Component {
 						<Link style={styles.a} to="contact">Contact Me</Link>
 					</li>
 				</ul>
-				<img src="./src/img/confused_travolta.gif" alt=""/>
+				<img src="https://media.giphy.com/media/RjoLWhQBFEcHS/giphy.gif" alt=""/>
 			</CSSTransitionGroup>		
 		);
 	}

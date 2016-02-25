@@ -129,6 +129,14 @@ class ProjectPage extends React.Component {
         role = this.props.currentProject.role ? this.props.currentProject.role : null,
         logo = p.logo ? <img src={p.logo} alt={p.name} className="project-logo"/> : "";
 
+      let styles = {
+        infobar: {
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center"
+        }
+      }
+
     return (
 
         <div className="project-page">
@@ -147,7 +155,8 @@ class ProjectPage extends React.Component {
 
             <main>
 
-              <div className="project-infobar">
+              <div className="project-infobar"
+                    style={styles.infobar}>
                  <ul className="tags">
                   <li>
                     Web
@@ -168,10 +177,6 @@ class ProjectPage extends React.Component {
                     <i className="fa fa-eye"></i>
                     View Site
                   </a>
-                </span>
-
-                <span>
-                  May 2015
                 </span>
               </div>
              
