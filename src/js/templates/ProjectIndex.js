@@ -1,7 +1,7 @@
 import React from 'react';
 import {browserHistory, Router, Route, IndexRoute, Link} from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import ProjectBubble from './ProjectBubble';
+import BounceBall from './BounceBall';
 import ProjectDiagonal from './ProjectDiagonal';
 
 import _ from 'lodash';
@@ -13,8 +13,16 @@ class ProjectIndex extends React.Component {
 		super(props);
 	}
 
-	renderBubbles(projects) {
+	renderBalls(projects) {
 		var related = this.props.filter ? <h3>Other Web Projects</h3> : null;
+		let styles ={
+			container: {
+				display: "flex",
+				flexFlow: "row wrap",
+				alignItems: "center",
+				justifyContent: "center"
+			}
+		}
 		return (
 		<CSSTransitionGroup className="project-bubbles" 
 							component="div"
@@ -24,27 +32,25 @@ class ProjectIndex extends React.Component {
 							transitionEnterTimeout={1000}
 							transitionLeaveTimeout={1000}>
 			{related}
-	  		{
-	  			projects.map(function(p, key) {
-	  				let path = "/work/" + p.name,
-	  					 logoPath = p.logo,
-	  					 bgImgPath = p.background,
-	  					 styles = {
-	  					 	backgroundImage: 'url(' + p.background + ')',
-	  					 	backgroundSize: 'cover'
-	  					 };
-	  				return (
-					<ProjectBubble ref={key}
-									 key={"bubble" + key}
+	  		<div style={styles.container}>
+				{
+		  			projects.map(function(p, key) {
+		  				let path = "/work/" + p.name;
+		  				return (
+							<BounceBall ref={p.id}
 									 path={path}
 									 name={p.name}
-									 logo={logoPath}
-									 background={bgImgPath}
-									 styles={styles}/>
-
-	  				)
-	  			})
-	  		}
+									 logo={p.logo}
+									 background={p.background}
+									 >
+							</BounceBall>
+		  				)
+		  			})
+		  		}
+		  		<h1 style={{flex: "2 0 100%", textAlign: "center"}}>
+		  			<img style={{width: 40}} src={projects[1].logo}  className="project-logo"/> Colorado.gov
+		  		</h1>
+			</div>		
 	  	</CSSTransitionGroup>
 	   )
 	}
@@ -105,8 +111,8 @@ class ProjectIndex extends React.Component {
 			})
 		}
 
-		if (this.props.type === "BUBBLES") {
-			return this.renderBubbles(projects);
+		if (this.props.type === "BALLS") {
+			return this.renderBalls(projects);
 		} else {
 			return this.renderBars(projects);
 		}

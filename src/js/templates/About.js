@@ -1,4 +1,5 @@
 import React from 'react';
+import {Motion, spring, presets} from 'react-motion';
 import {Router, Link} from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -19,24 +20,32 @@ class About extends React.Component {
   		headshot: {
   			position: "relative",
   			perspective: "1000px",
-  			WebkitPerspective: "1000px"
+  			WebkitPerspective: "1000px", 
+  			width: "120px",
+  			height: "120px",
+  			display: "flex",
+  			justifyContent: "center",
+  			alignItems: "center",
+  			marginBottom: 20
   		},
   		headshotImg: {
+  			width: "100%",
   			borderRadius: "50%",
   			postion: "relative",
   			margin: "0px auto",
-  			marginBottom: 70
+  			zIndex: 1
   		},
   		shadow: {
   			width: "100px",
   			height: "100px",
-  			background: "rgba(0,0,0,0.12)",
+  			background: "rgba(0,0,0,0.2)",
   			borderRadius: "50%",
-  			WebkitFilter: "blur(10px)",
-  			WebkitTransform: "rotateX(100deg)",
+  			WebkitFilter: "blur(12px)",
+  			WebkitTransform: "translateY(70%) rotateX(100deg)",
   			position: "absolute",
-  			top: 90,
-  			left: 0
+  			top: 0,
+  			left: 20,
+  			zIndex: 0
   		},
   		container: {
   			maxWidth: 600,
@@ -64,10 +73,22 @@ class About extends React.Component {
 						transitionName="fadeIn"
 						transitionEnterTimeout={2000}
 						transitionLeaveTimeout={2000}>
-					  <div style={styles.headshot}>
-					  	<img style={styles.headshotImg} src="https://lh4.googleusercontent.com/-2qeuQQr-24c/AAAAAAAAAAI/AAAAAAAAAAA/I3aLsM6bU2o/s128-c-k/photo.jpg" alt=""/>
-					  	<div style={styles.shadow}></div>	
-					  </div>
+
+						<Motion defaultStyle={{x: -200, width: 300, blur: 100}} style={{x: spring(0, {stiffness: 80, damping: 40}), width: spring(80, {stiffness: 80, damping: 40}), blur: spring(6, {stiffness: 80, damping: 40}) }}>
+						  {value => {
+						  	styles.headshotImg.WebkitTransform = "translateY(" + value.x + "px)";
+						  	styles.shadow.width = value.width;
+						  	styles.shadow.WebkitFilter = `blur(${value.blur}px)`;
+
+						  	return (
+						  		<div style={styles.headshot}>
+								  	<img style={styles.headshotImg} src="https://lh4.googleusercontent.com/-2qeuQQr-24c/AAAAAAAAAAI/AAAAAAAAAAA/I3aLsM6bU2o/s128-c-k/photo.jpg" alt=""/>
+								  	<div style={styles.shadow}></div>	
+								</div>
+						  	)
+						  }}
+						</Motion>
+					  
 					  <h3>
 				          Hello, My Name is <span className="highlight light">Tedd Arcuri</span><br />
 				          I am a software designer + developer<br />
@@ -88,8 +109,8 @@ class About extends React.Component {
 			        	<br /><br />
 			        	<b>This is exactly what I do.</b>
 			        	<br /><br />
-			        	You might call me a designer, developer, UX/UI specialist, front-end engineer, etc... <br/> 
-			        	Whatever the label, my mission remains the same:<br /> <b>To create software that empowers the people who use it.</b>
+			        	You can call me a web developer, designer, front end engineer, UX/UI designer, etc... <br/> 
+			        	Whatever the label, my focus remains the same:<br /> <b>To create software that empowers the people who use it.</b>
 			        </p>
 			     </div>
 	    	</div>

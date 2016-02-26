@@ -111,22 +111,17 @@ class Experience extends React.Component {
         </div>
 
         <div style={styles.column}>
-           <h3 style={styles.h3}>UI + Creative tools</h3>
+           <h3 style={styles.h3}>Production tools + methodologies</h3>
             <ul style={styles.pillList}>
               <li style={styles.pill}>Illustrator</li>
               <li style={styles.pill}>Photoshop</li>
               <li style={styles.pill}>Sketch</li>
               <li style={styles.pill}>Balsalmiq</li>
               <li style={styles.pill}>InDesign</li>
-            </ul>        
-        </div>
-
-         <div style={styles.column}>
-           <h3 style={styles.h3}>Process</h3>
-            <ul style={styles.pillList}>
               <li style={styles.pill}>Agile</li>
             </ul>        
         </div>
+
       </section>
 
       <section style={styles.section}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Router, Route, IndexRoute, Link} from 'react-router';
 import ProjectIndex from './ProjectIndex';
+import BounceBall from './BounceBall';
 import Radium from 'radium';
 import LoadingOverlay from './LoadingOverlay';
 
@@ -40,7 +41,8 @@ class Dashboard extends React.Component {
         <h3>{this.props.projects.length} Projects</h3>
         <hr />
         <h3>Edit Projects</h3>
-        <ProjectIndex projects={this.props.projects}>
+        <ProjectIndex projects={this.props.projects}
+                      type="BALLS">
         </ProjectIndex>
       </div>
     )

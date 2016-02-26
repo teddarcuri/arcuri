@@ -447,7 +447,6 @@
   margin: 0px;
   padding: 0px;
   max-width: 1200px;
-  background: red;
   @include display(flex);
   @include align-items(flex-start);
   @include justify-content(flex-start);

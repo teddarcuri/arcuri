@@ -3,54 +3,66 @@ import {browserHistory, Router, Route, IndexRoute, Link} from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import ProjectDiagonal from './ProjectDiagonal';
 
+import BounceBall from './BounceBall';
+
 
 class ProjectDiagonals extends React.Component {
 
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			width:  window.innerWidth,
-			height: window.innerHeight
-		}
 	}
 
 	componentDidMount() {
 
 	}
 
-	render() {
+	render(){
 		var projects = this.props.projects;
+
+		let styles ={
+			page: {
+				position: "absolute",
+				top: 0, left: 0,
+				width:  window.innerWidth,
+				height: window.innerHeight,
+				alignItems: "center"
+			},
+			container: {
+				display: "flex",
+				flexFlow: "row wrap",
+				alignItems: "center",
+				justifyContent: "center"
+			}
+		}
 		return (
 		<CSSTransitionGroup className="diagonals" 
 							component="div"
-							style={{width: this.state.width, height: this.state.height}}
+							style={styles.page}
 							transitionAppear={true}
 							transitionAppearTimeout={0}
 							transitionName="slideLeft"
 							transitionEnterTimeout={1000}
 							transitionLeaveTimeout={1000}>
-	  		{
-	  			projects.map(function(p, key) {
-	  				let path = "/work/" + p.name,
-	  					 logoPath = p.logo,
-	  					 bgImgPath = p.background,
-	  					 styles = {
-	  					 	backgroundImage: 'url(' + p.background + ')',
-	  					 	backgroundSize: 'cover'
-	  					 };
-	  				return (
-					<ProjectDiagonal ref={p.id}
-									 key={"diagonal" + key}
+			<div style={styles.container}>
+				{
+		  			projects.map(function(p, key) {
+		  				let path = "/work/" + p.name;
+		  				return (
+							<BounceBall ref={p.id}
 									 path={path}
 									 name={p.name}
-									 logo={logoPath}
-									 background={bgImgPath}
-									 styles={styles}/>
-
-	  				)
-	  			})
-	  		}
+									 logo={p.logo}
+									 background={p.background}
+									 >
+							</BounceBall>
+		  				)
+		  			})
+		  		}
+		  		<h1 style={{flex: "2 0 100%", textAlign: "center"}}>
+		  			<img style={{width: 40}} src={projects[1].logo}  className="project-logo"/> Colorado.gov
+		  		</h1>
+			</div>				
+	 
 	  	</CSSTransitionGroup>
 	   )
 	}
