@@ -1821,7 +1821,7 @@ header#main {
   opacity: 0.7; }
 
 img {
-  background: #222 url("http://desandro.github.io/imagesloaded/assets/loading.gif") no-repeat center center; }
+  background: url("http://desandro.github.io/imagesloaded/assets/loading.gif") no-repeat center center; }
 
 .loaded {
   padding: 0px;

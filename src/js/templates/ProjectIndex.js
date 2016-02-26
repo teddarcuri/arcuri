@@ -11,16 +11,26 @@ class ProjectIndex extends React.Component {
 
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			activeProject: null
+		}
+	}
+
+	setActiveProject(id) {
+		this.setState({activeProject: id});
+		console.log(this.state);
+
 	}
 
 	renderBalls(projects) {
 		var related = this.props.filter ? <h3>Other Web Projects</h3> : null;
 		let styles ={
 			page: {
-				position: "absolute",
+				position: this.props.isIndexPage ? "absolute" : "relative",
 				top: 0, left: 0,
-				width:  window.innerWidth,
-				height: window.innerHeight,
+				width:  this.props.isIndexPage ? window.innerWidth : "auto",
+				height: this.props.isIndexPage ? window.innerHeight : "auto",
 				display: "flex",
 				flexFlow: "row wrap",
 				alignItems: "center",
@@ -35,8 +45,21 @@ class ProjectIndex extends React.Component {
 			},
 		}
 
+		var title = this.state.activeProject ? this.props.projects[this.state.activeProject - 1].name : "Select A Project from Above";
+		var img = this.state.activeProject ? <img src={this.props.projects[this.state.activeProject - 1].logo} style={{width: 40, verticalAlign: "middle", marginRight: 10}}/> : null;
+
+		var currentProject = (
+			<h3 style={{flex: "2 0 100%", textAlign: "center", height: 80, marginTop: 30}}>
+	  			{img}
+	  			{title}
+			</h3>
+		)
+
+		var size = this.props.size;
+		var setActiveProject = this.setActiveProject.bind(this);
+
 		return (
-		<CSSTransitionGroup style={this.props.isIndexPage ? styles.page : null}
+		<CSSTransitionGroup style={styles.page}
 							component="div"
 							transitionAppear={true}
 							transitionAppearTimeout={0}
@@ -56,14 +79,14 @@ class ProjectIndex extends React.Component {
 									 name={p.name}
 									 logo={p.logo}
 									 background={p.background}
+									 size={size}
+									 setActiveProject={setActiveProject}
 									 >
 							</BounceBall>
 		  				)
 		  			})
 		  		}
-		  		<h1 style={{flex: "2 0 100%", textAlign: "center"}}>
-		  			<img style={{width: 40}} src={projects[1].logo}  className="project-logo"/> Colorado.gov
-		  		</h1>
+		  		{this.props.isIndexPage ? currentProject : null}
 			</div>		
 	  	</CSSTransitionGroup>
 	   )
