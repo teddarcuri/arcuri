@@ -37,6 +37,7 @@
   width: auto;
   overflow: auto;
   padding: 0px 50px;
+  position: relative;
   @include transition(all ease 0.7s);
   @include flex(1 1 auto);
   @include display(flex);
@@ -60,7 +61,7 @@
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    z-index: -1;
+    z-index: 0;
     background: #000;
     img {
       opacity: 0.3;
@@ -75,6 +76,8 @@
     max-width: 1024px;
     margin-top: 100px;
     margin-bottom: 70px;
+    z-index: 1;
+    position: relative;
     @include transition(all ease 0.7s);
     @include display(flex);
     @include align-items(flex-start);

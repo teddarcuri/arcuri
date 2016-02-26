@@ -11,8 +11,9 @@ html, body {
   margin: 0px;
 }
 
-html {
-  @include linear-gradient(top, #ddd, #fff);
+ul {
+  margin: 0;
+  padding: 0;
 }
 
 .container {
@@ -46,7 +47,6 @@ h3 {
   font-size: 1.66em;
   line-height: 1.2em;
   opacity: 1;
-  text-align: left;
   padding: 0px;
   margin: 0px;
   text-transform: uppercase;

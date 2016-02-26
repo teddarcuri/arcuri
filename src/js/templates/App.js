@@ -109,12 +109,6 @@ class App extends React.Component {
 
   componentDidUpdate() {
     this.imagesLoaded();
-
-    if (this.props.location.pathname == "/") {
-      setTimeout(()=> {
-        this.context.history.push('/about');
-      }, 5000)
-    }
   }
 
   /* 

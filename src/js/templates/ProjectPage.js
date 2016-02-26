@@ -138,10 +138,16 @@ class ProjectPage extends React.Component {
       }
 
     return (
+     <CSSTransitionGroup component={"div"}
+                      className="project-page"
+                      transitionName="fadeIn"
+                      transitionAppear={true}
+                      transitionAppearTimeout={1000}
+                      transitionEnterTimeout={1000}
+                      transitionLeaveTimeout={1000}>
 
-        <div className="project-page">
           {/*  Project Window */}
-          <div className="project-overview">
+          <div className="project-overview" key="overview">
             <header ref="header"
                     data-section="header">
               <h1 className="title">
@@ -193,12 +199,14 @@ class ProjectPage extends React.Component {
           </div>
 
           {/* Background Image */}
-          <div className="project-bg" >
+          <div className="project-bg" key="bg" 
+                style={{
+                  filter: "blur(20px)"
+                }}>
             <img src={p.background} />
           </div>
 
-        </div>
-    
+        </CSSTransitionGroup>
     );
   }
 }
