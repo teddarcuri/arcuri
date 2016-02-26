@@ -93,23 +93,20 @@ class About extends React.Component {
 				          Hello, My Name is <span className="highlight light">Tedd Arcuri</span><br />
 				          I am a software designer + developer<br />
 				          Currently living in Denver, Colorado<br /><br />
-				          Checkout some of <span className="highlight"><Link to="work"> My Work</Link></span><br />
-				          View my <span className="highlight"><Link to="experience"> Experience + Knowledge</Link></span><br />
-				          Like what you see? <span className="highlight"><Link to="contact"> Hire Me</Link></span>
 			          </h3>
- 					</CSSTransitionGroup>		        	
- 					<div className="btns">
-			          <a className="btn">About Me</a>
-			          <a className="btn">See My Work</a>
-			          <a className="btn">Get In Touch</a>
-			        </div>
+			           <h4>
+			           	  View my <span className="highlight"><Link to="experience"> Experience + Knowledge</Link></span><br />
+			           	  Checkout some of <span className="highlight"><Link to="work"> My Work</Link></span><br />
+				          Like what you see? <span className="highlight"><Link to="contact"> Hire Me</Link></span>
+			           </h4>
+ 					</CSSTransitionGroup>		        
 			        <p style={styles.p}>
 			        	I am highly passionate about delivering products that emphasize great user experience through purposeful design. 
-			        	By creating clean &amp; compelling user interfaces focused on maintaining the integrity of the software's functionality, we can create products that keep the user feeling empowered and in control.
+			        	By creating clean &amp; compelling user interfaces that focus on maintaining the integrity of the software's functionality we can create products that keep the user feeling empowered and in control.
 			        	<br /><br />
 			        	<b>This is exactly what I do.</b>
 			        	<br /><br />
-			        	You can call me a web developer, designer, front end engineer, UX/UI designer, etc... <br/> 
+			        	You might call me a web developer, front end developer, web designer, UX/UI engineer, etc... 
 			        	Whatever the label, my focus remains the same:<br /> <b>To create software that empowers the people who use it.</b>
 			        </p>
 			     </div>

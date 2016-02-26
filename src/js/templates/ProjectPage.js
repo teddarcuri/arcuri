@@ -199,10 +199,7 @@ class ProjectPage extends React.Component {
           </div>
 
           {/* Background Image */}
-          <div className="project-bg" key="bg" 
-                style={{
-                  filter: "blur(20px)"
-                }}>
+          <div className="project-bg" key="bg">
             <img src={p.background} />
           </div>
 

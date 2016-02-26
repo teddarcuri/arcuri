@@ -5,6 +5,9 @@
     @include display(flex);
     @include align-items(center);
     @include justify-content(center);
+    @include bp(900px) {
+        padding: 120px 20px;
+    }
 }
 
 .diagonal {

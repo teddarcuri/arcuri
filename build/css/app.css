@@ -295,6 +295,9 @@ html {
   -o-justify-content: center;
   justify-content: center;
   -ms-flex-pack: center; }
+  @media (max-width: 900px) {
+    .diagonals {
+      padding: 120px 20px; } }
 
 .diagonal {
   height: 60%;
@@ -632,6 +635,8 @@ html, body {
 ul {
   margin: 0;
   padding: 0; }
+  ul li {
+    list-style: none; }
 
 .container.mw {
   max-width: 900px; }
@@ -675,7 +680,22 @@ h3 {
           color: #3A6877; }
 
 h4 {
-  color: #fff; }
+  margin: 0px;
+  color: #333;
+  font-size: 1.25em;
+  line-height: 1.25em; }
+  h4 .highlight {
+    color: #3A6877; }
+    h4 .highlight a {
+      color: #3A6877; }
+      h4 .highlight a:hover {
+        color: #64a0b3; }
+    h4 .highlight.light {
+      color: #64a0b3; }
+      h4 .highlight.light a {
+        color: #64a0b3; }
+        h4 .highlight.light a:hover {
+          color: #3A6877; }
 
 h5 {
   margin: 10px 0px; }
@@ -767,7 +787,7 @@ header#main {
     header#main #menu ul.main {
       position: absolute;
       width: auto;
-      top: 29px;
+      top: 40px;
       left: 0px;
       text-align: left;
       background: rgba(0, 0, 0, 0.85);
@@ -1465,12 +1485,6 @@ header#main {
       -webkit-transition: all ease 0.5s;
       -moz-transition: all ease 0.5s;
       transition: all ease 0.5s; }
-      @media (max-width: 600px) {
-        .gallery .gallery-image-thumbs .current-image-highlighter {
-          width: 25%; } }
-      @media (max-width: 450px) {
-        .gallery .gallery-image-thumbs .current-image-highlighter {
-          width: 10%; } }
     .gallery .gallery-image-thumbs .gallery-image {
       overflow: hidden;
       height: 33px;
@@ -1517,16 +1531,8 @@ header#main {
           -webkit-flex: 1 0 25%;
           -moz-flex: 1 0 25%;
           -ms-flex: 1 0 25%;
-          flex: 1 0 25%; } }
-      @media (max-width: 450px) {
-        .gallery .gallery-image-thumbs .gallery-image {
-          -webkit-box-flex: 0;
-          -moz-box-flex: 0;
-          box-flex: 0;
-          -webkit-flex: 0 0 10%;
-          -moz-flex: 0 0 10%;
-          -ms-flex: 0 0 10%;
-          flex: 0 0 10%; } }
+          flex: 1 0 25%;
+          height: 45px; } }
       .gallery .gallery-image-thumbs .gallery-image img {
         opacity: 0.33;
         width: 100%; }

@@ -59,7 +59,7 @@ class ProjectDiagonals extends React.Component {
 		  			})
 		  		}
 		  		<h1 style={{flex: "2 0 100%", textAlign: "center"}}>
-		  			<img style={{width: 40}} src={projects[1].logo}  className="project-logo"/> Colorado.gov
+		  			<img style={{width: 0}} src={projects[0].logo}  className="project-logo"/> My Work
 		  		</h1>
 			</div>				
 	 

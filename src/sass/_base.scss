@@ -14,6 +14,9 @@ html, body {
 ul {
   margin: 0;
   padding: 0;
+  li {
+    list-style: none;
+  }
 }
 
 .container {
@@ -71,7 +74,28 @@ h3 {
 }
 
 h4 {
-  color: #fff;
+  margin: 0px;
+  color: #333;
+  font-size: 1.25em;
+  line-height: 1.25em;
+  .highlight {
+      color: #3A6877;
+     a {
+       color: #3A6877;
+       &:hover {
+        color: lighten(#3A6877, 20%); 
+       }
+     }
+     &.light {
+      color: lighten(#3A6877, 20%);
+       a {
+         color: lighten(#3A6877, 20%);
+         &:hover {
+            color: #3A6877;
+         }
+       }
+     }
+  }
 }
 
 h5 {

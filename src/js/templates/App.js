@@ -282,9 +282,7 @@ class App extends React.Component {
   hideAlertBar() {
     this.state.alertConfig.active = false;
     this.setState({alertConfig: this.state.alertConfig});
-    console.log(this.state.alertConfig);
   }
-
 
   renderLogoutButton() {
     if (this.state.uid != "") {
@@ -372,7 +370,7 @@ ReactDOM.render((
       <Route path="dashboard" component={Dashboard}></Route>
       <Route path="experience" component={Experience}/>
       <Route path="work" component={Projects} >
-        <IndexRoute component={ProjectDiagonals} />
+        <IndexRoute component={ProjectIndex} />
         <Route path="new" component={Project} />
         <Route path=":name" component={Project} />
       </Route>

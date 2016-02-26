@@ -95,8 +95,39 @@ class Project extends React.Component {
   	var p = this.props.projectMode === "EDIT" ? this.props.currentProject : this.props.newProject,
         sidebarClasses = this.state.isEditing || this.props.projectMode === "CREATE"  ? "sidebar active" : "sidebar";
 
+        let styles ={
+          projectScrollArrows: {
+            position: "fixed",
+            zIndex: 2,
+            width: "100%",
+            height: 60,
+            top: "50%", left: 0,
+          },
+          prevArrow: {
+            position: "absolute",
+            background: "#000",
+            color: "#666",
+            padding: 10,
+            left: 0
+          },
+          nextArrow: {
+            position: "absolute",
+            background: "#000",
+            color: "#666",
+            padding: 10,
+            right: 0
+          }
+        }
+
     return (
       <div className="project">
+
+          <ul id="projectScrollArrows"
+              style={styles.projectScrollArrows}>
+            <li style={styles.prevArrow}>PREV</li>
+            <li style={styles.nextArrow}>NEXT</li>
+          </ul>
+
           <div className={sidebarClasses}>
             {this.renderSidebar()}
           </div>

@@ -20,26 +20,42 @@ class Experience extends React.Component {
         marginBottom: 66
       },
       h3: {
-        color: colors.greyBlue
+        color: colors.highlightBlue,
+        lineHeight: "1.5em"
       },
       column: {
         //width: "33%"
       },
       pillList: {
-        padding: 0,
+        padding: "20px 0px",
         width: "100%",
         display: "flex",
         flexFlow: "row wrap"
       },
       pill: {
-        color: "#666",
-        fontSize: "0.8em",
-        fontWeight: 700,
+        color: "#000",
+        fontSize: "0.9em",
         padding: "7px 15px",
-        background: "rgba(0,0,0,0.1)",
+        background: "rgba(0,0,0,0.05)",
         listStyle: "none",
-        margin: "5px",
+        margin: "10px",
         borderRadius: "5px"
+      },
+      jobBlock: {
+        borderBottom: "solid 1px #ddd",
+        padding: "20px 0px"
+      },
+      jobTitle: {
+        fontSize: "1.1em",
+        lineHeight: "2em",
+        color: "#000"
+      },
+      jobLength: {
+        fontSize: "0.9em",
+        fontStyle: "italic",
+        letterSpacing: 1,
+        lineHeight: "2em",
+        color: "#000"
       }
     }
     return (
@@ -52,24 +68,24 @@ class Experience extends React.Component {
 
       <section style={styles.section}>
         <h1>Experience</h1>
-        <div>
+        <div style={styles.jobBlock}>
           <h3 style={styles.h3}>Colorado.gov</h3>
-          <span>Front end engineer + Web Designer</span><br />
-          <span>August 2014 - present</span>
+          <span style={styles.jobTitle}>Web Designer - Developer</span><br />
+          <span style={styles.jobLength}>August 2014 to present</span>
           <p>Led front end implementation of our Drupal websites and web applications. Helped design and architect the Colorado Governor's website.</p>
         </div>
 
-        <div>
+        <div style={styles.jobBlock}>
           <h3 style={styles.h3}>Rootspring Studios</h3>
-          <span>Art Director - CO Owner</span><br />
-          <span>April 2013 - November 2014</span>
+          <span style={styles.jobTitle}>Art Director - CO Owner</span><br />
+          <span style={styles.jobLength}>April 2013 to November 2014</span>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur laborum, sint magni corrupti minus iste quas sit. Iusto ipsam recusandae, sed mollitia ducimus deleniti nam esse. Necessitatibus, laudantium ratione ullam.</p>
         </div>
 
-        <div>
+        <div style={styles.jobBlock}>
           <h3 style={styles.h3}>Helium</h3>
-          <span>Junior Creative</span><br />
-          <span>June 2012 - April 2013</span>
+          <span style={styles.jobTitle}>Creative</span><br />
+          <span>June 2012 to April 2013</span>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur laborum, sint magni corrupti minus iste quas sit. Iusto ipsam recusandae, sed mollitia ducimus deleniti nam esse. Necessitatibus, laudantium ratione ullam.</p>
         </div>
       </section>

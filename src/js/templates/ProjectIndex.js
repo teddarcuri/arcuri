@@ -16,15 +16,27 @@ class ProjectIndex extends React.Component {
 	renderBalls(projects) {
 		var related = this.props.filter ? <h3>Other Web Projects</h3> : null;
 		let styles ={
+			page: {
+				position: "absolute",
+				top: 0, left: 0,
+				width:  window.innerWidth,
+				height: window.innerHeight,
+				display: "flex",
+				flexFlow: "row wrap",
+				alignItems: "center",
+				justifyContent: "center",
+			},
 			container: {
 				display: "flex",
 				flexFlow: "row wrap",
 				alignItems: "center",
-				justifyContent: "center"
-			}
+				justifyContent: "center",
+				height: "auto"
+			},
 		}
+
 		return (
-		<CSSTransitionGroup className="project-bubbles" 
+		<CSSTransitionGroup style={this.props.isIndexPage ? styles.page : null}
 							component="div"
 							transitionAppear={true}
 							transitionAppearTimeout={0}
@@ -38,6 +50,8 @@ class ProjectIndex extends React.Component {
 		  				let path = "/work/" + p.name;
 		  				return (
 							<BounceBall ref={p.id}
+									 key={p.id}
+									 id={p.id}
 									 path={path}
 									 name={p.name}
 									 logo={p.logo}

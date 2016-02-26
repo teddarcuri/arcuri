@@ -57,7 +57,7 @@ class Logo extends React.Component {
 		                <li>
 	                    <ProjectIndex projects={this.props.projects}
                 					  currentProject={this.props.currentProject}
-                 					  type="BUBBLES"/>
+                 					  type="BARS"/>
 		                </li>
 		                 <li><Link to="/contact">Contact Me</Link></li>
 		              </ul>

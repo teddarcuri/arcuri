@@ -50,10 +50,14 @@ class ProjectGallery extends React.Component {
     var currentThumb = this.refs.currentThumb,
         highlighter = this.refs.highlighter,
         leftPos = currentThumb.offsetLeft,
-        topPos = currentThumb.offsetTop;
+        topPos = currentThumb.offsetTop,
+        width = currentThumb.offsetWidth,
+        height = currentThumb.offsetHeight;
 
         highlighter.style.left = leftPos + "px";
         highlighter.style.top = topPos + "px";
+        highlighter.style.width = width + "px";
+        highlighter.style.height = height + "px";
   }
 
   renderGalleryTrack() {

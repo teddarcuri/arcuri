@@ -1,7 +1,8 @@
 import React from 'react';
 import Radium from 'radium';
 import IntroScene from '../utilities/intro-scene';
-import {Link} from 'react-router';
+import {Link, Navigation, browserHistory, History} from 'react-router';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 import colors from "../utilities/colors";
@@ -10,6 +11,10 @@ class Index extends React.Component {
 
 	componentDidMount() {
 		IntroScene.init();
+
+		setTimeout(() => {
+			//this.props.history.pushState(null, "/about")
+		}, 5000)
 	}
 
 	render() {
@@ -46,13 +51,14 @@ class Index extends React.Component {
 				letterSpacing: 2,
 				fontSize: "1em",
 				display: "inline-block",
-				padding: "10px 25px",
 				":hover" : {
 					background: "rgba(0,0,0,0.1)",
 				}
 	  		},
 	  		a: {
-	  			color: "#777",
+	  			color: "#333",
+	  			display: "block",
+	  			padding: "10px 25px",
 	  			textDecoration: "none"
 	  		}
   		}

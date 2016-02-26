@@ -12,6 +12,8 @@ class Projects extends React.Component {
 		return (
 		<div className="projects">
 			{React.cloneElement(this.props.children, {
+                type: "BALLS",
+                isIndexPage: true,
                 key: this.props.location.pathname,
                	projects: this.props.projects,
                 isProjectPage: this.props.isProjectPage,
