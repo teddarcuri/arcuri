@@ -7,7 +7,6 @@ var projectList = [{
 	id: 1,
 	name: "Colorado.gov",
 	types: ["Web"],
-	roles: ["Front End Development"],
 	images: ["src/img/gallery_images/colorado_gov/front-page.png"],
 	logo: "src/img/logos/co-logo.png",
 	background: "src/img/backgrounds/colorado.jpg"
@@ -15,7 +14,6 @@ var projectList = [{
 	id: 2,
 	name: "Colorado Interactive",
 	types: ["Brand"],
-	roles: ["Designer"],
 	images: ["src/img/gallery_images/hickenlooper/front-page.png"],
 	logo: "src/img/logos/ci-logo.png",
 	background: "src/img/backgrounds/coloradointeractive.jpg"
@@ -23,7 +21,6 @@ var projectList = [{
 	id: 3,
 	name: "Colorado Governor",
 	types: ["Web"],
-	roles: ["Front End Development"],
 	images: ["src/img/gallery_images/hickenlooper/front-page.png"],
 	logo: "src/img/logos/co-state-seal.png",
 	background: "src/img/backgrounds/hickenlooper.jpg"
@@ -31,7 +28,6 @@ var projectList = [{
 	id: 4,
 	name: "Stratus",
 	types: ["Web"],
-	roles: ["Front End Development"],
 	images: ["src/img/gallery_images/colorado_gov/front-page.png"],
 	logo: "src/img/logos/stratus.png",
 	background: "src/img/backgrounds/stratus.jpg"
@@ -39,7 +35,6 @@ var projectList = [{
 	id: 5,
 	name: "Colorado.gov",
 	types: ["Web"],
-	roles: ["Front End Development"],
 	images: ["src/img/gallery_images/colorado_gov/front-page.png"],
 	logo: "src/img/logos/co-logo.png",
 	background: "src/img/backgrounds/colorado.jpg"
@@ -47,7 +42,6 @@ var projectList = [{
 	id: 6,
 	name: "Colorado Interactive",
 	types: ["Brand"],
-	roles: ["Designer"],
 	images: ["src/img/gallery_images/hickenlooper/front-page.png"],
 	logo: "src/img/logos/ci-logo.png",
 	background: "src/img/backgrounds/coloradointeractive.jpg"
@@ -63,7 +57,6 @@ var projectList = [{
 	id: 8,
 	name: "Colorado.gov",
 	types: ["Web"],
-	roles: ["Front End Development"],
 	images: ["src/img/gallery_images/colorado_gov/front-page.png"],
 	logo: "src/img/logos/co-logo.png",
 	background: "src/img/backgrounds/colorado.jpg"
@@ -71,7 +64,6 @@ var projectList = [{
 	id: 9,
 	name: "Colorado Interactive",
 	types: ["Brand"],
-	roles: ["Designer"],
 	images: ["src/img/gallery_images/hickenlooper/front-page.png"],
 	logo: "src/img/logos/ci-logo.png",
 	background: "src/img/backgrounds/coloradointeractive.jpg"

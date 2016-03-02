@@ -17,6 +17,13 @@ ul {
   li {
     list-style: none;
   }
+  &.bullet {
+    padding: 0px 30px;
+    li {
+      margin-bottom: 10px;
+      list-style: disc;
+    }
+  }
 }
 
 .container {

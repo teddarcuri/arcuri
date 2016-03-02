@@ -637,6 +637,11 @@ ul {
   padding: 0; }
   ul li {
     list-style: none; }
+  ul.bullet {
+    padding: 0px 30px; }
+    ul.bullet li {
+      margin-bottom: 10px;
+      list-style: disc; }
 
 .container.mw {
   max-width: 900px; }

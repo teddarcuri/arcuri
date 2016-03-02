@@ -5,6 +5,7 @@ import {Router, Link} from 'react-router';
 
 class BounceBall extends React.Component {
 
+
 	constructor(props) {
 		super(props);
 
@@ -20,7 +21,7 @@ class BounceBall extends React.Component {
 
 	handleHoverOut() {
 		this.setState({hover: false})
-		this.props.setActiveProject(null)
+		this.props.setActiveProject(null);
 	}
 
   render() {
@@ -52,7 +53,6 @@ class BounceBall extends React.Component {
 			  		img: {
 			  			width: "100%",
 			  			height: "100%",
-			  			flex: "0 0 1px",
 			  			borderRadius: "50%",
 			  			postion: "relative",
 			  			margin: "0px auto",
@@ -64,12 +64,14 @@ class BounceBall extends React.Component {
 			  		shadow: {
 			  			width: this.state.hover ? "100px" : value.width,
 			  			height: "100px",
-			  			background: "rgba(0,0,0,0.36)",
+			  			background: "rgba(0,0,0,0.25)",
 			  			borderRadius: "50%",
 			  			WebkitFilter: this.state.hover ? "blur(20px)" : "blur(" + value.blur +"px)",
 			  			WebkitTransform: "translateY(70%) rotateX(100deg) translateX(-50%)",
 			  			MozFilter: this.state.hover ? "blur(20px)" : "blur(" + value.blur +"px)",
 			  			MozTransform: "translateY(70%) rotateX(100deg) translateX(-50%)",
+			  			filter: this.state.hover ? "blur(20px)" : "blur(" + value.blur +"px)",
+			  			transform: "translateY(70%) rotateX(100deg) translateX(-50%)",
 			  			position: "absolute",
 			  			top: 0,
 			  			left: "50%",

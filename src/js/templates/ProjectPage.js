@@ -138,13 +138,14 @@ class ProjectPage extends React.Component {
       }
 
     return (
-     <CSSTransitionGroup component={"div"}
-                      className="project-page"
-                      transitionName="fadeIn"
-                      transitionAppear={true}
-                      transitionAppearTimeout={1000}
-                      transitionEnterTimeout={1000}
-                      transitionLeaveTimeout={1000}>
+     <CSSTransitionGroup 
+        component={"div"}
+        className="project-page"
+        transitionName="fadeIn"
+        transitionAppear={true}
+        transitionAppearTimeout={1000}
+        transitionEnterTimeout={1000}
+        transitionLeaveTimeout={1000}>
 
           {/*  Project Window */}
           <div className="project-overview" key="overview">

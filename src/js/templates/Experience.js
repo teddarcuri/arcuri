@@ -17,7 +17,7 @@ class Experience extends React.Component {
         maxWidth: 768
       },
       section: {
-        marginBottom: 66
+        marginBottom: 50
       },
       h3: {
         color: colors.highlightBlue,
@@ -72,14 +72,37 @@ class Experience extends React.Component {
           <h3 style={styles.h3}>Colorado.gov</h3>
           <span style={styles.jobTitle}>Web Designer - Developer</span><br />
           <span style={styles.jobLength}>August 2014 to present</span>
-          <p>Led front end implementation of our Drupal websites and web applications. Helped design and architect the Colorado Governor's website.</p>
+          <p>
+            Worked in an agile team that delivered products for the state of Colorado on the Drupal CMS and Java based web applications.
+            Led front end implementation and development across our suite of Drupal products, including the Colorado.gov portal website.
+            Designed and built the theme for Colorado Governor, John Hickenlooper's, website.
+            <br /><br />
+            Introduced build tools that helped reduce setup time for front end devs on our sites.
+            <ul className="bullet">
+              <li>Responsible for integration of new technologies within the company’s workflow resulting in more project efficiency and production</li>
+              <li>Performed due diligence on new platforms, technologies and languages to provide the best possible ROI and ensure use of latest web technologies</li>
+              <li>Utilized business acumen in client interaction, team and project management, business development and marketing.</li>
+              <li>Worked within and adapted to various platforms / content management systems for optimal client satisfaction.</li>
+            </ul>
+          </p>
         </div>
 
         <div style={styles.jobBlock}>
           <h3 style={styles.h3}>Rootspring Studios</h3>
           <span style={styles.jobTitle}>Art Director - CO Owner</span><br />
           <span style={styles.jobLength}>April 2013 to November 2014</span>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur laborum, sint magni corrupti minus iste quas sit. Iusto ipsam recusandae, sed mollitia ducimus deleniti nam esse. Necessitatibus, laudantium ratione ullam.</p>
+          <p>
+            As Art Director I managed the design of all projects that came through Rootspring from branding and logo projects to web application and user interface design.
+            Worked directly with clients to ensure that we.
+            <br/><br/>
+            Art Director, web developer, and co-founder of a graphic design / web development company located in Colorado Springs. Lead art direction and front-end development on a large number of projects for local and national companies alongside a small, tight-knit team. Worked on a wide array of project types ranging from logos to websites. Attended networking events and social gatherings to expand and help grow the company. 
+            <ul className="bullet">
+              <li>Responsible for integration of new technologies within the company’s workflow resulting in more project efficiency and production</li>
+              <li>Performed due diligence on new platforms, technologies and languages to provide the best possible ROI and ensure use of latest web technologies</li>
+              <li>Utilized business acumen in client interaction, team and project management, business development and marketing.</li>
+              <li>Worked within and adapted to various platforms / content management systems for optimal client satisfaction.</li>
+            </ul>
+          </p>
         </div>
 
         <div style={styles.jobBlock}>
@@ -87,13 +110,19 @@ class Experience extends React.Component {
           <span style={styles.jobTitle}>Creative</span><br />
           <span>June 2012 to April 2013</span>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur laborum, sint magni corrupti minus iste quas sit. Iusto ipsam recusandae, sed mollitia ducimus deleniti nam esse. Necessitatibus, laudantium ratione ullam.</p>
+          <ul className="bullet">
+            <li>Responsible for integration of new technologies within the company’s workflow resulting in more project efficiency and production</li>
+            <li>Performed due diligence on new platforms, technologies and languages to provide the best possible ROI and ensure use of latest web technologies</li>
+            <li>Utilized business acumen in client interaction, team and project management, business development and marketing.</li>
+            <li>Worked within and adapted to various platforms / content management systems for optimal client satisfaction.</li>
+          </ul>
         </div>
       </section>
       
 
       <section style={styles.section}>
         <h1>Knowledge</h1>
-        <div style={styles.column}>
+        <div style={styles.jobBlock}>
           <h3 style={styles.h3}>Languages</h3>
           <ul style={styles.pillList}>
             <li style={styles.pill}>Javascript</li>
@@ -104,7 +133,7 @@ class Experience extends React.Component {
           </ul>
         </div>
         
-        <div style={styles.column}>
+        <div style={styles.jobBlock}>
           <h3 style={styles.h3}>Frameworks + Libraries + Tooling</h3>
           <ul style={styles.pillList}>
             <li style={styles.pill}>React</li>
@@ -122,22 +151,38 @@ class Experience extends React.Component {
             <li style={styles.pill}>Webpack</li>
             <li style={styles.pill}>Firebase</li>
             <li style={styles.pill}>Heroku</li>
-
+            <li style={styles.pill}>MySQL</li>
+            <li style={styles.pill}>MongoDB</li>
           </ul>
         </div>
 
-        <div style={styles.column}>
-           <h3 style={styles.h3}>Production tools + methodologies</h3>
+        <div style={styles.jobBlock}>
+           <h3 style={styles.h3}>Production tools</h3>
             <ul style={styles.pillList}>
               <li style={styles.pill}>Illustrator</li>
               <li style={styles.pill}>Photoshop</li>
               <li style={styles.pill}>Sketch</li>
               <li style={styles.pill}>Balsalmiq</li>
               <li style={styles.pill}>InDesign</li>
+            </ul>        
+        </div>
+
+        <div style={styles.jobBlock}>
+           <h3 style={styles.h3}>Methodologies</h3>
+            <ul style={styles.pillList}>
               <li style={styles.pill}>Agile</li>
             </ul>        
         </div>
 
+      </section>
+
+      <section style={styles.section}>
+        <h1>Education</h1>
+        <div style={styles.jobBlock}>
+          <h3 style={styles.h3}>Colorado Tech</h3>
+          <span style={styles.jobTitle}>A.A. Digital Media Design</span><br />
+          <span style={styles.jobLength}>June 2013</span>
+        </div>      
       </section>
 
       <section style={styles.section}>

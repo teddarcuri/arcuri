@@ -47,6 +47,7 @@
     "lodash": "^4.5.0",
     "radium": "^0.16.6",
     "react-addons-css-transition-group": "^0.14.6",
+    "react-fittext": "^0.1.1",
     "react-motion": "^0.4.2",
     "react-router-transition": "0.0.4",
     "velocity": "^0.7.2"

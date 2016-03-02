@@ -6,6 +6,7 @@ import ProjectDiagonal from './ProjectDiagonal';
 
 import _ from 'lodash';
 import h from '../utilities/helpers';
+import ReactFitText from 'react-fittext';
 
 class ProjectIndex extends React.Component {
 
@@ -19,8 +20,6 @@ class ProjectIndex extends React.Component {
 
 	setActiveProject(id) {
 		this.setState({activeProject: id});
-		console.log(this.state);
-
 	}
 
 	renderBalls(projects) {
@@ -29,8 +28,8 @@ class ProjectIndex extends React.Component {
 			page: {
 				position: this.props.isIndexPage ? "absolute" : "relative",
 				top: 0, left: 0,
-				width:  this.props.isIndexPage ? window.innerWidth : "auto",
-				height: this.props.isIndexPage ? window.innerHeight : "auto",
+				width:  this.props.isIndexPage ? "100%" : "auto",
+				height: this.props.isIndexPage ? "100%" : "auto",
 				display: "flex",
 				flexFlow: "row wrap",
 				alignItems: "center",
@@ -45,14 +44,37 @@ class ProjectIndex extends React.Component {
 			},
 		}
 
-		var title = this.state.activeProject ? this.props.projects[this.state.activeProject - 1].name : "Select A Project from Above";
-		var img = this.state.activeProject ? <img src={this.props.projects[this.state.activeProject - 1].logo} style={{width: 40, verticalAlign: "middle", marginRight: 10}}/> : null;
+		var title = this.state.activeProject ? this.props.projects[this.state.activeProject - 1].name : "My Work";
+		var img = this.state.activeProject ? <img src={this.props.projects[this.state.activeProject - 1].logo} style={{width: 45, verticalAlign: "middle", marginRight: 10}}/> : null;
 
 		var currentProject = (
-			<h3 style={{flex: "2 0 100%", textAlign: "center", height: 80, marginTop: 30}}>
-	  			{img}
-	  			{title}
-			</h3>
+			<CSSTransitionGroup 
+				style={{flex: "1 0 100%",
+						textAlign: "center", 
+						height: "100px", 
+						margin: 10, 
+						fontSize: "1em", 
+						position: "relative", 
+						whiteSpace: "nowrap"}}
+				transitionName="fadeIn"
+		        transitionAppear={true}
+		        transitionAppearTimeout={1000}
+		        transitionEnterTimeout={1000}
+		        transitionLeaveTimeout={1000}>
+			    <h1 style={{margin: 0}}>
+			    	{img}
+			    	{title}
+			    </h1>
+	  			<div style={{
+	  					width:"100%",
+	  					height: "100%",
+	  					position: "absolute",
+	  					top: 0,
+	  					left: 0,
+	  					background: "linear-gradient(transparent 0%, rgba(255,255,255, 0.6) 100%)"
+	  		 		 }}>
+	  			</div>
+			</CSSTransitionGroup>
 		)
 
 		var size = this.props.size;
@@ -67,26 +89,27 @@ class ProjectIndex extends React.Component {
 							transitionEnterTimeout={1000}
 							transitionLeaveTimeout={1000}>
 			{related}
+			{this.props.isIndexPage ? currentProject : null}
 	  		<div style={styles.container}>
 				{
 		  			projects.map(function(p, key) {
 		  				let path = "/work/" + p.name;
 		  				return (
-							<BounceBall ref={p.id}
-									 key={p.id}
-									 id={p.id}
-									 path={path}
-									 name={p.name}
-									 logo={p.logo}
-									 background={p.background}
-									 size={size}
-									 setActiveProject={setActiveProject}
-									 >
+							<BounceBall 
+								 ref={p.id}
+								 key={p.id}
+								 id={p.id}
+								 path={path}
+								 name={p.name}
+								 logo={p.logo}
+								 background={p.background}
+								 size={size}
+								 setActiveProject={setActiveProject}
+								 >
 							</BounceBall>
 		  				)
 		  			})
 		  		}
-		  		{this.props.isIndexPage ? currentProject : null}
 			</div>		
 	  	</CSSTransitionGroup>
 	   )
@@ -107,7 +130,7 @@ class ProjectIndex extends React.Component {
 		  					 		position: "relative",
 		  					 		zIndex: 9,
 		  					 		width: "100%",
-		  					 		padding: 10  					 		
+		  					 		height: "auto"
 		  					 	},
 		  					 	background: {
 		  					 		backgroundImage: 'url(' + p.background + ')',
@@ -122,7 +145,7 @@ class ProjectIndex extends React.Component {
 		  					 	}
 		  					 };
 		  				return (
-							<Link to={path} style={styles.link}>
+							<Link to={path} style={styles.link} key={p.id}>
 								<span>
 									{p.name}
 								</span>

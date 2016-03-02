@@ -3,7 +3,6 @@ import {Motion, spring, presets} from 'react-motion';
 import {Router, Link} from 'react-router';
 import BounceBall from "./BounceBall"
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-
 class About extends React.Component {
   render() {
   	let styles= {
@@ -16,7 +15,7 @@ class About extends React.Component {
   			display: "flex",
   			justifyContent: "center",
   			alignItems: "center",
-  			padding: "120px 0px",
+  			padding: "100px 0px",
   		},
   		headshot: {
   			position: "relative",
@@ -49,11 +48,11 @@ class About extends React.Component {
   			zIndex: 0
   		},
   		container: {
-  			maxWidth: 600,
+  			maxWidth: 620,
   			display: "flex",
   			justifyContent: "center",
   			alignItems: "center",
-        padding: "0px 20px"
+        padding: "0px 30px"
   		},
   		p: {
   			color: "#666",
@@ -88,6 +87,7 @@ class About extends React.Component {
                 I am a software designer + developer<br />
                 Currently living in Denver, Colorado<br /><br />
               </h3>
+  
                <h4>
                   View my <span className="highlight"><Link to="experience"> Experience + Knowledge</Link></span><br />
                   Checkout some of <span className="highlight"><Link to="work"> My Work</Link></span><br />

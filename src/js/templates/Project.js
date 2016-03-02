@@ -124,8 +124,12 @@ class Project extends React.Component {
 
           <ul id="projectScrollArrows"
               style={styles.projectScrollArrows}>
-            <li style={styles.prevArrow}>PREV</li>
-            <li style={styles.nextArrow}>NEXT</li>
+            <li style={styles.prevArrow}>
+              {/*this.props.projects[parseInt(this.props.currentProject.key) - 1].name*/}
+            </li>
+            <li style={styles.nextArrow}>
+              {/*this.props.projects[parseInt(this.props.currentProject.key) + 1].name*/}
+            </li>
           </ul>
 
           <div className={sidebarClasses}>

@@ -36,7 +36,9 @@ class Index extends React.Component {
 	  		h1: {
 	  			flex: "2 0 100%",
 	  			fontSize: "3em",
-	  			fontWeight: 300
+	  			fontWeight: 300,
+	  			margin: 0,
+	  			marginBottom: -100
 	  		},
 	  		content: {
 	  			textAlign: "center",
@@ -44,6 +46,10 @@ class Index extends React.Component {
 	  			flexFlow: "row wrap",
 	  			justifyContent: "center",
 	  			alignItems: "center"
+	  		},
+	  		ul: {
+	  			marginTop: -100,
+	  			zIndex: 1
 	  		},
 	  		li: {
 				textTransform: "uppercase",
@@ -71,15 +77,15 @@ class Index extends React.Component {
 							transitionEnterTimeout={2000}
 							transitionLeaveTimeout={2000}>
 			<div style={styles.content}>
-				<h1 style={styles.h1}>Welcome.</h1>
+				<h1 style={styles.h1}>Welcome</h1>
 				<div id="scene" style={styles.scene}>
 				</div>
-				<ul>
+				<ul style={styles.ul}>
 					<li style={styles.li} key="about-link">
 						<Link style={styles.a} to="/about">About Me</Link>
 					</li>
 					<li style={styles.li} key="work-link">
-						<Link style={styles.a} to="/work">My Portfolio</Link>
+						<Link style={styles.a} to="/work">My Work</Link>
 					</li>
 					<li style={styles.li} key="experience-link">
 						<Link style={styles.a} to="/experience">My Experience</Link>
