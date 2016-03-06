@@ -89,28 +89,30 @@ class ProjectIndex extends React.Component {
 							transitionEnterTimeout={1000}
 							transitionLeaveTimeout={1000}>
 			{related}
-			{this.props.isIndexPage ? currentProject : null}
-	  		<div style={styles.container}>
-				{
-		  			projects.map(function(p, key) {
-		  				let path = "/work/" + p.name;
-		  				return (
-							<BounceBall 
-								 ref={p.id}
-								 key={p.id}
-								 id={p.id}
-								 path={path}
-								 name={p.name}
-								 logo={p.logo}
-								 background={p.background}
-								 size={size}
-								 setActiveProject={setActiveProject}
-								 >
-							</BounceBall>
-		  				)
-		  			})
-		  		}
-			</div>		
+			<section>
+				{this.props.isIndexPage ? currentProject : null}
+		  		<div style={styles.container}>
+					{
+			  			projects.map(function(p, key) {
+			  				let path = "/work/" + p.name;
+			  				return (
+								<BounceBall 
+									 ref={p.id}
+									 key={p.id}
+									 id={p.id}
+									 path={path}
+									 name={p.name}
+									 logo={p.logo}
+									 background={p.background}
+									 size={size}
+									 setActiveProject={setActiveProject}
+									 >
+								</BounceBall>
+			  				)
+			  			})
+			  		}
+				</div>		
+			</section>
 	  	</CSSTransitionGroup>
 	   )
 	}

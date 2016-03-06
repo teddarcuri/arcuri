@@ -1,6 +1,6 @@
 import React from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-
+import Radium from 'radium';
 
 class Contact extends React.Component {
 
@@ -9,7 +9,14 @@ class Contact extends React.Component {
 			h1: {
 				paddingRight: 20,
 				marginRight: 20,
-				borderRight: "solid 2px #000"
+				fontWeight: 300,
+				borderRight: "solid 1px #333"
+			},
+			b: {
+				lineHeight: "40px",
+				fontWeight: 300,
+				color: "#666",
+				fontSize: "1.2em"
 			},
 	  		page: {
 	  			width: "100%",
@@ -20,6 +27,14 @@ class Contact extends React.Component {
 	  			display: "flex",
 	  			justifyContent: "center",
 	  			alignItems: "center",
+	  		},
+	  		icon: {
+	  			marginRight: 20,
+	  			fontSize: "1.5em",
+	  			color: "#aaa",
+	  			":hover" : {
+	  				color: "#111"
+	  			}
 	  		}
   		}
 		return (
@@ -31,12 +46,21 @@ class Contact extends React.Component {
 						transitionLeaveTimeout={2000}>
 			<h1 style={styles.h1}>Contact</h1>
 			<section>
-				<b>tedd.arcuri@gmail.com</b><br />
-				<b>719-440-4732</b>
+				<b style={styles.b} >tedd.arcuri@gmail.com</b><br />
+				<b style={styles.b} >719-440-4732</b><br />
+				<a ref="codepen" style={styles.icon} href="">
+					<i className="fa fa-codepen"></i>
+				</a>
+				<a ref="github" style={styles.icon} href="">
+					<i className="fa fa-github"></i>
+				</a>
+				<a ref="linkedin" style={styles.icon} href="">
+					<i className="fa fa-linkedin"></i>
+				</a>	
 			</section>
 		</CSSTransitionGroup>
 		)
 	}
 }
 
-export default Contact
+export default Radium(Contact)

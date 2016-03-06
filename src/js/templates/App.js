@@ -38,7 +38,7 @@ import Catalyst from 'react-catalyst';
 import reactMixin from 'react-mixin';
 import {Motion, spring, presets} from 'react-motion';
 
-// Styles ?
+// Styles 
 import * as styles from "../../sass/app.scss";
 
 

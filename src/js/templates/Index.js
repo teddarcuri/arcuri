@@ -11,10 +11,6 @@ class Index extends React.Component {
 
 	componentDidMount() {
 		IntroScene.init();
-
-		setTimeout(() => {
-			//this.props.history.pushState(null, "/about")
-		}, 5000)
 	}
 
 	render() {
