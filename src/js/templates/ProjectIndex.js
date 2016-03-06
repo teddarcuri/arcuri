@@ -50,8 +50,9 @@ class ProjectIndex extends React.Component {
 		var currentProject = (
 			<CSSTransitionGroup 
 				style={{flex: "1 0 100%",
-						textAlign: "center", 
-						height: "100px", 
+						textAlign: "center",
+						width: "100%", 
+						height: "auto", 
 						margin: 10, 
 						fontSize: "1em", 
 						position: "relative", 

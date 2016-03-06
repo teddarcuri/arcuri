@@ -26,9 +26,9 @@ import LoadingOverlay from './LoadingOverlay';
 
 // Firebase
 import Firebase from 'firebase';
-//const ref = new Firebase("https://tedd-arcuri.firebaseio.com/");
+const ref = new Firebase("https://tedd-arcuri.firebaseio.com/");
 import Rebase from 're-base';
-//var base = Rebase.createClass('https://tedd-arcuri.firebaseio.com/');
+var base = Rebase.createClass('https://tedd-arcuri.firebaseio.com/');
 
 // Utility
 import h from '../utilities/helpers';
@@ -97,13 +97,13 @@ class App extends React.Component {
     this.checkIfProjectPage(this.props);
 
     // Go get projects from Firebase
-    // base.syncState('projects', {
-    //   context: this,
-    //   state: 'projects',
-    //   asArray: true
-    // });
+    base.syncState('projects', {
+      context: this,
+      state: 'projects',
+      asArray: true
+    });
 
-    this.setState({projects: projectList});
+    //this.setState({projects: projectList});
 
     // Images Loaded
     this.imagesLoaded();

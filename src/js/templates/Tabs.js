@@ -146,7 +146,7 @@ class Tabs extends React.Component {
   }
 
   render() {
-    var title = this.props.mode === "CREATE" ? "Create" : "Edit Sections",
+    var title = this.props.mode === "CREATE" ? "Create" : "Edit",
         btnText = this.props.mode === "CREATE" ? "Create Project" : "Apply Changes",
         deleteBtn = this.props.mode === "EDIT" ? <button className="red-btn-outline">Delete Project</button> : "";
     return (

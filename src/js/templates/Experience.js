@@ -44,7 +44,7 @@ class Experience extends React.Component {
         padding: "7px 15px",
         background: "rgba(0,0,0,0.07)",
         listStyle: "none",
-        margin: "5px",
+        margin: "7px",
         textAlign: "center",
         textTransform: "uppercase",
         borderRadius: "5px",
@@ -56,7 +56,8 @@ class Experience extends React.Component {
       jobTitle: {
         fontSize: "1.1em",
         lineHeight: "2em",
-        color: "#000"
+        color: "#000",
+        fontWeight: 700
       },
       jobLength: {
         fontSize: "0.9em",
@@ -115,14 +116,12 @@ class Experience extends React.Component {
         <h1 style={styles.sectionHeader}>Experience</h1>
         <div style={styles.jobBlock}>
           <h3 style={styles.h3}>Colorado.gov</h3>
-          <span style={styles.jobTitle}>Web Designer - Developer</span><br />
+          <span style={styles.jobTitle}>Front End Developer</span><br />
           <span style={styles.jobLength}>August 2014 to present</span>
           <p>
             Worked in an agile team that delivered products for the state of Colorado on the Drupal CMS and Java based web applications.
             Led front end implementation and development across our suite of Drupal products, including the Colorado.gov portal website.
             Designed and built the theme for Colorado Governor, John Hickenlooper's, website.
-            <br /><br />
-            Introduced build tools that helped reduce setup time for front end devs on our sites.
             <ul className="bullet">
               <li>Responsible for integration of new technologies within the company’s workflow resulting in more project efficiency and production</li>
               <li>Performed due diligence on new platforms, technologies and languages to provide the best possible ROI and ensure use of latest web technologies</li>
@@ -134,18 +133,15 @@ class Experience extends React.Component {
 
         <div style={styles.jobBlock}>
           <h3 style={styles.h3}>Rootspring Studios</h3>
-          <span style={styles.jobTitle}>Art Director - CO Owner</span><br />
+          <span style={styles.jobTitle}>Art Director</span><br />
           <span style={styles.jobLength}>April 2013 to November 2014</span>
           <p>
-            As Art Director I managed the design of all projects that came through Rootspring from branding and logo projects to web application and user interface design.
-            Worked directly with clients to ensure that we.
-            <br/><br/>
-            Art Director, web developer, and co-founder of a graphic design / web development company located in Colorado Springs. Lead art direction and front-end development on a large number of projects for local and national companies alongside a small, tight-knit team. Worked on a wide array of project types ranging from logos to websites. Attended networking events and social gatherings to expand and help grow the company. 
+          Started the branding and advertising agency Rootspring Studios with two fellow Colorado Technical University graduates. 
             <ul className="bullet">
-              <li>Responsible for integration of new technologies within the company’s workflow resulting in more project efficiency and production</li>
-              <li>Performed due diligence on new platforms, technologies and languages to provide the best possible ROI and ensure use of latest web technologies</li>
-              <li>Utilized business acumen in client interaction, team and project management, business development and marketing.</li>
-              <li>Worked within and adapted to various platforms / content management systems for optimal client satisfaction.</li>
+              <li>Led art direction and design for many projects across a wide array of clientele and project types. Oversaw and ensured quality within corporate identity, package, collateral, and website/application design.</li>
+              <li>Implemented technological solutions and methodologies that led to an efficient workflow that allowed us to be profitable from day one. </li>
+              <li>Responsible for client communication and interaction that was translated into documented project overviews for myself and the team to use for proper execution of the client’s needs.</li>
+              <li>Worked with the team to ensure a high level of communication and efficiency between team members while maintaining the integrity and quality of our work. Took the lead on the pursuit of balance between using modern technologies that our clients desired while still being productive and making 100% of our deadlines.</li>
             </ul>
           </p>
         </div>
@@ -154,12 +150,11 @@ class Experience extends React.Component {
           <h3 style={styles.h3}>Helium</h3>
           <span style={styles.jobTitle}>Creative</span><br />
           <span>June 2012 to April 2013</span>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur laborum, sint magni corrupti minus iste quas sit. Iusto ipsam recusandae, sed mollitia ducimus deleniti nam esse. Necessitatibus, laudantium ratione ullam.</p>
+          <p>Started as an intern while in college but was quickly hired on as a full time junior designer within my first month of working at Helium.</p>
           <ul className="bullet">
-            <li>Responsible for integration of new technologies within the company’s workflow resulting in more project efficiency and production</li>
-            <li>Performed due diligence on new platforms, technologies and languages to provide the best possible ROI and ensure use of latest web technologies</li>
-            <li>Utilized business acumen in client interaction, team and project management, business development and marketing.</li>
-            <li>Worked within and adapted to various platforms / content management systems for optimal client satisfaction.</li>
+            <li>Responsible for designing and coding website themes for clients on a variety of content management systems. Worked on several full on branding projects that include logo, collateral, brand and website design/development.</li>
+            <li>Helped implement more efficient means of team communication that led to a more streamlined workflow and better engagement across all members of the team.</li>
+            <li>Took initiative to redesign and implement a new website for the company that provided a more modern, responsive web presence that helped to attract additional clientele and showcased abilities within the modern trends of web design + development.</li>
           </ul>
         </div>
       </section>

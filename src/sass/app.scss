@@ -195,7 +195,7 @@ img {
 // Grids
 .sidebar {
   height: 100%;
-  background: rgba(#111, 0.96);
+  z-index: 2;
   @include flex(1 0 500px);
 }
 
@@ -246,7 +246,6 @@ img {
 .flex {
   width: 100%;
   padding: 10px 0px;
-  border-bottom: solid 2px #444;
   @include display(flex);
   @include align-items(center);
 
