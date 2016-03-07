@@ -2,7 +2,7 @@ import React from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import ProjectGallery from './ProjectGallery';
 import ProjectPage from './ProjectPage';
-import Tabs from './tabs';
+import Tabs from './Tabs';
 import {Motion, spring, presets} from 'react-motion';
 
 
