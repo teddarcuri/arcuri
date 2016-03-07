@@ -59,7 +59,7 @@ class App extends React.Component {
       newProject: {
         name: "New Project",
         description: "Enter description",
-        background: "http://www.backgroundsy.com/file/large/light-colorful-background.jpg",
+        background: "https://wallpaperscraft.com/image/squares_background_multi-colored_bright_diced_37687_2560x1600.jpg",
         logo: "https://s3.amazonaws.com/launchkey-resources/logo/logo/launchkey-logos_launchkey-icon-white.png",
         types: "CHANGE ME",
         role: "uhh",

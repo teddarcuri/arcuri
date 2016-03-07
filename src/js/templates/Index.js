@@ -22,15 +22,16 @@ class Index extends React.Component {
 	  			top: "0px", 
 	  			left: "0px",
 	  			display: "flex",
-	  			flexFlow: "row wrap",
+	  			//flexFlow: "row wrap",
 	  			justifyContent: "center",
 	  			alignItems: "center"
 	  		},
 	  		scene: {
-	  			flex: "2 0 100%"
+	  			flex: "1 0 100%",
+	  			marginLeft: -200,
 	  		},
 	  		h1: {
-	  			flex: "2 0 100%",
+	  			flex: "1 0 100%",
 	  			fontSize: "3em",
 	  			fontWeight: 300,
 	  			margin: 0,
@@ -39,20 +40,24 @@ class Index extends React.Component {
 	  		content: {
 	  			textAlign: "center",
 	  			display: "flex",
-	  			flexFlow: "row wrap",
+	  			//flexFlow: "row wrap",
 	  			justifyContent: "center",
 	  			alignItems: "center"
 	  		},
 	  		ul: {
-	  			marginTop: -100,
-	  			zIndex: 1
+	  			marginTop: 0,
+	  			marginLeft: -50,
+	  			zIndex: 1,
+	  			textAlign: "left"
 	  		},
 	  		li: {
 				textTransform: "uppercase",
 				textDecoration: "none",
 				letterSpacing: 2,
+				lineHeight: "2em",
 				fontSize: "1em",
-				display: "inline-block",
+				display: "block",
+				transition: "transform ease 2s",
 				":hover" : {
 					background: "rgba(0,0,0,0.1)",
 				}
@@ -72,11 +77,22 @@ class Index extends React.Component {
 							style={styles.page}
 							transitionEnterTimeout={2000}
 							transitionLeaveTimeout={2000}>
-			<div style={styles.content}>
-				<h1 style={styles.h1}>Welcome</h1>
+			<CSSTransitionGroup
+							transitionAppear={true}
+							transitionAppearTimeout={1000}
+							transitionName="fadeIn"
+							style={styles.content}
+							transitionEnterTimeout={1000}
+							transitionLeaveTimeout={1000}>
 				<div id="scene" style={styles.scene}>
 				</div>
-				<ul style={styles.ul}>
+				<CSSTransitionGroup component="ul"
+							transitionAppear={true}
+							transitionAppearTimeout={2000}
+							transitionName="bubbleUp"
+							style={styles.ul}
+							transitionEnterTimeout={2000}
+							transitionLeaveTimeout={2000}>
 					<li style={styles.li} key="about-link">
 						<Link style={styles.a} to="/about">About Me</Link>
 					</li>
@@ -89,8 +105,8 @@ class Index extends React.Component {
 					<li style={styles.li} key="contact-link">
 						<Link style={styles.a} to="/contact">Contact Me</Link>
 					</li>
-				</ul>
-			</div>
+				</CSSTransitionGroup>
+			</CSSTransitionGroup>
 		</CSSTransitionGroup>
 		)
 	}

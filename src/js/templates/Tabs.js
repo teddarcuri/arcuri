@@ -105,6 +105,8 @@ class Tabs extends React.Component {
           <a className="add-gallery-field" onClick={this.props.addGalleryImage}>
             Add Image
           </a>
+          <br />
+          <br />
           {fields}
 	  		</div>
   		</div>
@@ -146,13 +148,10 @@ class Tabs extends React.Component {
   }
 
   render() {
-    var title = this.props.mode === "CREATE" ? "Create" : "Edit",
-        btnText = this.props.mode === "CREATE" ? "Create Project" : "Apply Changes",
+    var btnText = this.props.mode === "CREATE" ? "Create Project" : "Apply Changes",
         deleteBtn = this.props.mode === "EDIT" ? <button className="red-btn-outline">Delete Project</button> : "";
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
-
-        <h3>{title}</h3>
 
         <div className="tabs">
               

@@ -57,11 +57,32 @@ class Project extends React.Component {
     this.setState({activeSection: key});
   }
 
+  renderProjectArrows() {
+    if (this.props.projectMode === "EDIT" && this.props.currentProject.key && this.props.projects) {
+
+      var prevArrow = (parseInt(this.props.currentProject.key)) > 0 ? this.props.projects[parseInt(this.props.currentProject.key - 2)].name : null ,
+          nextArrow = (parseInt(this.props.currentProject.key)) >= this.props.projects.length ? null : this.props.projects[parseInt(this.props.currentProject.key + 1)].name;
+
+      return (
+
+        <ul id="projectScrollArrows"
+            style={this.getStyles().projectScrollArrows}>
+          <li style={this.getStyles().prevArrow}>
+            {prevArrow}
+          </li>
+          <li style={this.getStyles().nextArrow}>
+            {nextArrow}
+          </li>
+        </ul>
+      )
+    }
+  }
+
   /*
     Sidebar
   */
   renderSidebar() {
-    if (this.props.projectMode === "EDIT" && this.state.isEditing) {
+    if (this.props.projectMode === "EDIT" && this.state.isEditing && this.props.uid) {
       return (
          <Tabs sections={this.state.sections}
               activeSection={this.state.activeSection}
@@ -91,46 +112,40 @@ class Project extends React.Component {
     }
   }
 
+  getStyles() {
+    return {
+      projectScrollArrows: {
+        position: "fixed",
+        zIndex: 2,
+        width: "100%",
+        height: 60,
+        top: "50%", left: 0,
+      },
+      prevArrow: {
+        position: "absolute",
+        background: "#000",
+        color: "#666",
+        padding: 10,
+        left: 0
+      },
+      nextArrow: {
+        position: "absolute",
+        background: "#000",
+        color: "#666",
+        padding: 10,
+        right: 0
+      }
+    }
+  }
+
   render() {
   	var p = this.props.projectMode === "EDIT" ? this.props.currentProject : this.props.newProject,
-        sidebarClasses = this.state.isEditing || this.props.projectMode === "CREATE"  ? "sidebar active" : "sidebar";
-
-        let styles ={
-          projectScrollArrows: {
-            position: "fixed",
-            zIndex: 2,
-            width: "100%",
-            height: 60,
-            top: "50%", left: 0,
-          },
-          prevArrow: {
-            position: "absolute",
-            background: "#000",
-            color: "#666",
-            padding: 10,
-            left: 0
-          },
-          nextArrow: {
-            position: "absolute",
-            background: "#000",
-            color: "#666",
-            padding: 10,
-            right: 0
-          }
-        }
+        sidebarClasses = this.state.isEditing || this.props.projectMode === "CREATE"  ? "sidebar active" : "sidebar"
 
     return (
       <div className="project">
 
-          <ul id="projectScrollArrows"
-              style={styles.projectScrollArrows}>
-            <li style={styles.prevArrow}>
-              {/*this.props.projects[parseInt(this.props.currentProject.key) - 1].name*/}
-            </li>
-            <li style={styles.nextArrow}>
-              {/*this.props.projects[parseInt(this.props.currentProject.key) + 1].name*/}
-            </li>
-          </ul>
+          {this.renderProjectArrows()}
 
           <div className={sidebarClasses}>
             {this.renderSidebar()}

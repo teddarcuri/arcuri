@@ -108,23 +108,21 @@ class ProjectGallery extends React.Component {
         transition: "all ease 0.7s",
         next: {
           fontSize: "0.66em",
-          background: "rgba(0,0,0,0.6)",
+          background: "rgba(60,60,60,0.4)",
           padding: 10,
           display: "inline-block",
           ":hover" : {
             cursor: "pointer",
-            fontSize: "0.8em",
             background: "rgba(0,0,0,1)"
           }
         },
         prev: {
           fontSize: "0.66em",
-          background: "rgba(0,0,0,0.6)",
+          background: "rgba(60,60,60,0.4)",
           padding: 10,
           display: "inline-block",
           ":hover" : {
             cursor: "pointer",
-            fontSize: "0.8em",
             background: "rgba(0,0,0,1)"
           }
         }

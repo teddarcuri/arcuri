@@ -35,10 +35,11 @@
 }
 
 .confirm-btn-outline {
-  border: solid 2px $color-green;
+  color: #fff;
+  border: solid 2px #fff;
    &:hover {
-    background: rgba($color-green, 0.3);
-      border: solid 2px $color-green;
-
+    color: #111;
+    background: rgba($color-green, 1);
+    border: solid 2px $color-green;
   }
 }

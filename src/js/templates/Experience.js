@@ -17,7 +17,7 @@ class Experience extends React.Component {
         maxWidth: 768
       },
       section: {
-        marginBottom: 50
+        marginBottom: 0
       },
       sectionHeader: {
         background: "#333",
@@ -74,6 +74,13 @@ class Experience extends React.Component {
               style={styles.page}
               transitionEnterTimeout={2000}
               transitionLeaveTimeout={2000}>
+
+      <h1 style={{letterSpacing: "1.2em", textAlign: "center", fontSize: "1.3em", textTransform: "uppercase"}}>
+        Tedd Arcuri
+      </h1>
+      <h3 style={{textAlign: "center", fontSize: "0.9em", color: "#666", margin: "20px 0px 30px", fontWeight: 300}}>
+        UI/UX Designer • Front End Developer
+      </h3>
 
       <section style={styles.section}>
         <h1 style={styles.sectionHeader}>Expertise</h1>
