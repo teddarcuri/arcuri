@@ -6,7 +6,7 @@ import ReactTransitionGroup from 'react-addons-transition-group';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 // Routes 
-import Index from './index';
+import Index from './Index';
 import About from './about';
 import Experience from './experience';
 import Projects from './projects';
