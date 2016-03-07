@@ -48,13 +48,13 @@ class Contact extends React.Component {
 			<section>
 				<b style={styles.b} >tedd.arcuri@gmail.com</b><br />
 				<b style={styles.b} >719-440-4732</b><br />
-				<a ref="codepen" style={styles.icon} href="">
+				<a ref="codepen" style={styles.icon} href="http://codepen.io/teddarcuri/">
 					<i className="fa fa-codepen"></i>
 				</a>
-				<a ref="github" style={styles.icon} href="">
+				<a ref="github" style={styles.icon} href="https://github.com/teddarcuri">
 					<i className="fa fa-github"></i>
 				</a>
-				<a ref="linkedin" style={styles.icon} href="">
+				<a ref="linkedin" style={styles.icon} href="https://www.linkedin.com/in/teddarcuri">
 					<i className="fa fa-linkedin"></i>
 				</a>	
 			</section>

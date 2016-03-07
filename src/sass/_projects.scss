@@ -237,6 +237,9 @@
   z-index: 1000;
   @include transform(translateY(80%));
   @include transition(all ease 1.2s);
+  @include bp(600px) {
+    display: none;
+  }
   &:hover {
     li {
      @include transform(translateY(-33%));
