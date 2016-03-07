@@ -3,12 +3,11 @@ var path = require('path');
 var webpack = require('webpack');
 var app = express();
 
-
 var isDevelopment = (process.env.NODE_ENV !== 'production');
 var static_path = path.join(__dirname, 'build');
 
 app.use(express.static(static_path))
-	.get('/', function(req, res) {
+	.get('*', function(req, res) {
 		res.sendFile('index.html', {
 			root: static_path
 		});
@@ -16,6 +15,8 @@ app.use(express.static(static_path))
 		if (err) { console.log(err) };
 		console.log('Listening at localhost:8080');
 	});
+
+
 
 
 if (isDevelopment) {
