@@ -1,7 +1,8 @@
 var express = require('express');
+var path = require('path');
+var webpack = require('webpack');
 var app = express();
 
-var webpack = require('webpack');
 
 var isDevelopment = (process.env.NODE_ENV !== 'production');
 var static_path = path.join(__dirname, 'build');
