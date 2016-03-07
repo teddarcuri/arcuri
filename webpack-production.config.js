@@ -2,10 +2,8 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-	devtool: 'eval',
+	devtool: 'source-map',
 	entry: [
-		'webpack-dev-server/client?http://0.0.0.0:3000',
-		'webpack/hot/only-dev-server',
 		'./src/js/templates/App.js'
 	],
 	output: {
@@ -14,8 +12,17 @@ module.exports = {
 		publicPath: '/build/'
 	},
 	plugins: [
-    	new webpack.HotModuleReplacementPlugin()
+    	new webpack.optimize.DedupePlugin(),
+	    new webpack.optimize.UglifyJsPlugin({
+	      minimize: true,
+	      compress: {
+	        warnings: false
+	      }
+	    })
   	],
+  	resolve: {
+    	extensions: ['', '.js', '.jsx']
+  	},
 	module: {
 		loaders: [
 			// ES6 + JSX 
@@ -27,7 +34,8 @@ module.exports = {
 			// Sass
 			{
 				test: /\.scss$/,
-				loader: "style-loader!css-loader!sass-loader"
+				loader: "style-loader!css-loader!sass-loader",
+				include: path.join(__dirname, 'src')
 			}
 		]
 	}
