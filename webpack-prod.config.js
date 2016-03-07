@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
 	devtool: 'source-map',
 	entry: [
-		'./src/js/templates/App'
+		path.resolve(__dirname, 'src/js/templates', 'App.js')
 	],
 	output: {
 		path: path.join(__dirname, 'build'),
