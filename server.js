@@ -16,9 +16,6 @@ app.use(express.static(static_path))
 		console.log('Listening at localhost:8080');
 	});
 
-
-
-
 if (isDevelopment) {
 
 	var WebpackDevServer = require('webpack-dev-server');
@@ -32,9 +29,7 @@ if (isDevelopment) {
 	  if (err) {
 	    console.log(err);
 	  }
-
 	  console.log('Listening at 0.0.0.0:3000');
 	});
-
 }
 

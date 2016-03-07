@@ -8,7 +8,14 @@ header#main {
     z-index: 999;
     @include display(flex);
 
+    @include bp(600px) {
+      @include justify-content(center);
+    }
+
     #logo {
+      @include bp(600px) {
+        margin-left: 0px !important; 
+      }
       a {
         padding: 0px;
         height: 40px;
@@ -68,6 +75,11 @@ header#main {
             background: rgba(#000,0.85);
             display: none;
             z-index: 100;
+            @include bp(600px) {
+              position: fixed;
+              top: 80px;
+              width: 100%;
+            }
             a {
               padding: 20px 0px;
               height: 60px;
