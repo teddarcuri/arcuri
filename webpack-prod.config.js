@@ -28,7 +28,7 @@ module.exports = {
 			// ES6 + JSX 
 			{
 				test: /\.js?$/,
-				loaders: 'babel',
+				loader: 'babel',
 				include: path.join(__dirname, 'src')
 			},
 			// Sass
