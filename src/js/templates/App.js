@@ -7,11 +7,11 @@ import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 // Routes 
 import Index from './Index';
-import About from './about';
-import Experience from './experience';
-import Projects from './projects';
-import Project from './project';
-import Contact from './contact';
+import About from './About';
+import Experience from './Experience';
+import Projects from './Projects';
+import Project from './Project';
+import Contact from './Contact';
 import Dashboard from './Dashboard';
 import NotFound from './NotFound';
 
