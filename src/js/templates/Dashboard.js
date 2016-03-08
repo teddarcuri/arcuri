@@ -36,7 +36,19 @@ class Dashboard extends React.Component {
     return (
       <div key="dashboard">
         <h1>Dashboard</h1>
-        <Link to="work/new">Add a new Project</Link>
+        <Link to="work/new"
+              style={{
+                color: "#333",
+                textDecoration: "none",
+                textAlign: "center",
+                fontWeight: 700,
+                padding: 10,
+                lineHeight: "3em",
+                borderRadius: "5px",
+                border: "solid 2px #333"
+              }}>
+          Add a new Project
+        </Link>
         <hr />
         <h3>{this.props.projects.length} Projects</h3>
         <hr />
@@ -53,10 +65,16 @@ class Dashboard extends React.Component {
 
     var form = (
       <div>
-        <h3>
+        <h3 style={{
+              color: "#fff"
+              }}>
           Are you me?
         </h3>
-        <h5>Let's find out.</h5>
+        <h5 style={{
+              color: "#fff"
+              }}>
+          Let's find out.
+        </h5>
         <input ref="email" type="text"/>
         <input ref="password" type="password"/>
         <button style={this.getStyles().button} type="submit">
@@ -79,10 +97,11 @@ class Dashboard extends React.Component {
     return (
         <CSSTransitionGroup component={"form"}
               key="login-form"
+              style={this.getStyles().form}
               onSubmit={this.handleSubmit.bind(this)}
               transitionAppear={true}
               transitionAppearTimeout={2000}
-              transitionName="bubbleUp"
+              transitionName="fadeIn"
               transitionEnterTimeout={2000}
               transitionLeaveTimeout={2000}>
         {content}
@@ -102,9 +121,13 @@ class Dashboard extends React.Component {
         justifyContent: "center",
         alignItems: "center"
       },
+      form: {
+        background: "#333"
+      },
       button: {
-        border: "solid #000 2px",
+        border: "solid #fff 2px",
         padding: 10,
+        color: "#fff",
         margin: "20px 0px",
         ":hover" : {
           background: "#222",
