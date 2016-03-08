@@ -76,8 +76,8 @@ class BounceBall extends React.Component {
 			  		},
 			  		logo: {
 			  			transition: "all ease 0.25s",
-			  			width: this.state.hover ? "75px" : "45px",
-			  			height: this.state.hover ? "75px" : "45px",
+			  			width: this.state.hover ? "75px" : "0px",
+			  			height: this.state.hover ? "75px" : "0px",
 			  			zIndex: 1
 			  		},
 			  		shadow: {

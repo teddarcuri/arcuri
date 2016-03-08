@@ -26,11 +26,11 @@
 }
 
 .red-btn-outline {
+  color: $red;
   border: solid 2px $red;
   &:hover {
     background: rgba($red, 0.3);
-      border: solid 2px $red;
-
+    border: solid 2px $red;
   }
 }
 
@@ -38,8 +38,8 @@
   color: #fff;
   border: solid 2px #fff;
    &:hover {
-    color: #111;
-    background: rgba($color-green, 1);
+    color: #fff;
+    background: rgba($color-green, 0.5);
     border: solid 2px $color-green;
   }
 }

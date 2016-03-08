@@ -21,6 +21,9 @@
     form {
       border: none;
       padding: 100px 55px;
+      input {
+        color: #fff;
+      }
     }
     &.active {
       width: 500px;
