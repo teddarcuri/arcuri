@@ -166,15 +166,9 @@ class ProjectPage extends React.Component {
                  <ul className="tags">
                   <li>
                     Web
-                    <ProjectIndex projects={this.props.projects}
-                                  type="BARS"
-                                  filter="WEB"></ProjectIndex>
                   </li>
                   <li>
                     Print
-                    <ProjectIndex projects={this.props.projects}
-                                  type="BUBBLES"
-                                  filter="PRINT"></ProjectIndex>
                   </li>
                 </ul>
 

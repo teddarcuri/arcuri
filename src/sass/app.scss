@@ -129,67 +129,11 @@ img {
         margin-right: 10px;
         border-radius: 3px;
         padding: 10px 15px;
-        letter-spacing: 2px;
-        font-weight: 700;
-        font-size: 0.9em;
+        letter-spacing: 5px;
+        font-weight: 300;
+        font-size: 0.7em;
         position: relative;
         text-transform: uppercase;
-        &:hover {
-          background: #222;
-          color: #fff;
-          .project-bubbles {
-            display: flex;
-          }
-          .project-bars {
-            display: block;
-          }
-        }
-        .project-bars {
-          display: none;
-          position: absolute;
-          padding: 20px;
-          background: #222;
-          left: 0; top: 30px;
-          z-index: 9;
-        }
-        .project-bubbles {
-          width: 150px;
-          background: #222;
-          position: absolute;
-          left: 0; top: 30px;
-          z-index: 9;
-          display: none;
-           .project-bubble-wrap {
-              padding: 20px 20px;
-              @include flex(1 0 50%);
-              @include display(flex);
-              @include align-items(center);
-              @include justify-content(center);
-              &:hover {
-                background: rgba(#000, 0.33);
-              }
-            }
-            .project-bubbles {
-              background: rgba(#fff, 0.075);
-              padding: 6px;
-            }
-            .project-bubble {
-              width: 33px;
-              height: 33px;
-              border-radius: 50%;
-              padding: 0px !important;
-              @include display(flex);
-              @include align-items(center);
-              @include justify-content(center);
-                img.logo {
-                  @include flex(25px);
-                } 
-                img.bg {
-                  width: 100%;
-                  height: 100%;
-                } 
-              }
-        }
     }
 }
 
