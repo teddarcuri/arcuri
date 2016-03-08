@@ -119,13 +119,15 @@ class ProjectPage extends React.Component {
   }
 
   renderTags() {
-    if (this.props.currentProject.tags) {
+    var tags = Object.keys(this.props.currentProject.tags);
+    if (tags) {
       return (
         <ul className="tags">
           {
-            this.props.currentProject.tags.map((t)=>{
+            tags.map((t)=>{
+              console.log(t);
               return (
-                <li>{t}</li>
+                <li>{this.props.currentProject.tags[t].value}</li>
               )
             })
           }
@@ -148,7 +150,7 @@ class ProjectPage extends React.Component {
 
     if (p.url) {
       viewSite = (
-         <span className="view-site-btn">
+         <span className="view-site-btn" style={{padding: "15px 0px"}}>
             <Link to={p.url}>
               <i className="fa fa-eye"></i>
               View Site
@@ -166,56 +168,36 @@ class ProjectPage extends React.Component {
     }
 
     return (
-     <CSSTransitionGroup 
-        component={"div"}
-        className="project-page"
-        transitionName="fadeIn"
-        transitionAppear={true}
-        transitionAppearTimeout={1000}
-        transitionEnterTimeout={1000}
-        transitionLeaveTimeout={1000}>
-
-          {/*  Project Window */}
-          <div className="project-overview" key={p.name}>
-            <header ref="header"
-                    data-section="header">
-              <h1 className="title">
-                {logo}
-                {p.name}
-                {this.renderEditTools()}
-              </h1>
-            </header>
-
-            {this.renderProjectActionBar()}
-
-            <main>
-
-              <div className="project-infobar"
-                    style={styles.infobar}>
-                <ul className="tags">
-                  {tags}
-                </ul>
-
-                {viewSite}
-              </div>
-             
-
-              {this.renderGallery()}
-
-              <section ref="details"
-                        data-section="details"
-                        dangerouslySetInnerHTML={this.renderOverview()}>
-              </section>
-
-            </main>
-          </div>
-
-          {/* Background Image */}
-          <div className="project-bg" key="bg" ref="bg">
-            <img src={p.background} />
-          </div>
-
-        </CSSTransitionGroup>
+     <div className="project-page">
+        {/*  Project Window */}
+        <div className="project-overview" key={p.name}>
+          <header ref="header"
+                  data-section="header">
+            <h1 className="title">
+              {logo}
+              {p.name}
+              {this.renderEditTools()}
+            </h1>
+          </header>
+          {this.renderProjectActionBar()}
+          <main>
+            <div className="project-infobar"
+                  style={styles.infobar}>
+              {tags}
+              {viewSite}
+            </div>
+            {this.renderGallery()}
+            <section ref="details"
+                      data-section="details"
+                      dangerouslySetInnerHTML={this.renderOverview()}>
+            </section>
+          </main>
+        </div>
+        {/* Background Image */}
+        <div className="project-bg" key="bg" ref="bg">
+          <img src={p.background} />
+        </div>
+      </div>
     );
   }
 }

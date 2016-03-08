@@ -24,6 +24,26 @@ class Tabs extends React.Component {
     Tab Renders
   */
   showGeneralTab() {
+    var tagFields,
+        tags = Object.keys(this.props.project.tags);
+
+    if (tags) {
+      tagFields = tags.map(function(t){
+        var linkState = this.props.mode === "CREATE" ? this.props.linkState('newProject.tags.' + t + '.value') : this.props.linkState('currentProject.tags.' + t + '.value');
+        return (
+          <div className="flex" key={t}>
+            <input ref={t}
+                   type="text"
+                   valueLink={linkState} />
+            <span className="remove-btn" onClick={this.props.removeTag.bind(null, t)}>X</span>
+          </div>
+        )
+      }, this)
+    } else {
+      tagFields = <span className="support-text">There is no gallery yet. Add some images!</span>;
+    }
+
+
   	return (
   		<div className="details">
   			<label htmlFor="name">Name</label>
@@ -42,6 +62,14 @@ class Tabs extends React.Component {
              placeholder="url"
              name="url"
              valueLink={ this.props.mode === "CREATE" ? this.props.linkState('newProject.url') : this.props.linkState('currentProject.url')}/>
+        </div>
+        <div className="gallery-fields">
+          <a className="add-gallery-field" onClick={this.props.addTag}>
+            Add Tag
+          </a>
+          <br />
+          <br />
+          {tagFields}
         </div>
   		</div>
   	) 

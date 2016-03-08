@@ -25,6 +25,8 @@ class Projects extends React.Component {
                 linkState: this.props.linkState,
                 addGalleryImage: this.props.addGalleryImage,
                 removeGalleryImage: this.props.removeGalleryImage,
+                addTag: this.props.addTag,
+                removeTag: this.props.removeTag,
                 projectMode: this.props.projectMode,
                 setProjectMode: this.props.setProjectMode,
                 uid: this.props.uid

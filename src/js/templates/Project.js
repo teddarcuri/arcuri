@@ -102,7 +102,9 @@ class Project extends React.Component {
             updateProject={this.props.updateProject}
             setActiveSection={this.setActiveSection.bind(this)}
             addGalleryImage={this.props.addGalleryImage}
-            removeGalleryImage={this.props.removeGalleryImage} /> 
+            removeGalleryImage={this.props.removeGalleryImage}
+            addTag={this.props.addTag}
+            removeTag={this.props.removeTag} /> 
       ) 
     } else if (this.props.projectMode === "CREATE" && this.props.uid) {
       return  (
@@ -116,6 +118,8 @@ class Project extends React.Component {
             setActiveSection={this.setActiveSection.bind(this)} 
             addGalleryImage={this.props.addGalleryImage}
             removeGalleryImage={this.props.removeGalleryImage}
+            addTag={this.props.addTag}
+            removeTag={this.props.removeTag}
             showActiveSection={this.state.showActiveSection} />  
       )
     } else {

@@ -61,9 +61,9 @@ class App extends React.Component {
         description: "Enter description",
         background: "https://wallpaperscraft.com/image/squares_background_multi-colored_bright_diced_37687_2560x1600.jpg",
         logo: "https://s3.amazonaws.com/launchkey-resources/logo/logo/launchkey-logos_launchkey-icon-white.png",
-        types: "CHANGE ME",
         role: "uhh",
         gallery: {},
+        tags: {},
         url: ""
       },
       // Alert
@@ -283,6 +283,28 @@ class App extends React.Component {
     }
   }
 
+  addTag() {
+    var timestamp = (new Date()).getTime();
+
+    if (this.state.projectMode === "CREATE") {
+      this.state.newProject.tags['tag' + timestamp] = {value: "tag"};
+      this.setState({newProject: this.state.newProject});
+    } else {
+      this.state.currentProject.tags['tag' + timestamp] = {value: "tag"};
+      this.setState({currentProject: this.state.currentProject});
+    }
+  }
+
+  removeTag(key) {
+    if (this.state.projectMode === "CREATE") {
+      delete this.state.newProject.tags[key];
+      this.setState({newProject: this.state.newProject});
+    } else {
+      delete this.state.currentProject.tags[key];
+      this.setState({currentProject: this.state.currentProject});
+    }
+  }
+
   /*
     Render 
   */
@@ -343,6 +365,8 @@ class App extends React.Component {
             linkState: this.linkState.bind(this),
             addGalleryImage: this.addGalleryImage.bind(this),
             removeGalleryImage: this.removeGalleryImage.bind(this),
+            addTag: this.addTag.bind(this),
+            removeTag: this.removeTag.bind(this),
             projectMode: this.state.projectMode,
             setProjectMode: this.setProjectMode.bind(this),
             //Auth
