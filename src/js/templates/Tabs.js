@@ -25,7 +25,7 @@ class Tabs extends React.Component {
   */
   showGeneralTab() {
     var tagFields,
-        tags = Object.keys(this.props.project.tags);
+        tags = this.props.project.tags ? Object.keys(this.props.project.tags) : null;
 
     if (tags) {
       tagFields = tags.map(function(t){
