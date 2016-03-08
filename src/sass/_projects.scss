@@ -6,29 +6,24 @@
 
 .project {
   height: 100%;
-  width: 100%;
+  width: auto;
   @include display(flex);
   @include justify-content(center);
   @include align-items(stretch);
 
   .sidebar {
-    width: 0px;
-    height: 100%;
+    z-index: 2;
+    height: auto;
     overflow: hidden;
-    @include flex(0 0 auto);
-    @include transform(translateX(-100%));
-    @include transition(all ease 0.7s);
+    position: relative;
+    @include flex(1 1 auto);
+    @include transition(all ease 2s);
     form {
       border: none;
-      padding: 100px 55px;
+      padding: 100px 20px;
       input {
         color: #fff;
       }
-    }
-    &.active {
-      width: 500px;
-      @include transform(translateX(0%));
-      @include transition(all ease 0.7s);
     }
   }
 }
@@ -280,7 +275,7 @@
 // Tabs
 .tabs {
   padding: 20px;
-  background: rgba(#111, 0.8);
+  background: rgba(#000, 0.8);
   width: 100%;
   @include flex(1 0 100%);
 

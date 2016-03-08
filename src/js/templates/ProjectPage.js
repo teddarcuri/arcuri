@@ -15,7 +15,6 @@ class ProjectPage extends React.Component {
     this.converter = new showdown.Converter();
 
     this.state = {
-      showGallery: true,
       confirmRemoveProject: false,
     }
   }

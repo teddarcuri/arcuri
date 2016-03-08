@@ -89,35 +89,54 @@ class Project extends React.Component {
   /*
     Sidebar
   */
-  renderSidebar() {
+
+  renderTabs() {
     if (this.props.projectMode === "EDIT" && this.state.isEditing && this.props.uid) {
       return (
-         <Tabs sections={this.state.sections}
-              activeSection={this.state.activeSection}
-              project={this.props.currentProject}
-              linkState={this.props.linkState}
-              mode={this.props.projectMode}
-              addProject={this.props.addProject}
-              updateProject={this.props.updateProject}
-              setActiveSection={this.setActiveSection.bind(this)}
-              addGalleryImage={this.props.addGalleryImage}
-              removeGalleryImage={this.props.removeGalleryImage} /> 
+       <Tabs sections={this.state.sections}
+            activeSection={this.state.activeSection}
+            project={this.props.currentProject}
+            linkState={this.props.linkState}
+            mode={this.props.projectMode}
+            addProject={this.props.addProject}
+            updateProject={this.props.updateProject}
+            setActiveSection={this.setActiveSection.bind(this)}
+            addGalleryImage={this.props.addGalleryImage}
+            removeGalleryImage={this.props.removeGalleryImage} /> 
       ) 
-    } else if (this.props.projectMode === "CREATE") {
+    } else if (this.props.projectMode === "CREATE" && this.props.uid) {
       return  (
-        <Tabs sections={this.state.sections}
-              activeSection={this.state.activeSection}
-              project={this.props.newProject}
-              linkState={this.props.linkState}
-              mode={this.props.projectMode}
-              addProject={this.props.addProject}
-              updateProject={this.props.updateProject}
-              setActiveSection={this.setActiveSection.bind(this)} 
-              addGalleryImage={this.props.addGalleryImage}
-              removeGalleryImage={this.props.removeGalleryImage}
-              showActiveSection={this.state.showActiveSection} />  
+      <Tabs sections={this.state.sections}
+            activeSection={this.state.activeSection}
+            project={this.props.newProject}
+            linkState={this.props.linkState}
+            mode={this.props.projectMode}
+            addProject={this.props.addProject}
+            updateProject={this.props.updateProject}
+            setActiveSection={this.setActiveSection.bind(this)} 
+            addGalleryImage={this.props.addGalleryImage}
+            removeGalleryImage={this.props.removeGalleryImage}
+            showActiveSection={this.state.showActiveSection} />  
       )
+    } else {
+      return null;
     }
+  }
+
+  renderSidebar() {
+    var tabs = this.state.isEditing || this.props.projectMode === "CREATE" ? this.renderTabs() : null;
+
+    return (
+      <CSSTransitionGroup 
+              className="sidebar"
+              transitionName="projectTabs"
+              transitionAppear={true}
+              transitionAppearTimeout={1000}
+              transitionEnterTimeout={1000}
+              transitionLeaveTimeout={1000}>
+         {tabs}
+      </CSSTransitionGroup>
+    ) 
   }
 
   getStyles() {
@@ -160,28 +179,28 @@ class Project extends React.Component {
 
   render() {
   	var p = this.props.projectMode === "EDIT" ? this.props.currentProject : this.props.newProject,
-        sidebarClasses = this.state.isEditing || this.props.projectMode === "CREATE"  ? "sidebar active" : "sidebar"
+        sidebar =  this.renderSidebar();
 
     return (
       <div className="project">
+        {/* ARROWS */}
+        {this.renderProjectArrows()}
 
-          {this.renderProjectArrows()}
-
-          <div className={sidebarClasses}>
-            {this.renderSidebar()}
-          </div>
-
-         <ProjectPage currentProject={p}
-                      uid={this.props.uid}
-                      projects={this.props.projects}
-                      mode={this.props.projectMode}
-                      isEditing={this.state.isEditing}
-                      edit={this.isEditing.bind(this)}
-                      linkState={this.props.linkState}
-                      removeProject={this.props.removeProject}
-                      sections={this.state.sections}
-                      activeSection={this.state.activeSection}
-                      showActiveSection={this.state.showActiveSection} />
+        {/* Sidebar */}
+        {sidebar}
+          
+        {/* Page */}
+        <ProjectPage currentProject={p}
+                    uid={this.props.uid}
+                    projects={this.props.projects}
+                    mode={this.props.projectMode}
+                    isEditing={this.state.isEditing}
+                    edit={this.isEditing.bind(this)}
+                    linkState={this.props.linkState}
+                    removeProject={this.props.removeProject}
+                    sections={this.state.sections}
+                    activeSection={this.state.activeSection}
+                    showActiveSection={this.state.showActiveSection} />
       </div>   
     );
   }

@@ -4,6 +4,63 @@
 
 */
 
+// Sidebar 
+.sidebar-appear {
+  width: 0px;
+  border: solid blue 2px;
+}
+
+.sidebar-appear.sidebar-appear-active {
+  width: 500px;
+  transition: all ease 1s;
+}
+
+.sidebar-enter {
+  width: 0px;
+}
+
+.sidebar-enter.sidebar-enter-active {
+  width: 500px;
+  transition: all ease 1s;
+}
+
+.sidebar-leave {
+  width: 500px;
+}
+
+.sidebar-leave.sidebar-leave-active {
+  width: 0px;
+  transition: all ease 1s;
+}
+
+// Project Form Tabs
+.projectTabs-appear {
+  @include transform(translateY(-100%));
+}
+
+.projectTabs-appear.projectTabs-appear-active {
+  transition: all 0.5s ease;
+  @include transform(translateY(0%));
+}
+
+.projectTabs-enter {
+  @include transform(translateY(-100%));
+}
+
+.projectTabs-enter.projectTabs-enter-active {
+  transition: all 0.5s ease;
+  @include transform(translateY(0%));
+}
+
+.projectTabs-leave {
+  @include transform(translateY(0%));
+}
+
+.projectTabs-leave.projectTabs-leave-active {
+  transition: all 0.5s ease;
+  @include transform(translateY(-100%));
+}
+
 // Gallery Slide
 .gallerySlide-appear {
   opacity: 0;
@@ -43,11 +100,6 @@
   opacity: 1;
   transition: all 1s ease;
   @include transform(translateY(0%));
-  // @for $i from 1 through 9 {
-  //     &:nth-child(#{$i}) { 
-  //      @include transition-delay(0.2s * $i); 
-  //     }
-  // }
 }
 
 .bubbleUp-enter {
@@ -60,11 +112,6 @@
   opacity: 1;
   transition: all 1s ease;
   @include transform(translateY(0%));
-  // @for $i from 1 through 9 {
-  //     &:nth-child(#{$i}) { 
-  //      @include transition-delay(0.2s * $i); 
-  //     }
-  // }
 }
 
 .bubbleUp-leave {
@@ -78,113 +125,34 @@
   @include transform(translateY(-500%));
 }
 
-// Slide Left
-.slideLeft-appear {
-  opacity: 0.01;
-  @include align-self(flex-start);
-  @include transition(all 1s ease);
-}
-.slideLeft-appear.slideLeft-appear-active {
-  opacity: 1;
-  margin-top: 0px;
-  @include align-self(center);
-  @include transition(all 1s ease);
-  @for $i from 1 through 12 {
-    &:nth-child(#{$i}) { 
-     @include transition-delay(0.25s * $i); 
-    }
-  }
-}
-
-// Slide Up
-.slideUp-appear {
-  @include transform(translateY(100%));
-}
-
-.slideUp-appear.slideUp-appear-active {
-  transition: all 1s ease;
-  @include transform(translateY(0%));
-}
 
 // Fade In
 .fadeIn-appear {
   opacity: 0.01;
   transition: all 1s ease;
-  img {
-    opacity: 0.01;
-  }
 }
 
 .fadeIn-appear.fadeIn-appear-active {
   opacity: 1;
   transition: all 1s ease;
-  img {
-    opacity: 1;
-  }
 }
 
 .fadeIn-enter {
   opacity: 0.01;
   transition: all 1s ease;
-  img {
-    opacity: 0.01;
-  }
 }
 
 .fadeIn-enter.fadeIn-enter-active {
   opacity: 1;
   transition: all 1s ease;
-  img {
-    opacity: 1;
-  }
 }
 
 .fadeIn-leave {
   opacity: 1;
   transition: all 1s ease;
-  img {
-    opacity: 1;
-  }
 }
 
 .fadeIn-leave.fadeIn-leave-active {
   opacity: 0;
-  img {
-    opacity: 0;
-  }
 }
 
-// Project Element
-.project-element-appear {
-  opacity: 0.01;
-  @include transform(translateY(10px));
-}
-
-.project-element-appear.project-element-appear-active {
-  opacity: 1;
-  transition: all 1s ease;
-  @include transform(translateY(0%));
-}
-
-.project-element-enter {
-  opacity: 0.01;
-  transition: all 1s ease;
-  @include transform(translateY(10px));
-}
-
-.project-element-enter.project-element-enter-active {
-  opacity: 1;
-  transition: all 1s ease;
-  @include transform(translateY(0px));
-}
-
-.project-element-leave {
-  opacity: 1;
-  transition: all 1s ease;
-  @include transform(translateY(0px));
-}
-
-.project-element-leave.project-element-leave-active {
-  opacity: 0.01;
-  transition: all 1s ease;
-}

@@ -8,7 +8,6 @@ form {
 	border: solid 2px #666;
 	padding:  20px 40px;
 	color: #fff;
-	box-shadow: 3px 3px 15px 0px rgba(#000, 0.2);
 	@include display(flex);
 	@include justify-content(space-between);
 	@include flex-flow(row wrap);
