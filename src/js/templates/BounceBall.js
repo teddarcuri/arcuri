@@ -54,26 +54,30 @@ class BounceBall extends React.Component {
 			  			width: "100%",
 			  			height: "100%",
 			  			display: "flex",
+			  			position: "relative",
 			  			justifyContent: "center",
 			  			alignItems: "center",
-			  		},
-			  		img: {
-			  			width: "100%",
-			  			height: "100%",
-			  			position: "absolute",
-			  			left: 0,
-			  			top: 0,
 			  			borderRadius: "50%",
-			  			postion: "relative",
-			  			margin: "0px auto",
-			  			zIndex: 1,
+			  			overflow: "hidden",
 			  			transition: "all ease 0.25s",
 			  			WebkitTransform: this.state.hover ? "translateY(-33%)" : "translateY(" + value.x + "px)",
 			  			MozTransform: this.state.hover ? "translateY(-33%)" : "translateY(" + value.x + "px)"
 			  		},
+			  		img: {
+			  			width:  "100%",
+			  			height: "100%",
+			  			position: "absolute",
+			  			left: 0,
+			  			top: 0,
+			  			postion: "relative",
+			  			margin: "0px auto",
+			  			transition: "all ease 0.25s",
+			  			zIndex: -1,
+			  		},
 			  		logo: {
-			  			width: "70px",
-			  			height: "70px",
+			  			transition: "all ease 0.25s",
+			  			width: this.state.hover ? "75px" : "45px",
+			  			height: this.state.hover ? "75px" : "45px",
 			  			zIndex: 1
 			  		},
 			  		shadow: {
@@ -94,7 +98,7 @@ class BounceBall extends React.Component {
 			  			transition: "all ease 0.25s"
 			  		},
 			  	}
-			  	var name = this.props.name ? this.props.name : null;
+			  	var name = this.props.name && this.state.hover ? this.props.name : null;
 			  	return (
 			  		<div onMouseOver={this.handleHover.bind(this)}  onMouseOut={this.handleHoverOut.bind(this)}  style={styles.bubble}>
 			  			<div style={styles.images}>

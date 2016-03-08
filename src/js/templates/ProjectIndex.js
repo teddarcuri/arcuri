@@ -44,8 +44,10 @@ class ProjectIndex extends React.Component {
 			},
 		}
 
-		var title = this.state.activeProject ? this.props.projects[this.state.activeProject - 1].name : "My Work";
-		var img = this.state.activeProject ? <img src={this.props.projects[this.state.activeProject - 1].logo} style={{width: 45, verticalAlign: "middle", marginRight: 10}}/> : null;
+		//var title = this.state.activeProject ? this.props.projects[this.state.activeProject].name : "My Work";
+		var title = "My Work",
+			img;
+		//var img = this.state.activeProject ? <img src={this.props.projects[this.state.activeProject].logo} style={{width: 45, verticalAlign: "middle", marginRight: 10}}/> : null;
 
 		var currentProject = (
 			<CSSTransitionGroup 
@@ -98,9 +100,9 @@ class ProjectIndex extends React.Component {
 			  				let path = "/work/" + p.name;
 			  				return (
 								<BounceBall 
-									 ref={p.id}
-									 key={p.id}
-									 id={p.id}
+									 ref={p.key}
+									 key={p.key}
+									 id={p.key}
 									 path={path}
 									 name={p.name}
 									 logo={p.logo}
