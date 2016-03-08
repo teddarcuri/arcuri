@@ -63,7 +63,8 @@ class App extends React.Component {
         logo: "https://s3.amazonaws.com/launchkey-resources/logo/logo/launchkey-logos_launchkey-icon-white.png",
         types: "CHANGE ME",
         role: "uhh",
-        gallery: {}
+        gallery: {},
+        url: ""
       },
       // Alert
       alertConfig: {

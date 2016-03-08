@@ -6,6 +6,7 @@ header#main {
     font-family: "Proxima Nova";
     font-weight: 700;
     z-index: 999;
+    pointer-events: none;
     @include display(flex);
 
     @include bp(600px) {
@@ -14,6 +15,7 @@ header#main {
     }
 
     #logo {
+      pointer-events: all;
       @include bp(600px) {
         margin-left: 0px !important; 
       }

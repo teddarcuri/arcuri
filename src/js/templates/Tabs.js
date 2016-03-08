@@ -23,7 +23,7 @@ class Tabs extends React.Component {
   /* 
     Tab Renders
   */
-  showHeaderTab() {
+  showGeneralTab() {
   	return (
   		<div className="details">
   			<label htmlFor="name">Name</label>
@@ -34,29 +34,44 @@ class Tabs extends React.Component {
   	    				   placeholder="name"
   	    				   valueLink={ this.props.mode === "CREATE" ? this.props.linkState('newProject.name') : this.props.linkState('currentProject.name')} />
         </div>
-        
-  			<label htmlFor="logo">Logo</label>
-  			<div className="flex">
-  				<img className="thumb" src={this.props.project.logo} />
-	  			<input ref="logo" 
-					   type="logo" 
-					   placeholder="logo"
-					   name="logo"
-					   valueLink={ this.props.mode === "CREATE" ? this.props.linkState('newProject.logo') : this.props.linkState('currentProject.logo')}/>
-  			</div>
-  			
 
-			<label htmlFor="background">Background</label>
-			<div className="flex">
-	  			<img className="thumb" src={this.props.project.background} />
-				<input ref="background" 
-					   type="background" 
-					   placeholder="background"
-					   name="background"
-					   valueLink={ this.props.mode === "CREATE" ? this.props.linkState('newProject.background') : this.props.linkState('currentProject.background')}/>
-			</div>
+        <label htmlFor="url">URL</label>
+        <div className="flex">
+          <input ref="url" 
+             type="url" 
+             placeholder="url"
+             name="url"
+             valueLink={ this.props.mode === "CREATE" ? this.props.linkState('newProject.url') : this.props.linkState('currentProject.url')}/>
+        </div>
   		</div>
   	) 
+  }
+
+  showAppearenceTab() {
+    return (
+      <div>
+        <label htmlFor="logo">Logo</label>
+        <div className="flex">
+          <img className="thumb" src={this.props.project.logo} />
+          <input ref="logo" 
+             type="logo" 
+             placeholder="logo"
+             name="logo"
+             valueLink={ this.props.mode === "CREATE" ? this.props.linkState('newProject.logo') : this.props.linkState('currentProject.logo')}/>
+        </div>
+        
+
+        <label htmlFor="background">Background</label>
+        <div className="flex">
+            <img className="thumb" src={this.props.project.background} />
+          <input ref="background" 
+               type="background" 
+               placeholder="background"
+               name="background"
+               valueLink={ this.props.mode === "CREATE" ? this.props.linkState('newProject.background') : this.props.linkState('currentProject.background')}/>
+        </div>
+      </div>
+    )
   }
 
   showOverviewTab() {
@@ -69,9 +84,7 @@ class Tabs extends React.Component {
 					  cols="30" 
 					  rows="10"
 					  valueLink={ this.props.mode === "CREATE" ? this.props.linkState('newProject.description') : this.props.linkState('currentProject.description')}>
-
-			</textarea>
-			
+			  </textarea>
   		</div>
   	) 
   }
@@ -134,7 +147,7 @@ class Tabs extends React.Component {
   renderTab() {
   	switch (this.props.activeSection) {
   		case 0:
-  			return this.showHeaderTab();
+  			return this.showGeneralTab();
   			break;
   		case 1:
   			return this.showGalleryTab(this.props.project.gallery);
@@ -142,6 +155,9 @@ class Tabs extends React.Component {
   		case 2:
   			return this.showOverviewTab();
   			break;
+      case 3:
+        return this.showAppearenceTab();
+        break;
   		default:
   			return this.showHeaderTab();
   	}
@@ -162,7 +178,6 @@ class Tabs extends React.Component {
           </section>
 
           <button className="confirm-btn-outline">{btnText}</button>
-
           {deleteBtn}
         </div>
 

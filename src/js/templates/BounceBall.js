@@ -98,12 +98,14 @@ class BounceBall extends React.Component {
 			  			transition: "all ease 0.25s"
 			  		},
 			  	}
-			  	var name = this.props.name && this.state.hover ? this.props.name : null;
+			  	var name = this.props.name && this.state.hover ? this.props.name : null,
+			  		background = this.props.background ? <img style={styles.img} src={this.props.background} alt=""/> : null,
+			  		logo = this.props.logo ? <img style={styles.logo} src={this.props.logo} alt=""/> : null;
 			  	return (
 			  		<div onMouseOver={this.handleHover.bind(this)}  onMouseOut={this.handleHoverOut.bind(this)}  style={styles.bubble}>
 			  			<div style={styles.images}>
-			  				<img style={styles.img} src={this.props.background} alt=""/>
-			  				<img style={styles.logo} src={this.props.logo} alt=""/>
+			  				{background}
+			  				{logo}
 			  			</div>
 					  	<div style={styles.shadow}></div>	
 					  	<h4 style={{

@@ -130,10 +130,10 @@ class ProjectPage extends React.Component {
         logo = p.logo ? <img src={p.logo} alt={p.name} className="project-logo"/> : "",
         viewSite;
 
-    if (p.siteUrl) {
+    if (p.url) {
       viewSite = (
          <span className="view-site-btn">
-            <Link to={p.siteUrl}>
+            <Link to={p.url}>
               <i className="fa fa-eye"></i>
               View Site
             </Link>

@@ -18,13 +18,16 @@ class Project extends React.Component {
       activeSection: 0,
       sections: [
         {
-          title: "Header"
+          title: "General"
         },
         {
           title: "Gallery"        
         },
         {
           title: "Overview"
+        },
+        {
+          title: "Appearence"
         }
       ]
     }
@@ -61,10 +64,10 @@ class Project extends React.Component {
   renderProjectArrows() {
     if (this.props.projectMode === "EDIT" && this.props.currentProject.key && this.props.projects) {
 
-      // var prevArrow = parseInt(this.props.currentProject.key) > 0 ? this.props.projects[parseInt(this.props.currentProject.key - 2)].name : null ,
-      //     nextArrow = parseInt(this.props.currentProject.key) >= this.props.projects.length ? null : this.props.projects[parseInt(this.props.currentProject.key + 1)].name,
-      //     prevImg = parseInt(this.props.currentProject.key) > 0 ? this.props.projects[parseInt(this.props.currentProject.key - 2)].background : null ,
-      //     nextImg = parseInt(this.props.currentProject.key) >= this.props.projects.length ? null : this.props.projects[parseInt(this.props.currentProject.key + 1)].background;
+      // var prevArrow = (parseInt(this.props.currentProject.key)) > 0 ? this.props.projects[parseInt(this.props.currentProject.key - 2)].name : null ,
+      //     nextArrow = (parseInt(this.props.currentProject.key)) >= this.props.projects.length ? null : this.props.projects[parseInt(this.props.currentProject.key + 1)].name,
+      //     prevImg = (parseInt(this.props.currentProject.key)) > 0 ? this.props.projects[parseInt(this.props.currentProject.key - 2)].background : null ,
+      //     nextImg = (parseInt(this.props.currentProject.key)) >= this.props.projects.length ? null : this.props.projects[parseInt(this.props.currentProject.key + 1)].background;
       // return (
       //   <ul id="projectScrollArrows"
       //       style={this.getStyles().projectScrollArrows}>

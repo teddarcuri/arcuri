@@ -47,6 +47,7 @@ class Dashboard extends React.Component {
                 borderRadius: "5px",
                 border: "solid 2px #333"
               }}>
+          <i className="fa fa-plus" style={{marginRight: 10}}></i>
           Add a new Project
         </Link>
         <hr />
@@ -89,7 +90,7 @@ class Dashboard extends React.Component {
           <i style={{color: colors.successGreen}} className="fa fa-circle fa-stack-2x"></i>
           <i className="fa fa-check fa-stack-1x"></i>
         </span> 
-        <h3 style={{color: colors.successGreen}}>Sweet, everything seems to check out.</h3>
+        <h3 style={{color: colors.successGreen}}>HOLD ONTO YOUR BUTTS!</h3>
       </div>
     );
 
