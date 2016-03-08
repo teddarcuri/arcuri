@@ -13,6 +13,8 @@ class ProjectBubble extends React.Component {
       	<Link ref={this.props.ref} to={this.props.path} className="project-bubble">
           <img className="logo" src={this.props.logo} />
           <img className="bg" src={this.props.background} />
+                  <h4>dude</h4>
+
         </Link>
       </div>
     );

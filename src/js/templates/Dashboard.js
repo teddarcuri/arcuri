@@ -66,17 +66,17 @@ class Dashboard extends React.Component {
     var form = (
       <div>
         <h3 style={{
-              color: "#fff"
+              color: "#888"
               }}>
           Are you me?
         </h3>
         <h5 style={{
-              color: "#fff"
+              color: "#888"
               }}>
           Let's find out.
         </h5>
-        <input ref="email" type="text"/>
-        <input ref="password" type="password"/>
+        <input ref="email" type="text" placeholder="email"/>
+        <input ref="password" type="password" placeholder="password"/>
         <button style={this.getStyles().button} type="submit">
           Login
         </button>
@@ -122,15 +122,20 @@ class Dashboard extends React.Component {
         alignItems: "center"
       },
       form: {
-        background: "#333"
+        //background: "#333"
       },
       button: {
-        border: "solid #fff 2px",
+        border: "solid #333 2px",
         padding: 10,
-        color: "#fff",
+        color: "#333",
+        textTransform: "uppercase",
+        letterSpacing: "4px",
+        fontWeight: 700,
+        fontSize: "0.7em",
         margin: "20px 0px",
         ":hover" : {
-          background: "#222",
+          background: "#333",
+          color: "#fff"
         }
       }
     }

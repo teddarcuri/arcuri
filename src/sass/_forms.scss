@@ -5,7 +5,7 @@
 }
 
 form {
-	border: solid 2px #222;
+	border: solid 2px #666;
 	padding:  20px 40px;
 	color: #fff;
 	box-shadow: 3px 3px 15px 0px rgba(#000, 0.2);
@@ -44,7 +44,8 @@ form {
 		padding: 15px;
 		width: 100%;
 		border: none;
-		background: rgba(#000, 0.3);
+		border-bottom: solid 2px #555;
+		background: none !important;
 		color: #666;
 		@include flex(1 0 100%);
 		@include transition(all ease 0.3s);
