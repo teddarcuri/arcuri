@@ -65,7 +65,7 @@ class ProjectPage extends React.Component {
         el = ReactDOM.findDOMNode(this.refs.details);
         break;
       case 3:
-        el = ReactDOM.findDOMNode(this.refs.role);
+        el = ReactDOM.findDOMNode(this.refs.bg);
         break;
       default:
         return;
@@ -118,6 +118,22 @@ class ProjectPage extends React.Component {
     }
   }
 
+  renderTags() {
+    if (this.props.currentProject.tags) {
+      return (
+        <ul className="tags">
+          {
+            this.props.currentProject.tags.map((t)=>{
+              return (
+                <li>{t}</li>
+              )
+            })
+          }
+        </ul>
+      )
+    }
+  }
+
   renderOverview() {
     if (this.props.currentProject.description) {
       return {__html: this.converter.makeHtml(this.props.currentProject.description) }
@@ -127,6 +143,7 @@ class ProjectPage extends React.Component {
   render() {
   	var p = this.props.currentProject ? this.props.currentProject : {},
         logo = p.logo ? <img src={p.logo} alt={p.name} className="project-logo"/> : "",
+        tags = p.tags ? this.renderTags() : null,
         viewSite;
 
     if (p.url) {
@@ -140,13 +157,13 @@ class ProjectPage extends React.Component {
       )
     }
 
-      let styles = {
-        infobar: {
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center"
-        }
+    let styles = {
+      infobar: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center"
       }
+    }
 
     return (
      <CSSTransitionGroup 
@@ -159,7 +176,7 @@ class ProjectPage extends React.Component {
         transitionLeaveTimeout={1000}>
 
           {/*  Project Window */}
-          <div className="project-overview" key="overview">
+          <div className="project-overview" key={p.name}>
             <header ref="header"
                     data-section="header">
               <h1 className="title">
@@ -175,13 +192,8 @@ class ProjectPage extends React.Component {
 
               <div className="project-infobar"
                     style={styles.infobar}>
-                 <ul className="tags">
-                  <li>
-                    Web
-                  </li>
-                  <li>
-                    Print
-                  </li>
+                <ul className="tags">
+                  {tags}
                 </ul>
 
                 {viewSite}
@@ -196,11 +208,10 @@ class ProjectPage extends React.Component {
               </section>
 
             </main>
-        
           </div>
 
           {/* Background Image */}
-          <div className="project-bg" key="bg">
+          <div className="project-bg" key="bg" ref="bg">
             <img src={p.background} />
           </div>
 

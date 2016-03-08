@@ -74,7 +74,6 @@
     margin-bottom: 70px;
     z-index: 1;
     position: relative;
-    @include transition(all ease 0.7s);
     @include display(flex);
     @include align-items(flex-start);
     @include justify-content(center);
@@ -278,6 +277,12 @@
   background: rgba(#000, 0.8);
   width: 100%;
   @include flex(1 0 100%);
+
+  @include bp(1000px) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
 
   button {
     margin-right: 15px;

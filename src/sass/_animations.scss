@@ -39,7 +39,7 @@
 }
 
 .projectTabs-appear.projectTabs-appear-active {
-  transition: all 0.5s ease;
+  transition: all 0.8s ease;
   @include transform(translateY(0%));
 }
 
@@ -48,7 +48,7 @@
 }
 
 .projectTabs-enter.projectTabs-enter-active {
-  transition: all 0.5s ease;
+  transition: all 0.8s ease;
   @include transform(translateY(0%));
 }
 
@@ -57,14 +57,14 @@
 }
 
 .projectTabs-leave.projectTabs-leave-active {
-  transition: all 0.5s ease;
+  transition: all 0.8s ease;
   @include transform(translateY(-100%));
 }
 
 // Gallery Slide
 .gallerySlide-appear {
   opacity: 0;
-  transition: all 0.5s ease;
+  transition: all 0.8s ease;
 }
 
 .gallerySlide-appear.gallerySlide-appear-active {
@@ -92,7 +92,6 @@
 // Bubble Up
 .bubbleUp-appear {
   opacity: 0.01;
-  transition-delay: 3s;
   @include transform(translateY(100%));
 }
 
@@ -104,7 +103,6 @@
 
 .bubbleUp-enter {
   opacity: 0.01;
-  transition-delay: 3s;
   @include transform(translateY(100%));
 }
 
@@ -156,3 +154,31 @@
   opacity: 0;
 }
 
+
+// Project Slider
+.projectSlide-appear {
+  @include transform(translateX(100%));
+}
+
+.projectSlide-appear.projectSlide-appear-active {
+  transition: all 2s ease;
+  @include transform(translateX(0%));
+}
+
+.projectSlide-enter {
+  @include transform(translateX(100%));
+}
+
+.projectSlide-enter.projectSlide-enter-active {
+  transition: all 2s ease;
+  @include transform(translateX(0%));
+}
+
+.projectSlide-leave {
+  @include transform(translateX(0%));
+}
+
+.projectSlide-leave.projectSlide-leave-active {
+  transition: all 2s ease;
+  @include transform(translateX(-500%));
+}

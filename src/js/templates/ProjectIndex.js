@@ -3,6 +3,7 @@ import {browserHistory, Router, Route, IndexRoute, Link} from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import BounceBall from './BounceBall';
 import ProjectDiagonal from './ProjectDiagonal';
+import AtvImg from 'react-atv-img';
 
 import _ from 'lodash';
 import h from '../utilities/helpers';
@@ -20,6 +21,63 @@ class ProjectIndex extends React.Component {
 
 	setActiveProject(id) {
 		this.setState({activeProject: id});
+	}
+
+	renderTiles(projects) {
+		let styles ={
+			page: {
+				position: this.props.isIndexPage ? "absolute" : "relative",
+				top: 0, left: 0,
+				width:  this.props.isIndexPage ? "100%" : "auto",
+				height: this.props.isIndexPage ? "100%" : "auto",
+				display: "flex",
+				flexFlow: "row wrap",
+				alignItems: "center",
+				justifyContent: "center",
+			},
+			container: {
+				display: "flex",
+				flexFlow: "row wrap",
+				alignItems: "center",
+				justifyContent: "center",
+				height: "auto"
+			},
+		}
+
+		return (
+				<div style={styles.container}>
+									<h1 style={{flex: "2 0 100%", textAlign: "center"}}>My Work</h1>
+
+					<CSSTransitionGroup style={styles.page}
+							component="div"
+							transitionAppear={true}
+							transitionAppearTimeout={1000}
+							transitionName="bubbleUp"
+							transitionEnterTimeout={1000}
+							transitionLeaveTimeout={1000}>
+					{
+			  			projects.map(function(p, key) {
+			  				let path = "/work/" + p.name;
+			  				return (
+
+			  				<Link to={path}>
+								<AtvImg
+								  layers={[
+								    p.background,
+								    p.logo,
+								  ]}
+								  staticFallback="http://kloc.pm/images/kloc-icon-flattened.jpg"
+								  isStatic={false}
+								  className={'thisIsOptional'}
+								  style={{ width: 180, height: 95, marginRight: 20 }}
+								/>
+							</Link>
+			  				)
+			  			})
+			  		}
+			  		</CSSTransitionGroup>
+				</div>
+		)
 	}
 
 	renderBalls(projects) {

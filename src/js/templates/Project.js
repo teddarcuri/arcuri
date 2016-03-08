@@ -131,9 +131,9 @@ class Project extends React.Component {
               className="sidebar"
               transitionName="projectTabs"
               transitionAppear={true}
-              transitionAppearTimeout={1000}
-              transitionEnterTimeout={1000}
-              transitionLeaveTimeout={1000}>
+              transitionAppearTimeout={800}
+              transitionEnterTimeout={800}
+              transitionLeaveTimeout={800}>
          {tabs}
       </CSSTransitionGroup>
     ) 

@@ -33,6 +33,7 @@
     "react": "^0.14.6",
     "react-addons-css-transition-group": "^0.14.6",
     "react-addons-transition-group": "^0.14.6",
+    "react-atv-img": "^0.1.1",
     "react-catalyst": "^0.3.0",
     "react-dom": "^0.14.6",
     "react-element-query": "^2.0.1",
