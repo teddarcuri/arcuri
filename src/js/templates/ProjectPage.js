@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 import ReactDOM from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import ProjectGallery from './ProjectGallery';
@@ -126,7 +127,19 @@ class ProjectPage extends React.Component {
 
   render() {
   	var p = this.props.currentProject ? this.props.currentProject : {},
-        logo = p.logo ? <img src={p.logo} alt={p.name} className="project-logo"/> : "";
+        logo = p.logo ? <img src={p.logo} alt={p.name} className="project-logo"/> : "",
+        viewSite;
+
+    if (p.siteUrl) {
+      viewSite = (
+         <span className="view-site-btn">
+            <Link to={p.siteUrl}>
+              <i className="fa fa-eye"></i>
+              View Site
+            </Link>
+          </span>
+      )
+    }
 
       let styles = {
         infobar: {
@@ -172,12 +185,7 @@ class ProjectPage extends React.Component {
                   </li>
                 </ul>
 
-                <span className="view-site-btn">
-                  <a href="google.com">
-                    <i className="fa fa-eye"></i>
-                    View Site
-                  </a>
-                </span>
+                {viewSite}
               </div>
              
 

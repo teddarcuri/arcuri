@@ -1,4 +1,5 @@
 import React from 'react';
+import Radium from 'radium';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import ProjectGallery from './ProjectGallery';
 import ProjectPage from './ProjectPage';
@@ -60,21 +61,25 @@ class Project extends React.Component {
   renderProjectArrows() {
     if (this.props.projectMode === "EDIT" && this.props.currentProject.key && this.props.projects) {
 
-      var prevArrow = (parseInt(this.props.currentProject.key)) > 0 ? this.props.projects[parseInt(this.props.currentProject.key - 2)].name : null ,
-          nextArrow = (parseInt(this.props.currentProject.key)) >= this.props.projects.length ? null : this.props.projects[parseInt(this.props.currentProject.key + 1)].name;
-
-      return (
-
-        <ul id="projectScrollArrows"
-            style={this.getStyles().projectScrollArrows}>
-          <li style={this.getStyles().prevArrow}>
-            {prevArrow}
-          </li>
-          <li style={this.getStyles().nextArrow}>
-            {nextArrow}
-          </li>
-        </ul>
-      )
+      // var prevArrow = parseInt(this.props.currentProject.key) > 0 ? this.props.projects[parseInt(this.props.currentProject.key - 2)].name : null ,
+      //     nextArrow = parseInt(this.props.currentProject.key) >= this.props.projects.length ? null : this.props.projects[parseInt(this.props.currentProject.key + 1)].name,
+      //     prevImg = parseInt(this.props.currentProject.key) > 0 ? this.props.projects[parseInt(this.props.currentProject.key - 2)].background : null ,
+      //     nextImg = parseInt(this.props.currentProject.key) >= this.props.projects.length ? null : this.props.projects[parseInt(this.props.currentProject.key + 1)].background;
+      // return (
+      //   <ul id="projectScrollArrows"
+      //       style={this.getStyles().projectScrollArrows}>
+      //     <li key="prev" style={this.getStyles().prevArrow}>
+      //       <span style={{zIndex: 1, position: "relative", color: "#eee", padding: "0px 12px"}}>{prevArrow}</span>
+      //       <img style={{width: "100%", position: "absolute", top: 0, left: 0, opacity: 0.5, zIndex: -1}} src={prevImg} alt=""/>
+      //       <i style={{background: "#000", zIndex: 1, position: "relative", height: "100%", padding: 10, lineHeight: "100px"}} className="fa fa-chevron-left"></i>
+      //     </li>
+      //     <li key="next" style={this.getStyles().nextArrow}>
+      //       <i style={{background: "#000", zIndex: 1, position: "relative", height: "100%", padding: 10, lineHeight: "100px"}} className="fa fa-chevron-right"></i>
+      //       <img style={{width: "100%", position: "absolute", top: 0, left: 0, opacity: 0.5, zIndex: -1}} src={nextImg} alt=""/>
+      //       <span style={{zIndex: 1, position: "relative", color: "#eee", padding: "0px 12px"}}>{nextArrow}</span>
+      //     </li>
+      //   </ul>
+      // )
     }
   }
 
@@ -125,15 +130,27 @@ class Project extends React.Component {
         position: "absolute",
         background: "#000",
         color: "#666",
-        padding: 10,
-        left: 0
+        height: 100,
+        overflow: "hidden",
+        left: 0,
+        transition: "all ease 0.5s",
+        transform: "translateX(calc(-100% + 30px))",
+        ":hover": {
+          transform: "translateX(0%)"
+        }
       },
       nextArrow: {
         position: "absolute",
         background: "#000",
         color: "#666",
-        padding: 10,
-        right: 0
+        height: 100,
+        overflow: "hidden",
+        right: 0,
+        transition: "all ease 0.5s",
+        transform: "translateX(calc(100% - 30px))",
+        ":hover": {
+          transform: "translateX(0%)"
+        }
       }
     }
   }
@@ -167,4 +184,4 @@ class Project extends React.Component {
   }
 }
 
-export default Project
+export default Radium(Project);
