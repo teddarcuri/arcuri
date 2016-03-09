@@ -70,7 +70,7 @@ class Experience extends React.Component {
     return (
     <CSSTransitionGroup transitionAppear={true}
               transitionAppearTimeout={2000}
-              transitionName="fadeIn"
+              transitionName="bubbleUp"
               style={styles.page}
               transitionEnterTimeout={2000}
               transitionLeaveTimeout={2000}>

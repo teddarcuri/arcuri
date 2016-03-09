@@ -253,7 +253,7 @@
   @include transform(translateY(80%));
   @include transition(all ease 1.2s);
   @include bp(600px) {
-    display: none;
+    //display: none;
   }
   &:hover {
     li {
