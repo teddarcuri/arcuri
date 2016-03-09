@@ -173,7 +173,9 @@ class ProjectPage extends React.Component {
           <header ref="header"
                   data-section="header">
             <h1 className="title">
-              {logo}
+              <span className="project-logo">
+                {logo}
+              </span>
               {p.name}
               {this.renderEditTools()}
             </h1>
