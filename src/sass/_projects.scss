@@ -120,6 +120,7 @@
       height: 100%;
 
       section {
+        @include order(2);
         @include flex(3);
         position: relative;
         background: rgba(#111, 1);
@@ -351,6 +352,7 @@
   display: block;
   position: relative;
   overflow: hidden;
+  @include order(0);
   @include flex(1 0 100%);
   @include display(flex);
   @include flex-flow(row wrap);
