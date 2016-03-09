@@ -125,7 +125,6 @@ class ProjectPage extends React.Component {
         <ul className="tags">
           {
             tags.map((t)=>{
-              console.log(t);
               return (
                 <li>{this.props.currentProject.tags[t].value}</li>
               )

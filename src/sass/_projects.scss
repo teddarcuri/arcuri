@@ -361,8 +361,6 @@
       position: absolute;
       top: 0;
       left: 0;
-      padding: 40px;
-
       @include display(flex);
       @include flex-flow(row wrap);
       @include align-items(stretch);
