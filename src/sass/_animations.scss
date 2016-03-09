@@ -97,8 +97,13 @@
 
 .bubbleUp-appear.bubbleUp-appear-active {
   opacity: 1;
-  transition: all 1s ease;
+  transition: all 0.8s ease;
   @include transform(translateY(0%));
+  @for $i from 1 through 9 {
+      &:nth-child(#{$i}) { 
+       @include transition-delay(0.2s * $i); 
+      }
+  }
 }
 
 .bubbleUp-enter {
@@ -110,6 +115,12 @@
   opacity: 1;
   transition: all 1s ease;
   @include transform(translateY(0%));
+  @for $i from 1 through 9 {
+      &:nth-child(#{$i}) { 
+       @include transition-delay(0.2s * $i); 
+      }
+  }
+
 }
 
 .bubbleUp-leave {

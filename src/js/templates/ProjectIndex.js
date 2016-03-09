@@ -46,7 +46,6 @@ class ProjectIndex extends React.Component {
 
 		return (
 				<div style={styles.container}>
-									<h1 style={{flex: "2 0 100%", textAlign: "center"}}>My Work</h1>
 
 					<CSSTransitionGroup style={styles.page}
 							component="div"
@@ -55,26 +54,26 @@ class ProjectIndex extends React.Component {
 							transitionName="bubbleUp"
 							transitionEnterTimeout={1000}
 							transitionLeaveTimeout={1000}>
-					{
-			  			projects.map(function(p, key) {
-			  				let path = "/work/" + p.name;
-			  				return (
-
-			  				<Link to={path}>
-								<AtvImg
-								  layers={[
-								    p.background,
-								    p.logo,
-								  ]}
-								  staticFallback="http://kloc.pm/images/kloc-icon-flattened.jpg"
-								  isStatic={false}
-								  className={'thisIsOptional'}
-								  style={{ width: 180, height: 95, marginRight: 20 }}
-								/>
-							</Link>
-			  				)
-			  			})
-			  		}
+						<h1 style={{flex: "2 0 100%", textAlign: "center", margin: 0}}>My Work</h1>
+						{
+				  			projects.map(function(p, key) {
+				  				let path = "/work/" + p.name;
+				  				return (
+				  				<Link to={path} key={p.name}>
+									<AtvImg
+									  layers={[
+									    p.background,
+									    p.logo,
+									  ]}
+									  staticFallback="http://kloc.pm/images/kloc-icon-flattened.jpg"
+									  isStatic={false}
+									  className={'thisIsOptional'}
+									  style={{ width: 120, height: 80, margin: 20 }}
+									/>
+								</Link>
+				  				)
+				  			})
+				  		}					
 			  		</CSSTransitionGroup>
 				</div>
 		)
@@ -142,17 +141,17 @@ class ProjectIndex extends React.Component {
 		var setActiveProject = this.setActiveProject.bind(this);
 
 		return (
-		<CSSTransitionGroup style={styles.page}
-							component="div"
-							transitionAppear={true}
-							transitionAppearTimeout={0}
-							transitionName="slideLeftIn"
-							transitionEnterTimeout={1000}
-							transitionLeaveTimeout={1000}>
-			{related}
+		<div style={styles.page}>
 			<section>
 				{this.props.isIndexPage ? currentProject : null}
-		  		<div style={styles.container}>
+		  		<CSSTransitionGroup 
+							component="div"
+							style={styles.container}
+							transitionAppear={true}
+							transitionAppearTimeout={2000}
+							transitionName="bubbleUp"
+							transitionEnterTimeout={2000}
+							transitionLeaveTimeout={2000}>
 					{
 			  			projects.map(function(p, key) {
 			  				let path = "/work/" + p.name;
@@ -172,9 +171,9 @@ class ProjectIndex extends React.Component {
 			  				)
 			  			})
 			  		}
-				</div>		
+			  		</CSSTransitionGroup>
 			</section>
-	  	</CSSTransitionGroup>
+	  	</div>
 	   )
 	}
 
