@@ -13,7 +13,7 @@ class Experience extends React.Component {
   render() {
     let styles = {
       page: {
-        padding: "120px 0px",
+        padding: "90px 20px",
         maxWidth: 768
       },
       section: {
