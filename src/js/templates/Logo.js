@@ -4,7 +4,22 @@ import {Link} from 'react-router';
 import ProjectIndex from './ProjectIndex';
 
 class Logo extends React.Component {
+	
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			active: false
+		}
+	}
+
+	toggleActive() {
+		this.setState({active: !this.state.active});
+	}
+
 	render() {
+
+		var active = this.state.active ? "active" : null;
 		return(
 			<div
 			  id="logo"
@@ -22,8 +37,8 @@ class Logo extends React.Component {
 	                    </g>
 	                </svg>
 		          </Link>
-		          <div id="menu">
-	                  <svg id="menu-icon"  width="60px" height="65px" viewBox="40 0 70 80" version="1.1">
+		          <div id="menu" className={active}>
+	                  <svg id="menu-icon" onClick={this.toggleActive.bind(this)}  width="60px" height="65px" viewBox="40 0 70 80" version="1.1">
 	                      <defs></defs>
 	                      <g stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd" >
 	                          <g className="svg-fill"> 

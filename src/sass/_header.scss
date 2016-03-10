@@ -40,7 +40,7 @@ header#main {
         padding: 0px;
         color: #666;
         position: relative;
-        &:hover {
+        &.active {
             #menu-icon {
              @include transform(translateY(5px) translateX(-4px));
             }
