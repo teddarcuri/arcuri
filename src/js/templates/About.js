@@ -1,10 +1,11 @@
 import React from 'react';
 import {Motion, spring, presets} from 'react-motion';
 import {Router, Link} from 'react-router';
-import BounceBall from "./BounceBall"
+import BounceBall from "./BounceBall";
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 class About extends React.Component {
+
   render() {
   	let styles= {
   		page: {
@@ -53,7 +54,9 @@ class About extends React.Component {
   			display: "flex",
   			justifyContent: "center",
   			alignItems: "center",
-        padding: "0px 30px"
+        padding: "0px 30px",
+        zIndex: 10,
+        position: "relative"
   		},
   		p: {
   			color: "#666",

@@ -25,7 +25,7 @@ class ProjectBar extends React.Component {
         newProjectTab = this.props.uid ? this.renderNewProjectTab() : null,
         styles = {
           bar: {
-            transform: this.props.location.pathname != "/" ? "translateY(70%)" : "translateY(100%)"
+            transform: this.props.location.pathname != "/" ? "translateY(66%)" : "translateY(80%)"
           },
           overlay: {
             width: "100%",

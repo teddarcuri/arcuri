@@ -383,6 +383,7 @@
       position: absolute;
       top: 0;
       left: 0;
+      padding: 33px;
       @include display(flex);
       @include flex-flow(row wrap);
       @include align-items(stretch);
@@ -435,7 +436,7 @@
       overflow: hidden;
       height: 33px;
       width: 100px;
-      margin-right: 0px;
+      margin-right: 10px;
       cursor: pointer;
       @include align-self(flex-start);
       @include display(flex);
