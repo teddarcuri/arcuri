@@ -40,6 +40,9 @@ class Project extends React.Component {
   componentWillMount() {
     var path = this.props.location.pathname;
 
+    // Set scroll position to top of page
+    window.scrollTo(0, 0);
+
     // Determine if New or Exisiting Project
     if (path.indexOf('work/new') != -1) {
       this.props.setProjectMode("CREATE");

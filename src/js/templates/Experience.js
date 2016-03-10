@@ -10,6 +10,11 @@ class Experience extends React.Component {
   	super(props);
   }
 
+  componentDidMount() {
+     // Set scroll position to top of page
+    window.scrollTo(0, 0);
+  }
+
   render() {
     let styles = {
       page: {

@@ -112,13 +112,17 @@ img {
       border-radius: 3px;
       padding: 10px 15px;
       margin: 0px 10px;
+      letter-spacing: 3px;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.7em;
       &:hover {
         background: rgba(#fff, 0.1);
       }
       i{
         font-size: 1em;
         vertical-align: middle;
-        margin-right: 12px;
+        margin-right: 7px;
       }
     }
   }
@@ -142,19 +146,12 @@ img {
         margin-right: 10px;
         border-radius: 3px;
         padding: 10px 15px;
-        letter-spacing: 5px;
+        letter-spacing: 3px;
         font-weight: 300;
-        font-size: 0.7em;
+        font-size: 0.666em;
         position: relative;
         text-transform: uppercase;
     }
-}
-
-// Grids
-.sidebar {
-  //height: 100%;
-  //z-index: 2;
-  //@include flex(1 0 500px);
 }
 
 // util
