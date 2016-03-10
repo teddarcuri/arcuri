@@ -133,7 +133,7 @@ class Project extends React.Component {
     return (
       <CSSTransitionGroup 
               className="sidebar"
-              transitionName="projectTabs"
+              transitionName="bubbleUp"
               transitionAppear={true}
               transitionAppearTimeout={800}
               transitionEnterTimeout={800}

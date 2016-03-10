@@ -6,14 +6,9 @@ import ProjectIndex from './ProjectIndex';
 class Logo extends React.Component {
 	render() {
 		return(
-			<CSSTransitionGroup
+			<div
 			  id="logo"
-			  style={{display: "flex", alignItems: "center", marginLeft: 20}}
-			  transitionName="bubbleUp"
-              transitionAppear={true}
-              transitionAppearTimeout={2000}
-              transitionEnterTimeout={2000}
-              transitionLeaveTimeout={2000}>
+			  style={{display: "flex", alignItems: "center", marginLeft: 20}}>
 				 <Link to="/">
 	                <svg className="letter" viewBox="0 0 614 619" version="1.1">
 	                    <defs></defs>
@@ -79,7 +74,7 @@ class Logo extends React.Component {
 		              </g>
 		            </svg>
 		          </Link>
-		    </CSSTransitionGroup>
+		    </div>
 		)
 	}
 }

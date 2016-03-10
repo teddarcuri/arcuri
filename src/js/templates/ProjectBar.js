@@ -37,7 +37,7 @@ class ProjectBar extends React.Component {
             textTransform: "uppercase",
             letterSpacing: 3,
             lineHeight: "1.7em",
-            fontSize: "0.7em",
+            fontSize: "0.8em",
             padding: 15,
             textAlign: "center",
             transform: "translateY(10%)"

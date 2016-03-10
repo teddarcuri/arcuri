@@ -16,7 +16,7 @@
 @import "buttons";
 
 #app {
-   @include linear-gradient(top, #eee, #fff);
+   @include linear-gradient(top, #fff, #eee);
 }
 
 #about-image {
@@ -98,6 +98,12 @@ img {
   width: 100%;
   @include bp(600px) {
     @include order(1);
+    text-align: center;
+    padding: 10px 0px;
+    .view-site-btn {
+      display: block;
+      @include flex(2 0 100%);
+    }
   }
   
   .view-site-btn {

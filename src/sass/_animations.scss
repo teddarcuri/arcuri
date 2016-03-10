@@ -7,7 +7,6 @@
 // Sidebar 
 .sidebar-appear {
   width: 0px;
-  border: solid blue 2px;
 }
 
 .sidebar-appear.sidebar-appear-active {
@@ -31,34 +30,6 @@
 .sidebar-leave.sidebar-leave-active {
   width: 0px;
   transition: all ease 1s;
-}
-
-// Project Form Tabs
-.projectTabs-appear {
-  @include transform(translateY(-100%));
-}
-
-.projectTabs-appear.projectTabs-appear-active {
-  transition: all 0.8s ease;
-  @include transform(translateY(0%));
-}
-
-.projectTabs-enter {
-  @include transform(translateY(-100%));
-}
-
-.projectTabs-enter.projectTabs-enter-active {
-  transition: all 0.8s ease;
-  @include transform(translateY(0%));
-}
-
-.projectTabs-leave {
-  @include transform(translateY(0%));
-}
-
-.projectTabs-leave.projectTabs-leave-active {
-  transition: all 0.8s ease;
-  @include transform(translateY(-100%));
 }
 
 // Gallery Slide
@@ -101,7 +72,7 @@
   @include transform(translateY(0%));
   @for $i from 1 through 9 {
       &:nth-child(#{$i}) { 
-       @include transition-delay(0.2s * $i); 
+       @include transition-delay(0.3s * $i); 
       }
   }
 }
@@ -117,7 +88,7 @@
   @include transform(translateY(0%));
   @for $i from 1 through 9 {
       &:nth-child(#{$i}) { 
-       @include transition-delay(0.2s * $i); 
+       @include transition-delay(0.01s * $i); 
       }
   }
 
@@ -131,7 +102,35 @@
 .bubbleUp-leave.bubbleUp-leave-active {
   opacity: 0.01;
   transition: all 1s ease;
-  @include transform(translateY(-500%));
+  @include transform(translateY(-100%));
+}
+
+// Slide Down
+.slideDown-appear {
+  @include transform(translateY(-100%));
+}
+
+.slideDown-appear.slideDown-appear-active {
+  transition: all 0.8s ease;
+  @include transform(translateY(0%));
+}
+
+.slideDown-enter {
+  @include transform(translateY(-100%));
+}
+
+.slideDown-enter.slideDown-enter-active {
+  transition: all 1s ease;
+  @include transform(translateY(0%));
+}
+
+.slideDown-leave {
+  @include transform(translateY(0%));
+}
+
+.slideDown-leave.slideDown-leave-active {
+  @include transform(translateY(-100%));
+  transition: all 1s ease;
 }
 
 

@@ -162,7 +162,8 @@ class ProjectPage extends React.Component {
       infobar: {
         display: "flex",
         justifyContent: "space-between",
-        alignItems: "center"
+        alignItems: "center",
+        flexFlow: "row wrap"
       }
     }
 

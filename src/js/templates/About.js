@@ -73,7 +73,7 @@ class About extends React.Component {
                           alignItems: "center",
                           justifyContent: "center",
                           marginBottom: 20}}>
-                <BounceBall background="https://lh4.googleusercontent.com/-2qeuQQr-24c/AAAAAAAAAAI/AAAAAAAAAAA/I3aLsM6bU2o/s128-c-k/photo.jpg"
+                <BounceBall background="https://lh4.googleusercontent.com/-2qeuQQr-24c/AAAAAAAAAAI/AAAAAAAAAAA/I3aLsM6bU2o/s456-p/photo.jpg"
                             path="/contact">
                 </BounceBall>
               </div>

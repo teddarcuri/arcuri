@@ -37,6 +37,8 @@ import imagesLoaded from 'imagesloaded';
 import Catalyst from 'react-catalyst';
 import reactMixin from 'react-mixin';
 import {Motion, spring, presets} from 'react-motion';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
+
 
 // Styles 
 import * as styles from "../../sass/app.scss";
@@ -328,7 +330,7 @@ class App extends React.Component {
 
   render() {
     var logoClasses = this.state.isProjectPage ? "light" : "dark",
-        logo = this.props.location.pathname !== "/" ? <Logo projects={this.state.projects} currentProject={this.state.currentProject}/>: null;
+        logo = this.props.location.pathname !== "/" ? <Logo key="logo" projects={this.state.projects} currentProject={this.state.currentProject}/>: null;
 
     let styles = {
       pageContainer: {
@@ -348,9 +350,17 @@ class App extends React.Component {
 
       {this.renderLogoutButton()} 
 
-      <header id="main" className={logoClasses}> 
-        {logo}       
-      </header>
+      <CSSTransitionGroup 
+                id="main"
+                className={logoClasses}
+                component="header"
+                transitionAppear={true}
+                transitionAppearTimeout={2000}
+                transitionName="slideDown"
+                transitionEnterTimeout={2000}
+                transitionLeaveTimeout={2000}>
+        {logo} 
+      </CSSTransitionGroup>      
 
       <div style={styles.pageContainer}>
          {React.cloneElement(this.props.children, {
