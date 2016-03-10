@@ -20,6 +20,34 @@ class Logo extends React.Component {
 	render() {
 
 		var active = this.state.active ? "active" : null;
+
+		var menuDOM = (
+			<ul className="main">
+             <li>
+              <Link to="/about">
+                About Me
+              </Link>
+            </li>
+            <li>
+              <Link to="/experience">
+                Experience + Knowledge
+              </Link>
+            </li>
+             <li>
+              <Link to="/work">
+                My Work
+              </Link>
+            </li>
+            <li>
+            <ProjectIndex projects={this.props.projects}
+    					  currentProject={this.props.currentProject}
+     					  type="BARS"/>
+            </li>
+             <li><Link to="/contact">Contact Me</Link></li>
+          </ul>
+		)
+
+		var menu = this.state.active ? menuDOM : null;
 		return(
 			<div
 			  id="logo"
@@ -37,7 +65,14 @@ class Logo extends React.Component {
 	                    </g>
 	                </svg>
 		          </Link>
-		          <div id="menu" className={active}>
+		          <CSSTransitionGroup 
+		          	id="menu" 
+					className={active}
+					transitionAppear={true}
+					transitionAppearTimeout={1000}
+					transitionName="menuFade"
+					transitionEnterTimeout={1000}
+					transitionLeaveTimeout={1000}>
 	                  <svg id="menu-icon" onClick={this.toggleActive.bind(this)}  width="60px" height="65px" viewBox="40 0 70 80" version="1.1">
 	                      <defs></defs>
 	                      <g stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd" >
@@ -48,30 +83,8 @@ class Logo extends React.Component {
 	                          </g>
 	                      </g>
 	                  </svg>
-		              <ul className="main">
-		                 <li>
-		                  <Link to="/about">
-		                    About Me
-		                  </Link>
-		                </li>
-		                <li>
-		                  <Link to="/experience">
-		                    Experience + Knowledge
-		                  </Link>
-		                </li>
-		                 <li>
-		                  <Link to="/work">
-		                    My Work
-		                  </Link>
-		                </li>
-		                <li>
-	                    <ProjectIndex projects={this.props.projects}
-                					  currentProject={this.props.currentProject}
-                 					  type="BARS"/>
-		                </li>
-		                 <li><Link to="/contact">Contact Me</Link></li>
-		              </ul>
-		          </div>
+		              {menu}
+		          </CSSTransitionGroup>
 		          <svg className="letter" version="1.1" id="D-1" x="0px" y="0px"viewBox="-355.2 -98 94.4 102" enable-background="new -355.2 -98 94.4 102">
 		            <g className="svg-fill" >
 		              <path fill="none" d="M-288.4-46.9c0-14.2-8.6-25.1-25.1-25.1H-328v50h14.5C-297.6-22-288.4-33.4-288.4-46.9z"/>

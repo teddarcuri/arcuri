@@ -69,7 +69,7 @@ class BounceBall extends React.Component {
 			zIndex: 1
 		},
 		shadow: {
-			width: this.state.hover ? "100px" : "50px",
+			width: this.state.hover ? "100px" : "30px",
 			height: "100px",
 			background: "rgba(0,0,0,0.25)",
 			borderRadius: "50%",
@@ -114,7 +114,7 @@ class BounceBall extends React.Component {
 			  		textAlign: "center",
 			  		color: "#aaa",
 			  		fontWeight: 300,
-			  		fontSize: "0.9em"
+			  		fontSize: "1em"
 			  		}}>
 			  		{name}
 			  	</h4>

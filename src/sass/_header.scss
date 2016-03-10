@@ -40,6 +40,11 @@ header#main {
         padding: 0px;
         color: #666;
         position: relative;
+        &:hover {
+          #menu-icon {
+             @include transform(translateY(-5px));
+          }
+        }
         &.active {
             #menu-icon {
              @include transform(translateY(5px) translateX(-4px));
@@ -80,13 +85,12 @@ header#main {
             top: 40px; left: 0px;
             text-align: left;
             background: rgba(#000,0.85);
-            display: none;
             z-index: 100;
             @include bp(600px) {
               position: fixed;
               top: 60px;
               width: 100%;
-              background: rgba(#000,0.99);
+              background: rgba(#000,0.9);
             }
             a {
               padding: 20px 0px;

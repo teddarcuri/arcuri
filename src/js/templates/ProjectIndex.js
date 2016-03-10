@@ -101,10 +101,10 @@ class ProjectIndex extends React.Component {
 			},
 		}
 
-		var title = this.state.activeProject ? this.props.projects[this.state.activeProject].name : "My Work";
-		//var title = "My Work",
-		//	img;
-		var img = this.state.activeProject ? <img src={this.props.projects[this.state.activeProject].logo} style={{width: 45, verticalAlign: "middle", marginRight: 10}}/> : null;
+		//var title = this.state.activeProject ? this.props.projects[this.state.activeProject].name : "My Work";
+		var title = "My Work",
+		img;
+		//var img = this.state.activeProject ? <img src={this.props.projects[this.state.activeProject].logo} style={{width: 45, verticalAlign: "middle", marginRight: 10}}/> : null;
 
 		var currentProject = (
 			<CSSTransitionGroup 

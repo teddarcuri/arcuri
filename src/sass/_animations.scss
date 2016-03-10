@@ -32,6 +32,40 @@
   transition: all ease 1s;
 }
 
+// Main Menu 
+.menuFade-appear {
+  opacity: 0.001;
+  @include transform(translateY(5%));
+}
+
+.menuFade-appear.menuFade-appear-active {
+  opacity: 1;
+  @include transform(translateY(0%));
+  transition: all ease 1s;
+}
+
+.menuFade-enter {
+  opacity: 0.001;
+  @include transform(translateY(5%));
+}
+
+.menuFade-enter.menuFade-enter-active {
+  opacity: 1;
+  @include transform(translateY(0%));
+  transition: all ease 1s;
+}
+
+.menuFade-leave {
+  opacity: 1;
+  @include transform(translateY(0%));
+}
+
+.menuFade-leave.menuFade-leave-active {
+  opacity: 0.001;
+  @include transform(translateY(5%));
+  transition: all ease 1s;
+}
+
 // Gallery Slide
 .gallerySlide-appear {
   opacity: 0;
@@ -87,11 +121,10 @@
   transition: all 1s ease;
   @include transform(translateY(0%));
   @for $i from 1 through 9 {
-      &:nth-child(#{$i}) { 
-       @include transition-delay(0.01s * $i); 
-      }
+    &:nth-child(#{$i}) { 
+     @include transition-delay(0.01s * $i); 
+    }
   }
-
 }
 
 .bubbleUp-leave {
@@ -102,7 +135,7 @@
 .bubbleUp-leave.bubbleUp-leave-active {
   opacity: 0.01;
   transition: all 1s ease;
-  @include transform(translateY(-100%));
+  @include transform(translateY(100%));
 }
 
 // Slide Down
