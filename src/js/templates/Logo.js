@@ -2,6 +2,7 @@ import React from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import {Link} from 'react-router';
 import ProjectIndex from './ProjectIndex';
+import LoginForm from './LoginForm';
 
 class Logo extends React.Component {
 	
@@ -9,17 +10,22 @@ class Logo extends React.Component {
 		super(props);
 
 		this.state = {
-			active: false
+			menuActive: false,
+		    loginActive: false
 		}
 	}
 
-	toggleActive() {
-		this.setState({active: !this.state.active});
+	toggleMenu() {
+		this.setState({menuActive: !this.state.menuActive});
+	}
+
+	toggleLogin() {
+		this.setState({loginActive: !this.state.loginActive});
 	}
 
 	render() {
 
-		var active = this.state.active ? "active" : null;
+		var active = this.state.menuActive ? "active" : null;
 
 		var menuDOM = (
 			<ul className="main">
@@ -47,7 +53,16 @@ class Logo extends React.Component {
           </ul>
 		)
 
-		var menu = this.state.active ? menuDOM : null;
+		var loginDOM = (
+			<LoginForm
+			 authenticate={this.props.authenticate}
+			 unauthenticate = {this.props.unauthenticate}
+			 uid = {this.props.uid}>
+			</LoginForm>
+		)
+
+		var menu = this.state.menuActive ? menuDOM : null;
+		var renderLogin = this.state.loginActive && !this.props.uid ? loginDOM : null;
 		return(
 			<div
 			  id="logo"
@@ -73,7 +88,7 @@ class Logo extends React.Component {
 					transitionName="menuFade"
 					transitionEnterTimeout={1000}
 					transitionLeaveTimeout={1000}>
-	                  <svg id="menu-icon" onClick={this.toggleActive.bind(this)}  width="60px" height="65px" viewBox="40 0 70 80" version="1.1">
+	                  <svg id="menu-icon" onClick={this.toggleMenu.bind(this)}  width="60px" height="65px" viewBox="40 0 70 80" version="1.1">
 	                      <defs></defs>
 	                      <g stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd" >
 	                          <g className="svg-fill"> 
@@ -92,8 +107,8 @@ class Logo extends React.Component {
 		                c16.4,0,25.1,10.9,25.1,25.1c0,13.6-9.2,24.9-25.1,24.9H-328V-72z"/>
 		            </g>
 		          </svg>
-		          <Link to="/dashboard">
-		            <svg className="letter" version="1.1" id="D-2" x="0px" y="0px"
+		          <div style={{height: 40}}>
+		            <svg onClick={this.toggleLogin.bind(this)} className="letter" version="1.1" id="D-2" x="0px" y="0px"
 		               viewBox="-355.2 -98 94.4 102" enable-background="new -355.2 -98 94.4 102" >
 		              <g className="svg-fill" >
 		                <path  fill="none" d="M-288.4-46.9c0-14.2-8.6-25.1-25.1-25.1H-328v50h14.5C-297.6-22-288.4-33.4-288.4-46.9z"/>
@@ -101,7 +116,8 @@ class Logo extends React.Component {
 		                  c16.4,0,25.1,10.9,25.1,25.1c0,13.6-9.2,24.9-25.1,24.9H-328V-72z"/>
 		              </g>
 		            </svg>
-		          </Link>
+		          	{renderLogin}
+		          </div>
 		    </div>
 		)
 	}

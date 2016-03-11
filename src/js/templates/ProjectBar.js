@@ -1,12 +1,34 @@
 import React from 'react';
 import {Router, Route, IndexRoute, Link} from 'react-router';
-
+import Sortable from 'sortablejs';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 class ProjectBar extends React.Component {
 
   constructor(props) {
   	super(props);
+  }
+
+  componentDidUpdate() {
+      var el = document.getElementById('project-bar'),
+          that = this,
+          sortable;
+
+      if (el && this.props.uid && this.props.reOrderProjects) {
+        sortable = Sortable.create(el, {
+          ghostClass: "sortable-ghost",  // Class name for the drop placeholder
+          chosenClass: "sortable-chosen",
+          setData: function (dataTransfer, dragEl) {
+            dataTransfer.setData('Text', dragEl.textContent);
+          },
+          onEnd: function(evt) {
+            var oldPosition = evt.oldIndex;  
+            var newPosition = evt.newIndex; 
+            that.props.reOrderProjects(oldPosition, newPosition);
+            that.forceUpdate()
+          }
+        });
+      } 
   }
 
   renderNewProjectTab() {
@@ -44,7 +66,7 @@ class ProjectBar extends React.Component {
           }
         }
     return (
-      <ul className="project-bar"
+      <ul id="project-bar" className="project-bar"
           style={styles.bar}>
         {
           projects.map(function(p, key) {

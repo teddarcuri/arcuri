@@ -5,11 +5,10 @@ import BounceBall from './BounceBall';
 import ProjectDiagonal from './ProjectDiagonal';
 import AtvImg from 'react-atv-img';
 
-import Sortable from 'sortablejs';
-
 import _ from 'lodash';
 import h from '../utilities/helpers';
 import ReactFitText from 'react-fittext';
+import Sortable from 'sortablejs';
 
 class ProjectIndex extends React.Component {
 

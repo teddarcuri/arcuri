@@ -65,10 +65,10 @@ class About extends React.Component {
   	}
     return (
     	<CSSTransitionGroup transitionAppear={true}
-							transitionAppearTimeout={2000}
-							transitionName="fadeIn"
-							transitionEnterTimeout={2000}
-							transitionLeaveTimeout={2000}
+							transitionAppearTimeout={1000}
+							transitionName="menuFade"
+							transitionEnterTimeout={1000}
+							transitionLeaveTimeout={1000}
 							style={styles.page}>
 		  	<div className="container mw" style={styles.container}>
           <div>
@@ -82,10 +82,10 @@ class About extends React.Component {
               </div>
               <CSSTransitionGroup 
                 transitionAppear={true}
-                transitionAppearTimeout={2000}
-                transitionName="fadeIn"
-                transitionEnterTimeout={2000}
-                transitionLeaveTimeout={2000}>
+                transitionAppearTimeout={1000}
+                transitionName="menuFade"
+                transitionEnterTimeout={1000}
+                transitionLeaveTimeout={1000}>
               <h3>
                 Hello, My Name is <span className="highlight light">Tedd Arcuri</span><br />
                 I am a software designer + developer<br />

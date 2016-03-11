@@ -23,6 +23,14 @@
  background: rgba(#fff, 0.25);
 }
 
+#admin-bar {
+  a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+  } 
+}
+
 
 #about-image {
   position: fixed; bottom: 0; right: -100px;

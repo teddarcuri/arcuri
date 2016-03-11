@@ -17,6 +17,7 @@ import NotFound from './NotFound';
 
 // Components
 import AlertBar from './AlertBar';
+import AdminBar from './AdminBar';
 import Logo from './Logo';
 import ProjectDiagonals from './ProjectDiagonals';
 import ProjectBar from './ProjectBar';
@@ -78,7 +79,7 @@ class App extends React.Component {
       },
       // Notification Bar
       notificationBar: {
-        isActive: false,
+        isActive: true,
         type: "alert"
       },
       // User
@@ -186,7 +187,7 @@ class App extends React.Component {
         this.setState({uid: authData.uid});
         var alertConfig = {
            active: true,
-           message: "Successfully signed in!",
+           message: "Hold onto your butts.. Logging in!",
            icon: "fa fa-check",
            type: "SUCCESS",
            timeout: 5000
@@ -384,7 +385,7 @@ class App extends React.Component {
 
   render() {
     var logoClasses = this.state.isProjectPage ? "light" : "dark",
-        logo = this.props.location.pathname !== "/" ? <Logo key="logo" projects={this.state.projects} currentProject={this.state.currentProject}/>: null;
+        logo = this.props.location.pathname !== "/" ? <Logo key="logo" projects={this.state.projects} currentProject={this.state.currentProject} uid={this.state.uid} authenticate={this.authenticate.bind(this)} unauthenticate={this.unauthenticate.bind(this)} />: null;
 
     let styles = {
       pageContainer: {
@@ -396,13 +397,17 @@ class App extends React.Component {
       }
     }
 
+    var adminBar = this.state.uid ? <AdminBar unauthenticate={this.unauthenticate.bind(this)}></AdminBar> : null;
+
     return (
     <div ref="appWindow">
+
+      {adminBar}
 
       <AlertBar config={this.state.alertConfig}
                 hideAlertBar={this.hideAlertBar.bind(this)}></AlertBar>
 
-      {this.renderLogoutButton()} 
+      {/* this.renderLogoutButton() */} 
 
       <CSSTransitionGroup 
                 id="main"
@@ -446,6 +451,7 @@ class App extends React.Component {
       <ProjectBar projects={this.state.projects}
                  currentProject={this.state.currentProject}
                  uid={this.state.uid}
+                 reOrderProjects={this.reOrderProjects.bind(this)}
                  location={this.props.location} />
 
     </div>       

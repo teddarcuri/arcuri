@@ -8,15 +8,14 @@ class AlertBar extends React.Component {
   }
 
   componentDidMount(){
-    this.hideAlertBar(); 
+    this.props.hideAlertBar(); 
   }
 
   componentDidUpdate(){
-    this.hideAlertBar();
   }
 
   hideAlertBar() {
-    var hide = setTimeout(function() {
+    hide = setTimeout(function() {
       this.props.hideAlertBar();
     }.bind(this), 5000);
   }
@@ -24,14 +23,21 @@ class AlertBar extends React.Component {
   render() {
     var bgColor = this.props.config.type === "SUCCESS" ? "#bada55" : "#ff4040";
     let styles = {
-      bar: {
+      container: {
+        position: "fixed",
+        top: 10,
+        right: 10,
         width: "100%",
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "flex-end",
+      },
+      bar: {
+        width: "auto",
         height: "25px",
         background: bgColor,
         color: "#fff",
-        position: "fixed",
-        top: 0,
-        left: 0,
+        padding: 20,
         zIndex: 9999,
         transition: "all ease 0.5s",
         display: "flex",
@@ -43,22 +49,24 @@ class AlertBar extends React.Component {
         margin: 0,
         fontSize: "13px",
         letterSpacing: "3px",
-        textShadow: "2px 2px 2px rgba(0,0,0,0.25)",
-        color: "#fff"
+        color: "white"
       }
     }
     return (
-    <CSSTransitionGroup style={styles.bar}
-              transitionAppear={true}
-              transitionAppearTimeout={2000}
-              transitionName="fadeIn"
-              transitionEnterTimeout={2000}
-              transitionLeaveTimeout={2000}>
-      <h1 style={styles.message}>
-        <i className={this.props.config.icon}></i>
-        {this.props.config.message}
-      </h1>
-    </CSSTransitionGroup>
+    <div style={styles.container}>
+      <CSSTransitionGroup 
+        style={styles.bar}
+        transitionAppear={true}
+        transitionAppearTimeout={2000}
+        transitionName="fadeIn"
+        transitionEnterTimeout={2000}
+        transitionLeaveTimeout={2000}>
+        <h1 style={styles.message}>
+          <i style={{marginRight: 10}}className={this.props.config.icon}></i>
+          {this.props.config.message}
+        </h1>
+      </CSSTransitionGroup>
+    </div>
     );
   }
 }
