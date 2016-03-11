@@ -171,8 +171,15 @@ class ProjectPage extends React.Component {
      <div className="project-page">
         {/*  Project Window */}
         <div className="project-overview" key={p.name}>
-          <header ref="header"
-                  data-section="header">
+          <CSSTransitionGroup 
+            component="header"
+            ref="header"
+            data-section="header"
+            transitionAppear={true}
+            transitionAppearTimeout={2000}
+            transitionName="menuFade"
+            transitionEnterTimeout={2000}
+            transitionLeaveTimeout={2000}>
             <h1 className="title">
               <span className="project-logo">
                 {logo}
@@ -180,7 +187,7 @@ class ProjectPage extends React.Component {
               {p.name}
               {this.renderEditTools()}
             </h1>
-          </header>
+          </CSSTransitionGroup>
           {this.renderProjectActionBar()}
           <main>
             <div className="project-infobar"
