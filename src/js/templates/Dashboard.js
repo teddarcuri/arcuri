@@ -55,7 +55,9 @@ class Dashboard extends React.Component {
         <hr />
         <h3>Edit Projects</h3>
         <ProjectIndex projects={this.props.projects}
-                      type="BALLS">
+                      type="BALLS"
+                      uid={this.props.uid}
+                      reOrderProjects={this.props.reOrderProjects}>
         </ProjectIndex>
       </div>
     )

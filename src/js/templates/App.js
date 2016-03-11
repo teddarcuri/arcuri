@@ -255,6 +255,16 @@ class App extends React.Component {
     }
   }
 
+  reOrderProjects(oldPosition, newPosition) {
+    var projects = this.state.projects;
+
+    // Reorder as array
+    projects.move(oldPosition, newPosition);
+
+    // Save state
+    this.setState({projects : projects});
+  }
+
   removeProject(project) {
     var key = this.state.currentProject.key;
     this.state.projects[key] = null
@@ -286,8 +296,17 @@ class App extends React.Component {
   }
 
   reOrderGallery(oldPosition, newPosition) {
-    var gallery = this.state.currentProject.gallery;
-    var arr = [];
+    var gallery,
+        project,
+        arr = [];
+
+    if (this.state.projectMode === "CREATE") {
+      gallery = this.state.newProject.gallery;
+      project = this.state.newProject;
+    } else {
+      gallery = this.state.currentProject.gallery;
+      project = this.state.currentProject;
+    }
 
     // Store object state as array
     Object.keys(gallery).map(function(i, key) {
@@ -298,9 +317,8 @@ class App extends React.Component {
     arr.move(oldPosition, newPosition);
 
     // Save state
-    var currentProject = this.state.currentProject;
-    currentProject.gallery = arr;
-    this.setState({currentProject : currentProject})
+    project.gallery = arr;
+    this.setState({currentProject : project})
   }
 
   addTag() {
@@ -417,6 +435,7 @@ class App extends React.Component {
             reOrderTags: this.reOrderTags.bind(this),
             projectMode: this.state.projectMode,
             setProjectMode: this.setProjectMode.bind(this),
+            reOrderProjects: this.reOrderProjects.bind(this),
             //Auth
             authenticate: this.authenticate.bind(this),
             unauthenticate: this.unauthenticate.bind(this),

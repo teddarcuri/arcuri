@@ -5,6 +5,8 @@ import BounceBall from './BounceBall';
 import ProjectDiagonal from './ProjectDiagonal';
 import AtvImg from 'react-atv-img';
 
+import Sortable from 'sortablejs';
+
 import _ from 'lodash';
 import h from '../utilities/helpers';
 import ReactFitText from 'react-fittext';
@@ -17,6 +19,28 @@ class ProjectIndex extends React.Component {
 		this.state = {
 			activeProject: null
 		}
+	}
+
+	componentDidUpdate() {
+	    var el = document.getElementById('balls'),
+	        that = this,
+	        sortable;
+
+	    if (el && this.props.uid && this.props.reOrderProjects) {
+	      sortable = Sortable.create(el, {
+	        ghostClass: "sortable-ghost",  // Class name for the drop placeholder
+	        chosenClass: "sortable-chosen",
+	        setData: function (dataTransfer, dragEl) {
+	          dataTransfer.setData('Text', dragEl.textContent);
+	        },
+	        onEnd: function(evt) {
+	        	var oldPosition = evt.oldIndex;  
+          		var newPosition = evt.newIndex; 
+         		that.props.reOrderProjects(oldPosition, newPosition);
+          		that.forceUpdate()
+	        }
+	      });
+	    } 
 	}
 
 	setActiveProject(id) {
@@ -145,6 +169,7 @@ class ProjectIndex extends React.Component {
 			<section>
 				{this.props.isIndexPage ? currentProject : null}
 		  		<CSSTransitionGroup 
+		  					id="balls"
 							component="div"
 							style={styles.container}
 							transitionAppear={true}

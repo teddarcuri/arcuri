@@ -188,7 +188,15 @@ class ProjectPage extends React.Component {
               {this.renderEditTools()}
             </h1>
           </CSSTransitionGroup>
-          {this.renderProjectActionBar()}
+          <CSSTransitionGroup 
+            transitionAppear={true}
+            transitionAppearTimeout={1000}
+            transitionName="menuFade"
+            style={{width: "100%"}}
+            transitionEnterTimeout={1000}
+            transitionLeaveTimeout={1000}>
+            {this.renderProjectActionBar()}
+          </CSSTransitionGroup>
           <main>
             <div className="project-infobar"
                   style={styles.infobar}>
