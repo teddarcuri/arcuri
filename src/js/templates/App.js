@@ -345,8 +345,17 @@ class App extends React.Component {
   }
 
   reOrderTags(oldPosition, newPosition) {
-    var tags = this.state.currentProject.tags;
-    var arr = [];
+    var tags,
+        project,
+        arr = [];
+
+    if (this.state.projectMode === "CREATE") {
+      tags = this.state.newProject.tags;
+      project = this.state.newProject;
+    } else {
+      tags = this.state.currentProject.tags;
+      project = this.state.currentProject;
+    }
 
     // Store object state as array
     Object.keys(tags).map(function(i, key) {
@@ -357,9 +366,8 @@ class App extends React.Component {
     arr.move(oldPosition, newPosition);
 
     // Save state
-    var currentProject = this.state.currentProject;
-    currentProject.tags = arr;
-    this.setState({currentProject : currentProject})
+    project.tags = arr;
+    this.setState({currentProject : project})
   }
 
   /*

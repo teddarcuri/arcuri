@@ -63,7 +63,11 @@ class AdminBar extends React.Component {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        position: "relative"
+        position: "relative", 
+        ":hover" : { 
+          background: "rgba(0,0,0,0.1)",
+          cursor: "pointer"
+        }
       },
       menuTitle: {
         margin: 0,
@@ -96,13 +100,13 @@ class AdminBar extends React.Component {
           </Link>
         </li>
         <li key="item4" style={styles.menuLi}>
-          <a href="https://console.aws.amazon.com/s3/home?region=us-west-2&bucket=teddarcuri&prefix=colorado.gov/gallery/">
+          <a target="_blank" href="https://console.aws.amazon.com/s3/home?region=us-west-2&bucket=teddarcuri&prefix=colorado.gov/gallery/">
             <i style={{marginRight: 10}} className="fa fa-file"></i>
             Amazon S3
           </a>          
         </li>
         <li key="item5" style={styles.menuLi}>
-          <a href="https://tedd-arcuri.firebaseio.com/">
+          <a target="_blank" href="https://tedd-arcuri.firebaseio.com/">
             <i style={{marginRight: 10}} className="fa fa-fire"></i>
             Firebase
           </a>          
@@ -124,7 +128,7 @@ class AdminBar extends React.Component {
     )
     var renderMenu = this.state.menuActive ? menu : null,
         menuText = this.state.menuActive ? "Close" : "Menu",
-        menuIcon = this.state.menuActive ? "fa fa-caret-up" : "fa fa-caret-down";
+        menuIcon = this.state.menuActive ? "fa fa-caret-up" : "fa fa-th";
     return (
     <CSSTransitionGroup
       style={styles.container}
@@ -143,7 +147,7 @@ class AdminBar extends React.Component {
 
         <div style={styles.menu} onClick={this.toggleMenu.bind(this)}>
           <p style={styles.menuTitle}>
-            <i style={{marginRight: 5}} className={menuIcon}></i>
+            <i style={{marginRight: 7, verticalAlign: "middle" }} className={menuIcon}></i>
             {menuText}
           </p>
           <CSSTransitionGroup

@@ -66,8 +66,15 @@ class ProjectBar extends React.Component {
           }
         }
     return (
-      <ul id="project-bar" className="project-bar"
-          style={styles.bar}>
+      <CSSTransitionGroup
+          id="project-bar" 
+          className="project-bar"
+          style={styles.bar}
+          transitionName="menuFade"
+          transitionAppear={true}
+          transitionAppearTimeout={1000}
+          transitionEnterTimeout={1000}
+          transitionLeaveTimeout={1000}>
         {
           projects.map(function(p, key) {
             let path = "/work/" + p.name,
@@ -86,7 +93,7 @@ class ProjectBar extends React.Component {
           })
         }
         {newProjectTab}
-      </ul>
+      </CSSTransitionGroup>
     );
   }
 }

@@ -87,7 +87,7 @@ class ProjectPage extends React.Component {
   }
 
   renderGallery() {
-    if (Object.keys(this.props.currentProject.gallery).length) {
+    if ( this.props.currentProject && Object.keys(this.props.currentProject.gallery).length) {
       return (<ProjectGallery ref="gallery" 
                               project={this.props.currentProject} 
                               data-section="gallery" />)
@@ -97,14 +97,21 @@ class ProjectPage extends React.Component {
   renderEditTools() {
     if (this.props.mode === "EDIT" && this.props.uid) {
       return (
-        <ul className="project-edit-tools">
-          <li onClick={this.props.edit}>
+        <CSSTransitionGroup
+          component="ul"
+          className="project-edit-tools"
+          transitionName="menuFade"
+          transitionAppear={true}
+          transitionAppearTimeout={1000}
+          transitionEnterTimeout={1000}
+          transitionLeaveTimeout={1000}>
+          <li key="edit" onClick={this.props.edit}>
             <img src="/src/img/icons/edit-icon.svg" />
           </li>
-          <li onClick={this.toggleConfirmBox.bind(this)}>
+          <li key="delete" onClick={this.toggleConfirmBox.bind(this)}>
             <img src="/src/img/icons/close.svg" />
           </li>
-        </ul>
+        </CSSTransitionGroup>
       )            
     }
   }
@@ -136,7 +143,7 @@ class ProjectPage extends React.Component {
   }
 
   renderOverview() {
-    if (this.props.currentProject.description) {
+    if (this.props.currentProject && this.props.currentProject.description) {
       return {__html: this.converter.makeHtml(this.props.currentProject.description) }
     }
   }
