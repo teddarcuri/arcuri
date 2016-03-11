@@ -56,6 +56,7 @@ class LoginForm extends React.Component {
         padding: 5,
         height: 30,
         margin: 5,
+        color: "#fff",
         flex: "1 1 50%",
         borderBottom: "solid 1px #fff"
       },

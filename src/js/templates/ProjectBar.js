@@ -3,6 +3,8 @@ import {Router, Route, IndexRoute, Link} from 'react-router';
 import Sortable from 'sortablejs';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
+import h from '../utilities/helpers';
+
 class ProjectBar extends React.Component {
 
   constructor(props) {
@@ -77,7 +79,7 @@ class ProjectBar extends React.Component {
           transitionLeaveTimeout={1000}>
         {
           projects.map(function(p, key) {
-            let path = "/work/" + p.name,
+            let path = "/work/" + h.prettyUrl(p.name),
                logoPath = p.logo,
                bgImgPath = p.background;
             return (

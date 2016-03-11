@@ -7,7 +7,6 @@ import AtvImg from 'react-atv-img';
 
 import _ from 'lodash';
 import h from '../utilities/helpers';
-import ReactFitText from 'react-fittext';
 import Sortable from 'sortablejs';
 
 class ProjectIndex extends React.Component {
@@ -178,7 +177,7 @@ class ProjectIndex extends React.Component {
 							transitionLeaveTimeout={2000}>
 					{
 			  			projects.map(function(p, key) {
-			  				let path = "/work/" + p.name;
+			  				let path = "/work/" + h.prettyUrl(p.name);
 			  				return (
 								<BounceBall 
 									 ref={p.key}
@@ -208,7 +207,7 @@ class ProjectIndex extends React.Component {
 				{related}
 				{
 		  			projects.map(function(p, key) {
-		  				let path = "/work/" + p.name,
+		  				let path = "/work/" + h.prettyUrl(p.name),
 		  					 logoPath = p.logo,
 		  					 bgImgPath = p.background,
 		  					 styles = {

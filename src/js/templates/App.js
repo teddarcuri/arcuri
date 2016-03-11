@@ -40,10 +40,8 @@ import reactMixin from 'react-mixin';
 import {Motion, spring, presets} from 'react-motion';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
-
 // Styles 
 import * as styles from "../../sass/app.scss";
-
 
 /*
   Application
@@ -62,7 +60,7 @@ class App extends React.Component {
       newProject: {
         name: "New Project",
         description: "Enter description",
-        background: "https://wallpaperscraft.com/image/squares_background_multi-colored_bright_diced_37687_2560x1600.jpg",
+        background: "https://source.unsplash.com/category/nature",
         logo: "https://s3.amazonaws.com/launchkey-resources/logo/logo/launchkey-logos_launchkey-icon-white.png",
         role: "uhh",
         gallery: {},
@@ -90,11 +88,6 @@ class App extends React.Component {
   /*
     Life Cycle 
   */
-
-  componentWillMount() {
-    // Check to see if user is authenticated
-    //this.checkIfAuthenticated();
-  }
 
   componentDidMount() {
     // Check to see if the loaded route will be a project component
@@ -136,7 +129,7 @@ class App extends React.Component {
       this.setState({isProjectPage: true});
 
       // Set Current Project
-      const id = props.params.name;
+      const id = h.decodePrettyUrl(props.params.name);
       this.setState({currentProject: this.findById(this.state.projects, id)});
     } else {
       this.setState({isProjectPage: false});
@@ -177,7 +170,7 @@ class App extends React.Component {
         console.log("failed", error);
         var alertConfig = {
            active: true,
-           message: "Hold onto your butts.",
+           message: "You don't appear to be me.",
            icon: "fa fa-exclamation-triangle",
            type: "ERROR",
            timeout: 5000
@@ -187,7 +180,7 @@ class App extends React.Component {
         this.setState({uid: authData.uid});
         var alertConfig = {
            active: true,
-           message: "Hold onto your butts.. Logging in!",
+           message: "Hold onto your butts! Logging in...",
            icon: "fa fa-check",
            type: "SUCCESS",
            timeout: 5000
@@ -410,7 +403,15 @@ class App extends React.Component {
     return (
     <div ref="appWindow">
 
-      {adminBar}
+      <CSSTransitionGroup
+      transitionName="slideDown"
+      transitionAppear={true}
+      transitionAppearTimeout={1000}
+      transitionEnterTimeout={1000}
+      transitionLeaveTimeout={1000} 
+      >
+        {adminBar}
+      </CSSTransitionGroup>
 
       <AlertBar config={this.state.alertConfig}
                 hideAlertBar={this.hideAlertBar.bind(this)}></AlertBar>

@@ -35,25 +35,9 @@ class Dashboard extends React.Component {
   renderAuth() {
     return (
       <div key="dashboard">
-        <h1>Dashboard</h1>
-        <Link to="work/new"
-              style={{
-                color: "#333",
-                textDecoration: "none",
-                textAlign: "center",
-                fontWeight: 700,
-                padding: 10,
-                lineHeight: "3em",
-                borderRadius: "5px",
-                border: "solid 2px #333"
-              }}>
-          <i className="fa fa-plus" style={{marginRight: 10}}></i>
-          Add a new Project
-        </Link>
-        <hr />
+        <h1>Manage Projects</h1>
+       
         <h3>{this.props.projects.length} Projects</h3>
-        <hr />
-        <h3>Edit Projects</h3>
         <ProjectIndex projects={this.props.projects}
                       type="BALLS"
                       uid={this.props.uid}

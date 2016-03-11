@@ -27,7 +27,7 @@ class AdminBar extends React.Component {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        zIndex: 99
+        zIndex: 9999
       },
       bar: {
         width: "auto",
@@ -130,16 +130,8 @@ class AdminBar extends React.Component {
         menuText = this.state.menuActive ? "Close" : "Menu",
         menuIcon = this.state.menuActive ? "fa fa-caret-up" : "fa fa-th";
     return (
-    <CSSTransitionGroup
-      style={styles.container}
-      transitionName="slideDown"
-      transitionAppear={true}
-      transitionAppearTimeout={1000}
-      transitionEnterTimeout={1000}
-      transitionLeaveTimeout={1000} 
-      >
+    <div style={styles.container} >
       <div id="admin-bar" style={styles.bar}>
-
         <span style={styles.greeting}>
           <img style={styles.avatar} src="https://lh4.googleusercontent.com/-2qeuQQr-24c/AAAAAAAAAAI/AAAAAAAAAAA/I3aLsM6bU2o/s456-p/photo.jpg" alt=""/>
           Welcome back, Tedd!
@@ -160,9 +152,8 @@ class AdminBar extends React.Component {
             {renderMenu}
           </CSSTransitionGroup>
         </div>
-        
       </div>
-    </CSSTransitionGroup>
+    </div>
     );
   }
 }

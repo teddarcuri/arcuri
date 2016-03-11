@@ -27,6 +27,7 @@ class AlertBar extends React.Component {
         position: "fixed",
         top: 10,
         right: 10,
+        zIndex: 999,
         width: "100%",
         display: "flex",
         alignItems: "flex-end",

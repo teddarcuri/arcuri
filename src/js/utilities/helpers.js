@@ -12,8 +12,19 @@ Array.prototype.move = function(from, to) {
 
 // Helper methods
 let helpers = {
-	saySup : function(message) {
-		alert(message);
+
+	capitalizeEachWord: function(str) {
+	    return str.replace(/\w\S*/g, function(txt) {
+	        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+	    });
+	},
+
+	prettyUrl : function(str) {
+		return str.replace(/\s+/g, '-').toLowerCase();
+	},
+
+	decodePrettyUrl : function(str) {
+		return this.capitalizeEachWord(str.replace(/-/g, ' '));
 	},
 
 	findByTag: function(projects, tag) {
