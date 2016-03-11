@@ -13,9 +13,12 @@ class Tabs extends React.Component {
   componentWillUpdate() {
     var el = document.getElementById('gallery-fields');
     var that = this;
+    var sortable;
 
     if (el) {
-      var sortable = Sortable.create(el, {
+      sortable = Sortable.create(el, {
+        ghostClass: "sortable-ghost",  // Class name for the drop placeholder
+        chosenClass: "sortable-chosen",
         setData: function (dataTransfer, dragEl) {
           dataTransfer.setData('Text', dragEl.textContent);
         },
@@ -23,6 +26,7 @@ class Tabs extends React.Component {
           var oldPosition = evt.oldIndex;  
           var newPosition = evt.newIndex; 
           that.props.reOrderGallery(oldPosition, newPosition);
+          that.forceUpdate()
         },
       });
     }
@@ -140,8 +144,6 @@ class Tabs extends React.Component {
   showGalleryTab(gallery) {
     var images = Object.keys(gallery),
         fields;
-
-    /* FIGURE OUT HOW TO LINK STATE TO IMAGES */
 
     if (images.length) {
       fields = images.map(function(g){

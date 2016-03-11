@@ -297,12 +297,9 @@ class App extends React.Component {
     // Reorder as array
     arr.move(oldPosition, newPosition);
 
+    // Save state
     var currentProject = this.state.currentProject;
     currentProject.gallery = arr;
-
-    console.log(gallery)
-
-    // Convert back to object and save state
     this.setState({currentProject : currentProject})
   }
 
