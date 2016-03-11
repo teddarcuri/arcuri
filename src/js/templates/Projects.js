@@ -28,6 +28,7 @@ class Projects extends React.Component {
                 reOrderGallery: this.props.reOrderGallery,
                 addTag: this.props.addTag,
                 removeTag: this.props.removeTag,
+                reOrderTags: this.props.reOrderTags,
                 projectMode: this.props.projectMode,
                 setProjectMode: this.props.setProjectMode,
                 uid: this.props.uid

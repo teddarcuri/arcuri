@@ -108,7 +108,9 @@ class Project extends React.Component {
             removeGalleryImage={this.props.removeGalleryImage}
             reOrderGallery={this.props.reOrderGallery}
             addTag={this.props.addTag}
-            removeTag={this.props.removeTag} /> 
+            removeTag={this.props.removeTag}
+            reOrderTags={this.props.reOrderTags}
+             /> 
       ) 
     } else if (this.props.projectMode === "CREATE" && this.props.uid) {
       return  (
@@ -125,6 +127,7 @@ class Project extends React.Component {
             reOrderGallery={this.props.reOrderGallery}
             addTag={this.props.addTag}
             removeTag={this.props.removeTag}
+            reOrderTags={this.props.reOrderTags}
             showActiveSection={this.state.showActiveSection} />  
       )
     } else {

@@ -325,6 +325,24 @@ class App extends React.Component {
     }
   }
 
+  reOrderTags(oldPosition, newPosition) {
+    var tags = this.state.currentProject.tags;
+    var arr = [];
+
+    // Store object state as array
+    Object.keys(tags).map(function(i, key) {
+      arr[key] = {value: tags[i].value};
+    });
+
+    // Reorder as array
+    arr.move(oldPosition, newPosition);
+
+    // Save state
+    var currentProject = this.state.currentProject;
+    currentProject.tags = arr;
+    this.setState({currentProject : currentProject})
+  }
+
   /*
     Render 
   */
@@ -396,6 +414,7 @@ class App extends React.Component {
             reOrderGallery: this.reOrderGallery.bind(this),
             addTag: this.addTag.bind(this),
             removeTag: this.removeTag.bind(this),
+            reOrderTags: this.reOrderTags.bind(this),
             projectMode: this.state.projectMode,
             setProjectMode: this.setProjectMode.bind(this),
             //Auth
