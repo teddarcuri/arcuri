@@ -179,6 +179,8 @@ class ProjectIndex extends React.Component {
 			  			projects.map(function(p, key) {
 			  				let path = "/work/" + h.prettyUrl(p.name);
 			  				return (
+			  					<div>
+
 								<BounceBall 
 									 ref={p.key}
 									 key={p.key}
@@ -191,6 +193,10 @@ class ProjectIndex extends React.Component {
 									 setActiveProject={setActiveProject}
 									 >
 								</BounceBall>
+								{h.prettyUrl(p.name)}
+								{h.decodePrettyUrl(p.name)}
+			  					</div>
+								
 			  				)
 			  			})
 			  		}

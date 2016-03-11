@@ -88,17 +88,21 @@ class App extends React.Component {
   /*
     Life Cycle 
   */
-
   componentDidMount() {
-    // Check to see if the loaded route will be a project component
-    this.checkIfProjectPage(this.props);
-
+  
     // Go get projects from Firebase
     base.syncState('projects', {
       context: this,
       state: 'projects',
-      asArray: true
+      asArray: true,
+      then: () => {
+        // Check to see if the loaded route will be a project component
+        this.checkIfProjectPage(this.props);
+      }
     });
+
+    // Check to see if the loaded route will be a project component
+    this.checkIfProjectPage(this.props);
 
     //this.setState({projects: projectList});
 

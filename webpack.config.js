@@ -8,6 +8,9 @@ module.exports = {
 		'webpack/hot/only-dev-server',
 		'./src/js/templates/App.js'
 	],
+	devServer: {
+  		historyApiFallback: true
+	},
 	output: {
 		path: path.join(__dirname, 'build'),
 		filename: "bundle.js",

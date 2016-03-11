@@ -20,11 +20,17 @@ let helpers = {
 	},
 
 	prettyUrl : function(str) {
-		return str.replace(/\s+/g, '-').toLowerCase();
+		str = str.replace(/\s+/g, '-');
+		str = str.replace(/\./g, '+');
+		str = str.toLowerCase();
+		return str
 	},
 
 	decodePrettyUrl : function(str) {
-		return this.capitalizeEachWord(str.replace(/-/g, ' '));
+		str = str.replace(/-/g, ' ');
+		str = str.replace(/\+/g, '.');
+		console.log(str);
+		return this.capitalizeEachWord(str);
 	},
 
 	findByTag: function(projects, tag) {
