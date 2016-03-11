@@ -150,10 +150,10 @@ class ProjectPage extends React.Component {
     if (p.url) {
       viewSite = (
          <span className="view-site-btn" style={{padding: "15px 0px"}}>
-            <Link to={p.url}>
+            <a href={p.url}>
               <i className="fa fa-eye"></i>
               View Site
-            </Link>
+            </a>
           </span>
       )
     }

@@ -3,9 +3,29 @@ import ReactDOM from 'react-dom';
 import ProjectPage from './ProjectPage';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
+import Sortable from 'sortablejs';
+
 class Tabs extends React.Component {
   constructor(props) {
   	super(props);
+  }
+
+  componentWillUpdate() {
+    var el = document.getElementById('gallery-fields');
+    var that = this;
+
+    if (el) {
+      var sortable = Sortable.create(el, {
+        setData: function (dataTransfer, dragEl) {
+          dataTransfer.setData('Text', dragEl.textContent);
+        },
+        onEnd: function (evt) {
+          var oldPosition = evt.oldIndex;  
+          var newPosition = evt.newIndex; 
+          that.props.reOrderGallery(oldPosition, newPosition);
+        },
+      });
+    }
   }
 
   handleSubmit(ev) {
@@ -148,7 +168,9 @@ class Tabs extends React.Component {
           </a>
           <br />
           <br />
-          {fields}
+          <div id="gallery-fields">
+            {fields}
+          </div>
 	  		</div>
   		</div>
   	) 

@@ -106,6 +106,7 @@ class Project extends React.Component {
             setActiveSection={this.setActiveSection.bind(this)}
             addGalleryImage={this.props.addGalleryImage}
             removeGalleryImage={this.props.removeGalleryImage}
+            reOrderGallery={this.props.reOrderGallery}
             addTag={this.props.addTag}
             removeTag={this.props.removeTag} /> 
       ) 
@@ -121,6 +122,7 @@ class Project extends React.Component {
             setActiveSection={this.setActiveSection.bind(this)} 
             addGalleryImage={this.props.addGalleryImage}
             removeGalleryImage={this.props.removeGalleryImage}
+            reOrderGallery={this.props.reOrderGallery}
             addTag={this.props.addTag}
             removeTag={this.props.removeTag}
             showActiveSection={this.state.showActiveSection} />  
@@ -136,7 +138,7 @@ class Project extends React.Component {
     return (
       <CSSTransitionGroup 
               className="sidebar"
-              transitionName="bubbleUp"
+              transitionName="menuFade"
               transitionAppear={true}
               transitionAppearTimeout={800}
               transitionEnterTimeout={800}

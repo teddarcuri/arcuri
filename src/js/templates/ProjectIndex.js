@@ -149,7 +149,7 @@ class ProjectIndex extends React.Component {
 							style={styles.container}
 							transitionAppear={true}
 							transitionAppearTimeout={2000}
-							transitionName="bubbleUp"
+							transitionName="menuFade"
 							transitionEnterTimeout={2000}
 							transitionLeaveTimeout={2000}>
 					{

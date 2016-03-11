@@ -285,6 +285,27 @@ class App extends React.Component {
     }
   }
 
+  reOrderGallery(oldPosition, newPosition) {
+    var gallery = this.state.currentProject.gallery;
+    var arr = [];
+
+    // Store object state as array
+    Object.keys(gallery).map(function(i, key) {
+      arr[key] = {key: i, path: gallery[i].path};
+    });
+
+    // Reorder as array
+    arr.move(oldPosition, newPosition);
+
+    var currentProject = this.state.currentProject;
+    currentProject.gallery = arr;
+
+    console.log(gallery)
+
+    // Convert back to object and save state
+    this.setState({currentProject : currentProject})
+  }
+
   addTag() {
     var timestamp = (new Date()).getTime();
 
@@ -375,6 +396,7 @@ class App extends React.Component {
             linkState: this.linkState.bind(this),
             addGalleryImage: this.addGalleryImage.bind(this),
             removeGalleryImage: this.removeGalleryImage.bind(this),
+            reOrderGallery: this.reOrderGallery.bind(this),
             addTag: this.addTag.bind(this),
             removeTag: this.removeTag.bind(this),
             projectMode: this.state.projectMode,

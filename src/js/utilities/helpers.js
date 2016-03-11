@@ -5,6 +5,11 @@ String.prototype.contains = function(s) {
   return this.indexOf(s) !== -1;
 }
 
+// Add method to move item position in array
+Array.prototype.move = function(from, to) {
+    this.splice(to, 0, this.splice(from, 1)[0]);
+};
+
 // Helper methods
 let helpers = {
 	saySup : function(message) {

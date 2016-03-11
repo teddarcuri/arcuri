@@ -129,6 +129,7 @@
         position: relative;
         background: rgba(#111, 1);
         padding: 66px;
+        font-size: 0.88em;
         @include bp(600px) {
           padding: 30px;
         }
