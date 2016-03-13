@@ -102,7 +102,8 @@ class ProjectIndex extends React.Component {
 	}
 
 	renderBalls(projects) {
-		var related = this.props.filter ? <h3>Other Web Projects</h3> : null;
+		var related = this.props.filter ? <h3>Other Web Projects</h3> : null,
+			small = this.props.windowW < 700 ? true : false;
 		let styles ={
 			page: {
 				position: this.props.isIndexPage ? "absolute" : "relative",
@@ -111,8 +112,9 @@ class ProjectIndex extends React.Component {
 				height: this.props.isIndexPage ? "100%" : "auto",
 				display: "flex",
 				flexFlow: "row wrap",
-				alignItems: "center",
+				alignItems: small ? "flex-start" : "center",
 				justifyContent: "center",
+				paddingTop: small ? 70 : null
 			},
 			container: {
 				display: "flex",

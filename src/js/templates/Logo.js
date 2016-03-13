@@ -15,6 +15,10 @@ class Logo extends React.Component {
 		}
 	}
 
+	componentWillReceiveProps(nextProps){
+		this.setState({menuActive: false})
+	}
+
 	toggleMenu() {
 		this.setState({menuActive: !this.state.menuActive});
 	}

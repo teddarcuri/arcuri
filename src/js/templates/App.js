@@ -403,7 +403,7 @@ class App extends React.Component {
 
   render() {
     var logoClasses = this.state.isProjectPage ? "light" : "dark",
-        logo = this.props.location.pathname !== "/" ? <Logo key="logo" projects={this.state.projects} currentProject={this.state.currentProject} uid={this.state.uid} authenticate={this.authenticate.bind(this)} unauthenticate={this.unauthenticate.bind(this)} />: null;
+        logo = this.props.location.pathname !== "/" ? <Logo key="logo" projects={this.state.projects} currentProject={this.state.currentProject} uid={this.state.uid} authenticate={this.authenticate.bind(this)} unauthenticate={this.unauthenticate.bind(this)} windowW={this.state.windowW}/>: null;
 
     let styles = {
       pageContainer: {

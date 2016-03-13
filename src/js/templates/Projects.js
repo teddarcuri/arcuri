@@ -31,7 +31,8 @@ class Projects extends React.Component {
                 reOrderTags: this.props.reOrderTags,
                 projectMode: this.props.projectMode,
                 setProjectMode: this.props.setProjectMode,
-                uid: this.props.uid
+                uid: this.props.uid,
+                windowW: this.props.windowW
               })}
 		</div>
 	   )
