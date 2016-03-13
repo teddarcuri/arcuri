@@ -11,9 +11,6 @@ class AlertBar extends React.Component {
     this.props.hideAlertBar(); 
   }
 
-  componentDidUpdate(){
-  }
-
   hideAlertBar() {
     hide = setTimeout(function() {
       this.props.hideAlertBar();
@@ -44,7 +41,7 @@ class AlertBar extends React.Component {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        transform: this.props.config.active ? "translateY(0)" : "translateY(-100%)"
+        transform: this.props.config.active ? "translateY(0)" : "translateY(-300%)"
       },
       message: {
         margin: 0,

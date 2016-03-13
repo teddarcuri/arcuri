@@ -81,7 +81,9 @@ class App extends React.Component {
         type: "alert"
       },
       // User
-      uid: ""
+      uid: "",
+      // Util
+      windowW: ""
     }
   }
 
@@ -108,6 +110,12 @@ class App extends React.Component {
 
     // Images Loaded
     this.imagesLoaded();
+
+    // Window Width
+    this.getWindowDimensions();
+    window.addEventListener('resize', ()=> {
+      this.getWindowDimensions();
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -160,6 +168,11 @@ class App extends React.Component {
 
     imgLoad.on( 'done', function( instance ) {
     });
+  }
+
+  getWindowDimensions() {
+    var width = window.innerWidth;
+    this.setState({windowW: width});
   }
 
   /* 
@@ -436,6 +449,7 @@ class App extends React.Component {
 
       <div style={styles.pageContainer}>
          {React.cloneElement(this.props.children, {
+            // Projects
             key: this.props.location.pathname,
             isProjectPage: this.state.isProjectPage,
             projects: this.state.projects,
@@ -457,7 +471,9 @@ class App extends React.Component {
             //Auth
             authenticate: this.authenticate.bind(this),
             unauthenticate: this.unauthenticate.bind(this),
-            uid: this.state.uid
+            uid: this.state.uid,
+            // Util
+            windowW: this.state.windowW
           })}
       </div>
 

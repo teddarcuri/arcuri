@@ -14,6 +14,9 @@ class Index extends React.Component {
 	}
 
 	render() {
+
+		var small = this.props.windowW < 700 ? true : false;
+
 		let styles= {
 	  		page: {
 	  			width: "100%",
@@ -27,8 +30,9 @@ class Index extends React.Component {
 	  			alignItems: "center"
 	  		},
 	  		scene: {
-	  			flex: "1 0 100%",
-	  			marginLeft: -200,
+	  			flex: small ? "2 0 100%" : "1 0 100%",
+	  			marginLeft: small ? 0 : -200,
+	  			zIndex: 999
 	  		},
 	  		h1: {
 	  			flex: "1 0 100%",
@@ -40,15 +44,15 @@ class Index extends React.Component {
 	  		content: {
 	  			textAlign: "center",
 	  			display: "flex",
-	  			//flexFlow: "row wrap",
+	  			flexFlow: small ? "row wrap" : null,
 	  			justifyContent: "center",
 	  			alignItems: "center"
 	  		},
 	  		ul: {
-	  			marginTop: 0,
-	  			marginLeft: -50,
-	  			zIndex: 1,
-	  			textAlign: "left"
+	  			marginTop: small ? -50 : 0,
+	  			marginLeft: small ? 0 : -50,
+	  			zIndex: 1000,
+	  			textAlign: small ? "center" : "left"
 	  		},
 	  		li: {
 				textTransform: "uppercase",
