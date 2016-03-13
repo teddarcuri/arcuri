@@ -90,6 +90,10 @@ class App extends React.Component {
   /*
     Life Cycle 
   */
+  componentWillMount() {
+    this.getWindowDimensions();
+  }
+
   componentDidMount() {
   
     // Go get projects from Firebase
@@ -112,7 +116,6 @@ class App extends React.Component {
     this.imagesLoaded();
 
     // Window Width
-    this.getWindowDimensions();
     window.addEventListener('resize', ()=> {
       this.getWindowDimensions();
     });
