@@ -29,7 +29,6 @@ let helpers = {
 	decodePrettyUrl : function(str) {
 		str = str.replace(/-/g, ' ');
 		str = str.replace(/\+/g, '.');
-		console.log(str);
 		return this.capitalizeEachWord(str);
 	},
 

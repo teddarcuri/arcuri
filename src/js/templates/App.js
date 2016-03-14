@@ -110,8 +110,6 @@ class App extends React.Component {
     // Check to see if the loaded route will be a project component
     this.checkIfProjectPage(this.props);
 
-    //this.setState({projects: projectList});
-
     // Images Loaded
     this.imagesLoaded();
 

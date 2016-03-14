@@ -7,22 +7,24 @@ var isDevelopment = (process.env.NODE_ENV !== 'production');
 var static_path = path.join(__dirname + '/build');
 
 app.use(express.static(static_path))
+
 app.get('*', function(req, res) {
 	res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
 })
+
 app.listen(process.env.PORT || 8080, function(err) {
 	if (err) { console.log(err) };
 	console.log('Listening at localhost:8080');
 });
 
 if (isDevelopment) {
-
 	var WebpackDevServer = require('webpack-dev-server');
 	var config = require('./webpack.config');
 
 	new WebpackDevServer(webpack(config), {
 	  publicPath: config.output.publicPath,
-	  hot: true
+	  hot: true,
+	  historyApiFallback: true
 	}).listen(3000, '0.0.0.0', function (err, result) {
 	  if (err) {
 	    console.log(err);
