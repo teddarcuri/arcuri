@@ -4,12 +4,12 @@ var webpack = require('webpack');
 var app = express();
 
 var isDevelopment = (process.env.NODE_ENV !== 'production');
-var static_path = path.join(__dirname + 'build');
+var static_path = path.join(__dirname + '/build');
 
 app.use(express.static(static_path))
 
 app.get('*', function(req, res) {
-	res.sendFile('./build/index.html')
+	res.sendFile('./build/index.html')	
 })
 
 app.listen(process.env.PORT || 8080, function(err) {
