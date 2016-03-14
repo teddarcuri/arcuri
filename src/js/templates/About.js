@@ -93,7 +93,7 @@ class About extends React.Component {
               </h3>
   
                <h4>
-                  View my <span className="highlight"><Link to="experience"> Experience + Knowledge</Link></span><br />
+                  View <span className="highlight"><Link to="experience"> My Experience</Link></span><br />
                   Checkout some of <span className="highlight"><Link to="work"> My Work</Link></span><br />
                 Like what you see? <span className="highlight"><Link to="contact"> Hire Me</Link></span>
                </h4>
