@@ -15,10 +15,6 @@
 @import "projects";
 @import "buttons";
 
-#app {
-   @include linear-gradient(top, #fff, #eee);
-}
-
 .sortable-chosen {
  background: rgba(#fff, 0.25);
 }

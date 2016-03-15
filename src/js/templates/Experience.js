@@ -110,6 +110,7 @@ class Experience extends React.Component {
             <li style={styles.pill}>Grunt</li>
             <li style={styles.pill}>Webpack</li>
             <li style={styles.pill}>Firebase</li>
+            <li style={styles.pill}>Git</li>
             <li style={styles.pill}>Heroku</li>
             <li style={styles.pill}>MySQL</li>
             <li style={styles.pill}>MongoDB</li>
