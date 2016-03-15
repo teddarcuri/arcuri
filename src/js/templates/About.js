@@ -6,6 +6,11 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 class About extends React.Component {
 
+  componentDidMount() {
+     // Set scroll position to top of page
+    window.scrollTo(0, 0);
+  }
+
   render() {
   	let styles= {
   		page: {
