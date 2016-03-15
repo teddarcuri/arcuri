@@ -1,4 +1,5 @@
 import THREE from 'three';
+//import Velocity from 'velocity';
 
 let IntroScene = {
 	init() {
@@ -47,10 +48,10 @@ let IntroScene = {
 
 	        var colors = [0x6ecbea/*, 0xf99d9d*/];
 	        var color = colors[Math.floor(Math.random() * colors.length)];
-	        var smokeTexture = THREE.ImageUtils.loadTexture('https://s3-us-west-2.amazonaws.com/s.cdpn.io/95637/Smoke-Element.png');
-	        	smokeTexture.needsUpdate= true;
+	        var smokeTexture = THREE.ImageUtils.loadTexture('https://s3-us-west-2.amazonaws.com/s.cdpn.io/95637/Smoke-Element.png', '', function() {
+	        	document.getElementById("scene-loading-progress").style.opacity = 0;
+	        });
 	        var smokeMaterial = new THREE.MeshLambertMaterial({color: color, opacity: 1, map: smokeTexture, transparent: true});
-	        	smokeMaterial.dynamic = true;
 	        var smokeGeo = new THREE.PlaneGeometry(300,300);
 	        smokeParticles = [];
 	     

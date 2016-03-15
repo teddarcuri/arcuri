@@ -32,7 +32,8 @@ class Index extends React.Component {
 	  		scene: {
 	  			flex: small ? "2 0 100%" : "1 0 100%",
 	  			marginLeft: small ? 0 : -200,
-	  			zIndex: 999
+	  			zIndex: 999,
+	  			position: "relative"
 	  		},
 	  		h1: {
 	  			flex: "1 0 100%",
@@ -89,6 +90,20 @@ class Index extends React.Component {
 							transitionEnterTimeout={1000}
 							transitionLeaveTimeout={1000}>
 				<div id="scene" style={styles.scene}>
+					<div id="scene-loading-progress"
+						 style={{
+						 	background: "#fff",
+						 	width: "100%",
+						 	height: "100%",
+						 	position: "absolute",
+						 	display: "flex",
+	  						justifyContent: "center",
+	  						alignItems: "center",
+	  						opacity: 1,
+	  						transition: "all ease 1s"
+						 }}>
+						<img src="./src/img/ring-loader.gif" alt=""/>
+					</div>
 				</div>
 				<CSSTransitionGroup component="ul"
 							transitionAppear={true}
