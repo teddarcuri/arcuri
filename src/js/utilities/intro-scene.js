@@ -49,7 +49,10 @@ let IntroScene = {
 	        var colors = [0x6ecbea/*, 0xf99d9d*/];
 	        var color = colors[Math.floor(Math.random() * colors.length)];
 	        var smokeTexture = THREE.ImageUtils.loadTexture('https://s3-us-west-2.amazonaws.com/s.cdpn.io/95637/Smoke-Element.png', '', function() {
-	        	document.getElementById("scene-loading-progress").style.opacity = 0;
+	        	setTimeout(function(){
+	        		document.getElementById("scene-loading-progress").style.opacity = 0;
+	        		document.getElementById("scene-loading-progress").style.transform = "translateY(10%)";
+	        	}, 1000);
 	        });
 	        var smokeMaterial = new THREE.MeshLambertMaterial({color: color, opacity: 1, map: smokeTexture, transparent: true});
 	        var smokeGeo = new THREE.PlaneGeometry(300,300);
