@@ -134,7 +134,7 @@ class ProjectIndex extends React.Component {
 			},
 		}
 
-		if (!medium) {
+		if (!medium && !small) {
 			var title = this.state.activeProject ? this.props.projects[this.state.activeProject].name : "My Work",
 				img = this.state.activeProject ? <img src={this.props.projects[this.state.activeProject].logo} style={{width: 45, verticalAlign: "middle", marginRight: 10}}/> : null;
 		} else {
