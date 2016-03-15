@@ -103,6 +103,7 @@ class ProjectIndex extends React.Component {
 
 	renderBalls(projects) {
 		var related = this.props.filter ? <h3>Other Web Projects</h3> : null,
+			medium = this.props.windowW > 700 && this.props.windowW < 1000 ? true : false,
 			small = this.props.windowW < 700 ? true : false;
 		let styles ={
 			page: {
@@ -116,16 +117,24 @@ class ProjectIndex extends React.Component {
 				justifyContent: "center",
 				paddingTop: small ? 70 : null
 			},
+			section: {
+				display: "flex",
+				flexFlow: "row wrap",
+				alignItems: "center",
+				justifyContent: "center",
+				textAlign: "center"
+			},
 			container: {
 				display: "flex",
 				flexFlow: "row wrap",
 				alignItems: "center",
 				justifyContent: "center",
-				height: "auto"
+				height: "auto",
+				width: 550
 			},
 		}
 
-		if (!small) {
+		if (!medium) {
 			var title = this.state.activeProject ? this.props.projects[this.state.activeProject].name : "My Work",
 				img = this.state.activeProject ? <img src={this.props.projects[this.state.activeProject].logo} style={{width: 45, verticalAlign: "middle", marginRight: 10}}/> : null;
 		} else {
@@ -140,7 +149,7 @@ class ProjectIndex extends React.Component {
 						width: "100%", 
 						height: "auto", 
 						margin: 10, 
-						fontSize: "1em", 
+						fontSize: "1.25em", 
 						position: "relative", 
 						whiteSpace: "nowrap"}}
 				transitionName="fadeIn"
@@ -156,9 +165,9 @@ class ProjectIndex extends React.Component {
 	  					width:"100%",
 	  					height: "100%",
 	  					position: "absolute",
-	  					top: 0,
+	  					bottom: 0,
 	  					left: 0,
-	  					background: "linear-gradient(transparent 0%, rgba(255,255,255, 0.6) 100%)"
+	  					//background: "linear-gradient(transparent 0%, rgba(255,255,255, 0.96) 100%)"
 	  		 		 }}>
 	  			</div>
 			</CSSTransitionGroup>
@@ -169,7 +178,7 @@ class ProjectIndex extends React.Component {
 
 		return (
 		<div style={styles.page}>
-			<section>
+			<section style={styles.section}>
 				{this.props.isIndexPage ? currentProject : null}
 		  		<CSSTransitionGroup 
 		  					id="balls"
