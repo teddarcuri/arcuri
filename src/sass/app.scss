@@ -16,7 +16,7 @@
 @import "buttons";
 
 .sortable-chosen {
- background: rgba(#fff, 0.25);
+  background: rgba(#fff, 0.25);
 }
 
 #admin-bar {
@@ -26,7 +26,6 @@
     display: block;
   } 
 }
-
 
 #about-image {
   position: fixed; bottom: 0; right: -100px;
@@ -45,12 +44,6 @@ img {
   border: none;
   background: none;
 }
-
-// .broken {
-//   padding: 10px;
-//   background: $red url("http://desandro.github.io/imagesloaded/assets/broken.png") no-repeat center center;
-//   background-size: 90%;
-// }
 
 // T Svg
 .svg-fill {
