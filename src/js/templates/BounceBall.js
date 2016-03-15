@@ -116,7 +116,7 @@ class BounceBall extends React.Component {
 			  		fontWeight: 300,
 			  		fontSize: "1em"
 			  		}}>
-			  		{name}
+			  		{/*name*/}
 			  	</h4>
 			</div>
 		</Link>
