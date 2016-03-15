@@ -130,7 +130,7 @@ class ProjectIndex extends React.Component {
 				alignItems: "center",
 				justifyContent: "center",
 				height: "auto",
-				width: 550
+				width: small ? 300 : 550
 			},
 		}
 

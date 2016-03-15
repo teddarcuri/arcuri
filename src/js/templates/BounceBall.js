@@ -89,14 +89,15 @@ class BounceBall extends React.Component {
 	}
 	var name = this.props.name && this.state.hover ? this.props.name : null,
 		background = this.props.background ? <img style={styles.img} src={this.props.background} alt=""/> : null,
-		logo = this.props.logo ? <img style={styles.logo} src={this.props.logo} alt=""/> : null;
-  
+		logo = this.props.logo ? <img style={styles.logo} src={this.props.logo} alt=""/> : null,
+		small = window.innerWidth < 700 ? true : false;
+  		
     return (
     	<Link to={this.props.path} 
     		  ref={this.props.ref} 
     		  style={{
-					width: this.props.size === "SMALL" ? "60px" : "140px",
-		  			height: this.props.size === "SMALL" ? "60px" : "140px",
+					width: small ? "120px" : "140px",
+		  			height: small ? "120px" : "140px",
 		  			padding: 10,
 		  			position: "relative"
 		  		}}>
