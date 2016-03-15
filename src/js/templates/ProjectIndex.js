@@ -148,7 +148,7 @@ class ProjectIndex extends React.Component {
 		        transitionAppearTimeout={1000}
 		        transitionEnterTimeout={1000}
 		        transitionLeaveTimeout={1000}>
-			    <h1 style={{margin: 0}}>
+			    <h1 style={{margin: 0, height: 50}}>
 			    	{img}
 			    	{title}
 			    </h1>

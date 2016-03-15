@@ -113,6 +113,18 @@
         width: 100%;
         text-shadow: 1px 2px 4px rgba(#111, 0.95);
       }
+
+      @include bp(666px) {
+        .title {
+          margin: 0px 0px 20px 0px;
+        }
+        .project-logo {
+          img {
+            height: 80px;
+            width: 80px;
+          }
+        }
+      }
     }
 
     main {
@@ -378,7 +390,7 @@
       height: 475px;
     }
     @include bp(666px) {
-      height: 300px;
+      height: 250px;
     }
     .gallery-image {
       width: 100%;
@@ -392,12 +404,15 @@
       @include flex-flow(row wrap);
       @include align-items(stretch);
       @include justify-content(center);
-          img {
-            margin: auto;
-            max-width: 100%;
-            max-height: 100%;
-            position: relative;
-          }
+      @include bp(666px) {
+        padding: 7px;
+      }
+      img {
+        margin: auto;
+        max-width: 100%;
+        max-height: 100%;
+        position: relative;
+      }
     }
   }
 

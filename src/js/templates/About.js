@@ -12,11 +12,12 @@ class About extends React.Component {
   }
 
   render() {
+    var small = this.props.windowW < 700 ? true : false;
   	let styles= {
   		page: {
   			width: "100%",
   			height: "100%",
-  			//position: "absolute",
+  			position: !small ? "absolute" : null,
   			top: "0px", 
   			left: "0px",
   			display: "flex",
@@ -92,9 +93,9 @@ class About extends React.Component {
                 transitionEnterTimeout={1000}
                 transitionLeaveTimeout={1000}>
               <h3>
-                Hello, My Name is <span className="highlight light">Tedd Arcuri</span><br />
+                Hello, My Name is <span className="highlight light">Tedd Arcuri.</span><br />
                 I am a software designer + developer<br />
-                Currently living in Denver, Colorado<br /><br />
+                <span style={{fontSize: "0.666em", color: "#aaa"}}>Denver, Colorado</span><br /><br />
               </h3>
   
                <h4>
