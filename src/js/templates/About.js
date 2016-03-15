@@ -6,18 +6,29 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 class About extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      elementHeight: 0
+    }
+  }
+
   componentDidMount() {
-     // Set scroll position to top of page
+    // Set scroll position to top of page
     window.scrollTo(0, 0);
+
+    this.setState({elementHeight: document.getElementById("page").clientHeight});
   }
 
   render() {
-    var small = this.props.windowW < 700 ? true : false;
+    var small = this.props.windowW < 700 ? true : false,
+        smallV = window.innerHeight < (this.state.elementHeight + 100) ? true : false;
   	let styles= {
   		page: {
   			width: "100%",
   			height: "100%",
-  			position: !small ? "absolute" : null,
+  			position: !small && !smallV ? "absolute" : null,
   			top: "0px", 
   			left: "0px",
   			display: "flex",
@@ -75,7 +86,9 @@ class About extends React.Component {
 							transitionName="menuFade"
 							transitionEnterTimeout={1000}
 							transitionLeaveTimeout={1000}
-							style={styles.page}>
+							style={styles.page}
+              id="page"
+              >
 		  	<div className="container mw" style={styles.container}>
           <div>
             <div style={{display: "flex", 
