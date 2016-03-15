@@ -114,6 +114,7 @@ class App extends React.Component {
     this.imagesLoaded();
 
     // Window Width
+    this.getWindowDimensions();
     window.addEventListener('resize', ()=> {
       this.getWindowDimensions();
     });
