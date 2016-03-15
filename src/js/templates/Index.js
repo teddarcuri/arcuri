@@ -102,7 +102,7 @@ class Index extends React.Component {
 	  						opacity: 1,
 	  						transition: "all ease 1s"
 						 }}>
-						<img src="./src/img/ring-loader.gif" alt=""/>
+						<img src="https://s3-us-west-2.amazonaws.com/teddarcuri/ring-loader.gif" alt=""/>
 					</div>
 				</div>
 				<CSSTransitionGroup component="ul"
