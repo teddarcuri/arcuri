@@ -66,7 +66,8 @@ class BounceBall extends React.Component {
 			transition: "all ease 0.25s",
 			width: this.state.hover ? "75px" : "0px",
 			height: this.state.hover ? "75px" : "0px",
-			zIndex: 1
+			zIndex: 1,
+			transform: "translateZ(0)"
 		},
 		shadow: {
 			width: this.state.hover ? "100px" : "30px",
@@ -74,11 +75,11 @@ class BounceBall extends React.Component {
 			background: "rgba(0,0,0,0.25)",
 			borderRadius: "50%",
 			WebkitFilter: this.state.hover ? "blur(20px)" : "blur(10px)",
-			WebkitTransform: "translateY(70%) rotateX(100deg) translateX(-50%)",
+			WebkitTransform: "translateY(70%) translateZ(0) rotateX(100deg) translateX(-50%)",
 			MozFilter: this.state.hover ? "blur(20px)" : "blur(10px)",
-			MozTransform: "translateY(70%) rotateX(100deg) translateX(-50%)",
+			MozTransform: "translateY(70%) translateZ(0) rotateX(100deg) translateX(-50%)",
 			filter: this.state.hover ? "blur(20px)" : "blur(10px)",
-			transform: "translateY(70%) rotateX(100deg) translateX(-50%)",
+			transform: "translateY(70%) translateZ(0) rotateX(100deg) translateX(-50%)",
 			position: "absolute",
 			top: 0,
 			left: "50%",
