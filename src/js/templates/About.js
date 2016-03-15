@@ -81,9 +81,10 @@ class About extends React.Component {
             <div style={{display: "flex", 
                           alignItems: "center",
                           justifyContent: "center",
-                          marginBottom: small ? 40 : 0}}>
+                          marginBottom: small ? 20 : 10}}>
                 <BounceBall background="https://lh4.googleusercontent.com/-2qeuQQr-24c/AAAAAAAAAAI/AAAAAAAAAAA/I3aLsM6bU2o/s456-p/photo.jpg"
-                            path="/contact">
+                            path="/contact"
+                            about={true}>
                 </BounceBall>
               </div>
               <CSSTransitionGroup 

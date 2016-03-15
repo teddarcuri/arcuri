@@ -70,15 +70,15 @@ class BounceBall extends React.Component {
 			transform: "translateZ(0)"
 		},
 		shadow: {
-			width: this.state.hover ? "100px" : "30px",
+			width: this.state.hover ? "100px" : "50px",
 			height: "100px",
 			background: "rgba(0,0,0,0.25)",
 			borderRadius: "50%",
 			WebkitFilter: this.state.hover ? "blur(20px)" : "blur(10px)",
 			WebkitTransform: "translateY(70%) translateZ(0) rotateX(100deg) translateX(-50%)",
-			MozFilter: this.state.hover ? "blur(20px)" : "blur(10px)",
+			MozFilter: this.state.hover ? "blur(20px)" : "blur(5px)",
 			MozTransform: "translateY(70%) translateZ(0) rotateX(100deg) translateX(-50%)",
-			filter: this.state.hover ? "blur(20px)" : "blur(10px)",
+			filter: this.state.hover ? "blur(20px)" : "blur(5px)",
 			transform: "translateY(70%) translateZ(0) rotateX(100deg) translateX(-50%)",
 			position: "absolute",
 			top: 0,
@@ -96,8 +96,8 @@ class BounceBall extends React.Component {
     	<Link to={this.props.path} 
     		  ref={this.props.ref} 
     		  style={{
-					width: small ? "120px" : "140px",
-		  			height: small ? "120px" : "140px",
+					width: small && !this.props.about ? "100px" : "140px",
+		  			height: small && !this.props.about ? "100px" : "140px",
 		  			padding: 10,
 		  			position: "relative"
 		  		}}>

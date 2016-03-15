@@ -11,10 +11,10 @@ header#main {
 
     @include bp(600px) {
       height: 70px;
-      background: rgba(#fff, 0.8);
+      background: rgba(#fff, 0.9);
       @include justify-content(center);
       &.light {
-        background: rgba(#111, 0.8);
+        background: rgba(#111, 0.9);
       }
     }
 

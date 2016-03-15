@@ -106,10 +106,10 @@ class ProjectPage extends React.Component {
           transitionEnterTimeout={1000}
           transitionLeaveTimeout={1000}>
           <li key="edit" onClick={this.props.edit}>
-            <img src="/src/img/icons/edit-icon.svg" />
+            <img src="https://s3-us-west-2.amazonaws.com/teddarcuri/icons/edit.svg" />
           </li>
           <li key="delete" onClick={this.toggleConfirmBox.bind(this)}>
-            <img src="/src/img/icons/close.svg" />
+            <img src="https://s3-us-west-2.amazonaws.com/teddarcuri/icons/close.svg" />
           </li>
         </CSSTransitionGroup>
       )            
