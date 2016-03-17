@@ -77,6 +77,7 @@ class ProjectBelt extends React.Component {
 	  				}
 
 	  				if (isActive && transitioning) {
+	  					// Loading screen
 	  					renderProjectInfo = (
 	  						<h3 style={{
 								color: "#fff",
@@ -89,22 +90,28 @@ class ProjectBelt extends React.Component {
 							</h3>
 	  					)
 	  				} else if (isActive && !transitioning && !small) {
+	  					// Hover for Information screen
 	  					renderProjectInfo = (
 	  						<div style={{
 	  								zIndex: 1, 
-	  								background: "rgba(0,0,0,0.5)", 
+	  								background: "rgba(0,0,0,0.7)", 
 	  								padding: 10, 
 	  								width: "100%", 
 	  								position: "absolute", 
-	  								bottom: 0
+	  								bottom: 0,
+	  								textAlign: "center"
 	  							}}>
 		  						<h3 style={{
 									color: "#fff",
 									zIndex: 1,
 									fontSize: "1.2em",
 									padding: "20px 10px 20px 10px",
-									width: "100%",
-									margin: 0
+									width: "auto",
+									whiteSpace: "nowrap",
+									overflow: "hidden",
+									textOverflow: "ellipsis",
+									margin: 0,
+									textAlign: "center"
 								}}>
 		  							{p.name}
 		  						</h3>
@@ -144,26 +151,26 @@ class ProjectBelt extends React.Component {
 								background: "url(" + p.background + ") center no-repeat",
 								backgroundSize: "cover",
 								transform: "translateZ(0)",
-								opacity: fadeOut ? 0 : 1
+								opacity: fadeOut ? 0 : 1,
+								zIndex: isActive ? 9 : 1
 							 }}>
 							<div style={{zIndex: 1, textAlign: "center", width: "100%"}}>
 								<CSSTransitionGroup 
 								transitionAppear={true}
 								transitionAppearTimeout={1000}
-								transitionName="bubbleUp"
+								transitionName="menuFade"
 								transitionEnterTimeout={1000}
 								transitionLeaveTimeout={1000}>
 							 		<img src={p.logo} style={{width: 55, }}/>
 							    	{renderProjectInfo}
 							 	</CSSTransitionGroup>
-
 							</div>
 							<div style={{
 								 	zIndex: 0,
 								 	position: "absolute",
 								 	left: 0, top: 0,
 								 	width: "100%", height: "100%",
-								 	background: isActive || small ? "rgba(17,17,17,0.8)" : "rgba(17,17,17,1)"
+								 	background: isActive || small ? "rgba(17,17,17,0.7)" : "rgba(17,17,17,1)"
 								 }}>
 							</div>
 						</div>
