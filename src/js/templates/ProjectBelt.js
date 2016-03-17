@@ -131,7 +131,7 @@ class ProjectBelt extends React.Component {
 								flex: small ? "2 1 100%" : "1 1 auto", 
 								width: fadeOut ? "0px" : "100%",
 								height: isActive ? activeHeight : "100px",
-								order: isActive && transitioning ? 0 : 1,
+								order: isActive && transitioning && small ? 0 : 1,
 								background: "#222",
 								cursor: "pointer",
 								overflow: "hidden",
