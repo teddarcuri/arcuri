@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link, Navigation} from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
+import h from '../utilities/helpers';
 
 class ProjectBelt extends React.Component {
 
@@ -14,7 +15,7 @@ class ProjectBelt extends React.Component {
 	}
 
 	handleClick(project) {
-		let path = "/work/" + project.name;
+		let path = "/work/" + h.prettyUrl(project.name);
 		// Set Active project and transitioning State
 		this.setState({activeProject: project.key})
 		this.setState({transitioningToProject: true})
@@ -23,11 +24,10 @@ class ProjectBelt extends React.Component {
 		// Transition to project page
 		setTimeout(() =>{
 			this.props.history.pushState(null, path);
-		}, 2200)
+		}, 2500)
 	}
 
 	handleHover(project) {
-		console.log(project);
 		this.setState({activeProject: project.key})
 	}
 
@@ -46,7 +46,7 @@ class ProjectBelt extends React.Component {
 				justifyContent: "center",
 				flexFlow: small ? "row wrap" : "row no-wrap",
 				transition: "all ease 1s",
-				background: this.state.transitioningToProject ? "#222" : null
+				background: this.state.transitioningToProject ? "#111" : null
 			}
 		}
 		return (
@@ -54,46 +54,97 @@ class ProjectBelt extends React.Component {
 			style={styles.page}
 			transitionAppear={true}
 			transitionAppearTimeout={1000}
-			transitionName="menuFade"
+			transitionName="fadeIn"
 			transitionEnterTimeout={1000}
 			transitionLeaveTimeout={1000}>
 			{
 	  			projects.map( (p, key)=> {
-	  				var path = "/work/" + p.name,
-	  					isActive = this.state.activeProject == p.key,
+	  				var isActive = this.state.activeProject == p.key,
 	  					transitioning = this.state.transitioningToProject,
-	  					fadeOut = !isActive &&  transitioning;
+	  					fadeOut = !isActive &&  transitioning,
+	  					renderProjectInfo;
+
+	  				function tags(p) {
+	  					if (p.tags) {
+							return (
+							<ul>
+								{Object.keys(p.tags).map((tag)=>{
+									return <li style={{color: "#fff", fontSize: "0.7em", textTransform: "uppercase", margin: "10px 0px"}}>{p.tags[tag].value}</li>
+								})}
+	  						</ul>
+							)
+						}
+	  				}
+
+	  				if (isActive && transitioning) {
+	  					renderProjectInfo = (
+	  						<h3 style={{
+								color: "#fff",
+								zIndex: 1,
+								fontSize: "1.2em",
+								margin: "10px 0px"
+							}}>
+								<img src="http://jxnblk.com/loading/loading-spin.svg" style={{marginRight: 10, verticalAlign: "middle"}} alt=""/>
+								Loading {p.name}
+							</h3>
+	  					)
+	  				} else if (isActive && !transitioning && !small) {
+	  					renderProjectInfo = (
+	  						<div style={{zIndex: 1, background: "rgba(0,0,0,0.5)", margin: "10px 0px", padding: 10, width: "100%", position: "absolute", bottom:  0}}>
+		  						<h3 style={{
+									color: "#fff",
+									zIndex: 1,
+									fontSize: "1.2em",
+									padding: "20px 10px 20px 10px",
+									width: "100%"
+								}}>
+		  							{p.name}
+		  						</h3>
+		  						{tags(p)}
+	  						</div>
+	  					)
+					}
 
 	  				return (
-						<div onClick={this.handleClick.bind(this, p)} 
-							 onMouseOver={this.handleHover.bind(this, p)}
+						<div key={p.name} 
+						    onClick={this.handleClick.bind(this, p)} 
+							onMouseOver={this.handleHover.bind(this, p)}
 							style={{
 								flex: small ? "2 1 100%" : "1 1 auto", 
 								width: fadeOut ? "0px" : "100%",
-								height: "100px",
+								height: isActive ? "50%" : "100px",
 								background: "#222",
 								cursor: "pointer",
 								overflow: "hidden",
 								display: "flex",
 								alignItems: "center",
 								justifyContent: "center",
+								flexFlow: "row wrap",
 								position: "relative",
 								transition: "all ease 1s",
 								background: "url(" + p.background + ") center no-repeat",
 								backgroundSize: "cover",
+								transform: "translateZ(0)",
 								opacity: fadeOut ? 0 : 1
 							 }}>
-							<img src={p.logo} 
-							     style={{
-							     	zIndex: 1,
-							     	width: 50
-							     }}/>
-							<div key={path} style={{
+							<div style={{zIndex: 1, textAlign: "center", width: "100%"}}>
+								<CSSTransitionGroup 
+								transitionAppear={true}
+								transitionAppearTimeout={1000}
+								transitionName="bubbleUp"
+								transitionEnterTimeout={1000}
+								transitionLeaveTimeout={1000}>
+							 		<img src={p.logo} style={{width: 55, }}/>
+							    	{renderProjectInfo}
+							 	</CSSTransitionGroup>
+
+							</div>
+							<div style={{
 								 	zIndex: 0,
 								 	position: "absolute",
 								 	left: 0, top: 0,
 								 	width: "100%", height: "100%",
-								 	background: isActive || small ? "rgba(34,34,34,0.8)" : "rgba(34,34,34,1)"
+								 	background: isActive || small ? "rgba(17,17,17,0.8)" : "rgba(17,17,17,1)"
 								 }}>
 							</div>
 						</div>
