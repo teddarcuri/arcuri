@@ -33,14 +33,14 @@ class AdminBar extends React.Component {
         width: "auto",
         maxWidth: 500,
         height: 40,
-        background: "#eee",
+        background: "#222",
         display: "flex",
         justifyContent: "center",
         alignItems: "stretch",
-        boxShadow: "0px 1px 6px 2px rgba(0,0,0,0.2)"
+       // boxShadow: "0px 1px 6px 2px rgba(0,0,0,0.2)"
       },
       greeting: {
-        color: "#666",
+        color: "#fff",
         textTransform: "uppercase",
         textAlign: "center",
         letterSpacing: 1,
@@ -71,10 +71,13 @@ class AdminBar extends React.Component {
       },
       menuTitle: {
         margin: 0,
-        lineHeight: "2em"
+        lineHeight: "2em",
+        fontSize: "0.8em",
+        letterSpacing: 1,
+        color: "whitesmoke"
       },
       menuUl: {
-        background: "rgba(55,55,55,0.9)",
+        background: "rgba(0,0,0,0.8)",
         position: "absolute",
         top: 40,
         left: 0,
@@ -127,7 +130,7 @@ class AdminBar extends React.Component {
       </ul>
     )
     var renderMenu = this.state.menuActive ? menu : null,
-        menuText = this.state.menuActive ? "Close" : "Menu",
+        menuText = this.state.menuActive ? "CLOSE" : "MENU",
         menuIcon = this.state.menuActive ? "fa fa-caret-up" : "fa fa-th";
     return (
     <div style={styles.container} >

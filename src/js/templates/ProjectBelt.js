@@ -133,7 +133,7 @@ class ProjectBelt extends React.Component {
 	  				return (
 						<div key={p.name} 
 						    onClick={this.handleClick.bind(this, p)} 
-							onMouseOver={this.handleHover.bind(this, p)}
+							onMouseEnter={this.handleHover.bind(this, p)}
 							style={{
 								flex: small ? "2 1 100%" : "1 1 auto", 
 								width: fadeOut ? "0px" : "100%",
@@ -159,10 +159,10 @@ class ProjectBelt extends React.Component {
 								<CSSTransitionGroup 
 								transitionAppear={true}
 								transitionAppearTimeout={1000}
-								transitionName="menuFade"
+								transitionName="bubbleUp"
 								transitionEnterTimeout={1000}
-								transitionLeaveTimeout={1000}>
-							 		<img src={p.logo} style={{width: 55, }}/>
+								transitionLeave={false}>
+							 		<img src={p.logo} style={{width: 55}}/>
 							    	{renderProjectInfo}
 							 	</CSSTransitionGroup>
 							</div>

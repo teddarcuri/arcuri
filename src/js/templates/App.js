@@ -144,7 +144,12 @@ class App extends React.Component {
       this.setState({isProjectPage: true});
 
       // Set Current Project
-      const id = h.decodePrettyUrl(props.params.name);
+      if (props.location.pathname == "/work/new") {
+        var id = props.params.name;
+      } else {
+        var id = h.decodePrettyUrl(props.params.name);
+      }
+      
       this.setState({currentProject: this.findById(this.state.projects, id)});
     } else {
       this.setState({isProjectPage: false});
