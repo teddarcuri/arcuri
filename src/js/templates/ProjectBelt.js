@@ -54,7 +54,7 @@ class ProjectBelt extends React.Component {
 			style={styles.page}
 			transitionAppear={true}
 			transitionAppearTimeout={1000}
-			transitionName="fadeIn"
+			transitionName="bubbleUp"
 			transitionEnterTimeout={1000}
 			transitionLeaveTimeout={1000}>
 			{
@@ -90,19 +90,37 @@ class ProjectBelt extends React.Component {
 	  					)
 	  				} else if (isActive && !transitioning && !small) {
 	  					renderProjectInfo = (
-	  						<div style={{zIndex: 1, background: "rgba(0,0,0,0.5)", margin: "10px 0px", padding: 10, width: "100%", position: "absolute", bottom:  0}}>
+	  						<div style={{
+	  								zIndex: 1, 
+	  								background: "rgba(0,0,0,0.5)", 
+	  								padding: 10, 
+	  								width: "100%", 
+	  								position: "absolute", 
+	  								bottom: 0
+	  							}}>
 		  						<h3 style={{
 									color: "#fff",
 									zIndex: 1,
 									fontSize: "1.2em",
 									padding: "20px 10px 20px 10px",
-									width: "100%"
+									width: "100%",
+									margin: 0
 								}}>
 		  							{p.name}
 		  						</h3>
 		  						{tags(p)}
 	  						</div>
 	  					)
+					}
+
+					var activeHeight;
+
+					if (isActive && transitioning && small) {
+						activeHeight = "500px"
+					} else if (isActive && !transitioning && small) {
+						activeHeight = "100px"
+					} else if(isActive && !small) {
+						activeHeight = "50%"
 					}
 
 	  				return (
@@ -112,7 +130,8 @@ class ProjectBelt extends React.Component {
 							style={{
 								flex: small ? "2 1 100%" : "1 1 auto", 
 								width: fadeOut ? "0px" : "100%",
-								height: isActive ? "50%" : "100px",
+								height: isActive ? activeHeight : "100px",
+								order: isActive && transitioning ? 0 : 1,
 								background: "#222",
 								cursor: "pointer",
 								overflow: "hidden",
