@@ -152,7 +152,8 @@ class ProjectBelt extends React.Component {
 								backgroundSize: "cover",
 								transform: "translateZ(0)",
 								opacity: fadeOut ? 0 : 1,
-								zIndex: isActive ? 9 : 1
+								zIndex: isActive ? 9 : 1,
+								boxShadow: isActive && transitioning && !small ? "inset 0px 0px 100px 50px #111" : null
 							 }}>
 							<div style={{zIndex: 1, textAlign: "center", width: "100%"}}>
 								<CSSTransitionGroup 
