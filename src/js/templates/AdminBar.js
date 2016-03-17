@@ -37,7 +37,6 @@ class AdminBar extends React.Component {
         display: "flex",
         justifyContent: "center",
         alignItems: "stretch",
-       // boxShadow: "0px 1px 6px 2px rgba(0,0,0,0.2)"
       },
       greeting: {
         color: "#fff",

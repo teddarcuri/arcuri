@@ -60,7 +60,7 @@ class NotFound extends React.Component {
 							<Link style={styles.a} to="contact">Contact Me</Link>
 						</li>
 					</ul>
-				<img src="https://media.giphy.com/media/RjoLWhQBFEcHS/giphy.gif" alt=""/>
+				<img src="https://s3-us-west-2.amazonaws.com/teddarcuri/travolta.png" alt=""/>
 				</div>
 			</CSSTransitionGroup>		
 		);
