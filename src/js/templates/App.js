@@ -19,7 +19,8 @@ import NotFound from './NotFound';
 import AlertBar from './AlertBar';
 import AdminBar from './AdminBar';
 import Logo from './Logo';
-import ProjectDiagonals from './ProjectDiagonals';
+import ProjectBelt from './ProjectBelt';
+import ProjectsDiagonalCanvas from './ProjectsDiagonalCanvas';
 import ProjectBar from './ProjectBar';
 import ProjectIndex from './ProjectIndex';
 import NewProjectForm from './NewProjectForm';
@@ -506,7 +507,7 @@ ReactDOM.render((
       <Route path="dashboard" component={Dashboard}></Route>
       <Route path="experience" component={Experience}/>
       <Route path="work" component={Projects} >
-        <IndexRoute component={ProjectIndex} />
+        <IndexRoute component={ProjectBelt} />
         <Route path="new" component={Project} />
         <Route path=":name" component={Project} />
       </Route>

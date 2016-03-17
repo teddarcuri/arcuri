@@ -35,6 +35,7 @@
 // Main Menu 
 .menuFade-appear {
   opacity: 0.001;
+  transition-delay: 2s;
   @include transform(translateY(5%));
 }
 
@@ -51,6 +52,7 @@
 
 .menuFade-enter.menuFade-enter-active {
   opacity: 1;
+  transition-delay: 2s;
   @include transform(translateY(0%));
   transition: all ease 1s;
 }
@@ -194,6 +196,36 @@
 }
 
 .fadeIn-leave.fadeIn-leave-active {
+  opacity: 0;
+}
+
+// Background Fade In
+.fadeInBackground-appear {
+  opacity: 0.01;
+  transition: opacity 4s ease;
+}
+
+.fadeInBackground-appear.fadeInBackground-appear-active {
+  opacity: 1;
+  transition: opacity 4s ease;
+}
+
+.fadeInBackground-enter {
+  opacity: 0.01;
+  transition: opacity 4s ease;
+}
+
+.fadeInBackground-enter.fadeInBackground-enter-active {
+  opacity: 1;
+  transition: opacity 4s ease;
+}
+
+.fadeInBackground-leave {
+  opacity: 1;
+  transition: opacity 4s ease;
+}
+
+.fadeInBackground-leave.fadeInBackground-leave-active {
   opacity: 0;
 }
 

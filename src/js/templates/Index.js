@@ -100,7 +100,7 @@ class Index extends React.Component {
 	  						justifyContent: "center",
 	  						alignItems: "center",
 	  						opacity: 1,
-	  						transition: "all ease 1s"
+	  						transition: "all ease 3s"
 						 }}>
 						<img src="https://s3-us-west-2.amazonaws.com/teddarcuri/ring-loader.svg" alt=""/>
 					</div>

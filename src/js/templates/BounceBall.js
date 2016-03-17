@@ -64,8 +64,8 @@ class BounceBall extends React.Component {
 		},
 		logo: {
 			transition: "all ease 0.25s",
-			width: this.state.hover ? "75px" : "0px",
-			height: this.state.hover ? "75px" : "0px",
+			width: this.state.hover ? "90px" : "50px",
+			height: this.state.hover ? "90px" : "50px",
 			zIndex: 1,
 			transform: "translateZ(0)"
 		},
@@ -107,7 +107,7 @@ class BounceBall extends React.Component {
 	  				{logo}
 	  			</div>
 			  	<div style={styles.shadow}></div>	
-			  	<h4 style={{
+			  	{/*<h4 style={{
 			  		position: "absolute",
 			  		bottom: -70,
 			  		left: 0,
@@ -118,8 +118,8 @@ class BounceBall extends React.Component {
 			  		fontWeight: 300,
 			  		fontSize: "1em"
 			  		}}>
-			  		{/*name*/}
-			  	</h4>
+			  		name
+			  	</h4>*/}
 			</div>
 		</Link>
     )
