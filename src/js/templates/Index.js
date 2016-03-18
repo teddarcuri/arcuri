@@ -33,7 +33,9 @@ class Index extends React.Component {
 	  			flex: small ? "2 0 100%" : "1 0 100%",
 	  			marginLeft: small ? 0 : -200,
 	  			zIndex: 999,
-	  			position: "relative"
+	  			position: "relative",
+	  			opacity: 0,
+	  			transition: "all ease 4s"
 	  		},
 	  		h1: {
 	  			flex: "1 0 100%",

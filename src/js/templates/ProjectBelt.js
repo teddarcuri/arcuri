@@ -40,7 +40,7 @@ class ProjectBelt extends React.Component {
 				top: 0, left: 0,
 				width:  window.innerWidth,
 				height: small ? "auto" : window.innerHeight,
-				paddingTop: small ? 100 : 0,
+				paddingTop: small ? 70 : 0,
 				display: "flex",
 				alignItems: "center",
 				justifyContent: "center",
@@ -118,6 +118,38 @@ class ProjectBelt extends React.Component {
 		  						{tags(p)}
 	  						</div>
 	  					)
+					} else if (small) {
+						// Small viewports
+						renderProjectInfo = (
+							<div style={{
+	  								zIndex: -1, 
+	  								background: "rgba(0,0,0,0.6)", 
+	  								padding: 20, 
+	  								width: "70%",
+	  								height: "100%", 
+	  								position: "absolute", 
+	  								bottom: 0,
+	  								right: 0,
+	  								textAlign: "center",
+	  								display: "flex",
+									alignItems: "center",
+									justifyContent: "center",
+	  							}}>
+		  						<h3 style={{
+									color: "#fff",
+									zIndex: 1,
+									fontSize: "1em",
+									width: "auto",
+									whiteSpace: "nowrap",
+									overflow: "hidden",
+									textOverflow: "ellipsis",
+									margin: 0,
+									textAlign: "center"
+								}}>
+		  							{p.name}
+		  						</h3>
+	  						</div>
+						)
 					}
 
 					var activeHeight;
@@ -154,14 +186,14 @@ class ProjectBelt extends React.Component {
 								opacity: fadeOut ? 0 : 1,
 								zIndex: isActive ? 9 : 1,
 							 }}>
-							<div style={{zIndex: 1, textAlign: "center", width: "100%"}}>
+							<div style={{zIndex: 1, textAlign: small && !transitioning ? "left" : "center", width: "100%"}}>
 								<CSSTransitionGroup 
 								transitionAppear={true}
 								transitionAppearTimeout={1000}
 								transitionName="bubbleUp"
 								transitionEnterTimeout={1000}
 								transitionLeave={false}>
-							 		<img src={p.logo} style={{width: 55}}/>
+							 		<img src={p.logo} style={{width: isActive && transitioning ? 150 : 55, margin: small ? 30 : 0, zIndex: 1, transition: "all ease 1s"}}/>
 							    	{renderProjectInfo}
 							 	</CSSTransitionGroup>
 							</div>
