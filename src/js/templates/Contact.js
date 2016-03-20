@@ -1,6 +1,7 @@
 import React from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Radium from 'radium';
+import SocialIcons from './SocialIcons';
 
 class Contact extends React.Component {
 
@@ -33,16 +34,6 @@ class Contact extends React.Component {
 	  			justifyContent: "center",
 	  			alignItems: "center",
 	  			flexFlow: small ? "row wrap" : null
-	  		},
-	  		icon: {
-	  			textAlign: "center",
-	  			margin: "0px 20px",
-	  			fontSize: "1.5em",
-	  			lineHeight: "1.5em",
-	  			color: "#aaa",
-	  			":hover" : {
-	  				color: "#111"
-	  			}
 	  		}
   		}
 		return (
@@ -54,17 +45,9 @@ class Contact extends React.Component {
 						transitionLeaveTimeout={2000}>
 			<div>
 				<h1 style={styles.h1}>Contact</h1>
+				<SocialIcons></SocialIcons>			
 				<b style={styles.b} >tedd.arcuri@gmail.com</b><br />
 				<b style={styles.b} >719-440-4732</b><br />
-				<a ref="codepen" style={styles.icon} href="http://codepen.io/teddarcuri/">
-					<i className="fa fa-codepen"></i>
-				</a>
-				<a ref="github" style={styles.icon} href="https://github.com/teddarcuri">
-					<i className="fa fa-github"></i>
-				</a>
-				<a ref="linkedin" style={styles.icon} href="https://www.linkedin.com/in/teddarcuri">
-					<i className="fa fa-linkedin"></i>
-				</a>	
 			</div>
 		</CSSTransitionGroup>
 		)

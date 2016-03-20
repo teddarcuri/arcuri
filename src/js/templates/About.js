@@ -2,6 +2,7 @@ import React from 'react';
 import {Motion, spring, presets} from 'react-motion';
 import {Router, Link} from 'react-router';
 import BounceBall from "./BounceBall";
+import SocialIcons from './SocialIcons';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 class About extends React.Component {
@@ -127,6 +128,7 @@ class About extends React.Component {
                 You might call me a web developer, front end developer, web designer, UX/UI engineer, etc... 
                 Whatever the label, my focus remains the same:<br /> <b>To create software that empowers the people who use it.</b>
               </p>
+              <SocialIcons></SocialIcons>
           </div>
 	    	</div>
 	  	</CSSTransitionGroup>

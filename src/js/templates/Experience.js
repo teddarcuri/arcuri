@@ -1,4 +1,6 @@
 import React from 'react';
+import Radium from 'radium';
+import SocialIcons from './SocialIcons';
 import {Router, Route, IndexRoute, Link} from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -22,7 +24,7 @@ class Experience extends React.Component {
         maxWidth: 768
       },
       section: {
-        marginBottom: 0
+        marginBottom: 0,
       },
       sectionHeader: {
         background: "#333",
@@ -35,8 +37,8 @@ class Experience extends React.Component {
         margin: 0
       },
       h3: {
-        color: colors.highlightBlue,
-        lineHeight: "1.5em"
+        color: "#333",
+        lineHeight: "1.25em"
       },
       pillList: {
         width: "100%",
@@ -56,22 +58,33 @@ class Experience extends React.Component {
         flex: "1 0 auto"
       },
       jobBlock: {
-        padding: "20px 0px"
+        padding: "20px 0px",
+        borderBottom: "solid 1px #eee"
       },
       jobTitle: {
         fontSize: "1.1em",
         lineHeight: "2em",
-        color: "#000",
+        color: colors.highlightBlue,
         fontWeight: 700
       },
       jobLength: {
         fontSize: "0.9em",
         fontStyle: "italic",
-        letterSpacing: 1,
         lineHeight: "2em",
-        color: "#000"
-      }
+      },
+      icon: {
+          textAlign: "center",
+          margin: "0px 20px",
+          fontSize: "1.5em",
+          lineHeight: "1.5em",
+          color: "#aaa",
+          ":hover" : {
+            color: "#111"
+          }
+        }
     }
+
+    var small = window.innerWidth < 700;
     return (
     <CSSTransitionGroup transitionAppear={true}
               transitionAppearTimeout={2000}
@@ -80,15 +93,17 @@ class Experience extends React.Component {
               transitionEnterTimeout={2000}
               transitionLeaveTimeout={2000}>
 
-      <h1 style={{letterSpacing: "1.2em", textAlign: "center", fontSize: "1.3em", textTransform: "uppercase"}}>
+      <h1 style={{letterSpacing: "10px", textAlign: "center", fontSize: "1.3em", textTransform: "uppercase"}}>
         Tedd Arcuri
       </h1>
-      <h3 style={{textAlign: "center", fontSize: "0.9em", color: "#666", margin: "20px 0px 30px", fontWeight: 300}}>
-        UI/UX Designer • Front End Developer
+      <h3 style={{textAlign: "center", fontSize: "0.9em", color: "#666", margin: "20px 0px 20px 0px", fontWeight: 300}}>
+        UI/UX Designer • Front End Developer • Human
       </h3>
 
+     <SocialIcons></SocialIcons>
+
       <section style={styles.section}>
-        <h1 style={styles.sectionHeader}>Expertise</h1>
+        <h1 style={styles.sectionHeader}>Knowledge</h1>
         <div style={styles.jobBlock}>
           <ul style={styles.pillList}>
             <li style={styles.pill}>Javascript</li>
@@ -100,15 +115,19 @@ class Experience extends React.Component {
             <li style={styles.pill}>Ember</li>
             <li style={styles.pill}>jQuery</li>
             <li style={styles.pill}>Node</li>
+            <li style={styles.pill}>NPM</li>
+            <li style={styles.pill}>Bower</li>
             <li style={styles.pill}>Express</li>
             <li style={styles.pill}>Drupal</li>
             <li style={styles.pill}>WordPress</li>
             <li style={styles.pill}>Ruby on Rails</li>
             <li style={styles.pill}>Sass</li>
+            <li style={styles.pill}>Stylus</li>
             <li style={styles.pill}>LESS</li>
             <li style={styles.pill}>Gulp</li>
             <li style={styles.pill}>Grunt</li>
             <li style={styles.pill}>Webpack</li>
+            <li style={styles.pill}>Browserify</li>
             <li style={styles.pill}>Firebase</li>
             <li style={styles.pill}>Git</li>
             <li style={styles.pill}>Heroku</li>
@@ -120,6 +139,9 @@ class Experience extends React.Component {
             <li style={styles.pill}>Balsalmiq</li>
             <li style={styles.pill}>InDesign</li>
             <li style={styles.pill}>Agile</li>
+            <li style={styles.pill}>Scrum</li>
+            <li style={styles.pill}>Client Interaction</li>
+            <li style={styles.pill}>Team Dynamics</li>
           </ul>
         </div>
       </section>
@@ -131,44 +153,18 @@ class Experience extends React.Component {
           <h3 style={styles.h3}>Colorado.gov</h3>
           <span style={styles.jobTitle}>Front End Developer</span><br />
           <span style={styles.jobLength}>August 2014 to present</span>
-          <p>
-            Worked in an agile team that delivered products for the state of Colorado on the Drupal CMS and Java based web applications.
-            Led front end implementation and development across our suite of Drupal products, including the Colorado.gov portal website.
-            Designed and built the theme for Colorado Governor, John Hickenlooper's, website.
-            <ul className="bullet">
-              <li>Responsible for integration of new technologies within the company’s workflow resulting in more project efficiency and production</li>
-              <li>Performed due diligence on new platforms, technologies and languages to provide the best possible ROI and ensure use of latest web technologies</li>
-              <li>Utilized business acumen in client interaction, team and project management, business development and marketing.</li>
-              <li>Worked within and adapted to various platforms / content management systems for optimal client satisfaction.</li>
-            </ul>
-          </p>
         </div>
 
         <div style={styles.jobBlock}>
           <h3 style={styles.h3}>Rootspring Studios</h3>
           <span style={styles.jobTitle}>Art Director</span><br />
           <span style={styles.jobLength}>April 2013 to November 2014</span>
-          <p>
-          Started the branding and advertising agency Rootspring Studios with two fellow Colorado Technical University graduates. 
-            <ul className="bullet">
-              <li>Led art direction and design for many projects across a wide array of clientele and project types. Oversaw and ensured quality within corporate identity, package, collateral, and website/application design.</li>
-              <li>Implemented technological solutions and methodologies that led to an efficient workflow that allowed us to be profitable from day one. </li>
-              <li>Responsible for client communication and interaction that was translated into documented project overviews for myself and the team to use for proper execution of the client’s needs.</li>
-              <li>Worked with the team to ensure a high level of communication and efficiency between team members while maintaining the integrity and quality of our work. Took the lead on the pursuit of balance between using modern technologies that our clients desired while still being productive and making 100% of our deadlines.</li>
-            </ul>
-          </p>
         </div>
 
         <div style={styles.jobBlock}>
           <h3 style={styles.h3}>Helium</h3>
           <span style={styles.jobTitle}>Creative</span><br />
           <span>June 2012 to April 2013</span>
-          <p>Started as an intern while in college but was quickly hired on as a full time junior designer within my first month of working at Helium.</p>
-          <ul className="bullet">
-            <li>Responsible for designing and coding website themes for clients on a variety of content management systems. Worked on several full on branding projects that include logo, collateral, brand and website design/development.</li>
-            <li>Helped implement more efficient means of team communication that led to a more streamlined workflow and better engagement across all members of the team.</li>
-            <li>Took initiative to redesign and implement a new website for the company that provided a more modern, responsive web presence that helped to attract additional clientele and showcased abilities within the modern trends of web design + development.</li>
-          </ul>
         </div>
       </section>
       
@@ -191,4 +187,4 @@ class Experience extends React.Component {
   }
 }
 
-export default Experience;
+export default Radium(Experience);
