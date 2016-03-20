@@ -192,6 +192,7 @@ class ProjectGallery extends React.Component {
               <div className="main-carousel" 
                    style={{
                     height: "auto",
+                    minHeight: small ? 200 : 500,
                     width: "100%"
                    }}>
               {
