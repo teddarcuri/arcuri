@@ -160,11 +160,10 @@ class ProjectGallery extends React.Component {
  
   render() {
     var p = this.props.project,
-        currentImage = this.props.project.gallery[Object.keys(this.props.project.gallery)[this.state.currentImage]];
-
+        currentImage = this.props.project.gallery[Object.keys(this.props.project.gallery)[this.state.currentImage]],
+        small = window.innerWidth < 700;
 
     return (
-
       <CSSTransitionGroup component={"div"}
                           className="gallery"
                           transitionName="fadeIn"
@@ -192,7 +191,7 @@ class ProjectGallery extends React.Component {
           <div className="gallery-image-viewer">
               <div className="main-carousel" 
                    style={{
-                    height: 580,
+                    height: "auto",
                     width: "100%"
                    }}>
               {
@@ -200,6 +199,7 @@ class ProjectGallery extends React.Component {
                   return (
                     <div style={{
                           width: "100%",
+                          flex: "1 0 100%",
                           display: "flex",
                           justifyContent: "center",
                           alignItems: "center"
