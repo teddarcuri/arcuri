@@ -2,6 +2,7 @@ import React from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import ElementQuery from 'react-element-query';
 import Radium from 'radium';
+import Flickity from 'flickity';
 
 
 class ProjectGallery extends React.Component {
@@ -12,20 +13,46 @@ class ProjectGallery extends React.Component {
     this.state = {
       currentImage : 0
     }
+
+    this.flkty;
   }
 
   componentDidMount() {
     this.transitionHighlighter();
+    this.setupFlickity();
+  }
+
+  setupFlickity() {
+    var elem = document.querySelector('.main-carousel');
+    this.flkty = new Flickity( elem, {
+      // options
+      cellAlign: 'center',
+      contain: true,
+      infinite: true,
+      imagesLoaded: true,
+      prevNextButtons: false,
+      pageDots: false
+    });
+
+    this.flkty.on( 'cellSelect', () => {
+      if (this.flkty.selectedIndex != this.state.currentImage) {
+        this.setCurrentImage(this.flkty.selectedIndex)
+      }
+    });
+  }
+
+  updateFlickity(key) {
+    this.flkty.select(key);
   }
 
   nextImg() {
-    var key = this.state.currentImage + 1;
-    this.setCurrentImage(key);
+    var key = this.flkty.selectedIndex + 1;
+    this.flkty.select(key);
   }
 
   prevImg() {
-    var key = this.state.currentImage - 1;
-    this.setCurrentImage(key);
+    var key = this.flkty.selectedIndex - 1;
+    this.flkty.select(key);
   }
 
   setCurrentImage(key) {
@@ -42,7 +69,7 @@ class ProjectGallery extends React.Component {
     }
 
     this.setState({ currentImage : key }, function() {
-          this.transitionHighlighter();
+      this.transitionHighlighter();
     });
   }
 
@@ -59,7 +86,8 @@ class ProjectGallery extends React.Component {
         highlighter.style.width = width + "px";
         highlighter.style.height = height + "px";
   }
-
+  
+  // Render Stuff
   renderGalleryTrack() {
     return (
        <CSSTransitionGroup component={"div"}
@@ -144,7 +172,7 @@ class ProjectGallery extends React.Component {
                           transitionAppearTimeout={1000}
                           transitionEnterTimeout={1000}
                           transitionLeaveTimeout={1000}>
-
+            {/* THUMBS */}                
             <ul className="gallery-image-thumbs">
               <div ref="highlighter" className="current-image-highlighter"></div>
              {
@@ -152,7 +180,7 @@ class ProjectGallery extends React.Component {
                   var ref = key == this.state.currentImage ? "currentThumb" : "thumb" + key,
                       activeStyles =  key == this.state.currentImage ? {opacity: 1} : null;
                   return (
-                    <li ref={ref} className="gallery-image" key={key} onClick={this.setCurrentImage.bind(this, key)}>
+                    <li ref={ref} className="gallery-image" key={key} onClick={this.updateFlickity.bind(this, key)}>
                       <img style={activeStyles} src={p.gallery[img].path} alt=""/>
                     </li>
                   )
@@ -160,8 +188,29 @@ class ProjectGallery extends React.Component {
              }
           </ul>
           
+          {/* Carousel */}
           <div className="gallery-image-viewer">
-              {this.renderGalleryTrack()}
+              <div className="main-carousel" 
+                   style={{
+                    height: 580,
+                    width: "100%"
+                   }}>
+              {
+                Object.keys(p.gallery).map(function(img, key) {
+                  return (
+                    <div style={{
+                          width: "100%",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center"
+                         }}>
+                      <img style={{width: "auto", height: "auto", maxWidth: "100%", padding: 20}} src={p.gallery[img].path} alt=""/>
+                    </div>
+                  )
+                }, this)
+              }
+              </div>
+              {/*this.renderGalleryTrack()*/}
               {this.renderArrows()}
           </div>
       </CSSTransitionGroup>

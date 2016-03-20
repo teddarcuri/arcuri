@@ -23,6 +23,7 @@
     "connect-history-api-fallback": "^1.1.0",
     "css-loader": "^0.23.1",
     "express": "^4.13.4",
+    "flickity": "^1.2.0",
     "history": "^1.17.0",
     "imagesloaded": "^4.1.0",
     "jquery": "^2.2.0",

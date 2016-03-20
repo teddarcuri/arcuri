@@ -193,7 +193,13 @@ class ProjectBelt extends React.Component {
 								transitionName="bubbleUp"
 								transitionEnterTimeout={1000}
 								transitionLeave={false}>
-							 		<img src={p.logo} style={{width: isActive && transitioning ? 150 : 55, margin: small ? 30 : 0, zIndex: 1, transition: "all ease 1s"}}/>
+							 		<img src={p.logo} 
+							 			 style={{
+							 			 	width: isActive && transitioning ? 150 : 55, 
+							 			 	margin: small ? 30 : 0, 
+							 			 	zIndex: 1, 
+							 			 	transition: "all ease 1s"	
+							 			 }}/>
 							    	{renderProjectInfo}
 							 	</CSSTransitionGroup>
 							</div>

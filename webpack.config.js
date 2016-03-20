@@ -31,6 +31,11 @@ module.exports = {
 			{
 				test: /\.scss$/,
 				loader: "style-loader!css-loader!sass-loader"
+			},
+			// Flickity
+			{
+			    test: /(flickity|fizzy-ui-utils|get-size|unipointer)/,
+			    loader: 'imports?define=>false&this=>window'
 			}
 		]
 	},
