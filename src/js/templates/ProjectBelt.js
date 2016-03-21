@@ -159,7 +159,7 @@ class ProjectBelt extends React.Component {
 					} else if (isActive && !transitioning && small) {
 						activeHeight = "100px"
 					} else if(isActive && !small) {
-						activeHeight = "50%"
+						activeHeight = "100%"
 					}
 
 	  				return (

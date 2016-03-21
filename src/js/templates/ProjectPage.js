@@ -179,9 +179,8 @@ class ProjectPage extends React.Component {
         {/* Background Image */}
         <div className="project-bg">
           <CSSTransitionGroup
-            style={{opacity: 0.4}} 
-            transitionAppear={true}
-            transitionAppearTimeout={4000}
+            style={{opacity: 0.33}} 
+            transitionAppear={false}
             transitionName="fadeInBackground"
             transitionEnterTimeout={4000}
             transitionLeaveTimeout={4000}>
