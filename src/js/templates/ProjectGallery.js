@@ -20,6 +20,7 @@ class ProjectGallery extends React.Component {
   componentDidMount() {
     this.transitionHighlighter();
     this.setupFlickity();
+    window.dispatchEvent(new Event('resize'));
   }
 
   setupFlickity() {
