@@ -29,22 +29,25 @@ class Logo extends React.Component {
 
 	render() {
 
-		var active = this.state.menuActive ? "active" : null;
+		var active = this.state.menuActive ? "active" : null,
+			activeStyle = {
+				background: "#444"
+			};
 
 		var menuDOM = (
 			<ul className="main">
              <li>
-              <Link to="/about">
+              <Link activeStyle={activeStyle} to="/about">
                 About Me
               </Link>
             </li>
             <li>
-              <Link to="/experience">
+              <Link activeStyle={activeStyle} to="/experience">
                 Experience + Knowledge
               </Link>
             </li>
              <li>
-              <Link to="/work">
+              <Link activeStyle={activeStyle} to="/work">
                 My Work
               </Link>
             </li>
@@ -92,7 +95,7 @@ class Logo extends React.Component {
 					transitionName="menuFade"
 					transitionEnterTimeout={1000}
 					transitionLeaveTimeout={1000}>
-	                  <svg id="menu-icon" onClick={this.toggleMenu.bind(this)}  width="60px" height="65px" viewBox="40 0 70 80" version="1.1">
+	                  <svg id="menu-icon" onClick={this.toggleMenu.bind(this)} onTouchStart={this.toggleMenu.bind(this)}  width="60px" height="65px" viewBox="40 0 70 80" version="1.1">
 	                      <defs></defs>
 	                      <g stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd" >
 	                          <g className="svg-fill"> 
