@@ -22,7 +22,7 @@ class Index extends React.Component {
 	  			width: "100%",
 	  			height: "100%",
 	  			position: "absolute",
-	  			top: "0px", 
+	  			top: "0px",
 	  			left: "0px",
 	  			display: "flex",
 	  			//flexFlow: "row wrap",
@@ -133,4 +133,4 @@ class Index extends React.Component {
 	}
 }
 
-export default Radium(Index);	
+export default Radium(Index);

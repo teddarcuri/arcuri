@@ -97,19 +97,22 @@ class Experience extends React.Component {
         Tedd Arcuri
       </h1>
       <h3 style={{textAlign: "center", fontSize: "0.9em", color: "#666", margin: "20px 0px 20px 0px", fontWeight: 300}}>
-        UI/UX Designer • Front End Developer • Human
+        UI/UX Designer • Front End Engineer • Product Architect
       </h3>
 
      <SocialIcons></SocialIcons>
 
       <section style={styles.section}>
-        <h1 style={styles.sectionHeader}>Knowledge</h1>
+        <h1 style={styles.sectionHeader}>Knowledge/Toolbox</h1>
         <div style={styles.jobBlock}>
           <ul style={styles.pillList}>
             <li style={styles.pill}>Javascript</li>
+            <li style={styles.pill}>React</li>
+            <li style={styles.pill}>Redux</li>
             <li style={styles.pill}>CSS</li>
             <li style={styles.pill}>HTML</li>
             <li style={styles.pill}>PHP</li>
+            <li style={styles.pill}>Elm</li>
             <li style={styles.pill}>Ruby</li>
             <li style={styles.pill}>React</li>
             <li style={styles.pill}>Ember</li>
@@ -150,9 +153,21 @@ class Experience extends React.Component {
       <section style={styles.section}>
         <h1 style={styles.sectionHeader}>Experience</h1>
         <div style={styles.jobBlock}>
+          <h3 style={styles.h3}>Looplist</h3>
+          <span style={styles.jobTitle}>Front End Developer</span><br />
+          <span style={styles.jobLength}>October 2016 to present</span>
+        </div>
+
+        <div style={styles.jobBlock}>
+          <h3 style={styles.h3}>Havenly</h3>
+          <span style={styles.jobTitle}>Front End Developer</span><br />
+          <span style={styles.jobLength}>April 2016 to October 2016</span>
+        </div>
+
+        <div style={styles.jobBlock}>
           <h3 style={styles.h3}>Colorado.gov</h3>
           <span style={styles.jobTitle}>Front End Developer</span><br />
-          <span style={styles.jobLength}>August 2014 to present</span>
+          <span style={styles.jobLength}>August 2014 to April 2016</span>
         </div>
 
         <div style={styles.jobBlock}>
@@ -167,21 +182,15 @@ class Experience extends React.Component {
           <span>June 2012 to April 2013</span>
         </div>
       </section>
-      
+
       <section style={styles.section}>
         <h1 style={styles.sectionHeader}>Education</h1>
         <div style={styles.jobBlock}>
           <h3 style={styles.h3}>Colorado Tech</h3>
           <span style={styles.jobTitle}>A.A. Digital Media Design</span><br />
           <span style={styles.jobLength}>June 2013</span>
-        </div>      
+        </div>
       </section>
-
-      <section style={styles.section}>
-        <h1 style={styles.sectionHeader}>Status</h1>
-         <p>Currently looking for a position in UX/UI design and/or front end engineering. I am a highly passionate person that has a burning desire to work on products I believe make a difference in people's lives. I desire to work in an environement that is highly collaborative where I can learn, grow and help others along the way.</p>
-      </section>
-
     </CSSTransitionGroup>
     );
   }
